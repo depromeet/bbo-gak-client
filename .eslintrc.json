@@ -1,6 +1,5 @@
 {
   "root": true,
-  "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "prettier"],
   "parserOptions": {
     "project": "./tsconfig.json",
@@ -11,7 +10,7 @@
     "node": true,
     "es6": true
   },
-  "ignorePatterns": ["node_modules/", "*.config.*"],
+  "ignorePatterns": ["*.config.*"],
   "extends": [
     "airbnb",
     "airbnb-typescript",
