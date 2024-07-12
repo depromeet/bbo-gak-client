@@ -310,6 +310,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-core@npm:5.51.1":
+  version: 5.51.1
+  resolution: "@tanstack/query-core@npm:5.51.1"
+  checksum: c75a8bf9d4e04adde01420d21e99222ad7e25912ea22ec18ce7e96a5a2111f457da06b18960469b6f79753296404657a717f4776a46c58e24652542e52e6b25f
+  languageName: node
+  linkType: hard
+
+"@tanstack/query-devtools@npm:5.51.1":
+  version: 5.51.1
+  resolution: "@tanstack/query-devtools@npm:5.51.1"
+  checksum: 62a610593ae8c0af38583b8fee49bd5540935af3a634aab35d23e7da86f3ff8867cf8a5b53b7fbc0e1a685eeea32374d27dc018b8f88c03f8a2cf7871497f8e4
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query-devtools@npm:^5.51.1":
+  version: 5.51.1
+  resolution: "@tanstack/react-query-devtools@npm:5.51.1"
+  dependencies:
+    "@tanstack/query-devtools": 5.51.1
+  peerDependencies:
+    "@tanstack/react-query": ^5.51.1
+    react: ^18 || ^19
+  checksum: d76e74b4dd532ca3e655e0d9f5d034d29ae93057932695acab5a2b4e0262d1ebe7a07133b05b600646759040008f0006893e032cf6caeedf7770321cf56b85ad
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query@npm:^5.51.1":
+  version: 5.51.1
+  resolution: "@tanstack/react-query@npm:5.51.1"
+  dependencies:
+    "@tanstack/query-core": 5.51.1
+  peerDependencies:
+    react: ^18.0.0
+  checksum: fbf5b69499ecba40ee31a354ede7c4932d43999a2184da43d5725f5f7688251f43ba131650aa2d2e44d18a1b768d37c9354e386ea7bdfeccb4ce52999ee4a5cc
+  languageName: node
+  linkType: hard
+
 "@types/json5@npm:^0.0.29":
   version: 0.0.29
   resolution: "@types/json5@npm:0.0.29"
@@ -880,6 +917,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "bbo-gak@workspace:."
   dependencies:
+    "@tanstack/react-query": ^5.51.1
+    "@tanstack/react-query-devtools": ^5.51.1
     "@types/node": ^20
     "@types/react": ^18
     "@types/react-dom": ^18
