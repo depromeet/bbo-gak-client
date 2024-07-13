@@ -22,6 +22,8 @@
     "plugin:storybook/recommended"
   ],
   "rules": {
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "prettier/prettier": ["warn", { "printWidth": 80 }],
     "import/prefer-default-export": "off"
   }
 }
