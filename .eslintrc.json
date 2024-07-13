@@ -18,7 +18,10 @@
     "next/core-web-vitals",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
-  "rules": {}
+  "rules": {
+    "import/prefer-default-export": "off"
+  }
 }
