@@ -20,5 +20,8 @@
     "plugin:prettier/recommended",
     "prettier"
   ],
-  "rules": {}
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "prettier/prettier": ["warn", { "printWidth": 80 }]
+  }
 }
