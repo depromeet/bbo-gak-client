@@ -10,10 +10,17 @@ export type TextProps = ComponentProps<'p'> & {
 };
 
 export const Text = forwardRef<HTMLParagraphElement, TextProps>(function Text(
-  { as: Component = 'p', className, typography, color, ...restProps },
+  { as: Component = 'p', className, typography, color, style, ...restProps },
   ref,
 ) {
   const textStyle = useTextStyles({ typography, className });
 
-  return <Component ref={ref} {...textStyle.paragraph} {...restProps} />;
+  return (
+    <Component
+      ref={ref}
+      style={{ color, ...style }}
+      {...textStyle.paragraph}
+      {...restProps}
+    />
+  );
 });
