@@ -4368,6 +4368,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^7.13.0
     "@typescript-eslint/parser": ^7.13.1
     axios: ^1.7.2
+    clsx: ^2.1.1
     eslint: ^8.56.0
     eslint-config-airbnb: ^19.0.4
     eslint-config-airbnb-typescript: ^18.0.0
@@ -4386,6 +4387,7 @@ __metadata:
     react: ^18
     react-dom: ^18
     storybook: ^8.2.1
+    tailwind-variants: ^0.2.1
     tailwindcss: ^3.4.1
     typescript: 5.1
     webpack: ^5.92.1
@@ -4910,6 +4912,13 @@ __metadata:
   version: 1.0.4
   resolution: "clone@npm:1.0.4"
   checksum: d06418b7335897209e77bdd430d04f882189582e67bd1f75a04565f3f07f5b3f119a9d670c943b6697d0afb100f03b866b3b8a1f91d4d02d72c4ecf2bb64b5dd
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: acd3e1ab9d8a433ecb3cc2f6a05ab95fe50b4a3cfc5ba47abb6cbf3754585fcb87b84e90c822a1f256c4198e3b41c7f6c391577ffc8678ad587fc0976b24fd57
   languageName: node
   linkType: hard
 
@@ -11331,6 +11340,24 @@ __metadata:
     "@pkgr/core": ^0.1.0
     tslib: ^2.6.2
   checksum: 9ed5d33abb785f5f24e2531efd53b2782ca77abf7912f734d170134552b99001915531be5a50297aa45c5701b5c9041e8762e6cd7a38e41e2461c1e7fccdedf8
+  languageName: node
+  linkType: hard
+
+"tailwind-merge@npm:^2.2.0":
+  version: 2.4.0
+  resolution: "tailwind-merge@npm:2.4.0"
+  checksum: 442ab18af754eb90a1c730289b10a5df89ec8f197b4783bd31651fffc06ac06dbe7a8f491c2e133c906d6ab466170a5fc1f45aa2d22874e47706acf9d8b0cfe5
+  languageName: node
+  linkType: hard
+
+"tailwind-variants@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "tailwind-variants@npm:0.2.1"
+  dependencies:
+    tailwind-merge: ^2.2.0
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: 39086c633399032fed3923c44980a05183e27179f64bcb945f05ca6efec9bae283a371502ae34c9cb5740b195ef3967aab23cdf79fe2cf87be8fa2f19fb38a03
   languageName: node
   linkType: hard
 
