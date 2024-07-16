@@ -35,4 +35,4 @@ export const fontSize: Record<Typography, number> = {
   Label2: 13,
   Caption1: 12,
   Caption2: 11,
-};
+} as const;
