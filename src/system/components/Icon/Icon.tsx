@@ -1,12 +1,12 @@
 import { forwardRef } from 'react';
-import { Search } from './icons/search';
-import { IconBaseType } from '@/system/components/Icon/icons/type';
-import { Folder } from './icons/folder';
-import { Bell } from './icons/bell';
-import { Memo } from './icons/memo';
-import { Profile } from './icons/profile';
-import { Setting } from './icons/setting';
-import { Logout } from './icons/logout';
+import { Search } from './SVG/Search';
+import { IconBaseType } from '@/system/components/Icon/SVG/type';
+import { Folder } from './SVG/Folder';
+import { Bell } from './SVG/Bell';
+import { Memo } from './SVG/Memo';
+import { Profile } from './SVG/Profile';
+import { Setting } from './SVG/Setting';
+import { Logout } from './SVG/Logout';
 
 const iconMap = {
   bell: Bell,
