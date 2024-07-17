@@ -1,7 +1,22 @@
-import type { ComponentProps } from 'react';
+'use client';
 
-export type ButtonProps = ComponentProps<'button'>;
+import { forwardRef } from 'react';
+import { useButton, type UseButtonProp } from './useButton';
 
-export function Button(props: ButtonProps) {
-  return <button {...props} />;
-}
+const Button = forwardRef<HTMLButtonElement, UseButtonProp>(
+  ({ leftIcon, rightIcon, ...props }, ref) => {
+    const { children, getButtonProps } = useButton({ ...props, ref });
+
+    return (
+      <button {...getButtonProps()}>
+        {leftIcon}
+        {children}
+        {rightIcon}
+      </button>
+    );
+  },
+);
+
+Button.displayName = 'bbo-gak-Button';
+
+export default Button;
