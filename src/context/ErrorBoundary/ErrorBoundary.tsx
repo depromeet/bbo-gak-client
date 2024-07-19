@@ -1,37 +1,24 @@
 'use client';
 
-import {
-  Component,
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react';
+import { Component, forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { isDifferentArray } from '@/util';
 import { ErrorboundaryProvider } from './ErrorBoundaryContext';
 import type { StrictPropsWithChildren } from '@/types';
-import type {
-  ComponentPropsWithoutRef,
-  ErrorInfo,
-  PropsWithRef,
-  ReactNode,
-} from 'react';
+import type { ComponentPropsWithoutRef, ErrorInfo, PropsWithRef, ReactNode } from 'react';
 
 type RenderFallbackProps<ErrorType extends Error = Error> = {
   error: ErrorType;
   reset?: () => void;
 };
 
-type RenderFallbackType = <ErrorType extends Error>(
-  props: RenderFallbackProps<ErrorType>,
-) => ReactNode;
+type RenderFallbackType = <ErrorType extends Error>(props: RenderFallbackProps<ErrorType>) => ReactNode;
 
 type FallbackType = ReactNode;
 
 type ErrorBoundaryProps<ErrorType extends Error = Error> = {
   onReset?(): void;
   renderFallback: RenderFallbackType | FallbackType;
-  onError?(error: ErrorType, info: ErrorInfo): void;
+  onError?(error: ErrorType, info?: ErrorInfo): void;
   resetKeys?: unknown[];
 };
 
@@ -43,15 +30,10 @@ const initialState: State = {
   error: null,
 };
 
-export class ErrorBoundary extends Component<
-  PropsWithRef<StrictPropsWithChildren<ErrorBoundaryProps>>,
-  State
-> {
+export class ErrorBoundary extends Component<PropsWithRef<StrictPropsWithChildren<ErrorBoundaryProps>>, State> {
   hasError = false;
 
-  constructor(
-    props: PropsWithRef<StrictPropsWithChildren<ErrorBoundaryProps>>,
-  ) {
+  constructor(props: PropsWithRef<StrictPropsWithChildren<ErrorBoundaryProps>>) {
     super(props);
     this.state = initialState;
   }
@@ -95,6 +77,43 @@ export class ErrorBoundary extends Component<
     this.setState(initialState);
   }
 
+  /**
+   * 현재 에러 상태에 따라 렌더링할 자식 요소 또는 폴백 UI를 제공합니다.
+   * 에러가 있으면 `renderFallback` prop에서 제공한 폴백 UI를 반환합니다.
+   * `renderFallback` prop은 ReactNode일 수도 있고, error, reset을 사용하는 함수를 반환할 수도 있습니다.
+   *
+   * @returns {ReactNode} 렌더링된 children or fallback.
+   *
+   * @example
+   * function MyComponent() {
+   *   return (
+   *     <ErrorBoundary
+   *       renderFallback={({ error, reset }) => (
+   *         <div>
+   *           <p>문제가 발생했습니다: {error.message}</p>
+   *           <button onClick={reset}>다시 시도</button>
+   *         </div>
+   *       )}
+   *     >
+   *       <MyChildComponent />
+   *     </ErrorBoundary>
+   *   );
+   * }
+   *
+   *
+   * @example
+   * function MyComponent() {
+   *   return (
+   *     <ErrorBoundary
+   *       renderFallback={
+   *         <div>로딩 스피너</div>
+   *       }
+   *     >
+   *       <MyChildComponent />
+   *     </ErrorBoundary>
+   *   );
+   * }
+   */
   genereateRenderedChildren() {
     const { error } = this.state;
     const { children, renderFallback } = this.props;
@@ -120,26 +139,21 @@ export class ErrorBoundary extends Component<
       resetErrorBoundary: this.resetErrorBoundary,
     };
 
-    return (
-      <ErrorboundaryProvider {...ErrorboundaryProviderProps}>
-        {renderedChildren}
-      </ErrorboundaryProvider>
-    );
+    return <ErrorboundaryProvider {...ErrorboundaryProviderProps}>{renderedChildren}</ErrorboundaryProvider>;
   }
 }
 
-export const GlobalErrorBoundary = forwardRef<
-  { reset(): void },
-  ComponentPropsWithoutRef<typeof ErrorBoundary>
->((props, resetRef) => {
-  const ref = useRef<ErrorBoundary>(null);
+export const GlobalErrorBoundary = forwardRef<{ reset(): void }, ComponentPropsWithoutRef<typeof ErrorBoundary>>(
+  (props, resetRef) => {
+    const ref = useRef<ErrorBoundary>(null);
 
-  useImperativeHandle(resetRef, () => ({
-    reset: () => ref.current?.resetErrorBoundary(),
-  }));
+    useImperativeHandle(resetRef, () => ({
+      reset: () => ref.current?.resetErrorBoundary(),
+    }));
 
-  return <ErrorBoundary {...props} ref={ref} />;
-});
+    return <ErrorBoundary {...props} ref={ref} />;
+  },
+);
 
 GlobalErrorBoundary.displayName = 'GlobalErrorBoundary';
 
