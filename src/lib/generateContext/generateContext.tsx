@@ -20,7 +20,7 @@ type ProviderProps<ContextValuesType extends object> =
   | (ContextValuesType & { children: ReactNode })
   | { children: ReactNode };
 
-export default function generateContext<ContextType extends object>(options: ContextOptions<ContextType>) {
+export function generateContext<ContextType extends object>(options: ContextOptions<ContextType>) {
   const {
     name,
     errorMessage = `${name} Context가 존재하지 않습니다. Provider를 설정해주세요.`,
