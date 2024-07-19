@@ -4370,6 +4370,7 @@ __metadata:
     react: ^18
     react-dom: ^18
     storybook: ^8.2.1
+    tailwind-merge: ^2.4.0
     tailwind-variants: ^0.2.1
     tailwindcss: ^3.4.1
     typescript: 5.1
@@ -11220,7 +11221,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-merge@npm:^2.2.0":
+"tailwind-merge@npm:^2.2.0, tailwind-merge@npm:^2.4.0":
   version: 2.4.0
   resolution: "tailwind-merge@npm:2.4.0"
   checksum: 442ab18af754eb90a1c730289b10a5df89ec8f197b4783bd31651fffc06ac06dbe7a8f491c2e133c906d6ab466170a5fc1f45aa2d22874e47706acf9d8b0cfe5

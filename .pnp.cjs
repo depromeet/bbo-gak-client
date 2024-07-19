@@ -63,6 +63,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.3.1"],\
             ["react-dom", "virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:18.3.1"],\
             ["storybook", "npm:8.2.1"],\
+            ["tailwind-merge", "npm:2.4.0"],\
             ["tailwind-variants", "virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:0.2.1"],\
             ["tailwindcss", "npm:3.4.4"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
@@ -6652,6 +6653,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:18.3.1"],\
             ["react-dom", "virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:18.3.1"],\
             ["storybook", "npm:8.2.1"],\
+            ["tailwind-merge", "npm:2.4.0"],\
             ["tailwind-variants", "virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:0.2.1"],\
             ["tailwindcss", "npm:3.4.4"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
