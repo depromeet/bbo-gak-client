@@ -1,4 +1,4 @@
-import generateContext from '@/context/generateContext/generateContext';
+import { generateContext } from '@/lib';
 
 interface CollapsibleContext {
   collapsed: boolean;
