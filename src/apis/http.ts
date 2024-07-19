@@ -28,7 +28,9 @@ http.interceptors.request.use(
     }
 
     const token = getCookie('accessToken');
-    if (!config.headers) return config;
+    if (!config.headers) {
+      return config;
+    }
     if (token) {
       config.headers.common['Authorization'] = `Bearer ${token}`;
     }
@@ -42,7 +44,9 @@ http.interceptors.request.use(
 
 http.interceptors.response.use(
   (response) => {
-    !isProd() && console.log(response);
+    if (!isProd) {
+      console.log(response);
+    }
     return response.data;
   },
   (error: AxiosError) => {
