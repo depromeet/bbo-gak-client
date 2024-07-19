@@ -1,5 +1,5 @@
 import { isProd } from '@/utils/common';
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { getCookie } from 'cookies-next';
 
 const axiosInstance: AxiosInstance = axios.create({
@@ -21,35 +21,25 @@ export interface HttpClient extends AxiosInstance {
 
 export const http: HttpClient = axiosInstance;
 
-http.interceptors.request.use(
-  (config) => {
-    if (typeof window === 'undefined') {
-      return config;
-    }
-
-    const token = getCookie('accessToken');
-    if (!config.headers) {
-      return config;
-    }
-    if (token) {
-      config.headers.common['Authorization'] = `Bearer ${token}`;
-    }
-
+http.interceptors.request.use((config) => {
+  if (typeof window === 'undefined') {
     return config;
-  },
-  (error: AxiosError) => {
-    Promise.reject(error);
-  },
-);
+  }
 
-http.interceptors.response.use(
-  (response) => {
-    if (!isProd) {
-      console.log(response);
-    }
-    return response.data;
-  },
-  (error: AxiosError) => {
-    return Promise.reject(error);
-  },
-);
+  const token = getCookie('accessToken');
+  if (!config.headers) {
+    return config;
+  }
+  if (token) {
+    config.headers.common['Authorization'] = `Bearer ${token}`;
+  }
+
+  return config;
+});
+
+http.interceptors.response.use((response) => {
+  if (!isProd) {
+    console.log(response);
+  }
+  return response.data;
+});
