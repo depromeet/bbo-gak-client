@@ -2,11 +2,10 @@
 
 import generateContext from '../generateContext/generateContext';
 
-export const [ErrorboundaryProvider, useErrorBoundaryContext] =
-  generateContext<{
-    error: Error | null;
-    resetErrorBoundary: () => void;
-  }>({
-    name: 'global-error-boundary-context',
-    defaultContextValue: { error: null, resetErrorBoundary: () => {} },
-  });
+export const [ErrorboundaryProvider, useErrorBoundaryContext] = generateContext<{
+  error: Error | null;
+  resetErrorBoundary: () => void;
+}>({
+  name: 'global-error-boundary-context',
+  defaultValue: { error: null, resetErrorBoundary: () => {} },
+});
