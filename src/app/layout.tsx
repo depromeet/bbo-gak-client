@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { QueryProvider } from '@/lib';
 import './globals.css';
 import { cn } from '@/utils/cn';
 
@@ -17,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'bg-neutral-1')}>{children}</body>
+      <body className={cn(inter.className, 'bg-neutral-1')}>
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   );
 }

@@ -1,6 +1,4 @@
-import { forwardRef } from 'react';
 import { Search } from './SVG/Search';
-import { IconBaseType } from '@/system/components/Icon/SVG/type';
 import { Folder } from './SVG/Folder';
 import { Bell } from './SVG/Bell';
 import { Memo } from './SVG/Memo';
@@ -10,6 +8,7 @@ import { Logout } from './SVG/Logout';
 import { Down } from './SVG/Down';
 import { Add } from './SVG/Add';
 import { More } from './SVG/More';
+import type { IconBaseType } from '@/system/components/Icon/SVG/type';
 
 const iconMap = {
   bell: Bell,
