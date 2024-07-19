@@ -17,11 +17,11 @@ jobs:
         with:
           node-version: '20.2.0'
 
-      - name: pnpm 설치중..
-        run: npm install -g pnpm
+      - name: yarn 설치중..
+        run: npm install -g yarn
 
       - name: 종속성 설치중...
-        run: pnpm install
+        run: yarn install
 
       - name: 빌드 중..
-        run: pnpm build
+        run: yarn build
