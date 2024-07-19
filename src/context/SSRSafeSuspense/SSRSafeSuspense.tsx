@@ -1,8 +1,8 @@
 'use client';
 
-import { useIsClient } from '@/hooks';
 import { Suspense } from 'react';
 import type { ComponentProps } from 'react';
+import { useIsClient } from '@/hooks';
 
 export default function SSRSafeSuspense(props: ComponentProps<typeof Suspense>) {
   if (!useIsClient()) {
