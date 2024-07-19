@@ -1,4 +1,4 @@
-import { isProd } from '@/utils/common';
+import { isProductionEnv } from '@/utils/common';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { getCookie } from 'cookies-next';
 
@@ -38,7 +38,7 @@ http.interceptors.request.use((config) => {
 });
 
 http.interceptors.response.use((response) => {
-  if (!isProd) {
+  if (!isProductionEnv) {
     console.log(response);
   }
   return response.data;
