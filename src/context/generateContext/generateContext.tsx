@@ -6,7 +6,7 @@ import type { ReactNode, Context as ReactContext } from 'react';
 interface ContextOptions<ContextType> {
   name: string;
   errorMessage?: string;
-  defaultContextValue?: ContextType;
+  defaultValue?: ContextType;
   strict?: boolean;
 }
 
@@ -20,18 +20,14 @@ type ProviderProps<ContextValuesType extends object> =
   | (ContextValuesType & { children: ReactNode })
   | { children: ReactNode };
 
-export default function generateContext<ContextType extends object>(
-  options: ContextOptions<ContextType>,
-) {
+export default function generateContext<ContextType extends object>(options: ContextOptions<ContextType>) {
   const {
     name,
     errorMessage = `${name} Context가 존재하지 않습니다. Provider를 설정해주세요.`,
-    defaultContextValue = null,
+    defaultValue = null,
     strict = true,
   } = options;
-  const Context = createContext<ContextType | null>(
-    defaultContextValue ?? null,
-  );
+  const Context = createContext<ContextType | null>(defaultValue ?? null);
 
   function useContext() {
     const context = ReactUseContext(Context);
@@ -40,8 +36,8 @@ export default function generateContext<ContextType extends object>(
       return context;
     }
 
-    if (defaultContextValue !== null) {
-      return defaultContextValue;
+    if (defaultValue !== null) {
+      return defaultValue;
     }
 
     if (strict) {
@@ -54,10 +50,7 @@ export default function generateContext<ContextType extends object>(
     return context;
   }
 
-  function Provider({
-    children,
-    ...providerValues
-  }: ProviderProps<ContextType>) {
+  function Provider({ children, ...providerValues }: ProviderProps<ContextType>) {
     const value = useMemo(
       () => (Object.keys(providerValues).length > 0 ? providerValues : null),
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,9 +63,5 @@ export default function generateContext<ContextType extends object>(
   Context.displayName = name;
   Provider.displayName = name;
 
-  return [
-    Provider,
-    useContext,
-    Context,
-  ] as GenerateContextReturnType<ContextType>;
+  return [Provider, useContext, Context] as GenerateContextReturnType<ContextType>;
 }
