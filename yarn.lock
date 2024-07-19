@@ -4352,6 +4352,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^7.13.0
     "@typescript-eslint/parser": ^7.13.1
     axios: ^1.7.2
+    class-variance-authority: ^0.7.0
     clsx: ^2.1.1
     eslint: ^8.56.0
     eslint-config-airbnb: ^19.0.4
@@ -4364,14 +4365,17 @@ __metadata:
     eslint-plugin-react: ^7.33.2
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-storybook: ^0.8.0
+    lucide-react: ^0.411.0
     next: 14.2.4
     postcss: ^8
     prettier: ^3.3.2
     react: ^18
     react-dom: ^18
     storybook: ^8.2.1
+    tailwind-merge: ^2.4.0
     tailwind-variants: ^0.2.1
     tailwindcss: ^3.4.1
+    tailwindcss-animate: ^1.0.7
     typescript: 5.1
     webpack: ^5.92.1
   languageName: unknown
@@ -4841,6 +4845,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"class-variance-authority@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "class-variance-authority@npm:0.7.0"
+  dependencies:
+    clsx: 2.0.0
+  checksum: e7fd1fab433ef06f52a1b7b241b70b4a185864deef199d3b0a2c3412f1cc179517288264c383f3b971a00d76811625fc8f7ffe709e6170219e88cd7368f08a20
+  languageName: node
+  linkType: hard
+
 "clean-css@npm:^5.2.2":
   version: 5.3.3
   resolution: "clean-css@npm:5.3.3"
@@ -4895,6 +4908,13 @@ __metadata:
   version: 1.0.4
   resolution: "clone@npm:1.0.4"
   checksum: d06418b7335897209e77bdd430d04f882189582e67bd1f75a04565f3f07f5b3f119a9d670c943b6697d0afb100f03b866b3b8a1f91d4d02d72c4ecf2bb64b5dd
+  languageName: node
+  linkType: hard
+
+"clsx@npm:2.0.0":
+  version: 2.0.0
+  resolution: "clsx@npm:2.0.0"
+  checksum: a2cfb2351b254611acf92faa0daf15220f4cd648bdf96ce369d729813b85336993871a4bf6978ddea2b81b5a130478339c20d9d0b5c6fc287e5147f0c059276e
   languageName: node
   linkType: hard
 
@@ -8349,6 +8369,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lucide-react@npm:^0.411.0":
+  version: 0.411.0
+  resolution: "lucide-react@npm:0.411.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: e0f963f194b8194cd008db100d48d28b540ad0ff2d0a3f0710aaa7e8e9716ed0e6c8710f3c512ba61fb9d49672097470ca8b3b15c7d04020772efe82831355c2
+  languageName: node
+  linkType: hard
+
 "lz-string@npm:^1.5.0":
   version: 1.5.0
   resolution: "lz-string@npm:1.5.0"
@@ -11220,7 +11249,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-merge@npm:^2.2.0":
+"tailwind-merge@npm:^2.2.0, tailwind-merge@npm:^2.4.0":
   version: 2.4.0
   resolution: "tailwind-merge@npm:2.4.0"
   checksum: 442ab18af754eb90a1c730289b10a5df89ec8f197b4783bd31651fffc06ac06dbe7a8f491c2e133c906d6ab466170a5fc1f45aa2d22874e47706acf9d8b0cfe5
@@ -11235,6 +11264,15 @@ __metadata:
   peerDependencies:
     tailwindcss: "*"
   checksum: 39086c633399032fed3923c44980a05183e27179f64bcb945f05ca6efec9bae283a371502ae34c9cb5740b195ef3967aab23cdf79fe2cf87be8fa2f19fb38a03
+  languageName: node
+  linkType: hard
+
+"tailwindcss-animate@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "tailwindcss-animate@npm:1.0.7"
+  peerDependencies:
+    tailwindcss: "*"
+  checksum: c1760983eb3fec0c8421e95082bf308e6845df43e2f90862386366e82545c801b26b4d189c4cd23d6915252b76d18005c8e5f591f8b119944c7fb8650d0f8bce
   languageName: node
   linkType: hard
 
