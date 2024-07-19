@@ -1,7 +1,7 @@
 'use client';
 
 import { Component, forwardRef, useImperativeHandle, useRef, useState } from 'react';
-import { isDifferentArray } from '@/util';
+import { isDifferentArray } from '@/utils';
 import { ErrorboundaryProvider } from './ErrorBoundaryContext';
 import type { StrictPropsWithChildren } from '@/types';
 import type { ComponentPropsWithoutRef, ErrorInfo, PropsWithRef, ReactNode } from 'react';
