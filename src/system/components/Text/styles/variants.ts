@@ -1,5 +1,6 @@
-import { Typography, typographyVariant } from '@/system/token/typography';
+import { typographyVariant } from '@/system/token/typography';
 import { tv } from 'tailwind-variants';
+import type { Typography } from '@/system/token/typography';
 
 export const textVariants = tv({
   base: 'm-0',

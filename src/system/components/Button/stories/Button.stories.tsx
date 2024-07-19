@@ -1,5 +1,5 @@
-import { Meta } from '@storybook/react';
 import { Button } from '../Button';
+import type { Meta } from '@storybook/react';
 
 const meta = {
   title: 'Design System/Button',
@@ -9,6 +9,6 @@ const meta = {
 
 export default meta;
 
-export const Example = () => {
+export function Example() {
   return <Button>Test</Button>;
-};
+}
