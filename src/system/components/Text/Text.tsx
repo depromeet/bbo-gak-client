@@ -1,6 +1,7 @@
-import { Typography } from '@/system/token/typography';
-import { ComponentProps, ElementType, forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { useTextStyles } from './styles/useTextStyles';
+import type { ComponentProps, ElementType } from 'react';
+import type { Typography } from '@/system/token/typography';
 
 // TODO: Polymorphic하게 변경
 export type TextProps = ComponentProps<'p'> & {

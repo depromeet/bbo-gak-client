@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
-import { Typography } from '@/system/token/typography';
 import { textVariants } from './variants';
-import { TextAnatomy } from '../anatomy';
+import type { Typography } from '@/system/token/typography';
+import type { TextAnatomy } from '../anatomy';
 
 interface Props {
   className?: string;

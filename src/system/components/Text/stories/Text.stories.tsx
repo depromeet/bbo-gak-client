@@ -1,6 +1,6 @@
-import { Meta } from '@storybook/react';
-import { Text } from '../Text';
 import { typographyVariant } from '@/system/token/typography';
+import { Text } from '../Text';
+import type { Meta } from '@storybook/react';
 
 const meta = {
   title: 'Design system/Text',
@@ -10,12 +10,14 @@ const meta = {
 
 export default meta;
 
-export const Example = () => {
+export function Example() {
   return (
     <>
       {typographyVariant.map((typography) => (
-        <Text typography={typography}>테스트입니다</Text>
+        <Text key={typography} typography={typography}>
+          테스트입니다
+        </Text>
       ))}
     </>
   );
-};
+}
