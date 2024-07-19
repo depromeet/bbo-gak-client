@@ -2,7 +2,7 @@
 
 import { SessionProvider } from 'next-auth/react';
 import type { PropsWithChildren } from 'react';
-import ReactQuery from './queryProvider/ReactQuery';
+import ReactQuery from './QueryProvider/ReactQuery';
 
 export default function Providers({ children }: PropsWithChildren) {
   return (
