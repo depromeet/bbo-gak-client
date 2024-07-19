@@ -1,9 +1,19 @@
-import { IconBaseType } from './type';
+import type { IconBaseType } from './type';
 
 export function Folder({ size, color }: IconBaseType) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox={`0 0 ${size} ${size}`} fill="none">
-      <path d="M12 17.2265V14.6895" stroke={color} strokeWidth="1.5" strokeLinecap="square" />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={size}
+      height={size}
+      viewBox={`0 0 ${size} ${size}`}
+      fill="none">
+      <path
+        d="M12 17.2265V14.6895"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="square"
+      />
       <path
         fillRule="evenodd"
         clipRule="evenodd"

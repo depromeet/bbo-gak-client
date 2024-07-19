@@ -1,5 +1,5 @@
 import { Icon } from '../Icon';
-import { Meta } from '@storybook/react';
+import type { Meta } from '@storybook/react';
 
 const meta = {
   title: 'Design System/Icon',
@@ -9,7 +9,7 @@ const meta = {
 
 export default meta;
 
-export const Example = () => {
+export function Example() {
   return (
     <>
       <Icon name="bell" color="black" />
@@ -21,4 +21,4 @@ export const Example = () => {
       <Icon name="setting" color="black" />
     </>
   );
-};
+}
