@@ -21,9 +21,9 @@ export function Sidebar() {
       style={{ width: expanded ? SIDEBAR_EXPANDED_WIDTH : SIDEBAR_FOLD_WIDTH }}>
       <div className="relative mb-[32px]">
         <div className="w-[40px] h-[40px]" />
-        <div className="absolute top-[50%] translate-y-[-50%] left-[72px]" onClick={() => setExpanded(!expanded)}>
+        <button className="absolute top-[50%] translate-y-[-50%] left-[72px]" onClick={() => setExpanded(!expanded)}>
           <Icon name="division" color={expanded ? '#5A5C63' : '#AEB0B6'} />
-        </div>
+        </button>
       </div>
 
       <div className="flex flex-col items-center gap-[36px] w-full">
