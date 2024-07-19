@@ -17,12 +17,16 @@
     "@tanstack/react-query": "^5.51.1",
     "@tanstack/react-query-devtools": "^5.51.1",
     "axios": "^1.7.2",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cookies-next": "^4.2.1",
+    "lucide-react": "^0.411.0",
     "next": "14.2.4",
     "react": "^18",
     "react-dom": "^18",
-    "tailwind-variants": "^0.2.1"
+    "tailwind-merge": "^2.4.0",
+    "tailwind-variants": "^0.2.1",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.6.1",
