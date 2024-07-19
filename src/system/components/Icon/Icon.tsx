@@ -7,6 +7,9 @@ import { Memo } from './SVG/Memo';
 import { Profile } from './SVG/Profile';
 import { Setting } from './SVG/Setting';
 import { Logout } from './SVG/Logout';
+import { Down } from './SVG/Down';
+import { Add } from './SVG/Add';
+import { More } from './SVG/More';
 
 const iconMap = {
   bell: Bell,
@@ -16,6 +19,9 @@ const iconMap = {
   profile: Profile,
   search: Search,
   setting: Setting,
+  down: Down,
+  add: Add,
+  more: More,
 } as const;
 
 export interface IconProps extends IconBaseType {
