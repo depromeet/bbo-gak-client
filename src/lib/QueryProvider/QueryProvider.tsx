@@ -19,7 +19,7 @@ const queryClientOption: QueryClientConfig = {
   },
 };
 
-export default function ReactQuery({ children }: PropsWithChildren) {
+export function QueryProvider({ children }: PropsWithChildren) {
   const [queryClient] = useState(() => new QueryClient(queryClientOption));
 
   return (

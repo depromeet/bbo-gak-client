@@ -1,10 +1,9 @@
 'use client';
 
-import { Suspense } from 'react';
-import type { ComponentProps } from 'react';
+import { Suspense, type ComponentProps } from 'react';
 import { useIsClient } from '@/hooks';
 
-export default function SSRSafeSuspense(props: ComponentProps<typeof Suspense>) {
+export function SSRSafeSuspense(props: ComponentProps<typeof Suspense>) {
   if (!useIsClient()) {
     // eslint-disable-next-line react/destructuring-assignment
     return props.fallback;
