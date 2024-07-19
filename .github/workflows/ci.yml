@@ -1,0 +1,27 @@
+name: CI 체크중..
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 레포지토리 체크아웃 중..
+        uses: actions/checkout@v2
+
+      - name: node 설치중..
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20.2.0'
+
+      - name: pnpm 설치중..
+        run: npm install -g pnpm
+
+      - name: 종속성 설치중...
+        run: pnpm install
+
+      - name: 빌드 중..
+        run: pnpm build
