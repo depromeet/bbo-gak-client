@@ -22,8 +22,30 @@
     "plugin:storybook/recommended"
   ],
   "rules": {
+    "import/order": [
+      "warn",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+        "pathGroups": [
+          {
+            "pattern": "next",
+            "group": "builtin",
+            "position": "before"
+          },
+          {
+            "pattern": "~/**",
+            "group": "external",
+            "position": "after"
+          }
+        ]
+      }
+    ],
     "@typescript-eslint/consistent-type-imports": "warn",
     "prettier/prettier": ["warn", { "printWidth": 80 }],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "react/require-default-props": "off",
+    "no-restricted-syntax": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/button-has-type": "off"
   }
 }
