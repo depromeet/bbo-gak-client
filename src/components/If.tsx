@@ -6,7 +6,7 @@ interface IfProps {
 
 export function If({ condition, children }: PropsWithChildren<IfProps>) {
   if (condition) {
-    return <>{children}</>;
+    return children;
   }
   return null;
 }
