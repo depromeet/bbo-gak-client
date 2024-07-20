@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { mockInfoCount, mockInfoList } from '../mock';
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils/tailwind-util';
 import { Icon } from '@/system/components';
 import { InfoCard } from './info-card';
 

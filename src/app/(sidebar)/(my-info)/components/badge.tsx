@@ -1,6 +1,6 @@
 // ISSUE: 공통 컴포넌트로 하기 위해 system 폴더에 위치시켰는데, tailwind 스타일이 먹지 않는 이슈 발생. 원인은 아직 못찾음
 // system 폴더가 아닌 현재 폴더에 위치시키면 문제가 발생하지 않음
-import { cn } from '@/utils/cn';
+import { cn } from '@/utils/tailwind-util';
 
 export interface BadgeProps {
   label: string;

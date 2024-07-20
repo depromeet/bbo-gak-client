@@ -9,6 +9,8 @@ import { Down } from './SVG/Down';
 import { Add } from './SVG/Add';
 import { More } from './SVG/More';
 import type { IconBaseType } from '@/system/components/Icon/SVG/type';
+import { Delete } from './SVG/Delete';
+import { Pip } from './SVG/Pip';
 
 const iconMap = {
   bell: Bell,
@@ -21,6 +23,8 @@ const iconMap = {
   down: Down,
   add: Add,
   more: More,
+  delete: Delete,
+  pip: Pip,
 } as const;
 
 export interface IconProps extends IconBaseType {
