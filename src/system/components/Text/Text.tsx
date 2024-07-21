@@ -1,4 +1,3 @@
-'use-client';
 import { forwardRef } from 'react';
 import { useTextStyles } from './styles/useTextStyles';
 import type { ComponentProps, ElementType } from 'react';
