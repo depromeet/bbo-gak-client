@@ -14,7 +14,7 @@ export function Example() {
   return (
     <>
       {typographyVariant.map((typography) => (
-        <Text key={typography} typography={typography}>
+        <Text key={typography} typography={typography} fontWeight="medium">
           테스트입니다
         </Text>
       ))}
