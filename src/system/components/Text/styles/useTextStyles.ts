@@ -1,5 +1,5 @@
 import { clsx } from 'clsx';
-import { textVariants } from './variants';
+import { paragraphVariants } from './variants';
 import type { Typography } from '@/system/token/typography';
 import type { TextAnatomy } from '../anatomy';
 
@@ -8,15 +8,12 @@ interface Props {
   typography: Typography;
 }
 
-export function useTextStyles({
-  className,
-  typography,
-}: Props): Record<TextAnatomy, { className: string }> {
-  const styleVariants = textVariants({ typography });
+export function useTextStyles({ className, typography }: Props): Record<TextAnatomy, { className: string }> {
+  const paragraphStyle = paragraphVariants({ typography });
 
   return {
     paragraph: {
-      className: clsx(className, styleVariants),
+      className: clsx(className, paragraphStyle),
     },
   };
 }
