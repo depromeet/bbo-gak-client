@@ -66,7 +66,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:18.3.1"],\
             ["storybook", "npm:8.2.1"],\
             ["tailwind-merge", "npm:2.4.0"],\
-            ["tailwind-variants", "virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:0.2.1"],\
             ["tailwindcss", "npm:3.4.4"],\
             ["tailwindcss-animate", "virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:1.0.7"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
@@ -6659,7 +6658,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-dom", "virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:18.3.1"],\
             ["storybook", "npm:8.2.1"],\
             ["tailwind-merge", "npm:2.4.0"],\
-            ["tailwind-variants", "virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:0.2.1"],\
             ["tailwindcss", "npm:3.4.4"],\
             ["tailwindcss-animate", "virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:1.0.7"],\
             ["typescript", "patch:typescript@npm%3A5.1.6#~builtin<compat/typescript>::version=5.1.6&hash=5da071"],\
@@ -14802,29 +14800,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tailwind-merge-npm-2.4.0-be8d0b173f-442ab18af7.zip/node_modules/tailwind-merge/",\
           "packageDependencies": [\
             ["tailwind-merge", "npm:2.4.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
-      ["tailwind-variants", [\
-        ["npm:0.2.1", {\
-          "packageLocation": "./.yarn/cache/tailwind-variants-npm-0.2.1-853f67f9ea-39086c6333.zip/node_modules/tailwind-variants/",\
-          "packageDependencies": [\
-            ["tailwind-variants", "npm:0.2.1"]\
-          ],\
-          "linkType": "SOFT"\
-        }],\
-        ["virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:0.2.1", {\
-          "packageLocation": "./.yarn/__virtual__/tailwind-variants-virtual-6a9926aa49/0/cache/tailwind-variants-npm-0.2.1-853f67f9ea-39086c6333.zip/node_modules/tailwind-variants/",\
-          "packageDependencies": [\
-            ["tailwind-variants", "virtual:d9cd1cf96fc105240ce4126e416dd90faeefaf08cea474f2ffdd0a21bc6194bc993779567e0c0bf19c40cbbd585d546a065d8582fcc0925f8826e5fbca78aa72#npm:0.2.1"],\
-            ["@types/tailwindcss", null],\
-            ["tailwind-merge", "npm:2.4.0"],\
-            ["tailwindcss", "npm:3.4.4"]\
-          ],\
-          "packagePeers": [\
-            "@types/tailwindcss",\
-            "tailwindcss"\
           ],\
           "linkType": "HARD"\
         }]\
