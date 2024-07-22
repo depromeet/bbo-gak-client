@@ -4,11 +4,14 @@ import { SidebarButton } from '@/container/Sidebar/SidebarButton';
 import { Icon } from '@/system/components';
 import { useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
+import { cn } from 'tailwind-variants';
 
 // FIXME:
 const SELECTED = true;
-const SIDEBAR_FOLD_WIDTH = 72;
-const SIDEBAR_EXPANDED_WIDTH = 220;
+const SIDEBAR_CLASSNAME = {
+  expanded: 'w-[220px]',
+  shrinked: 'w-[72px]',
+} as const;
 
 export function Sidebar() {
   const [expanded, setExpanded] = useState(false);
@@ -17,8 +20,7 @@ export function Sidebar() {
 
   return (
     <nav
-      className="relative flex flex-col items-center px-[16px] py-[32px] h-screen bg-black"
-      style={{ width: expanded ? SIDEBAR_EXPANDED_WIDTH : SIDEBAR_FOLD_WIDTH }}>
+      className={`relative flex flex-col items-center px-[16px] py-[32px] h-screen bg-black ${SIDEBAR_CLASSNAME[expanded ? 'expanded' : 'shrinked']}`}>
       <div className="relative mb-[32px]">
         <div className="w-[40px] h-[40px]" />
         <button
