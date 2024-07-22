@@ -29,7 +29,7 @@ const tagTypeColor = {
   인성: 'purple',
 } as const;
 
-export function InfoCard({ title, updatedDate, cardTagList }: Props) {
+export function InfoCardItem({ title, updatedDate, cardTagList }: Props) {
   const formattedDate = formatToYYMMDD(updatedDate);
 
   return (

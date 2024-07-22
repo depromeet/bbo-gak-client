@@ -2,7 +2,7 @@ import { IconBaseType } from './type';
 
 export function Down({ size, color }: IconBaseType) {
   return (
-    <svg width={size} height={size} viewBox={`0 0 {size} {size}`} fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} fill="none" xmlns="http://www.w3.org/2000/svg">
       <mask
         id="mask0_805_23618"
         style={{ maskType: 'alpha' }}

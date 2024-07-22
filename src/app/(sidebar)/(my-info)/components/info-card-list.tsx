@@ -4,11 +4,11 @@ import { useState } from 'react';
 import { mockInfoCount, mockInfoList } from '../mock';
 import { cn } from '@/utils/tailwind-util';
 import { Icon } from '@/system/components';
-import { InfoCard } from './info-card';
+import { InfoCardItem } from './info-card-item';
 
 const infoOptions = ['경험 정리', '자기소개서', '면접 질문'] as const;
 
-export function InfoList() {
+export function InfoCardList() {
   const [currentOption, setCurrentOption] = useState<(typeof infoOptions)[number]>('경험 정리');
 
   // TODO: API 연동 시 response data로 변경
@@ -20,7 +20,7 @@ export function InfoList() {
       <div className="mb-[28px] flex justify-between">
         <div className="flex gap-[24px]">
           {infoOptions.map((option) => (
-            <div
+            <button
               key={option}
               className="flex gap-[6px] items-center cursor-pointer"
               onClick={() => setCurrentOption(option)}>
@@ -38,7 +38,7 @@ export function InfoList() {
                 )}>
                 {infoCount[option]}
               </div>
-            </div>
+            </button>
           ))}
         </div>
         <button className="flex items-center gap-[8px] bg-neutral-95 py-[6px] pl-[16px] pr-[10px] rounded-[6px]">
@@ -48,7 +48,7 @@ export function InfoList() {
       </div>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
         {infoList.map((info) => (
-          <InfoCard {...info} />
+          <InfoCardItem key={info.id} {...info} />
         ))}
       </div>
     </div>

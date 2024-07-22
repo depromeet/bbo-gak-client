@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { chain } from '@/utils';
 import { ErrorBoundary } from '../ErrorBoundary/ErrorBoundary';
-import SSRSafeSuspense from '../SSRSafeSuspense/SSRSafeSuspense';
+import { SSRSafeSuspense } from '../SSRSafeSuspense/SSRSafeSuspense';
 import type { StrictPropsWithChildren } from '@/types';
 import type { ComponentProps, ComponentRef, Suspense } from 'react';
 

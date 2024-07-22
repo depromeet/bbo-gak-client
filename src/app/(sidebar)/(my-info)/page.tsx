@@ -1,5 +1,5 @@
 import { Icon } from '@/system/components';
-import { InfoList } from './components/info-list';
+import { InfoCardList } from './components/info-card-list';
 
 export default function MyInfo() {
   return (
@@ -11,7 +11,7 @@ export default function MyInfo() {
           <Icon name="down" color="#878A93" />
         </button>
       </div>
-      <InfoList />
+      <InfoCardList />
     </div>
   );
 }
