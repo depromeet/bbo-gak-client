@@ -1,5 +1,5 @@
 import { Icon } from '@/system/components';
-import { InfoCardList } from './components/info-card-list';
+import { InfoCardList } from './components/InfoCardList';
 
 export default function MyInfo() {
   return (

@@ -1,4 +1,4 @@
-import { InfoCard } from './components/info-card-item';
+import { InfoCard } from './components/InfoCardItem';
 
 export const mockInfoCount = {
   '경험 정리': 1,

@@ -4,5 +4,3 @@ export { Icon } from './Icon/Icon';
 export type { IconProps } from './Icon/Icon';
 export { Text } from './Text/Text';
 export type { TextProps } from './Text/Text';
-export { Badge } from '../../app/(sidebar)/(my-info)/components/badge';
-export type { BadgeProps } from '../../app/(sidebar)/(my-info)/components/badge';

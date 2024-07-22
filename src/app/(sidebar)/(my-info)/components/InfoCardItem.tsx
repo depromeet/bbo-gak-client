@@ -1,5 +1,5 @@
 import { Icon } from '@/system/components';
-import { Badge } from '@/app/(sidebar)/(my-info)/components/badge';
+import { Badge } from '@/app/(sidebar)/(my-info)/components/Badge';
 import { formatToYYMMDD } from '@/utils/date';
 import {
   DropdownMenu,
