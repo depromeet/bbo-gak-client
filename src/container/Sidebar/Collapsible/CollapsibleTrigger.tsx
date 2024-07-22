@@ -8,5 +8,9 @@ interface Props {
 export function CollapsibleTrigger({ children }: Props) {
   const { collapsed, onCollapsedChange } = useCollapsibleContext();
 
-  return <div onClick={() => onCollapsedChange(!collapsed)}>{children}</div>;
+  return (
+    <button aria-expanded={!collapsed} onClick={() => onCollapsedChange(!collapsed)}>
+      {children}
+    </button>
+  );
 }
