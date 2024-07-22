@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/system/components/ui/dropdown-menu';
+} from '@/system/components/ui/DropdownMenu';
 import { InfoCard } from '@/types/info';
 
 interface Props extends InfoCard {}
@@ -29,7 +29,7 @@ export function InfoCardItem({ title, updatedDate, cardTagList }: Props) {
         <div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="rounded-[4px] hover:bg-neutral-1">
+              <button className="rounded-[4px] hover:bg-neutral-1" aria-label="more button">
                 <Icon name="more" color="#1B1C1E" />
               </button>
             </DropdownMenuTrigger>
