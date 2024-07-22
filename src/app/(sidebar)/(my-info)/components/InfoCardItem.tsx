@@ -1,5 +1,5 @@
 import { Icon } from '@/system/components';
-import { Badge } from '@/app/(sidebar)/(my-info)/components/Badge';
+import { Badge } from '@/system/components/Badge/Badge';
 import { formatToYYMMDD } from '@/utils/date';
 import {
   DropdownMenu,
@@ -7,24 +7,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/system/components/ui/dropdown-menu';
-
-// TODO: type 파일 분리
-export interface Tag {
-  id: number;
-  name: string;
-  type: '인성' | '역량';
-}
-
-export interface InfoCard {
-  id: number;
-  title: string;
-  updatedDate: string;
-  cardTagList: Tag[];
-}
+import { InfoCard } from '@/types/info';
 
 interface Props extends InfoCard {}
 
-const tagTypeColor = {
+const TAG_TYPE_COLOR = {
   역량: 'blue',
   인성: 'purple',
 } as const;
@@ -61,7 +48,7 @@ export function InfoCardItem({ title, updatedDate, cardTagList }: Props) {
       </div>
       <div className="flex gap-[8px]">
         {cardTagList.map((tag) => (
-          <Badge key={tag.id} label={tag.name} variant={tagTypeColor[tag.type]} />
+          <Badge key={tag.id} label={tag.name} color={TAG_TYPE_COLOR[tag.type]} />
         ))}
       </div>
     </div>
