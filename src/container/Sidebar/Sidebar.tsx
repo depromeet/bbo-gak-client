@@ -4,7 +4,6 @@ import { SidebarButton } from '@/container/Sidebar/SidebarButton';
 import { Icon } from '@/system/components';
 import { useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
-import { cn } from 'tailwind-variants';
 
 // FIXME:
 const SELECTED = true;
