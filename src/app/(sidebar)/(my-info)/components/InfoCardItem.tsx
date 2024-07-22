@@ -48,7 +48,9 @@ export function InfoCardItem({ title, updatedDate, cardTagList }: Props) {
       </div>
       <div className="flex gap-[8px]">
         {cardTagList.map((tag) => (
-          <Tag key={tag.id} label={tag.name} color={TAG_TYPE_COLOR[tag.type]} />
+          <Tag key={tag.id} color={TAG_TYPE_COLOR[tag.type]}>
+            {tag.name}
+          </Tag>
         ))}
       </div>
     </div>

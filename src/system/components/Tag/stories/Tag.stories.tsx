@@ -12,9 +12,9 @@ export default meta;
 export function Example() {
   return (
     <>
-      <Tag label="테스트" color="default" />
-      <Tag label="테스트" color="blue" />
-      <Tag label="테스트" color="purple" />
+      <Tag color="default">태그</Tag>
+      <Tag color="blue">태그</Tag>
+      <Tag color="purple">태그</Tag>
     </>
   );
 }

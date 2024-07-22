@@ -1,7 +1,7 @@
 import { cn } from '@/utils/tailwind-util';
+import { PropsWithChildren } from 'react';
 
 export interface TagProps {
-  label: string;
   color?: 'default' | 'blue' | 'purple';
 }
 
@@ -12,10 +12,10 @@ const colorStyle = {
   purple: 'bg-purple-bg-1 text-purple-text-1',
 };
 
-export function Tag({ label, color = 'default' }: TagProps) {
+export function Tag({ color = 'default', children }: PropsWithChildren<TagProps>) {
   return (
     <span className={cn('whitespace-nowrap px-[8px] py-[3px] rounded-[4px] text-[14px]', colorStyle[color])}>
-      {label}
+      {children}
     </span>
   );
 }
