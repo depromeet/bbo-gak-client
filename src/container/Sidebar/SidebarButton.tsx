@@ -8,7 +8,7 @@ interface SidebarButtonProps {
   iconName: IconProps['name'];
   selected: boolean;
   expanded?: boolean;
-  expandedText: string;
+  expandedText?: string;
   withTouchEffect?: boolean;
   withHoverEffect?: boolean;
 }
