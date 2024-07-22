@@ -17,7 +17,7 @@ const TAG_TYPE_COLOR = {
 } as const;
 
 export function InfoCardItem({ title, updatedDate, cardTagList }: Props) {
-  const formattedDate = formatToYYMMDD(updatedDate);
+  const formattedDate = formatToYYMMDD(updatedDate, '.');
 
   return (
     <div className="flex flex-col justify-between min-w-[343px] h-[140px] p-[24px] rounded-[16px] bg-white border border-neutral-5 cursor-pointer hover:border-neutral-30">
