@@ -1,5 +1,5 @@
 import { Icon } from '@/system/components';
-import { Badge } from '@/system/components/Badge/Badge';
+import { Tag } from '@/system/components/Tag/Tag';
 import { formatToYYMMDD } from '@/utils/date';
 import {
   DropdownMenu,
@@ -48,7 +48,7 @@ export function InfoCardItem({ title, updatedDate, cardTagList }: Props) {
       </div>
       <div className="flex gap-[8px]">
         {cardTagList.map((tag) => (
-          <Badge key={tag.id} label={tag.name} color={TAG_TYPE_COLOR[tag.type]} />
+          <Tag key={tag.id} label={tag.name} color={TAG_TYPE_COLOR[tag.type]} />
         ))}
       </div>
     </div>

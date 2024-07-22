@@ -1,6 +1,6 @@
 import { cn } from '@/utils/tailwind-util';
 
-export interface BadgeProps {
+export interface TagProps {
   label: string;
   color?: 'default' | 'blue' | 'purple';
 }
@@ -12,7 +12,7 @@ const colorStyle = {
   purple: 'bg-purple-bg-1 text-purple-text-1',
 };
 
-export function Badge({ label, color = 'default' }: BadgeProps) {
+export function Tag({ label, color = 'default' }: TagProps) {
   return (
     <span className={cn('whitespace-nowrap px-[8px] py-[3px] rounded-[4px] text-[14px]', colorStyle[color])}>
       {label}
