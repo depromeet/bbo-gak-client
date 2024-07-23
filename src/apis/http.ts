@@ -1,3 +1,4 @@
+import { BaseResponse } from '@/types/common';
 import { isProductionEnv } from '@/utils/common';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { getCookie } from 'cookies-next';
