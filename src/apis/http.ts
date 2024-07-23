@@ -28,9 +28,11 @@ http.interceptors.request.use((config) => {
   }
 
   const token = getCookie('accessToken');
+
   if (!config.headers) {
     return config;
   }
+
   if (token) {
     config.headers.common['Authorization'] = `Bearer ${token}`;
   }
