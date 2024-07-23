@@ -1,6 +1,6 @@
 import { BaseResponse } from '@/types/common';
 import { isProductionEnv } from '@/utils/common';
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, Method } from 'axios';
 import { getCookie } from 'cookies-next';
 
 const axiosInstance: AxiosInstance = axios.create({
@@ -12,17 +12,7 @@ const axiosInstance: AxiosInstance = axios.create({
   withCredentials: true,
 });
 
-export interface HttpClient extends AxiosInstance {
-  get<T = unknown>(url: string, config?: AxiosRequestConfig): Promise<T>;
-  post<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-  put<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-  patch<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-  delete<T = unknown>(url: string, data?: any, config?: AxiosRequestConfig): Promise<T>;
-}
-
-export const http: HttpClient = axiosInstance;
-
-http.interceptors.request.use((config) => {
+axiosInstance.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
   if (typeof window === 'undefined') {
     return config;
   }
@@ -40,9 +30,22 @@ http.interceptors.request.use((config) => {
   return config;
 });
 
-http.interceptors.response.use((response) => {
+axiosInstance.interceptors.response.use(async (response: AxiosResponse) => {
   if (!isProductionEnv) {
     console.log(response);
   }
   return response.data;
 });
+
+const createApiMethod =
+  (instance: AxiosInstance, method: Method) =>
+  <T>(config: AxiosRequestConfig): Promise<BaseResponse<T>> =>
+    instance({ ...config, method });
+
+export const http = {
+  get: createApiMethod(axiosInstance, 'get'),
+  post: createApiMethod(axiosInstance, 'post'),
+  patch: createApiMethod(axiosInstance, 'patch'),
+  put: createApiMethod(axiosInstance, 'put'),
+  delete: createApiMethod(axiosInstance, 'delete'),
+};
