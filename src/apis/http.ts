@@ -34,7 +34,7 @@ axiosInstance.interceptors.response.use(async (response: AxiosResponse) => {
   if (!isProductionEnv) {
     console.log(response);
   }
-  return response.data;
+  return response;
 });
 
 const createApiMethod =
