@@ -5,14 +5,20 @@ import { Memo } from './SVG/Memo';
 import { Profile } from './SVG/Profile';
 import { Setting } from './SVG/Setting';
 import { Logout } from './SVG/Logout';
+import { Division } from './SVG/Division';
+import { RightChevron } from './SVG/RightChevron';
+import { ProfileFill } from './SVG/ProfileFill';
 import type { IconBaseType } from '@/system/components/Icon/SVG/type';
 
 const iconMap = {
   bell: Bell,
+  division: Division,
   folder: Folder,
   logout: Logout,
   memo: Memo,
   profile: Profile,
+  profileFill: ProfileFill,
+  rightChevron: RightChevron,
   search: Search,
   setting: Setting,
 } as const;
