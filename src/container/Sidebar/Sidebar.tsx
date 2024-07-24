@@ -15,7 +15,7 @@ const SIDEBAR_CLASSNAME = {
 export function Sidebar() {
   const [expanded, setExpanded] = useState(false);
   const [myInfoCollapsed, setMyInfoCollapsed] = useState(true);
-  const [jdInfoCollapsed, setJDInfoCollapsed] = useState(true);
+  const [myJDCollapsed, setMyJDCollapsed] = useState(true);
 
   return (
     <nav
@@ -56,7 +56,7 @@ export function Sidebar() {
             <div style={{ color: 'white' }}>열렸다!</div>
           </Collapsible.Content>
         </Collapsible>
-        <Collapsible collapsed={expanded ? jdInfoCollapsed : true} onCollapsedChange={setJDInfoCollapsed}>
+        <Collapsible collapsed={expanded ? myJDCollapsed : true} onCollapsedChange={setMyJDCollapsed}>
           <SidebarButton
             iconName="folder"
             selected={false}
