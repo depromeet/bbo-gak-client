@@ -1,3 +1,4 @@
 export const zIndex = {
-  overlay: 10000,
+  tooltip: 10000,
+  overlay: 20000,
 } as const;
