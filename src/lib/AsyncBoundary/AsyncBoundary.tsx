@@ -8,7 +8,10 @@ import { SSRSafeSuspense } from '../SSRSafeSuspense/SSRSafeSuspense';
 import type { StrictPropsWithChildren } from '@/types';
 import type { ComponentProps, ComponentRef, Suspense } from 'react';
 
-type ErrorBoundaryProps = Omit<ComponentProps<typeof ErrorBoundary>, 'renderFallback'>;
+type ErrorBoundaryProps = Omit<
+  ComponentProps<typeof ErrorBoundary>,
+  'renderFallback'
+>;
 type SuspenseProps = Omit<ComponentProps<typeof Suspense>, 'fallback'>;
 
 type AsyncBoundrayProps = StrictPropsWithChildren &
@@ -18,10 +21,19 @@ type AsyncBoundrayProps = StrictPropsWithChildren &
     pendingFallback?: ComponentProps<typeof Suspense>['fallback'];
   };
 
-export const AsyncBoundary = forwardRef<ComponentRef<typeof ErrorBoundary>, AsyncBoundrayProps>(
-  ({ errorFallback, pendingFallback, children, ...errorBoundaryProps }, ref) => {
+export const AsyncBoundary = forwardRef<
+  ComponentRef<typeof ErrorBoundary>,
+  AsyncBoundrayProps
+>(
+  (
+    { errorFallback, pendingFallback, children, ...errorBoundaryProps },
+    ref,
+  ) => {
     return (
-      <ErrorBoundary ref={ref} renderFallback={errorFallback} {...errorBoundaryProps}>
+      <ErrorBoundary
+        ref={ref}
+        renderFallback={errorFallback}
+        {...errorBoundaryProps}>
         <SSRSafeSuspense fallback={pendingFallback}>{children}</SSRSafeSuspense>
       </ErrorBoundary>
     );
@@ -30,17 +42,21 @@ export const AsyncBoundary = forwardRef<ComponentRef<typeof ErrorBoundary>, Asyn
 
 AsyncBoundary.displayName = 'AsyncBoundary';
 
-export const AsyncBoundaryWithQuery = forwardRef<ComponentRef<typeof ErrorBoundary>, AsyncBoundrayProps>(
-  (props, ref) => {
-    const { children, ...otherProps } = props;
-    const { reset } = useQueryErrorResetBoundary();
+export const AsyncBoundaryWithQuery = forwardRef<
+  ComponentRef<typeof ErrorBoundary>,
+  AsyncBoundrayProps
+>((props, ref) => {
+  const { children, ...otherProps } = props;
+  const { reset } = useQueryErrorResetBoundary();
 
-    return (
-      <AsyncBoundary ref={ref} {...otherProps} onReset={chain(props.onReset, reset)}>
-        {children}
-      </AsyncBoundary>
-    );
-  },
-);
+  return (
+    <AsyncBoundary
+      ref={ref}
+      {...otherProps}
+      onReset={chain(props.onReset, reset)}>
+      {children}
+    </AsyncBoundary>
+  );
+});
 
 AsyncBoundaryWithQuery.displayName = 'AsyncBoundaryWithQuery';

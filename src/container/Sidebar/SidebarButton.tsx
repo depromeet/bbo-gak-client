@@ -1,6 +1,7 @@
 import { If } from '@/components/If';
-import { Icon, IconProps, Text } from '@/system/components';
+import { Icon, Text } from '@/system/components';
 import { motion } from 'framer-motion';
+import type { IconProps } from '@/system/components';
 import type { ReactNode } from 'react';
 
 interface SidebarButtonProps {
@@ -41,9 +42,14 @@ export function SidebarButton({
       </If>
 
       <div className="relative flex justify-start gap-[12px]">
-        <Icon name={iconName} color={selected ? SELECTED_COLOR : DEFAULT_COLOR} />
+        <Icon
+          name={iconName}
+          color={selected ? SELECTED_COLOR : DEFAULT_COLOR}
+        />
         <If condition={expanded}>
-          <Text typography="Body1" color={selected ? SELECTED_COLOR : DEFAULT_COLOR}>
+          <Text
+            typography="Body1"
+            color={selected ? SELECTED_COLOR : DEFAULT_COLOR}>
             {expandedText}
           </Text>
         </If>

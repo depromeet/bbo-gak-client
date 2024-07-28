@@ -1,7 +1,7 @@
+import type { Metadata } from 'next';
 import { Sidebar } from '@/container/Sidebar/Sidebar';
 import { QueryProvider } from '@/lib';
 import clsx from 'clsx';
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
 

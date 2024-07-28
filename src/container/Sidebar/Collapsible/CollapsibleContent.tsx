@@ -1,6 +1,6 @@
-import type { ReactNode } from 'react';
-import { useCollapsibleContext } from './context';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useCollapsibleContext } from './context';
+import type { ReactNode } from 'react';
 
 interface CollapsibleContentProps {
   children: ReactNode;

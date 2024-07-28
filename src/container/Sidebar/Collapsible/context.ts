@@ -5,6 +5,7 @@ interface CollapsibleContext {
   onCollapsedChange: (collapsed: boolean) => void;
 }
 
-export const [CollapsibleProvider, useCollapsibleContext] = generateContext<CollapsibleContext>({
-  name: 'Collapsible',
-});
+export const [CollapsibleProvider, useCollapsibleContext] =
+  generateContext<CollapsibleContext>({
+    name: 'Collapsible',
+  });

@@ -31,13 +31,30 @@ export function Sidebar() {
       </div>
 
       <div className="flex flex-col items-center gap-[36px] w-full">
-        <SidebarButton iconName="search" selected={false} expanded={expanded} expandedText="태그 검색" />
-        <SidebarButton iconName="bell" selected={false} expanded={expanded} expandedText="알림" />
-        <SidebarButton iconName="memo" selected={false} expanded={expanded} expandedText="메모 모아보기" />
+        <SidebarButton
+          iconName="search"
+          selected={false}
+          expanded={expanded}
+          expandedText="태그 검색"
+        />
+        <SidebarButton
+          iconName="bell"
+          selected={false}
+          expanded={expanded}
+          expandedText="알림"
+        />
+        <SidebarButton
+          iconName="memo"
+          selected={false}
+          expanded={expanded}
+          expandedText="메모 모아보기"
+        />
 
         <div className="w-full px-[16px] h-[1px] bg-[#37383C]" />
 
-        <Collapsible collapsed={expanded ? myInfoCollapsed : true} onCollapsedChange={setMyInfoCollapsed}>
+        <Collapsible
+          collapsed={expanded ? myInfoCollapsed : true}
+          onCollapsedChange={setMyInfoCollapsed}>
           <SidebarButton
             iconName={SELECTED ? 'profileFill' : 'profile'}
             selected={SELECTED}
@@ -56,7 +73,9 @@ export function Sidebar() {
             <div style={{ color: 'white' }}>열렸다!</div>
           </Collapsible.Content>
         </Collapsible>
-        <Collapsible collapsed={expanded ? myJDCollapsed : true} onCollapsedChange={setMyJDCollapsed}>
+        <Collapsible
+          collapsed={expanded ? myJDCollapsed : true}
+          onCollapsedChange={setMyJDCollapsed}>
           <SidebarButton
             iconName="folder"
             selected={false}
@@ -76,8 +95,18 @@ export function Sidebar() {
       </div>
 
       <div className="w-full mt-auto flex flex-col items-center gap-[28px]">
-        <SidebarButton iconName="setting" selected={false} expanded={expanded} expandedText="내 설정" />
-        <SidebarButton iconName="logout" selected={false} expanded={expanded} expandedText="로그아웃" />
+        <SidebarButton
+          iconName="setting"
+          selected={false}
+          expanded={expanded}
+          expandedText="내 설정"
+        />
+        <SidebarButton
+          iconName="logout"
+          selected={false}
+          expanded={expanded}
+          expandedText="로그아웃"
+        />
       </div>
     </nav>
   );

@@ -1,6 +1,7 @@
-import { BaseResponse } from '@/types/common';
+import type { BaseResponse } from '@/types/common';
 import { isProductionEnv } from '@/utils/common';
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, Method } from 'axios';
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, Method } from 'axios';
+import axios from 'axios';
 import { getCookie } from 'cookies-next';
 
 const axiosInstance: AxiosInstance = axios.create({
@@ -24,7 +25,7 @@ axiosInstance.interceptors.request.use(async (config: InternalAxiosRequestConfig
   }
 
   if (token) {
-    config.headers.common['Authorization'] = `Bearer ${token}`;
+    config.headers.common.Authorization = `Bearer ${token}`;
   }
 
   return config;
