@@ -3,7 +3,10 @@ import { QueryProvider } from '@/lib';
 import clsx from 'clsx';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { QueryProvider } from '@/lib';
 import './globals.css';
+import { Sidebar } from '@/container/Sidebar/Sidebar';
+import clsx from 'clsx';
 
 const inter = Inter({ subsets: ['latin'] });
 
