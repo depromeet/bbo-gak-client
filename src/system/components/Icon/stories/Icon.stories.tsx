@@ -12,13 +12,13 @@ export default meta;
 export function Example() {
   return (
     <>
-      <Icon name="bell" color="black" />
-      <Icon name="folder" color="black" />
-      <Icon name="logout" color="black" />
-      <Icon name="memo" color="black" />
-      <Icon name="profile" color="black" />
-      <Icon name="search" color="black" />
-      <Icon name="setting" color="black" />
+      <EditorIcon name="bell" color="black" />
+      <EditorIcon name="folder" color="black" />
+      <EditorIcon name="logout" color="black" />
+      <EditorIcon name="memo" color="black" />
+      <EditorIcon name="profile" color="black" />
+      <EditorIcon name="search" color="black" />
+      <EditorIcon name="setting" color="black" />
     </>
   );
 }

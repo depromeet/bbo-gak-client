@@ -1,15 +1,30 @@
 import type { Config } from 'tailwindcss';
 
+const px0To10 = { ...Array.from(Array(11)).reduce((acc, _, i) => ({ ...acc, [i]: `${i}px` }), {}) };
+const px0To100 = { ...Array.from(Array(101)).reduce((acc, _, i) => ({ ...acc, [i]: `${i}px` }), {}) };
+const px0To500 = { ...Array.from(Array(501)).reduce((acc, _, i) => ({ ...acc, [i]: `${i}px` }), {}) };
+
 const config: Config = {
   darkMode: ['class'],
   content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
+  safelist: ['ProseMirror'],
   prefix: '',
   theme: {
     extend: {
+      width: px0To500,
+      height: px0To500,
+      borderWidth: px0To10,
+      fontSize: px0To100,
+      lineHeight: px0To100,
+      minWidth: px0To500,
+      minHeight: px0To500,
+      spacing: px0To500,
+      borderRadius: { ...px0To100, button: 6 },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      boxShadow: { drodpown: '0px 0px 10px 5px rgba(0, 0, 0, 0.08)', nav: '0px 4px 25px 1px rgba(0,0,0,0.05)' },
     },
     colors: {
       white: '#FFFFFF',
@@ -78,7 +93,7 @@ const config: Config = {
         },
       },
     },
-    plugins: [require('tailwindcss-animate')],
+    plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
   },
 };
 

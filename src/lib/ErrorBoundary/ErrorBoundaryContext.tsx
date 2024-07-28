@@ -1,6 +1,6 @@
 'use client';
 
-import generateContext from '../generateContext/generateContext';
+import { generateContext } from '../generateContext/generateContext';
 
 export const [ErrorboundaryProvider, useErrorBoundaryContext] = generateContext<{
   error: Error | null;
