@@ -41,7 +41,7 @@
       }
     ],
     "@typescript-eslint/consistent-type-imports": "warn",
-    "prettier/prettier": ["warn", { "printWidth": 80 }],
+    "prettier/prettier": "warn",
     "import/prefer-default-export": "off",
     "react/require-default-props": "off",
     "no-restricted-syntax": "off",

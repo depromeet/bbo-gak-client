@@ -42,14 +42,9 @@ export function SidebarButton({
       </If>
 
       <div className="relative flex justify-start gap-[12px]">
-        <Icon
-          name={iconName}
-          color={selected ? SELECTED_COLOR : DEFAULT_COLOR}
-        />
+        <Icon name={iconName} color={selected ? SELECTED_COLOR : DEFAULT_COLOR} />
         <If condition={expanded}>
-          <Text
-            typography="Body1"
-            color={selected ? SELECTED_COLOR : DEFAULT_COLOR}>
+          <Text typography="Body1" color={selected ? SELECTED_COLOR : DEFAULT_COLOR}>
             {expandedText}
           </Text>
         </If>

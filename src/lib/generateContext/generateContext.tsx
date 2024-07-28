@@ -20,9 +20,7 @@ type ProviderProps<ContextValuesType extends object> =
   | (ContextValuesType & { children: ReactNode })
   | { children: ReactNode };
 
-export function generateContext<ContextType extends object>(
-  options: ContextOptions<ContextType>,
-) {
+export function generateContext<ContextType extends object>(options: ContextOptions<ContextType>) {
   const {
     name,
     errorMessage = `${name} Context가 존재하지 않습니다. Provider를 설정해주세요.`,
@@ -52,10 +50,7 @@ export function generateContext<ContextType extends object>(
     return context;
   }
 
-  function Provider({
-    children,
-    ...providerValues
-  }: ProviderProps<ContextType>) {
+  function Provider({ children, ...providerValues }: ProviderProps<ContextType>) {
     const value = useMemo(
       () => (Object.keys(providerValues).length > 0 ? providerValues : null),
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -68,9 +63,5 @@ export function generateContext<ContextType extends object>(
   Context.displayName = name;
   Provider.displayName = name;
 
-  return [
-    Provider,
-    useContext,
-    Context,
-  ] as GenerateContextReturnType<ContextType>;
+  return [Provider, useContext, Context] as GenerateContextReturnType<ContextType>;
 }

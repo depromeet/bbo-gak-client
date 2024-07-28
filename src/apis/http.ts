@@ -1,8 +1,8 @@
-import type { BaseResponse } from '@/types/common';
 import { isProductionEnv } from '@/utils/common';
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, Method } from 'axios';
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, Method } from 'axios';
+import type { BaseResponse } from '@/types/common';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -22,7 +22,7 @@ axiosInstance.interceptors.request.use(async (requestConfig: InternalAxiosReques
   const config = { ...requestConfig };
 
   if (token) {
-    config.headers['Authorization'] = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`;
   }
 
   return config;

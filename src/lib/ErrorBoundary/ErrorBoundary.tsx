@@ -1,30 +1,17 @@
 'use client';
 
-import {
-  Component,
-  forwardRef,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react';
+import { Component, forwardRef, useImperativeHandle, useRef, useState } from 'react';
 import { isDifferentArray } from '@/utils';
 import { ErrorboundaryProvider } from './ErrorBoundaryContext';
 import type { StrictPropsWithChildren } from '@/types';
-import type {
-  ComponentPropsWithoutRef,
-  ErrorInfo,
-  PropsWithRef,
-  ReactNode,
-} from 'react';
+import type { ComponentPropsWithoutRef, ErrorInfo, PropsWithRef, ReactNode } from 'react';
 
 type RenderFallbackProps<ErrorType extends Error = Error> = {
   error: ErrorType;
   reset?: () => void;
 };
 
-type RenderFallbackType = <ErrorType extends Error>(
-  props: RenderFallbackProps<ErrorType>,
-) => ReactNode;
+type RenderFallbackType = <ErrorType extends Error>(props: RenderFallbackProps<ErrorType>) => ReactNode;
 
 type FallbackType = ReactNode;
 
@@ -43,15 +30,10 @@ const initialState: State = {
   error: null,
 };
 
-export class ErrorBoundary extends Component<
-  PropsWithRef<StrictPropsWithChildren<ErrorBoundaryProps>>,
-  State
-> {
+export class ErrorBoundary extends Component<PropsWithRef<StrictPropsWithChildren<ErrorBoundaryProps>>, State> {
   hasError = false;
 
-  constructor(
-    props: PropsWithRef<StrictPropsWithChildren<ErrorBoundaryProps>>,
-  ) {
+  constructor(props: PropsWithRef<StrictPropsWithChildren<ErrorBoundaryProps>>) {
     super(props);
     this.state = initialState;
   }
@@ -157,26 +139,21 @@ export class ErrorBoundary extends Component<
       resetErrorBoundary: this.resetErrorBoundary,
     };
 
-    return (
-      <ErrorboundaryProvider {...ErrorboundaryProviderProps}>
-        {renderedChildren}
-      </ErrorboundaryProvider>
-    );
+    return <ErrorboundaryProvider {...ErrorboundaryProviderProps}>{renderedChildren}</ErrorboundaryProvider>;
   }
 }
 
-export const GlobalErrorBoundary = forwardRef<
-  { reset(): void },
-  ComponentPropsWithoutRef<typeof ErrorBoundary>
->((props, resetRef) => {
-  const ref = useRef<ErrorBoundary>(null);
+export const GlobalErrorBoundary = forwardRef<{ reset(): void }, ComponentPropsWithoutRef<typeof ErrorBoundary>>(
+  (props, resetRef) => {
+    const ref = useRef<ErrorBoundary>(null);
 
-  useImperativeHandle(resetRef, () => ({
-    reset: () => ref.current?.resetErrorBoundary(),
-  }));
+    useImperativeHandle(resetRef, () => ({
+      reset: () => ref.current?.resetErrorBoundary(),
+    }));
 
-  return <ErrorBoundary {...props} ref={ref} />;
-});
+    return <ErrorBoundary {...props} ref={ref} />;
+  },
+);
 
 GlobalErrorBoundary.displayName = 'GlobalErrorBoundary';
 
