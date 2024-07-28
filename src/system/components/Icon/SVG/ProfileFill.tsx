@@ -1,4 +1,4 @@
-import { IconBaseType } from './type';
+import type { IconBaseType } from './type';
 
 export function ProfileFill({ size, color }: IconBaseType) {
   return (

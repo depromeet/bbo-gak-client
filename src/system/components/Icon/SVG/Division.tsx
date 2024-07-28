@@ -1,4 +1,4 @@
-import { IconBaseType } from './type';
+import type { IconBaseType } from './type';
 
 export function Division({ size, color }: IconBaseType) {
   return (

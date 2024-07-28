@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
 import { useCollapsibleContext } from './context';
+import type { ReactNode } from 'react';
 
 interface Props {
   children?: ReactNode;

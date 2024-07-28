@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { QueryProvider } from '@/lib';
-import './globals.css';
 import { Sidebar } from '@/container/Sidebar/Sidebar';
+import { QueryProvider } from '@/lib';
 import clsx from 'clsx';
+import { Inter } from 'next/font/google';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

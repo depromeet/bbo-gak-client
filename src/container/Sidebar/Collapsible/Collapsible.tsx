@@ -1,8 +1,8 @@
-import type { PropsWithChildren } from 'react';
 import { CollapsibleProvider } from './context';
 import { CollapsibleTrigger } from './CollapsibleTrigger';
 import { CollapsibleContent } from './CollapsibleContent';
 import { CollapsibleArrowButton } from './CollapsibleArrowButton';
+import type { PropsWithChildren } from 'react';
 
 interface CollapsibleRootProps {
   collapsed: boolean;

@@ -16,14 +16,7 @@ export const Text = forwardRef<HTMLParagraphElement, TextProps>(function Text(
 ) {
   const textStyle = useTextStyles({ typography, className });
 
-  return (
-    <Component
-      ref={ref}
-      style={{ color, ...style }}
-      {...textStyle.paragraph}
-      {...restProps}
-    />
-  );
+  return <Component ref={ref} style={{ color, ...style }} {...textStyle.paragraph} {...restProps} />;
 });
 
 Text.displayName = 'Text';

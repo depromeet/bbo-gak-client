@@ -1,6 +1,7 @@
 import { If } from '@/components/If';
-import { Icon, IconProps, Text } from '@/system/components';
+import { Icon, Text } from '@/system/components';
 import { motion } from 'framer-motion';
+import type { IconProps } from '@/system/components';
 import type { ReactNode } from 'react';
 
 interface SidebarButtonProps {

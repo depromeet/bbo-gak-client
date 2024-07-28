@@ -1,6 +1,6 @@
 import { Icon } from '@/system/components';
-import { useCollapsibleContext } from './context';
 import { motion } from 'framer-motion';
+import { useCollapsibleContext } from './context';
 
 export function CollapsibleArrowButton() {
   const { collapsed } = useCollapsibleContext();
@@ -12,7 +12,10 @@ export function CollapsibleArrowButton() {
         className="absolute w-[100%] h-[100%] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-[6px]"
       />
       <motion.div
-        variants={{ collapsed: { rotate: '0deg' }, expanded: { rotate: '-180deg' } }}
+        variants={{
+          collapsed: { rotate: '0deg' },
+          expanded: { rotate: '-180deg' },
+        }}
         animate={collapsed ? 'collapsed' : 'expanded'}>
         <Icon name="rightChevron" color="#878A93" />
       </motion.div>
