@@ -13,19 +13,16 @@ const axiosInstance: AxiosInstance = axios.create({
   withCredentials: true,
 });
 
-axiosInstance.interceptors.request.use(async (config: InternalAxiosRequestConfig) => {
+axiosInstance.interceptors.request.use(async (requestConfig: InternalAxiosRequestConfig) => {
   if (typeof window === 'undefined') {
-    return config;
+    return requestConfig;
   }
 
   const token = getCookie('accessToken');
+  const config = { ...requestConfig };
 
   if (token) {
     config.headers['Authorization'] = `Bearer ${token}`;
-  }
-
-  if (!config.headers) {
-    return config;
   }
 
   return config;
@@ -33,6 +30,7 @@ axiosInstance.interceptors.request.use(async (config: InternalAxiosRequestConfig
 
 axiosInstance.interceptors.response.use(async (response: AxiosResponse) => {
   if (!isProductionEnv) {
+    // eslint-disable-next-line no-console
     console.log(response);
   }
   return response;
