@@ -6,7 +6,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/system/components/ui/DropdownMenu';
+} from '@/system/components/DropdownMenu/DropdownMenu';
 import { InfoCard } from '@/types/info';
 
 interface Props extends InfoCard {}
