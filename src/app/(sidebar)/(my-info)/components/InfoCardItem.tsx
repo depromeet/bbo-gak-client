@@ -17,7 +17,7 @@ const TAG_TYPE_COLOR = {
 } as const;
 
 export function InfoCardItem({ title, updatedDate, cardTagList }: Props) {
-  const formattedDate = formatToYYMMDD(updatedDate, '.');
+  const formattedDate = formatToYYMMDD(updatedDate, { separator: '.' });
 
   return (
     <div className="flex flex-col justify-between min-w-[343px] h-[140px] p-[24px] rounded-[16px] bg-white border border-neutral-5 cursor-pointer hover:border-neutral-30">
@@ -47,9 +47,9 @@ export function InfoCardItem({ title, updatedDate, cardTagList }: Props) {
         </div>
       </div>
       <div className="flex gap-[8px]">
-        {cardTagList.map((tag) => (
-          <Tag key={tag.id} color={TAG_TYPE_COLOR[tag.type]}>
-            {tag.name}
+        {cardTagList.map(({ id, type, name }) => (
+          <Tag key={id} color={TAG_TYPE_COLOR[type]}>
+            {name}
           </Tag>
         ))}
       </div>

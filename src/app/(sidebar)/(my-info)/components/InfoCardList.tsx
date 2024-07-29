@@ -16,7 +16,7 @@ export function InfoCardList() {
   const infoList = mockInfoList;
 
   return (
-    <div>
+    <section>
       <div className="mb-[28px] flex justify-between">
         <div className="flex gap-[24px]">
           {INFO_OPTIONS.map((option) => (
@@ -51,6 +51,6 @@ export function InfoCardList() {
           <InfoCardItem key={info.id} {...info} />
         ))}
       </div>
-    </div>
+    </section>
   );
 }

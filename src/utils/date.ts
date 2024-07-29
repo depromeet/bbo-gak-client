@@ -1,4 +1,8 @@
-export const formatToYYMMDD = (dateString: string, separator: string = '') => {
+interface Option {
+  separator?: string;
+}
+
+export const formatToYYMMDD = (dateString: string, { separator = '' }: Option = {}) => {
   const date = new Date(dateString);
 
   const yy = String(date.getFullYear()).slice(-2);
