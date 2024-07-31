@@ -6,10 +6,11 @@ export interface TagProps {
 }
 
 // TODO: cva 사용 로직으로 변경
+// FIXME: tailwind 커스텀 속성이 안먹혀서 색상 코드로 직접 지정함
 const colorStyle = {
-  default: 'bg-neutral-5 text-neutral-75',
-  blue: 'bg-blue-bg-1 text-blue-text-1',
-  purple: 'bg-purple-bg-1 text-purple-text-1',
+  default: 'bg-[#F1F2F3] text-[#37383C]',
+  blue: 'bg-[#E8F1FF] text-[#418CC3]',
+  purple: 'bg-[#F1E8FF] text-[#9C6BB3]',
 };
 
 export function Tag({ color = 'default', children }: PropsWithChildren<TagProps>) {
