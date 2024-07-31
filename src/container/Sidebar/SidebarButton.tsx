@@ -44,7 +44,7 @@ export function SidebarButton({
       <div className="relative flex justify-start gap-[12px]">
         <Icon name={iconName} color={selected ? SELECTED_COLOR : DEFAULT_COLOR} />
         <If condition={expanded}>
-          <Text typography="Body1" color={selected ? SELECTED_COLOR : DEFAULT_COLOR}>
+          <Text typography="body1" color={selected ? SELECTED_COLOR : DEFAULT_COLOR}>
             {expandedText}
           </Text>
         </If>
@@ -56,7 +56,7 @@ export function SidebarButton({
           className="absolute top-[50%] left-[72px] translate-y-[-50%] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
           initial={{ opacity: 0 }}
           variants={{ hover: { opacity: 1 } }}>
-          <Text typography="Body1" color="white">
+          <Text typography="body1" color="white">
             {expandedText}
           </Text>
         </motion.div>
