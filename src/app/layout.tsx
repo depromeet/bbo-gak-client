@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { Sidebar } from '@/container/Sidebar/Sidebar';
 import { QueryProvider } from '@/lib';
 import { Inter } from 'next/font/google';
 import './globals.css';
