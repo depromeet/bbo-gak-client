@@ -8,10 +8,7 @@ interface Props {
   typography: Typography;
 }
 
-export function useTextStyles({
-  className,
-  typography,
-}: Props): Record<TextAnatomy, { className: string }> {
+export function useTextStyles({ className, typography }: Props): Record<TextAnatomy, { className: string }> {
   const styleVariants = textVariants({ typography });
 
   return {

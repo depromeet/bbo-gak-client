@@ -3465,6 +3465,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/cookie@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "@types/cookie@npm:0.6.0"
+  checksum: 5edce7995775b0b196b142883e4d4f71fd93c294eaec973670f1fa2540b70ea7390408ed513ddefef5fcb12a578100c76596e8f2a714b0c2ae9f70ee773f4510
+  languageName: node
+  linkType: hard
+
 "@types/cross-spawn@npm:^6.0.2":
   version: 6.0.6
   resolution: "@types/cross-spawn@npm:6.0.6"
@@ -4844,6 +4851,7 @@ __metadata:
     axios: ^1.7.2
     class-variance-authority: ^0.7.0
     clsx: ^2.1.1
+    cookies-next: ^4.2.1
     eslint: ^8.56.0
     eslint-config-airbnb: ^19.0.4
     eslint-config-airbnb-typescript: ^18.0.0
@@ -4855,6 +4863,7 @@ __metadata:
     eslint-plugin-react: ^7.33.2
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-storybook: ^0.8.0
+    framer-motion: ^11.3.8
     lucide-react: ^0.411.0
     next: 14.2.4
     postcss: ^8
@@ -5604,10 +5613,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cookie@npm:0.6.0":
+"cookie@npm:0.6.0, cookie@npm:^0.6.0":
   version: 0.6.0
   resolution: "cookie@npm:0.6.0"
   checksum: f56a7d32a07db5458e79c726b77e3c2eff655c36792f2b6c58d351fb5f61531e5b1ab7f46987150136e366c65213cbe31729e02a3eaed630c3bf7334635fb410
+  languageName: node
+  linkType: hard
+
+"cookies-next@npm:^4.2.1":
+  version: 4.2.1
+  resolution: "cookies-next@npm:4.2.1"
+  dependencies:
+    "@types/cookie": ^0.6.0
+    cookie: ^0.6.0
+  checksum: e78e9871a516b5ac0c4f02d871ef8c37ef93a2fea9ce781ea88a16a10cc0b16928993dd90786dc8ab43259cffb5822cc4d218d79ed085b8a98b8c2ed3ae004ac
   languageName: node
   linkType: hard
 
@@ -7335,6 +7354,26 @@ __metadata:
   version: 0.2.0
   resolution: "forwarded@npm:0.2.0"
   checksum: fd27e2394d8887ebd16a66ffc889dc983fbbd797d5d3f01087c020283c0f019a7d05ee85669383d8e0d216b116d720fc0cef2f6e9b7eb9f4c90c6e0bc7fd28e6
+  languageName: node
+  linkType: hard
+
+"framer-motion@npm:^11.3.8":
+  version: 11.3.8
+  resolution: "framer-motion@npm:11.3.8"
+  dependencies:
+    tslib: ^2.4.0
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 4d8814ad184128c975c99b23938cefee6dcca8f52847dce676e5e78371fdcc6925b971fff50c4c8019a52bba1aae2815fc342866f06782ac4fe70f08eebd6d13
   languageName: node
   linkType: hard
 

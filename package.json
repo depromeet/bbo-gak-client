@@ -6,9 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "prettier:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
+    "lint:check": "eslint \"**/*.{js,jsx,ts,tsx}\""
   },
   "engines": {
     "node": "20.2.0"
@@ -20,6 +23,8 @@
     "axios": "^1.7.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "cookies-next": "^4.2.1",
+    "framer-motion": "^11.3.8",
     "lucide-react": "^0.411.0",
     "next": "14.2.4",
     "react": "^18",
