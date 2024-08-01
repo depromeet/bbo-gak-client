@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
-import { Sidebar } from '@/container/Sidebar/Sidebar';
 import { QueryProvider } from '@/lib';
-import clsx from 'clsx';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { cn } from '@/utils/tailwind-util';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -19,12 +18,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={clsx(inter.className, 'flex')}>
-        <Sidebar />
-        {/* FIXME: */}
-        <div className="flex-grow">
-          <QueryProvider>{children}</QueryProvider>
-        </div>
+      <body className={cn(inter.className, 'bg-neutral-1')}>
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );
