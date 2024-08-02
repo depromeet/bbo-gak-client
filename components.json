@@ -11,7 +11,7 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@/components",
-    "utils": "@/util"
+    "components": "@/system/components",
+    "utils": "@/utils/tailwind-util"
   }
 }

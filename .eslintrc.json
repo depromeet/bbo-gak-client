@@ -41,11 +41,13 @@
       }
     ],
     "@typescript-eslint/consistent-type-imports": "warn",
-    "prettier/prettier": ["warn", { "printWidth": 80 }],
+    "prettier/prettier": "warn",
     "import/prefer-default-export": "off",
     "react/require-default-props": "off",
     "no-restricted-syntax": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/button-has-type": "off"
+    "react/button-has-type": "off",
+    "jsx-a11y/click-events-have-key-events": "warn",
+    "jsx-a11y/no-static-element-interactions": "warn"
   }
 }
