@@ -15,10 +15,6 @@ const typographyToken = typographyVariant.reduce(
 );
 const fontWeightToken = fontWeightVariant.reduce((acc, token) => ({ ...acc, [token]: fontWeight[token] }), {});
 
-const px0To10 = { ...Array.from(Array(11)).reduce((acc, _, i) => ({ ...acc, [i]: `${i}px` }), {}) };
-const px0To100 = { ...Array.from(Array(101)).reduce((acc, _, i) => ({ ...acc, [i]: `${i}px` }), {}) };
-const px0To500 = { ...Array.from(Array(501)).reduce((acc, _, i) => ({ ...acc, [i]: `${i}px` }), {}) };
-
 const config: Config = {
   darkMode: ['class'],
   content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
