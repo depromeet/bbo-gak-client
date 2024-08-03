@@ -4,6 +4,7 @@ import { UseTagSelectorProps, UseTagSelectorReturn, useTagSelector } from './use
 import { generateContext } from '@/lib';
 import { cn } from '@/utils';
 import { Remove } from '@/system/components/Icon/SVG/Remove';
+import { SVGProps } from 'react';
 
 const [TagSelectorProvider, useTagSelectorContext] = generateContext<
   Omit<UseTagSelectorReturn, 'Component' | 'getBaseProps'>
@@ -21,8 +22,8 @@ function Tag({ ...props }: StrictPropsWithChildren<ButtonProps>) {
   );
 }
 
-function RemovalbleTag({ children, className, color, ...props }: StrictPropsWithChildren<ButtonProps>) {
-  const { isSelected } = useTagSelectorContext();
+function RemovalbleTag({ children, className, color, onClick, ...props }: StrictPropsWithChildren<ButtonProps>) {
+  const { isOpen } = useTagSelectorContext();
 
   return (
     <li>
@@ -30,7 +31,7 @@ function RemovalbleTag({ children, className, color, ...props }: StrictPropsWith
         className={cn('flex items-center gap-2 py-4 px-8 text-[14px] rounded-4 font-medium leading-20', className)}
         {...props}>
         {children}
-        {isSelected && <Remove color={color} size={16} />}
+        {isOpen && <Remove color={color} size={16} onClick={onClick as SVGProps<SVGSVGElement>['onClick']} />}
       </Button>
     </li>
   );
@@ -47,9 +48,9 @@ function Trigger({ children }: StrictPropsWithChildren) {
 }
 
 function Content({ children }: StrictPropsWithChildren) {
-  const { isSelected, getContentProps } = useTagSelectorContext();
+  const { isOpen, getContentProps } = useTagSelectorContext();
 
-  return isSelected && <article {...getContentProps()}>{children}</article>;
+  return isOpen && <article {...getContentProps()}>{children}</article>;
 }
 
 function TagList({ title, children }: StrictPropsWithChildren<{ title: string }>) {
