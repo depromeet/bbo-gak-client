@@ -1,4 +1,4 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/system/components/DropdownMenu/DropdownMenu';
 import { DropdownButton, DropdownCategoryTitle } from '@/components/Editor/extensions/EditorDropdown/Dropdown';
 import { EditorIcon } from '@/components/Editor/extensions/EditorIcon/EditorIcon';
 import { Surface } from '@/components/Editor/extensions/Surface/Surface';

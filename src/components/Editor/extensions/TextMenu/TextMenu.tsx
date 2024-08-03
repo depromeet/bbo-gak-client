@@ -11,7 +11,7 @@ import { ContentTypePicker } from './ContentTypePicker';
 import { EditLinkPopover } from './EditLinkPopover';
 import { useTextmenuStates } from '@/components/Editor/extensions/TextMenu/hooks/useTextMenuStates';
 import { useTextmenuCommands } from './hooks/useTextMenuCommands';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
 
 const MemoButton = memo(Toolbar.Button);
 const MemoColorPicker = memo(ColorPicker);

@@ -1,3 +1,3 @@
 export * from './array';
 export * from './function';
-export * from './cn';
+export * from './tailwind-util';

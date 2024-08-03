@@ -1,4 +1,4 @@
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
 import { EditorIcon } from '../EditorIcon/EditorIcon';
 import { Toolbar } from '../Toolbar/Toolbar';
 import { LinkEditorPanel } from '../pannel/LinkEditorPanel';

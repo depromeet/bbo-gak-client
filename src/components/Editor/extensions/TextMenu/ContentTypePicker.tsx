@@ -4,7 +4,7 @@ import { Surface } from '@/components/Editor/extensions/Surface/Surface';
 import { EditorIcon } from '@/components/Editor/extensions/EditorIcon/EditorIcon';
 import { DropdownButton, DropdownCategoryTitle } from '@/components/Editor/extensions/EditorDropdown/Dropdown';
 import { Toolbar } from '@/components/Editor/extensions/Toolbar/Toolbar';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/system/components/DropdownMenu/DropdownMenu';
 
 export type ContentTypePickerOption = {
   label: string;
