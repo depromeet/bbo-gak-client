@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from '@/system/components/DropdownMenu/DropdownMenu';
 
-export function All() {
+export function AllRecruitment() {
   return (
     <>
       <DropdownMenu>

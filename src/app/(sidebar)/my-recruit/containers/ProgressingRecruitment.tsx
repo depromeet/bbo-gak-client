@@ -1,7 +1,7 @@
 import { Spacing } from '@/components/Spacing';
 import { ShoeIcon } from './components/ShoeIcon';
 
-export function Progressing() {
+export function ProgressingRecruitment() {
   return (
     <>
       <div className="flex gap-[8px]">

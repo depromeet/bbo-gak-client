@@ -1,8 +1,8 @@
 import { Icon } from '@/system/components';
 import { TouchButton } from '@/components/TouchButton';
 import { Spacing } from '@/components/Spacing';
-import { Progressing } from './containers/Progressing';
-import { All } from './containers/All';
+import { ProgressingRecruitment } from './containers/ProgressingRecruitment';
+import { AllRecruitment } from './containers/AllRecruitment';
 
 export default function MyRecruit() {
   return (
@@ -21,9 +21,9 @@ export default function MyRecruit() {
         </div>
       </div>
       <Spacing size={54} />
-      <Progressing />
+      <ProgressingRecruitment />
       <Spacing size={88} />
-      <All />
+      <AllRecruitment />
     </div>
   );
 }
