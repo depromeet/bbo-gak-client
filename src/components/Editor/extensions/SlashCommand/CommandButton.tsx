@@ -2,6 +2,7 @@ import { forwardRef } from 'react';
 import { icons } from 'lucide-react';
 import { cn } from '@/utils';
 import { EditorIcon } from '../EditorIcon/EditorIcon';
+import { Button } from '@/system/components';
 
 export type CommandButtonProps = {
   active?: boolean;
@@ -20,13 +21,13 @@ export const CommandButton = forwardRef<HTMLButtonElement, CommandButtonProps>(
     );
 
     return (
-      <button ref={ref} onClick={onClick} className={wrapperClass}>
+      <Button ref={ref} onClick={onClick} className={wrapperClass}>
         <EditorIcon name={icon} className="w-3 h-3" />
 
         <div className="flex flex-col items-start justify-start">
           <div className="text-sm font-medium">{title}</div>
         </div>
-      </button>
+      </Button>
     );
   },
 );

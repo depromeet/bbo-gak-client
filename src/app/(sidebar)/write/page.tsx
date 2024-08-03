@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 
-const Editor = dynamic(() => import('@/components/Editor/Editor').then((mod) => mod.Editor), { ssr: false });
+const Editor = dynamic(() => import('@/components/Editor/Editor').then(({ Editor }) => Editor), { ssr: false });
 
 export default function Page() {
   return (

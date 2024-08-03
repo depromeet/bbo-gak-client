@@ -1,5 +1,6 @@
 import { memo, useCallback } from 'react';
 import { cn } from '@/utils';
+import { Button } from '@/system/components';
 
 export type ColorButtonProps = {
   color?: string;
@@ -24,9 +25,9 @@ export const ColorButton = memo(({ color, active, onColorChange }: ColorButtonPr
   }, [onColorChange, color]);
 
   return (
-    <button onClick={handleClick} className={wrapperClassName}>
+    <Button onClick={handleClick} className={wrapperClassName}>
       <div style={{ backgroundColor: color, color: color }} className={bubbleClassName}></div>
-    </button>
+    </Button>
   );
 });
 

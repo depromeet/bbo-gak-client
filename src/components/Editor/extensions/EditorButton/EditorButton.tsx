@@ -1,5 +1,6 @@
-import { cn } from '@/utils';
 import { forwardRef, type ButtonHTMLAttributes } from 'react';
+import { Button } from '@/system/components';
+import { cn } from '@/utils';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary' | 'quaternary' | 'ghost';
 export type ButtonSize = 'medium' | 'small' | 'icon' | 'iconSmall';
@@ -63,9 +64,9 @@ export const EditorButton = forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     return (
-      <button ref={ref} disabled={disabled} className={buttonClassName} {...rest}>
+      <Button ref={ref} disabled={disabled} className={buttonClassName} {...rest}>
         {children}
-      </button>
+      </Button>
     );
   },
 );

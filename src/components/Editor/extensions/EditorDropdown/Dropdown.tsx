@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Button } from '@/system/components';
 import { cn } from '@/utils';
 
 export function DropdownCategoryTitle({ children, className }: { className?: string; children: ReactNode }) {
@@ -36,8 +37,8 @@ export function DropdownButton({
   );
 
   return (
-    <button className={buttonClass} disabled={disabled} onClick={onClick}>
+    <Button className={buttonClass} disabled={disabled} onClick={onClick}>
       {children}
-    </button>
+    </Button>
   );
 }

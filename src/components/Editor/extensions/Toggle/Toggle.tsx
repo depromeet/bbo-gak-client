@@ -1,5 +1,6 @@
-import { cn } from '@/utils';
 import { useCallback, useMemo } from 'react';
+import { Button } from '@/system/components';
+import { cn } from '@/utils';
 
 export type ToggleProps = {
   active?: boolean;
@@ -32,7 +33,7 @@ export function Toggle({ onChange, active = false, size = 'large' }: ToggleProps
   }, [active, onChange]);
 
   return (
-    <button
+    <Button
       role="switch"
       className={buttonClassName}
       type="button"
@@ -41,6 +42,6 @@ export function Toggle({ onChange, active = false, size = 'large' }: ToggleProps
       value={value}
       onClick={handleChange}>
       <span className={pinClass} data-state={state} />
-    </button>
+    </Button>
   );
 }
