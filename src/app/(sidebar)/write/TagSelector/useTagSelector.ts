@@ -1,34 +1,33 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
+import { useTagSelectorContext } from './TagSelectorGroup';
 import type { As, ClassNamesType, ReactRef } from '@/types';
 import { cn } from '@/utils';
-import useDOMRef from '@/hooks/useDOMRef';
-import { useOutsideClick } from '@/hooks/useOutsideClick';
 
 export interface UseTagSelectorProps {
+  value: string;
   as?: As;
   ref?: ReactRef<HTMLElement>;
   classNames?: ClassNamesType<'base' | 'content' | 'trigger'>;
 }
 
 export function useTagSelector({ ...props }: UseTagSelectorProps) {
-  const { as, ref, classNames } = props;
+  const { value, as, ref, classNames } = props;
+  const { selected, open, close } = useTagSelectorContext();
   const Component = as || 'div';
-  const domRef = useDOMRef(ref);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  useOutsideClick(domRef, () => setIsOpen(false));
+  const isSelected = selected === value;
 
   const handleTriggerClick = useCallback(() => {
-    if (isOpen) {
-      setIsOpen(false);
+    if (isSelected) {
+      close();
       return;
     }
-    setIsOpen(true);
-  }, [isOpen]);
+    open(value);
+  }, [value, isSelected]);
 
   const getBaseProps = useCallback(
     (props = {}) => ({
-      ref: domRef,
+      ref,
       className: cn('w-[660px] flex items-center gap-8 relative', classNames?.base),
       ...props,
     }),
@@ -39,27 +38,27 @@ export function useTagSelector({ ...props }: UseTagSelectorProps) {
     (props = {}) => ({
       className: cn(
         'w-[624px] h-52 flex gap-8 items-center py-8 pl-16 pr-16 border-1 border-transparent rounded-8 text-neutral-20',
-        isOpen && 'rounded-bl-none rounded-br-none border-neutral-5 bg-neutral-1',
+        isSelected && 'rounded-bl-none rounded-br-none border-neutral-5 bg-neutral-1',
         classNames?.trigger,
       ),
       onClick: handleTriggerClick,
       ...props,
     }),
-    [handleTriggerClick, classNames?.trigger, isOpen],
+    [handleTriggerClick, classNames?.trigger, isSelected],
   );
 
   const getContentProps = useCallback(
     () => ({
       className: cn(
         'absolute top-52 left-36 w-[624px] bg-[white] border-1 rounded-bl-8 rounded-br-8',
-        isOpen && 'z-[210000000]',
+        isSelected && 'z-[210000000]',
         classNames?.content,
       ),
     }),
-    [classNames?.content, isOpen],
+    [classNames?.content, isSelected],
   );
 
-  return { Component, getTriggerProps, getBaseProps, getContentProps, isOpen };
+  return { Component, getTriggerProps, getBaseProps, getContentProps, isSelected };
 }
 
 export type UseTagSelectorReturn = ReturnType<typeof useTagSelector>;
