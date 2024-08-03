@@ -1,0 +1,135 @@
+.ProseMirror {
+  p {
+    line-height: 1.625;
+    margin: 0.75rem auto;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  & > p {
+    margin: 1.5rem auto;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h1 {
+    font-size: 1.875rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+  }
+
+  h5 {
+    font-size: 1rem;
+  }
+
+  h6 {
+    font-size: 0.875rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+    &:first-child {
+      margin-top: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin-top: 3rem;
+  }
+
+  h4,
+  h5,
+  h6 {
+    margin-top: 2rem;
+  }
+
+  a.link {
+    cursor: pointer !important;
+    text-decoration-line: underline !important;
+    text-decoration-color: #3b82f6 !important;
+    color: #3b82f6;
+    font-weight: 800;
+  }
+
+  mark {
+    background-color: #ef4444; /* Equivalent to bg-red-500 */
+    border-radius: 0.125rem; /* Equivalent to rounded-sm */
+    text-decoration: inherit;
+    padding: 0.25rem auto;
+    .dark & {
+      background-color: #f87171; /* Equivalent to dark:bg-red-400 */
+    }
+  }
+
+  & img {
+    height: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  [data-type='horizontalRule'] {
+    margin: 2rem auto;
+    padding: 1rem 0;
+    transition: all 0.1s ease-in-out;
+    cursor: pointer;
+
+    &.ProseMirror-selectednode {
+      background-color: rgba(0, 0, 0, 0.05); /* Equivalent to bg-black/5 */
+      .dark & {
+        background-color: rgba(255, 255, 255, 0.1); /* Equivalent to dark:bg-white/10 */
+      }
+
+      hr {
+        border-top-color: rgba(0, 0, 0, 0.3); /* Equivalent to border-t-black/30 */
+        .dark & {
+          border-top-color: rgba(255, 255, 255, 0.3); /* Equivalent to dark:border-t-white/30 */
+        }
+      }
+    }
+
+    &:hover:not(&.ProseMirror-selectednode) {
+      background-color: rgba(0, 0, 0, 0.05); /* Equivalent to bg-black/5 */
+      .dark & {
+        background-color: rgba(255, 255, 255, 0.1); /* Equivalent to dark:bg-white/10 */
+      }
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.2); /* Equivalent to border-black/20 */
+      background-color: rgba(0, 0, 0, 0.8); /* Equivalent to bg-black/80 */
+      .dark & {
+        border-top: 1px solid rgba(255, 255, 255, 0.2); /* Equivalent to dark:border-white/20 */
+        background-color: rgba(255, 255, 255, 0.8); /* Equivalent to dark:bg-white/80 */
+      }
+    }
+  }
+}

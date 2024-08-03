@@ -1,0 +1,73 @@
+.ProseMirror {
+  p > code {
+    @apply caret-[gray] text-[gray] rounded-sm shadow-sm font-mono bg-orange-100 p-4;
+  }
+
+  pre {
+    @apply caret-white bg-black text-white rounded my-12 p-4 border border-black;
+
+    *::selection {
+      @apply bg-white/20;
+    }
+
+    code {
+      @apply p-0 shadow-none;
+    }
+
+    .hljs-comment,
+    .hljs-quote {
+      @apply text-white;
+    }
+
+    .hljs-variable,
+    .hljs-template-variable,
+    .hljs-attribute,
+    .hljs-tag,
+    .hljs-name,
+    .hljs-regexp,
+    .hljs-link,
+    .hljs-name,
+    .hljs-selector-id,
+    .hljs-selector-class {
+      @apply text-[red];
+    }
+
+    .hljs-number,
+    .hljs-meta,
+    .hljs-built_in,
+    .hljs-builtin-name,
+    .hljs-literal,
+    .hljs-type,
+    .hljs-params {
+      @apply text-[orange];
+    }
+
+    .hljs-string,
+    .hljs-symbol,
+    .hljs-bullet {
+      @apply text-[lime];
+    }
+
+    .hljs-title,
+    .hljs-section {
+      @apply text-[yellow];
+    }
+
+    .hljs-attr {
+      @apply text-[teal];
+    }
+
+    .hljs-keyword,
+    .hljs-selector-tag {
+      @apply text-[teal];
+    }
+
+    .hljs-emphasis {
+      font-style: italic;
+    }
+
+    .hljs-strong {
+      font-weight: 700;
+    }
+  }
+}

@@ -18,6 +18,7 @@ const fontWeightToken = fontWeightVariant.reduce((acc, token) => ({ ...acc, [tok
 const config: Config = {
   darkMode: ['class'],
   content: ['./pages/**/*.{ts,tsx}', './components/**/*.{ts,tsx}', './app/**/*.{ts,tsx}', './src/**/*.{ts,tsx}'],
+  safelist: ['ProseMirror'],
   prefix: '',
   theme: {
     container: {
