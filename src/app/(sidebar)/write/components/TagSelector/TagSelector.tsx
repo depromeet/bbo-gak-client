@@ -17,9 +17,7 @@ function Title({ className, ...props }: StrictPropsWithChildren<{ className?: st
 
 function Tag({ ...props }: StrictPropsWithChildren<ButtonProps>) {
   return (
-    <li>
-      <Button {...props} className={cn('py-4 px-8 text-[14px] rounded-4 font-medium leading-20', props.className)} />
-    </li>
+    <Button {...props} className={cn('py-4 px-8 text-[14px] rounded-4 font-medium leading-20', props.className)} />
   );
 }
 

@@ -41,7 +41,7 @@ export default function Page() {
                     event.stopPropagation();
                     setSelectedCategories((prev) => prev.filter(({ value }) => value !== category.value));
                   }}>
-                  {category.value}
+                  <li>{category.value}</li>
                 </TagSelector.RemovalbleTag>
               ))}
             </ul>
@@ -90,7 +90,7 @@ export default function Page() {
                     event.stopPropagation();
                     setSelectedTags((prev) => prev.filter(({ value }) => value !== tag.value));
                   }}>
-                  {tag.value}
+                  <li>{tag.value}</li>
                 </TagSelector.RemovalbleTag>
               ))}
             </ul>
