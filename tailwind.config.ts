@@ -52,6 +52,7 @@ const config: Config = {
         black: '#000000',
         neutral: {
           '1': '#F9F9FA',
+          '3': '#F1F2F3',
           '5': '#EAEBEC',
           '10': '#DBDCDF',
           '20': '#CCCDD1',
