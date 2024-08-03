@@ -50,7 +50,7 @@ export default function Page() {
                   key={tag.value}
                   className="text-neutral-75 bg-neutral-3"
                   onClick={() => {
-                    if (selectedCategories.length < 3) {
+                    if (selectedCategories.length < 3 && !selectedCategories.find(({ value }) => value === tag.value)) {
                       setSelectedCategories((prev) => [...prev, tag]);
                     }
                   }}>
@@ -97,7 +97,7 @@ export default function Page() {
                   key={tag.value}
                   className="text-[#418CC3] bg-[#E8F1FF]"
                   onClick={() => {
-                    if (selectedTags.length < 3) {
+                    if (selectedTags.length < 3 && !selectedTags.find(({ value }) => value === tag.value)) {
                       setSelectedTags((prev) => [...prev, tag]);
                     }
                   }}>
@@ -114,7 +114,7 @@ export default function Page() {
                   key={tag.value}
                   className="text-[#9C6BB3] bg-[#F1E8FF]"
                   onClick={() => {
-                    if (selectedTags.length < 3) {
+                    if (selectedTags.length < 3 && !selectedTags.find(({ value }) => value === tag.value)) {
                       setSelectedTags((prev) => [...prev, tag]);
                     }
                   }}>
