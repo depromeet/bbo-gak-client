@@ -1,10 +1,6 @@
 .ProseMirror {
-  code {
-    @apply caret-white text-white rounded-sm shadow-lg font-mono;
-
-    &::selection {
-      @apply bg-white/30;
-    }
+  p > code {
+    @apply caret-[gray] text-[gray] rounded-sm shadow-sm font-mono bg-orange-100 p-4;
   }
 
   pre {
@@ -20,7 +16,7 @@
 
     .hljs-comment,
     .hljs-quote {
-      @apply text-black;
+      @apply text-white;
     }
 
     .hljs-variable,
@@ -55,6 +51,10 @@
     .hljs-title,
     .hljs-section {
       @apply text-[yellow];
+    }
+
+    .hljs-attr {
+      @apply text-[teal];
     }
 
     .hljs-keyword,

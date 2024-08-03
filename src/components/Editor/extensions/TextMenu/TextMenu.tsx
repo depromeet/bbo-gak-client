@@ -92,7 +92,7 @@ export function TextMenu({ editor }: TextMenuProps) {
               <EditorIcon name="Highlighter" />
             </MemoButton>
           </PopoverTrigger>
-          <PopoverContent side="top" sideOffset={8} asChild>
+          <PopoverContent side="top" sideOffset={8} asChild className="w-[300px]">
             <Surface className="p-4">
               <MemoColorPicker
                 color={states.currentHighlight}
@@ -108,7 +108,7 @@ export function TextMenu({ editor }: TextMenuProps) {
               <EditorIcon name="Palette" />
             </MemoButton>
           </PopoverTrigger>
-          <PopoverContent side="top" sideOffset={8} asChild>
+          <PopoverContent side="top" sideOffset={8} asChild className="w-[300px]">
             <Surface className="p-4">
               <MemoColorPicker
                 color={states.currentColor}
@@ -124,7 +124,7 @@ export function TextMenu({ editor }: TextMenuProps) {
               <EditorIcon name="Ham" />
             </MemoButton>
           </PopoverTrigger>
-          <PopoverContent side="top" asChild>
+          <PopoverContent side="top" asChild className="w-fit">
             <Toolbar.Wrapper>
               <Toolbar.Divider />
               <MemoButton

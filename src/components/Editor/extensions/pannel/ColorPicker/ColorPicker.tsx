@@ -13,7 +13,7 @@ export type ColorPickerProps = {
 
 export function ColorPicker({ color, onChange, onClear }: ColorPickerProps) {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="w-full flex flex-col gap-2">
       <HexColorPicker className="w-full" color={color || ''} onChange={onChange} />
 
       <div className="flex flex-wrap items-center gap-4 max-w-[15rem]">

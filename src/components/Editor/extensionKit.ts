@@ -87,7 +87,13 @@ export function ExtensionKit() {
     Gapcursor,
     ListKeymap,
     Placeholder,
-    TextAlign,
+    TextAlign.extend({
+      addKeyboardShortcuts() {
+        return {};
+      },
+    }).configure({
+      types: ['heading', 'paragraph'],
+    }),
     Typography,
     Link,
     Highlight.configure({ multicolor: true }),
