@@ -14,10 +14,7 @@ export function useEditor() {
       },
     },
     content: `
-      <blockquote>
-        Nothing is impossible, the word itself says “I’m possible!”
-      </blockquote>
-      <p>Audrey Hepburn</p>
+      <p>뽀각에 오신 여러분을 환영해요 !</p>
     `,
     immediatelyRender: false,
   });
