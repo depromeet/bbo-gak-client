@@ -11,8 +11,8 @@ import { InfoCard, TAG_TYPE_COLOR } from '@/types/info';
 
 interface Props extends InfoCard {}
 
-export function InfoCardItem({ title, updatedDate, cardTagList }: Props) {
-  const formattedDate = formatToYYMMDD(updatedDate, { separator: '.' });
+export function InfoCardItem({ title, updateDate, cardTagList }: Props) {
+  const formattedDate = formatToYYMMDD(updateDate, { separator: '.' });
 
   return (
     <div className="flex flex-col justify-between min-w-[343px] h-[140px] p-[24px] rounded-[16px] bg-white border border-neutral-5 cursor-pointer hover:border-neutral-95">

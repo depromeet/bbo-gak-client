@@ -1,19 +1,19 @@
 export interface InfoCard {
   id: number;
   title: string;
-  updatedDate: string;
-  cardTagList: CardTag[];
+  updateDate: string;
+  cardTagList: InfoCardTag[];
 }
 
-export interface CardTag {
+export interface InfoCardTag {
   id: number;
   name: string;
   type: '인성' | '역량';
 }
 
-export const CARD_TYPES = ['경험 정리', '자기소개서', '면접 질문'] as const;
+export const INFO_CARD_TYPES = ['경험 정리', '자기소개서', '면접 질문'] as const;
 
-export type CardType = (typeof CARD_TYPES)[number];
+export type InfoCardType = (typeof INFO_CARD_TYPES)[number];
 
 export const TAG_TYPE_COLOR = {
   역량: 'blue',

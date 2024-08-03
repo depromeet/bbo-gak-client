@@ -6,10 +6,10 @@ import { cn } from '@/utils/tailwind-util';
 import { Button, Icon } from '@/system/components';
 import { InfoCardItem } from './InfoCardItem';
 import { AddInfoCardDialog } from './AddInfoCardDialog';
-import { CARD_TYPES, CardType } from '@/types/info';
+import { INFO_CARD_TYPES, InfoCardType } from '@/types/info';
 
 export function InfoCardList() {
-  const [currentCardType, setCurrentCardType] = useState<CardType>('경험 정리');
+  const [currentCardType, setCurrentCardType] = useState<InfoCardType>('경험 정리');
 
   // TODO: API 연동 시 response data로 변경
   const infoCount = mockInfoCount;
@@ -19,7 +19,7 @@ export function InfoCardList() {
     <section>
       <div className="mb-[28px] flex justify-between">
         <div className="flex gap-[24px]">
-          {CARD_TYPES.map((type) => (
+          {INFO_CARD_TYPES.map((type) => (
             <button
               key={type}
               className="flex gap-[6px] items-center cursor-pointer"

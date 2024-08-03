@@ -10,7 +10,7 @@ export const mockInfoList: InfoCard[] = [
   {
     id: 1,
     title: '제목',
-    updatedDate: '2024-07-20T20:00:00',
+    updateDate: '2024-07-20T20:00:00',
     cardTagList: [
       {
         id: 1,
@@ -27,7 +27,7 @@ export const mockInfoList: InfoCard[] = [
   {
     id: 2,
     title: 'test title2',
-    updatedDate: '2024-07-10T20:00:00',
+    updateDate: '2024-07-10T20:00:00',
     cardTagList: [
       {
         id: 1,
@@ -44,7 +44,7 @@ export const mockInfoList: InfoCard[] = [
   {
     id: 3,
     title: '제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
-    updatedDate: '2024-07-15T20:00:00',
+    updateDate: '2024-07-15T20:00:00',
     cardTagList: [
       {
         id: 1,
