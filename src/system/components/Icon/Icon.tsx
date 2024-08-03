@@ -14,9 +14,14 @@ import { ProfileFill } from './SVG/ProfileFill';
 import type { IconBaseType } from '@/system/components/Icon/SVG/type';
 import { Delete } from './SVG/Delete';
 import { Pip } from './SVG/Pip';
+import Copy from './SVG/Copy';
+import { Up } from './SVG/Up';
+import { Check } from './SVG/Check';
 
 const iconMap = {
   bell: Bell,
+  copy: Copy,
+  check: Check,
   division: Division,
   folder: Folder,
   logout: Logout,
@@ -31,6 +36,7 @@ const iconMap = {
   more: More,
   delete: Delete,
   pip: Pip,
+  up: Up,
 } as const;
 
 export interface IconProps extends IconBaseType {
