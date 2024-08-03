@@ -7,6 +7,7 @@ import { TagSelector } from './TagSelector/TagSelector';
 import { abilityTags, personalityTags, categoryTags, tags, categories } from './TagSelector/constants';
 import { If } from '@/components/If';
 import { cn } from '@/utils';
+import { Spacing } from '@/components/Spacing';
 
 const Editor = dynamic(() => import('@/components/Editor/Editor').then(({ Editor }) => Editor), { ssr: false });
 
@@ -16,6 +17,14 @@ export default function Page() {
 
   return (
     <section className="px-80 pt-64 w-full h-full">
+      <Input
+        placeholder="제목을 입력해주세요."
+        classNames={{ base: 'w-[552px]' }}
+        className="text-24 font-bold px-0 text-input-title border-none"
+      />
+
+      <Spacing direction="column" size={24} />
+
       <TagSelector>
         <TagSelector.Title>분류</TagSelector.Title>
 
@@ -106,7 +115,7 @@ export default function Page() {
               ))}
             </TagSelector.TagList>
 
-            <div className="h-20 w-full" />
+            <Spacing direction="column" size={20} />
 
             <TagSelector.TagList title="인성 태그">
               {personalityTags.map((tag) => (
@@ -126,11 +135,7 @@ export default function Page() {
         </TagSelector.Content>
       </TagSelector>
 
-      <Input
-        placeholder="제목을 입력해주세요."
-        classNames={{ base: 'w-[552px]' }}
-        className="text-24 font-bold text-input-title border-none"
-      />
+      <Spacing direction="column" size={20} />
 
       <Editor />
     </section>
