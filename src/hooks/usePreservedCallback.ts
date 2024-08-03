@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 
-export function useCallbackOnce<T extends (...args: any[]) => any>(callback: T): (...args: any[]) => any {
+export function usePreservedCallback<T extends (...args: any[]) => any>(callback: T): (...args: any[]) => any {
   const callbackRef = useRef<T>(callback);
 
   useEffect(() => {

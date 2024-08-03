@@ -3,6 +3,7 @@ import type { As, ClassNamesType, ReactRef } from '@/types';
 import { cn } from '@/utils';
 import useDOMRef from '@/hooks/useDOMRef';
 import { useOutsideClick } from '@/hooks/useOutsideClick';
+import { zIndex } from '@/system/token/zIndex';
 
 export interface UseTagSelectorProps {
   as?: As;
@@ -13,22 +14,18 @@ export interface UseTagSelectorProps {
 export function useTagSelector({ ...props }: UseTagSelectorProps) {
   const { as, ref, classNames } = props;
   const Component = as || 'div';
-  const domRef = useDOMRef(ref);
+  const baseDOMRef = useDOMRef(ref);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  useOutsideClick(domRef, () => setIsOpen(false));
+  useOutsideClick(baseDOMRef, () => setIsOpen(false));
 
   const handleTriggerClick = useCallback(() => {
-    if (isOpen) {
-      setIsOpen(false);
-      return;
-    }
-    setIsOpen(true);
+    setIsOpen((prev) => !prev);
   }, [isOpen]);
 
   const getBaseProps = useCallback(
     (props = {}) => ({
-      ref: domRef,
+      ref: baseDOMRef,
       className: cn('w-[660px] flex items-center gap-8 relative', classNames?.base),
       ...props,
     }),
@@ -52,7 +49,7 @@ export function useTagSelector({ ...props }: UseTagSelectorProps) {
     () => ({
       className: cn(
         'absolute top-52 left-36 w-[624px] bg-[white] border-1 rounded-bl-8 rounded-br-8',
-        isOpen && 'z-[210000000]',
+        isOpen && `z-[${zIndex.overlay}]`,
         classNames?.content,
       ),
     }),

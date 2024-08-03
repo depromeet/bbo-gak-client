@@ -5,13 +5,14 @@ import { generateContext } from '@/lib';
 import { cn } from '@/utils';
 import { Remove } from '@/system/components/Icon/SVG/Remove';
 import { SVGProps } from 'react';
+import { If } from '@/components/If';
 
 const [TagSelectorProvider, useTagSelectorContext] = generateContext<
   Omit<UseTagSelectorReturn, 'Component' | 'getBaseProps'>
 >({ name: 'tag-selector' });
 
 function Title({ className, ...props }: StrictPropsWithChildren<{ className?: string }>) {
-  return <div {...props} className={cn('flex items-center w-28 h-40 text-14 font-semibold', className)} />;
+  return <h1 {...props} className={cn('flex items-center w-28 h-40 text-14 font-semibold', className)} />;
 }
 
 function Tag({ ...props }: StrictPropsWithChildren<ButtonProps>) {
@@ -50,7 +51,11 @@ function Trigger({ children }: StrictPropsWithChildren) {
 function Content({ children }: StrictPropsWithChildren) {
   const { isOpen, getContentProps } = useTagSelectorContext();
 
-  return isOpen && <article {...getContentProps()}>{children}</article>;
+  return (
+    <If condition={isOpen}>
+      <article {...getContentProps()}>{children}</article>
+    </If>
+  );
 }
 
 function TagList({ title, children }: StrictPropsWithChildren<{ title: string }>) {
