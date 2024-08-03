@@ -7,20 +7,15 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/system/components/DropdownMenu/DropdownMenu';
-import { InfoCard } from '@/types/info';
+import { InfoCard, TAG_TYPE_COLOR } from '@/types/info';
 
 interface Props extends InfoCard {}
-
-const TAG_TYPE_COLOR = {
-  역량: 'blue',
-  인성: 'purple',
-} as const;
 
 export function InfoCardItem({ title, updatedDate, cardTagList }: Props) {
   const formattedDate = formatToYYMMDD(updatedDate, { separator: '.' });
 
   return (
-    <div className="flex flex-col justify-between min-w-[343px] h-[140px] p-[24px] rounded-[16px] bg-white border border-neutral-5 cursor-pointer hover:border-neutral-30">
+    <div className="flex flex-col justify-between min-w-[343px] h-[140px] p-[24px] rounded-[16px] bg-white border border-neutral-5 cursor-pointer hover:border-neutral-95">
       <div className="flex">
         <div className="flex-1 overflow-hidden">
           <div className="mb-[9px] text-[12px] text-neutral-20">{formattedDate}</div>

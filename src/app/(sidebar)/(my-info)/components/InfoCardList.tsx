@@ -3,13 +3,13 @@
 import { useState } from 'react';
 import { mockInfoCount, mockInfoList } from '../mock';
 import { cn } from '@/utils/tailwind-util';
-import { Icon } from '@/system/components';
+import { Button, Icon } from '@/system/components';
 import { InfoCardItem } from './InfoCardItem';
-
-const INFO_OPTIONS = ['경험 정리', '자기소개서', '면접 질문'] as const;
+import { AddInfoCardDialog } from './AddInfoCardDialog';
+import { CARD_TYPES, CardType } from '@/types/info';
 
 export function InfoCardList() {
-  const [currentOption, setCurrentOption] = useState<(typeof INFO_OPTIONS)[number]>('경험 정리');
+  const [currentCardType, setCurrentCardType] = useState<CardType>('경험 정리');
 
   // TODO: API 연동 시 response data로 변경
   const infoCount = mockInfoCount;
@@ -19,32 +19,34 @@ export function InfoCardList() {
     <section>
       <div className="mb-[28px] flex justify-between">
         <div className="flex gap-[24px]">
-          {INFO_OPTIONS.map((option) => (
+          {CARD_TYPES.map((type) => (
             <button
-              key={option}
+              key={type}
               className="flex gap-[6px] items-center cursor-pointer"
-              onClick={() => setCurrentOption(option)}>
+              onClick={() => setCurrentCardType(type)}>
               <div
                 className={cn(
                   'text-[18px] text-neutral-10 font-semibold',
-                  currentOption === option && 'text-neutral-80',
+                  currentCardType === type && 'text-neutral-80',
                 )}>
-                {option}
+                {type}
               </div>
               <div
                 className={cn(
                   'px-[8px] py-[2px] bg-neutral-10 rounded-[6px] text-neutral-1 text-[14px] font-semibold',
-                  currentOption === option && 'bg-neutral-80',
+                  currentCardType === type && 'bg-neutral-80',
                 )}>
-                {infoCount[option]}
+                {infoCount[type]}
               </div>
             </button>
           ))}
         </div>
-        <button className="flex items-center gap-[8px] bg-neutral-95 py-[6px] pl-[16px] pr-[10px] rounded-[6px]">
-          <div className="text-white text-[14px] font-semibold">카드 추가</div>
-          <Icon name="add" color="#08F29B" />
-        </button>
+        <AddInfoCardDialog>
+          <Button className="flex items-center gap-[4px] bg-neutral-95 py-[8px] px-[16px] rounded-[6px]">
+            <Icon name="add" color="#08F29B" />
+            <div className="text-white text-[14px] font-semibold">카드 추가</div>
+          </Button>
+        </AddInfoCardDialog>
       </div>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
         {infoList.map((info) => (
