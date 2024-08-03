@@ -6,5 +6,9 @@ interface Props {
 }
 
 export function useDimStyle({}: Props): Record<DialogAnatomy, { className: string }> {
-  return {};
+  return {
+    close: { className: '' },
+    content: { className: '' },
+    dim: { className: '' },
+  };
 }
