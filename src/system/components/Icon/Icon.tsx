@@ -17,6 +17,10 @@ import { Pip } from './SVG/Pip';
 import Copy from './SVG/Copy';
 import { Up } from './SVG/Up';
 import { Check } from './SVG/Check';
+import { Link } from './SVG/Link';
+import { Unlink } from './SVG/Unlink';
+import { Calendar } from './SVG/Calendar';
+import { CalendarFill } from './SVG/CalendarFill';
 
 const iconMap = {
   bell: Bell,
@@ -37,6 +41,10 @@ const iconMap = {
   delete: Delete,
   pip: Pip,
   up: Up,
+  link: Link,
+  unlink: Unlink,
+  calendar: Calendar,
+  calendarFill: CalendarFill,
 } as const;
 
 export interface IconProps extends IconBaseType {

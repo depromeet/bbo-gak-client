@@ -9,6 +9,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/system/components/DropdownMenu/DropdownMenu';
+import { motion } from 'framer-motion';
+import { color } from '@/system/token/color';
+import { Dialog } from '@/system/components/Dialog/ShadnDialog';
 
 export function AllRecruitment() {
   return (
@@ -31,9 +34,15 @@ export function AllRecruitment() {
         </DropdownMenuContent>
       </DropdownMenu>
       <Spacing size={24} />
-      <div className="w-full h-70 flex justify-center items-center rounded-[12px] border-neutral-30 border-dashed border-[1px]">
-        <span className="text-neutral-30 text-label1">등록된 공고가 없어요</span>
-      </div>
+      <Dialog.Trigger asChild>
+        <motion.button
+          initial="initial"
+          whileHover="hover"
+          variants={{ initial: { backgroundColor: 'transparent' }, hover: { backgroundColor: color.neutral5 } }}
+          className="w-full h-70 flex justify-center items-center rounded-[12px] border-neutral-30 border-dashed border-[1px]">
+          <span className="text-neutral-30 text-label1">등록된 공고가 없어요</span>
+        </motion.button>
+      </Dialog.Trigger>
     </>
   );
 }
