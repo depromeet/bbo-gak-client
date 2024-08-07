@@ -49,7 +49,7 @@ export default function Page() {
 
       <Spacing direction="column" size={24} />
 
-      <TagSelector classNames={{ base: 'px-80' }}>
+      <TagSelector classNames={{ base: 'px-80', trigger: cn('hover:bg-neutral-1') }}>
         <TagSelector.Title>분류</TagSelector.Title>
 
         <TagSelector.Trigger>
@@ -93,7 +93,7 @@ export default function Page() {
 
       <TagSelector
         disabled={selectedTags.length === 3}
-        classNames={{ base: 'px-80', content: 'h-264', trigger: cn(!!selectedTags.length && 'bg-neutral-1') }}>
+        classNames={{ base: 'px-80', content: 'h-264', trigger: 'hover:bg-neutral-1' }}>
         <TagSelector.Title>태그</TagSelector.Title>
 
         <TagSelector.Trigger>
