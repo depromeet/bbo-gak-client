@@ -6,7 +6,7 @@ import { Spacing } from '@/components/Spacing';
 import { ProgressingRecruitment } from './containers/ProgressingRecruitment';
 import { AllRecruitment } from './containers/AllRecruitment';
 import { useState } from 'react';
-import { Dialog } from '@/system/components/Dialog/ShadnDialog';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { NewRecruitDialogContent } from './components/NewRecruitDialogContent/NewRecruitDialogContent';
 
 export default function MyRecruit() {

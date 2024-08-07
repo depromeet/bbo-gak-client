@@ -1,6 +1,6 @@
 import { Spacing } from '@/components/Spacing';
 import { ShoeIcon } from './components/ShoeIcon';
-import { Dialog } from '@/system/components/Dialog/ShadnDialog';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { motion } from 'framer-motion';
 import { color } from '@/system/token/color';
 

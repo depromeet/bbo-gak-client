@@ -11,7 +11,7 @@ import {
 } from '@/system/components/DropdownMenu/DropdownMenu';
 import { motion } from 'framer-motion';
 import { color } from '@/system/token/color';
-import { Dialog } from '@/system/components/Dialog/ShadnDialog';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 
 export function AllRecruitment() {
   return (

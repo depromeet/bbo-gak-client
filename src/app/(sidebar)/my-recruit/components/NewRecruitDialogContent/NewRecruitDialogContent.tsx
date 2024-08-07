@@ -1,6 +1,6 @@
 import { Spacing } from '@/components/Spacing';
 import { TouchButton } from '@/components/TouchButton';
-import { Dialog } from '@/system/components/Dialog/ShadnDialog';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { color } from '@/system/token/color';
 import { InputField } from './InputField';
 import { useState } from 'react';
