@@ -3,7 +3,6 @@ import type { As, ClassNamesType, ReactRef } from '@/types';
 import { cn } from '@/utils';
 import useDOMRef from '@/hooks/useDOMRef';
 import { useOutsideClick } from '@/hooks/useOutsideClick';
-import { zIndex } from '@/system/token/zIndex';
 
 export interface UseTagSelectorProps {
   as?: As;

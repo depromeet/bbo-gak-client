@@ -25,14 +25,17 @@ function RemovalbleTag({ children, className, color, onClick, ...props }: Strict
   const { isOpen } = useTagSelectorContext();
 
   return (
-    <li>
-      <Button
-        className={cn('flex items-center gap-2 py-4 px-8 text-[14px] rounded-4 font-medium leading-20', className)}
-        {...props}>
-        {children}
-        {isOpen && <Remove color={color} size={16} onClick={onClick as SVGProps<SVGSVGElement>['onClick']} />}
-      </Button>
-    </li>
+    <Button
+      className={cn('flex items-center gap-2 py-4 px-8 text-[14px] rounded-4 font-medium leading-20 group', className)}
+      {...props}>
+      {children}
+      <Remove
+        color={color}
+        size={16}
+        className={cn(!isOpen && 'transition-all hidden group-hover:inline-block', isOpen && 'inline-block')}
+        onClick={onClick as SVGProps<SVGSVGElement>['onClick']}
+      />
+    </Button>
   );
 }
 

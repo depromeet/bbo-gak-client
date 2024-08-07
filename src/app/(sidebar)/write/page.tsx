@@ -72,7 +72,7 @@ export default function Page() {
         <TagSelector.Content>
           <div className="px-16 pt-16 pb-20">
             <p className="text-12 font-medium text-neutral-40 pb-16">
-              어떤 단계를 위한 정보인가요? <span className="text-neutral-30">(중복가능)</span>
+              어떤 단계를 위한 정보인가요? <span className="text-neutral-30">(택1)</span>
             </p>
             <TagSelector.TagList title="분류">
               {categoryTags.map((tag) => (
