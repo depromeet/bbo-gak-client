@@ -2,7 +2,7 @@ import { Spacing } from '@/components/Spacing';
 import { TouchButton } from '@/components/TouchButton';
 import { Dialog } from '@/system/components/Dialog/ShadnDialog';
 import { color } from '@/system/token/color';
-import { TextField } from './TextField';
+import { InputField } from './InputField';
 import { useState } from 'react';
 import { Icon } from '@/system/components';
 import { getCurrentYearAndHalf, getNextYearAndHalf } from './date';
@@ -17,6 +17,7 @@ import { motion } from 'framer-motion';
 import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
 import { Calendar } from '@/system/components/Calendar/Calendar';
 import { format } from 'date-fns/format';
+import { If } from '@/components/If';
 
 interface Props {
   onSubmit: () => void;
@@ -45,7 +46,7 @@ export function NewRecruitDialogContent() {
       <Spacing size={24} />
 
       {/* 공고 제목 입력 */}
-      <TextField
+      <InputField
         required
         value={title}
         placeholder="공고 제목을 입력해주세요"
@@ -73,7 +74,9 @@ export function NewRecruitDialogContent() {
               <span className={clsx('text-label1', period === selectedPeriod ? 'text-neutral-30' : 'text-neutral-80')}>
                 {period}
               </span>
-              {period === selectedPeriod ? <Icon size={16} name="check" color="#AEB0B6" /> : null}
+              <If condition={period === selectedPeriod}>
+                <Icon size={16} name="check" color="#AEB0B6" />
+              </If>
             </DropdownMenuItem>
           ))}
         </DropdownMenuContent>
@@ -109,7 +112,7 @@ export function NewRecruitDialogContent() {
       <Spacing size={8} />
 
       {/* 공고 링크 입력 */}
-      <TextField
+      <InputField
         value={link}
         placeholder="공고 링크를 입력해주세요"
         right={<Icon name={link.length === 0 ? 'unlink' : 'link'} size={16} color="#70737C" />}
