@@ -8,10 +8,11 @@ export interface UseTagSelectorProps {
   as?: As;
   ref?: ReactRef<HTMLElement>;
   classNames?: ClassNamesType<'base' | 'content' | 'trigger'>;
+  disabled?: boolean;
 }
 
 export function useTagSelector({ ...props }: UseTagSelectorProps) {
-  const { as, ref, classNames } = props;
+  const { as, ref, classNames, disabled } = props;
   const Component = as || 'div';
   const baseDOMRef = useDOMRef(ref);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -34,8 +35,8 @@ export function useTagSelector({ ...props }: UseTagSelectorProps) {
   const getTriggerProps = useCallback(
     (props = {}) => ({
       className: cn(
-        'w-[624px] h-40 flex gap-8 items-center py-8 pl-8 pr-16 border-1 border-transparent rounded-8 text-neutral-20',
-        isOpen && 'rounded-bl-none rounded-br-none border-neutral-5 bg-neutral-1',
+        'w-[624px] h-40 flex gap-8 items-center text-[14px] py-8 pl-8 pr-16 border-1 border-transparent rounded-8 text-neutral-20',
+        isOpen && 'rounded-bl-none rounded-br-none border-neutral-5 bg-neutral-1 shadow-memo',
         classNames?.trigger,
       ),
       onClick: handleTriggerClick,
@@ -48,14 +49,14 @@ export function useTagSelector({ ...props }: UseTagSelectorProps) {
     () => ({
       className: cn(
         'absolute top-39 left-116 w-[624px] bg-[white] border-1 rounded-bl-8 rounded-br-8',
-        isOpen && 'z-[20000]',
+        isOpen && 'z-[20000] shadow-memo',
         classNames?.content,
       ),
     }),
-    [classNames?.content, isOpen],
+    [classNames?.content, isOpen, disabled],
   );
 
-  return { Component, getTriggerProps, getBaseProps, getContentProps, isOpen };
+  return { Component, getTriggerProps, getBaseProps, getContentProps, isOpen, disabled };
 }
 
 export type UseTagSelectorReturn = ReturnType<typeof useTagSelector>;

@@ -20,4 +20,4 @@ export const categoryTags = [
 ] as const;
 
 export const tags = [...abilityTags, ...personalityTags];
-export const categories = [...categoryTags];
+export const categories = [...categoryTags] as const;

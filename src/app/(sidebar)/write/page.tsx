@@ -19,8 +19,8 @@ import {
 const Editor = dynamic(() => import('@/components/Editor/Editor').then(({ Editor }) => Editor), { ssr: false });
 
 export default function Page() {
+  const [category, setSelectedCategories] = useState<(typeof categories)[number] | null>(null);
   const [selectedTags, setSelectedTags] = useState<typeof tags>([]);
-  const [selectedCategories, setSelectedCategories] = useState<typeof categories>([]);
 
   return (
     <section className="w-[820px] pt-64 h-full">
@@ -50,39 +50,35 @@ export default function Page() {
         <TagSelector.Title>분류</TagSelector.Title>
 
         <TagSelector.Trigger>
-          <If condition={!selectedCategories.length}>카드의 종류를 선택해주세요</If>
-          <If condition={!!selectedCategories.length}>
+          <If condition={!category}>카드의 종류를 선택해주세요</If>
+          <If condition={!!category}>
             <ul className="flex gap-8">
-              {selectedCategories.map((category) => (
-                <TagSelector.RemovalbleTag
-                  key={category.value}
-                  className="text-neutral-75 bg-neutral-3"
-                  color="#37383C"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    setSelectedCategories((prev) => prev.filter(({ value }) => value !== category.value));
-                  }}>
-                  <li>{category.value}</li>
-                </TagSelector.RemovalbleTag>
-              ))}
+              <TagSelector.RemovalbleTag
+                key={category?.value}
+                className="text-neutral-75 bg-neutral-3"
+                color="#37383C"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setSelectedCategories(null);
+                }}>
+                <li>{category?.value}</li>
+              </TagSelector.RemovalbleTag>
             </ul>
           </If>
         </TagSelector.Trigger>
 
         <TagSelector.Content>
           <div className="px-16 pt-16 pb-20">
-            <p className="text-12 font-medium text-neutral-40 pb-16">
+            <TagSelector.Notice>
               어떤 단계를 위한 정보인가요? <span className="text-neutral-30">(택1)</span>
-            </p>
+            </TagSelector.Notice>
             <TagSelector.TagList title="분류">
               {categoryTags.map((tag) => (
                 <TagSelector.Tag
                   key={tag.value}
                   className="text-neutral-75 bg-neutral-3"
                   onClick={() => {
-                    if (selectedCategories.length < 3 && !selectedCategories.find(({ value }) => value === tag.value)) {
-                      setSelectedCategories((prev) => [...prev, tag]);
-                    }
+                    setSelectedCategories(tag);
                   }}>
                   {tag.value}
                 </TagSelector.Tag>
@@ -93,6 +89,7 @@ export default function Page() {
       </TagSelector>
 
       <TagSelector
+        disabled={selectedTags.length === 3}
         classNames={{ base: 'px-80', content: 'h-264', trigger: cn(!!selectedTags.length && 'bg-neutral-1') }}>
         <TagSelector.Title>태그</TagSelector.Title>
 
@@ -121,7 +118,8 @@ export default function Page() {
 
         <TagSelector.Content>
           <div className="px-16 pt-16 pb-20">
-            <p className="text-12 font-medium text-neutral-40 pb-16">최대 3개까지 설정 가능해요!</p>
+            <TagSelector.Notice>최대 3개까지 설정 가능해요!</TagSelector.Notice>
+
             <TagSelector.TagList title="역량 태그">
               {abilityTags.map((tag) => (
                 <TagSelector.Tag

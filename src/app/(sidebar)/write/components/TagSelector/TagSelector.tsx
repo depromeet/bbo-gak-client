@@ -16,8 +16,18 @@ function Title({ className, ...props }: StrictPropsWithChildren<{ className?: st
 }
 
 function Tag({ ...props }: StrictPropsWithChildren<ButtonProps>) {
+  const { disabled } = useTagSelectorContext();
+
   return (
-    <Button {...props} className={cn('py-4 px-8 text-[14px] rounded-4 font-medium leading-20', props.className)} />
+    <Button
+      {...props}
+      disabled={disabled}
+      className={cn(
+        'py-4 px-8 text-[14px] rounded-4 font-medium leading-20',
+        disabled && 'cursor-not-allowed',
+        props.className,
+      )}
+    />
   );
 }
 
@@ -29,10 +39,11 @@ function RemovalbleTag({ children, className, color, onClick, ...props }: Strict
       className={cn('flex items-center gap-2 py-4 px-8 text-[14px] rounded-4 font-medium leading-20 group', className)}
       {...props}>
       {children}
+
       <Remove
         color={color}
         size={16}
-        className={cn(!isOpen && 'transition-all hidden group-hover:inline-block', isOpen && 'inline-block')}
+        className={cn(!isOpen && 'hidden group-hover:inline-block', isOpen && 'inline-block')}
         onClick={onClick as SVGProps<SVGSVGElement>['onClick']}
       />
     </Button>
@@ -59,9 +70,17 @@ function Content({ children }: StrictPropsWithChildren) {
   );
 }
 
+function Notice({ children }: StrictPropsWithChildren) {
+  const { disabled } = useTagSelectorContext();
+
+  return <p className={cn('text-[12px] font-medium text-neutral-40 pb-16', disabled && 'opacity-45')}>{children}</p>;
+}
+
 function TagList({ title, children }: StrictPropsWithChildren<{ title: string }>) {
+  const { disabled } = useTagSelectorContext();
+
   return (
-    <div className="flex flex-col gap-8">
+    <div className={cn('flex flex-col gap-8', disabled && 'opacity-45')}>
       <p className="text-12 font-medium text-neutral-75">{title}</p>
       <ul className="w-full flex flex-wrap gap-6">{children}</ul>
     </div>
@@ -84,5 +103,6 @@ TagSelector.Content = Content;
 TagSelector.TagList = TagList;
 TagSelector.Tag = Tag;
 TagSelector.RemovalbleTag = RemovalbleTag;
+TagSelector.Notice = Notice;
 
 export { TagSelector };
