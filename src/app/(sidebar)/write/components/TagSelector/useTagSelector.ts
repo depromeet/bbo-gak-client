@@ -26,7 +26,7 @@ export function useTagSelector({ ...props }: UseTagSelectorProps) {
   const getBaseProps = useCallback(
     (props = {}) => ({
       ref: baseDOMRef,
-      className: cn('w-[820px] flex items-center gap-8', classNames?.base),
+      className: cn('w-[820px] flex items-center gap-8 relative', classNames?.base),
       ...props,
     }),
     [ref, classNames?.base],
@@ -35,7 +35,7 @@ export function useTagSelector({ ...props }: UseTagSelectorProps) {
   const getTriggerProps = useCallback(
     (props = {}) => ({
       className: cn(
-        'w-[624px] h-40 flex gap-8 items-center py-8 pl-16 pr-16 border-1 border-transparent rounded-8 text-neutral-20',
+        'w-[624px] h-40 flex gap-8 items-center py-8 pl-8 pr-16 border-1 border-transparent rounded-8 text-neutral-20',
         isOpen && 'rounded-bl-none rounded-br-none border-neutral-5 bg-neutral-1',
         classNames?.trigger,
       ),
@@ -48,8 +48,8 @@ export function useTagSelector({ ...props }: UseTagSelectorProps) {
   const getContentProps = useCallback(
     () => ({
       className: cn(
-        'absolute top-215 left-188 w-[624px] bg-[white] border-1 rounded-bl-8 rounded-br-8',
-        isOpen && `z-[${zIndex.overlay}]`,
+        'absolute top-39 left-116 w-[624px] bg-[white] border-1 rounded-bl-8 rounded-br-8',
+        isOpen && 'z-[20000]',
         classNames?.content,
       ),
     }),

@@ -56,7 +56,7 @@ export default function Page() {
               {selectedCategories.map((category) => (
                 <TagSelector.RemovalbleTag
                   key={category.value}
-                  className="text-neutral-75 bg-neutral-3 z-[10]"
+                  className="text-neutral-75 bg-neutral-3"
                   color="#37383C"
                   onClick={(event) => {
                     event.stopPropagation();
@@ -92,13 +92,14 @@ export default function Page() {
         </TagSelector.Content>
       </TagSelector>
 
-      <TagSelector classNames={{ base: 'px-80', content: 'h-264' }}>
+      <TagSelector
+        classNames={{ base: 'px-80', content: 'h-264', trigger: cn(!!selectedTags.length && 'bg-neutral-1') }}>
         <TagSelector.Title>태그</TagSelector.Title>
 
         <TagSelector.Trigger>
           <If condition={!selectedTags.length}>태그를 선택해주세요</If>
           <If condition={!!selectedTags.length}>
-            <ul className="flex gap-8 z-[10]">
+            <ul className="flex gap-8">
               {selectedTags.map((tag) => (
                 <TagSelector.RemovalbleTag
                   key={tag.value}
