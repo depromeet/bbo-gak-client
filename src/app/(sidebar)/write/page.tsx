@@ -38,7 +38,10 @@ export default function Page() {
               <Icon name="more" color="black" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem>adsf</DropdownMenuItem>
+              <DropdownMenuItem className="flex gap-4 w-176 h-52 pl-16 cursor-pointer">
+                <Icon name="trash" size={20} color="#FF5C5C" />
+                <p className="text-[#FF5C5C] text-15">삭제하기</p>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -68,7 +71,7 @@ export default function Page() {
         </TagSelector.Trigger>
 
         <TagSelector.Content>
-          <div className="px-16 pt-16 pb-20">
+          <div className="px-16 pt-16 pb-24">
             <TagSelector.Notice>
               어떤 단계를 위한 정보인가요? <span className="text-neutral-30">(택1)</span>
             </TagSelector.Notice>
@@ -117,7 +120,7 @@ export default function Page() {
         </TagSelector.Trigger>
 
         <TagSelector.Content>
-          <div className="px-16 pt-16 pb-20">
+          <div className="px-16 pt-16 pb-24">
             <TagSelector.Notice>최대 3개까지 설정 가능해요!</TagSelector.Notice>
 
             <TagSelector.TagList title="역량 태그">

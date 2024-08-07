@@ -18,6 +18,7 @@ import { Remove } from './SVG/Remove';
 import Copy from './SVG/Copy';
 import { Up } from './SVG/Up';
 import { Check } from './SVG/Check';
+import { Trash } from './SVG/Trash';
 
 const iconMap = {
   bell: Bell,
@@ -38,6 +39,7 @@ const iconMap = {
   delete: Delete,
   pip: Pip,
   remove: Remove,
+  trash: Trash,
   up: Up,
 } as const;
 
