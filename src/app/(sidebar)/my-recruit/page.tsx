@@ -10,8 +10,6 @@ import { Dialog } from '@/system/components/Dialog/ShadnDialog';
 import { NewRecruitDialogContent } from './components/NewRecruitDialogContent/NewRecruitDialogContent';
 
 export default function MyRecruit() {
-  const [dialogOpened, setDialogOpened] = useState(false);
-
   return (
     <Dialog>
       <div className="max-w-[1700px] py-[64px] px-[80px] mx-auto">
