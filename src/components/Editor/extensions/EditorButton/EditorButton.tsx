@@ -64,9 +64,9 @@ export const EditorButton = forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     return (
-      <Button ref={ref} disabled={disabled} className={buttonClassName} {...rest}>
+      <button ref={ref} disabled={disabled} className={buttonClassName} {...rest}>
         {children}
-      </Button>
+      </button>
     );
   },
 );

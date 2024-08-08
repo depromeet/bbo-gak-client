@@ -7,17 +7,17 @@
   &.ProseMirror-focused {
     /* Slashmenu Placeholder */
     > p.has-focus.is-empty::before {
-      content: ' / 를 입력하여 옵션을 선택';
+      content: ' / 를 입력하여 옵션 선택';
     }
 
     > [data-type='columns'] > [data-type='column'] > p.is-empty.has-focus::before {
-      content: ' / 를 입력하여 옵션을 선택';
+      content: ' / 를 입력하여 옵션 선택';
     }
   }
 
   /* Default Placeholder */
   & > .is-editor-empty::before {
-    content: 'Click here to start writing …';
+    content: ' / 를 입력하여 옵션 선택';
   }
 
   /* Blockquote Placeholder */

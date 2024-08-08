@@ -15,7 +15,7 @@ export function EditLinkPopover({ onSetLink }: EditLinkPopoverProps) {
           <EditorIcon name="Link" />
         </Toolbar.Button>
       </PopoverTrigger>
-      <PopoverContent>
+      <PopoverContent className="w-360">
         <LinkEditorPanel onSetLink={onSetLink} />
       </PopoverContent>
     </Popover>
