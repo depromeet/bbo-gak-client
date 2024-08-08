@@ -10,7 +10,6 @@ export const typographyVariant = [
   'label2',
   'caption1',
   'caption2',
-  'input-title',
 ] as const;
 
 export type Typography = (typeof typographyVariant)[number];
@@ -27,7 +26,6 @@ export const fontSize: Record<Typography, `${number}px`> = {
   label2: '13px',
   caption1: '12px',
   caption2: '11px',
-  'input-title': '24px',
 } as const;
 
 export const lineHeight: Record<Typography, `${number}px`> = {
@@ -42,7 +40,6 @@ export const lineHeight: Record<Typography, `${number}px`> = {
   label2: '18px',
   caption1: '16px',
   caption2: '14px',
-  'input-title': '32px',
 } as const;
 
 export const letterSpacing: Record<Typography, `${number}rem`> = {
@@ -57,5 +54,4 @@ export const letterSpacing: Record<Typography, `${number}rem`> = {
   label2: '0.0194rem',
   caption1: '0.0252rem',
   caption2: '0.0311rem',
-  'input-title': '-0.0345rem',
 } as const;
