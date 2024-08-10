@@ -1,8 +1,7 @@
-import { isProductionEnv } from '@/utils/common';
-import axios from 'axios';
-import { getCookie } from 'cookies-next';
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, Method } from 'axios';
 import type { BaseResponse } from '@/types/common';
+import { isProductionEnv } from '@/utils/common';
+import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, Method } from 'axios';
+import axios from 'axios';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -18,7 +17,7 @@ axiosInstance.interceptors.request.use(async (requestConfig: InternalAxiosReques
     return requestConfig;
   }
 
-  const token = getCookie('accessToken');
+  const token = localStorage.getItem('accessToken');
   const config = { ...requestConfig };
 
   if (token) {
