@@ -46,7 +46,11 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
-      boxShadow: { drodpown: '0px 0px 10px 5px rgba(0, 0, 0, 0.08)', nav: '0px 4px 25px 1px rgba(0,0,0,0.05)' },
+      boxShadow: {
+        drodpown: '0px 0px 10px 5px rgba(0, 0, 0, 0.08)',
+        nav: '0px 4px 25px 1px rgba(0,0,0,0.05)',
+        memo: '0px 1px 5px 0px rgba(249, 249, 250, 0.50), 0px 1px 5px 0px rgba(152, 155, 162, 0.15)',
+      },
       colors: {
         white: '#FFFFFF',
         black: '#000000',
@@ -120,6 +124,12 @@ const config: Config = {
             text: {
               '1': '#9C6BB3',
             },
+          },
+        },
+        yellow: {
+          '1': '#D77B0F',
+          bg: {
+            '1': '#FFF0B5',
           },
         },
       },

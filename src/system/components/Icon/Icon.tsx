@@ -18,6 +18,7 @@ import { Remove } from './SVG/Remove';
 import Copy from './SVG/Copy';
 import { Up } from './SVG/Up';
 import { Check } from './SVG/Check';
+import { Trash } from './SVG/Trash';
 import { Link } from './SVG/Link';
 import { Unlink } from './SVG/Unlink';
 import { Calendar } from './SVG/Calendar';
@@ -42,6 +43,7 @@ const iconMap = {
   delete: Delete,
   pip: Pip,
   remove: Remove,
+  trash: Trash,
   up: Up,
   link: Link,
   unlink: Unlink,
