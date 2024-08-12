@@ -58,7 +58,7 @@ export default function Page() {
             <ul className="flex gap-8">
               <TagSelector.RemovalbleTag
                 key={category?.value}
-                className="text-neutral-75 bg-neutral-3"
+                className="text-yellow-1 bg-yellow-bg-1"
                 color="#37383C"
                 onClick={(event) => {
                   event.stopPropagation();
@@ -79,7 +79,7 @@ export default function Page() {
               {categoryTags.map((tag) => (
                 <TagSelector.Tag
                   key={tag.value}
-                  className="text-neutral-75 bg-neutral-3"
+                  className="text-yellow-1 bg-yellow-bg-1"
                   onClick={() => {
                     setSelectedCategories(tag);
                   }}>

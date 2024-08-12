@@ -118,46 +118,6 @@ export function TextMenu({ editor }: TextMenuProps) {
             </Surface>
           </PopoverContent>
         </Popover>
-        <Popover>
-          <PopoverTrigger asChild>
-            <MemoButton tooltip="More options">
-              <EditorIcon name="Ham" />
-            </MemoButton>
-          </PopoverTrigger>
-          <PopoverContent side="top" asChild className="w-fit">
-            <Toolbar.Wrapper>
-              <Toolbar.Divider />
-              <MemoButton
-                tooltip="Align left"
-                tooltipShortcut={['Shift', 'Mod', 'L']}
-                onClick={commands.onAlignLeft}
-                active={states.isAlignLeft}>
-                <EditorIcon name="AlignLeft" />
-              </MemoButton>
-              <MemoButton
-                tooltip="Align center"
-                tooltipShortcut={['Shift', 'Mod', 'E']}
-                onClick={commands.onAlignCenter}
-                active={states.isAlignCenter}>
-                <EditorIcon name="AlignCenter" />
-              </MemoButton>
-              <MemoButton
-                tooltip="Align right"
-                tooltipShortcut={['Shift', 'Mod', 'R']}
-                onClick={commands.onAlignRight}
-                active={states.isAlignRight}>
-                <EditorIcon name="AlignRight" />
-              </MemoButton>
-              <MemoButton
-                tooltip="Justify"
-                tooltipShortcut={['Shift', 'Mod', 'J']}
-                onClick={commands.onAlignJustify}
-                active={states.isAlignJustify}>
-                <EditorIcon name="AlignJustify" />
-              </MemoButton>
-            </Toolbar.Wrapper>
-          </PopoverContent>
-        </Popover>
       </Toolbar.Wrapper>
     </BubbleMenu>
   );
