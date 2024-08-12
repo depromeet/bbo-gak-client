@@ -28,7 +28,7 @@ export default function Page() {
         <Input
           placeholder="제목을 입력해주세요."
           classNames={{ base: 'w-[552px]' }}
-          className="text-24 font-bold px-0 leading-32 tracking-[-0.0345rem] border-none"
+          className="text-[24px] font-bold px-0 leading-32 tracking-[-0.0345rem] border-none"
         />
         <div className="flex gap-8 items-center text-neutral-20">
           <p>00.00.00</p>
@@ -160,7 +160,9 @@ export default function Page() {
 
       <Spacing direction="column" size={20} />
 
-      <div style={{ scrollbarWidth: 'thin' }} className="px-80 h-[calc(100vh-264px)] overflow-x-hidden">
+      <div
+        style={{ scrollbarWidth: 'thin', scrollbarColor: '#DBDCDF' }}
+        className="px-80 h-[calc(100vh-264px)] overflow-x-hidden">
         <Editor />
       </div>
     </section>
