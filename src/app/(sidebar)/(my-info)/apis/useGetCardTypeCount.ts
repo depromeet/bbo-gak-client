@@ -1,0 +1,23 @@
+import { useQuery } from '@tanstack/react-query';
+import { http } from '../../../../apis/http';
+
+type GetCardTypeCount = {
+  경험_정리: number;
+  자기소개서: number;
+  면접_질문: number;
+};
+
+const getCardTypeCount = () => {
+  return http.get<GetCardTypeCount>({ url: `/cards/type-count` });
+};
+
+export const useGetCardTypeCount = () => {
+  return useQuery({
+    queryKey: ['card-type-count'],
+    queryFn: async () => {
+      const res = await getCardTypeCount();
+
+      return res.data;
+    },
+  });
+};

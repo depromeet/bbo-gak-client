@@ -7,13 +7,14 @@ import { Button, Icon } from '@/system/components';
 import { InfoCardItem } from './InfoCardItem';
 import { AddInfoCardDialog } from './AddInfoCardDialog';
 import { INFO_CARD_TYPES, InfoCardType } from '@/types/info';
+import { useGetInfoCardList } from '../apis/useGetInfoCardList';
+import { useGetCardTypeCount } from '../apis/useGetCardTypeCount';
 
 export function InfoCardList() {
-  const [currentCardType, setCurrentCardType] = useState<InfoCardType>('경험 정리');
+  const [currentCardType, setCurrentCardType] = useState<InfoCardType>('경험_정리');
 
-  // TODO: API 연동 시 response data로 변경
-  const infoCount = mockInfoCount;
-  const infoList = mockInfoList;
+  const { data: infoCardList } = useGetInfoCardList(currentCardType);
+  const { data: cardCount } = useGetCardTypeCount();
 
   return (
     <section>
@@ -29,14 +30,14 @@ export function InfoCardList() {
                   'text-[18px] text-neutral-10 font-semibold',
                   currentCardType === type && 'text-neutral-80',
                 )}>
-                {type}
+                {type.replaceAll('_', ' ')}
               </div>
               <div
                 className={cn(
                   'px-[8px] py-[2px] bg-neutral-10 rounded-[6px] text-neutral-1 text-[14px] font-semibold',
                   currentCardType === type && 'bg-neutral-80',
                 )}>
-                {infoCount[type]}
+                {cardCount?.[type] || 0}
               </div>
             </button>
           ))}
@@ -48,11 +49,13 @@ export function InfoCardList() {
           </Button>
         </AddInfoCardDialog>
       </div>
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
-        {infoList.map((info) => (
-          <InfoCardItem key={info.id} {...info} />
-        ))}
-      </div>
+      {infoCardList?.length ? (
+        <div className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
+          {infoCardList?.map((info) => <InfoCardItem key={info.id} {...info} />)}
+        </div>
+      ) : (
+        <div className="mt-50 text-center text-body1 text-neutral-30">아직 생성된 정보 카드가 없어요!</div>
+      )}
     </section>
   );
 }

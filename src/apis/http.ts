@@ -2,7 +2,6 @@ import { isProductionEnv } from '@/utils/common';
 import axios from 'axios';
 import { getCookie } from 'cookies-next';
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, Method } from 'axios';
-import type { BaseResponse } from '@/types/common';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -38,7 +37,7 @@ axiosInstance.interceptors.response.use(async (response: AxiosResponse) => {
 
 const createApiMethod =
   (instance: AxiosInstance, method: Method) =>
-  <T>(config: AxiosRequestConfig): Promise<BaseResponse<T>> =>
+  <T>(config: AxiosRequestConfig): Promise<AxiosResponse<T>> =>
     instance({ ...config, method });
 
 export const http = {

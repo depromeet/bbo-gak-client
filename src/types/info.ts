@@ -11,7 +11,7 @@ export interface InfoCardTag {
   type: '인성' | '역량';
 }
 
-export const INFO_CARD_TYPES = ['경험 정리', '자기소개서', '면접 질문'] as const;
+export const INFO_CARD_TYPES = ['경험_정리', '자기소개서', '면접_질문'] as const;
 
 export type InfoCardType = (typeof INFO_CARD_TYPES)[number];
 

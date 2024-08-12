@@ -15,7 +15,7 @@ export function InfoCardItem({ title, updateDate, cardTagList }: Props) {
   const formattedDate = formatToYYMMDD(updateDate, { separator: '.' });
 
   return (
-    <div className="flex flex-col justify-between min-w-[343px] h-[140px] p-[24px] rounded-[16px] bg-white border border-neutral-5 cursor-pointer hover:border-neutral-95">
+    <div className="flex flex-col justify-between min-w-[343px] h-[140px] p-[24px] rounded-[16px] bg-white border border-neutral-5 cursor-pointer hover:border-neutral-95 hover:shadow-[0px_4px_12px_0px_rgba(0,0,0,0.08)]">
       <div className="flex">
         <div className="flex-1 overflow-hidden">
           <div className="mb-[9px] text-[12px] text-neutral-20">{formattedDate}</div>
