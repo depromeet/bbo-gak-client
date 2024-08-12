@@ -21,6 +21,9 @@ import { Link } from './SVG/Link';
 import { Unlink } from './SVG/Unlink';
 import { Calendar } from './SVG/Calendar';
 import { CalendarFill } from './SVG/CalendarFill';
+import { Clover } from './SVG/Clover';
+import { DownChevron } from './SVG/DownChevron';
+import { FolderFill } from './SVG/FolderFill';
 
 const iconMap = {
   bell: Bell,
@@ -28,11 +31,13 @@ const iconMap = {
   check: Check,
   division: Division,
   folder: Folder,
+  folderFill: FolderFill,
   logout: Logout,
   memo: Memo,
   profile: Profile,
   profileFill: ProfileFill,
   rightChevron: RightChevron,
+  downChevron: DownChevron,
   search: Search,
   setting: Setting,
   down: Down,
@@ -45,6 +50,7 @@ const iconMap = {
   unlink: Unlink,
   calendar: Calendar,
   calendarFill: CalendarFill,
+  clover: Clover,
 } as const;
 
 export interface IconProps extends IconBaseType {

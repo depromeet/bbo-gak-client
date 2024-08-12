@@ -1,3 +1,5 @@
+import { differenceInDays } from 'date-fns/differenceInDays';
+
 interface Option {
   separator?: string;
 }
@@ -10,4 +12,11 @@ export const formatToYYMMDD = (dateString: string, { separator = '' }: Option = 
   const dd = String(date.getDate()).padStart(2, '0');
 
   return [yy, mm, dd].join(separator);
+};
+
+export const dday = (target: Date) => {
+  const today = new Date();
+
+  const dayDifference = differenceInDays(target, today);
+  return dayDifference;
 };
