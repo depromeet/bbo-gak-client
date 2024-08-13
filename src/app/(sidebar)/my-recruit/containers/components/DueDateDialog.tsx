@@ -43,7 +43,7 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
               whileTap="touch"
               whileHover="hover"
               className="px-8 py-4 flex items-center gap-[4px] rounded-[4px]">
-              <Icon name={isDateSelected ? 'calendarFill' : 'calendar'} size={20} color="#AEB0B6" />
+              <Icon name={isDateSelected ? 'calendarFill' : 'calendar'} size={20} color={color.neutral30} />
               <span className={clsx('text-label2', isDateSelected ? 'text-neutral-95' : 'text-neutral-40')}>
                 {isDateSelected ? format(selectedDate, 'yyyy.mm.dd') : '마감일을 선택해주세요'}
               </span>
