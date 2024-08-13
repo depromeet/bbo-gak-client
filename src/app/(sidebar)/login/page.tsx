@@ -40,7 +40,16 @@ export default function Page() {
   return (
     <div className="w-full h-full flex justify-center items-center">
       {isLogin ? (
+        <div className="flex flex-col gap-4">
         <div>이미 로그인 되어있습니다.</div>
+          <Button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-20 rounded"
+            onClick={() => {
+              router.replace('/');
+            }}>
+            홈으로
+          </Button>
+        </div>
       ) : (
         <form onSubmit={handleLogin}>
           <div className="flex flex-col justify-center gap-10">
