@@ -13,11 +13,7 @@ export default function Page() {
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
-    if (token) {
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
-    }
+    setIsLogin(token != null);
   }, []);
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
