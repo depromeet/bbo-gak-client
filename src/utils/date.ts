@@ -17,6 +17,5 @@ export const formatToYYMMDD = (dateString: string, { separator = '' }: Option = 
 export const dday = (target: Date) => {
   const today = new Date();
 
-  const dayDifference = differenceInDays(target, today);
-  return dayDifference;
+  return differenceInDays(target, today);
 };
