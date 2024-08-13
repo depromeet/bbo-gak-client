@@ -1,6 +1,7 @@
 'use client';
 
 import { postLogin } from '@/apis/login';
+import { SSRSafeSuspense } from '@/lib';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
@@ -9,7 +10,7 @@ export default function Page() {
 
   const [loginId, setLoginId] = useState('');
   const [password, setPassword] = useState('');
-  const [isLogin, setIsLogin] = useState<boolean | null>(null);
+  const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
@@ -29,15 +30,14 @@ export default function Page() {
     }
   };
 
-  if (isLogin === null) {
+
     return (
+    <SSRSafeSuspense
+      fallback={
       <div className="w-full h-full flex justify-center items-center">
         <div>로딩 중...</div>
       </div>
-    );
-  }
-
-  return (
+      }>
     <div className="w-full h-full flex justify-center items-center">
       {isLogin ? (
         <div className="flex flex-col gap-4">
@@ -68,5 +68,6 @@ export default function Page() {
         </form>
       )}
     </div>
+    </SSRSafeSuspense>
   );
 }
