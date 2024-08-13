@@ -2,8 +2,10 @@
 
 import { postLogin } from '@/apis/login';
 import { SSRSafeSuspense } from '@/lib';
+import { Button } from '@/system/components';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { InputField } from '../my-recruit/components/NewRecruitDialogContent/InputField';
 
 export default function Page() {
   const router = useRouter();
@@ -43,18 +45,18 @@ export default function Page() {
         <div className="flex flex-col gap-4">
         <div>이미 로그인 되어있습니다.</div>
           <Button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-20 rounded"
+              className="bg-neutral-95 flex items-center gap-[4px] py-[8px] px-[16px] rounded-[6px]"
             onClick={() => {
               router.replace('/');
             }}>
-            홈으로
+              <span className="w-full text-label1 text-white font-semibold">홈으로</span>
           </Button>
         </div>
       ) : (
         <form onSubmit={handleLogin}>
-          <div className="flex flex-col justify-center gap-10">
-            <input value={loginId} onChange={(e) => setLoginId(e.target.value)} placeholder="이메일" className="mb-4" />
-            <input
+            <div className="flex flex-col justify-center gap-10 mb-15">
+              <InputField value={loginId} onChange={(e) => setLoginId(e.target.value)} placeholder="이메일" />
+              <InputField
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -62,9 +64,11 @@ export default function Page() {
               className="mb-4"
             />
           </div>
-          <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-20 rounded">
-            로그인
-          </button>
+            <div className="flex gap-2 flex-col">
+              <Button className="bg-neutral-95 flex items-center gap-[4px] py-[8px] px-[16px] rounded-[6px]">
+                <span className="w-full text-label1 text-white font-semibold">로그인</span>
+              </Button>
+            </div>
         </form>
       )}
     </div>
