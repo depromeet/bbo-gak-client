@@ -1,4 +1,3 @@
-import type { BaseResponse } from '@/types/common';
 import { isProductionEnv } from '@/utils/common';
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig, Method } from 'axios';
 import axios from 'axios';
@@ -37,7 +36,7 @@ axiosInstance.interceptors.response.use(async (response: AxiosResponse) => {
 
 const createApiMethod =
   (instance: AxiosInstance, method: Method) =>
-  <T>(config: AxiosRequestConfig): Promise<BaseResponse<T>> =>
+  <T>(config: AxiosRequestConfig): Promise<AxiosResponse> =>
     instance({ ...config, method });
 
 export const http = {
