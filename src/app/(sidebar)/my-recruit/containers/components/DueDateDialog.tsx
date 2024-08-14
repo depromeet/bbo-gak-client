@@ -1,4 +1,4 @@
-import { Spacing } from '@/components/Spacing';
+import { Spacing } from '@/system/utils/Spacing';
 import { Button, Icon } from '@/system/components';
 import { color } from '@/system/token/color';
 import clsx from 'clsx';
