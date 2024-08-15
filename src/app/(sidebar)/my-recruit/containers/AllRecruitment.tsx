@@ -12,6 +12,8 @@ import {
 import { motion } from 'framer-motion';
 import { color } from '@/system/token/color';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import { cardList } from '../mock';
+import { RowCard } from './components/Card/RowCard';
 
 export function AllRecruitment() {
   return (
@@ -43,6 +45,12 @@ export function AllRecruitment() {
           <span className="text-neutral-30 text-label1">등록된 공고가 없어요</span>
         </motion.button>
       </Dialog.Trigger>
+
+      <div className="flex flex-col gap-[12px]">
+        {cardList.map((cardInfo) => (
+          <RowCard key={`${cardInfo.period}-${cardInfo.title}`} {...cardInfo} />
+        ))}
+      </div>
     </>
   );
 }

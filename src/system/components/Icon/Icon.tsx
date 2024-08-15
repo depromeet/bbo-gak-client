@@ -26,6 +26,9 @@ import { CalendarFill } from './SVG/CalendarFill';
 import { SubmitArrow } from '@/system/components/Icon/SVG/SubmitArrow';
 import { FilledMemo } from './SVG/FilledMemo';
 import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
+import { Clover } from './SVG/Clover';
+import { DownChevron } from './SVG/DownChevron';
+import { FolderFill } from './SVG/FolderFill';
 
 const iconMap = {
   bell: Bell,
@@ -33,11 +36,13 @@ const iconMap = {
   check: Check,
   division: Division,
   folder: Folder,
+  folderFill: FolderFill,
   logout: Logout,
   memo: Memo,
   profile: Profile,
   profileFill: ProfileFill,
   rightChevron: RightChevron,
+  downChevron: DownChevron,
   search: Search,
   setting: Setting,
   down: Down,
@@ -55,6 +60,7 @@ const iconMap = {
   submitArrow: SubmitArrow,
   filledMemo: FilledMemo,
   removeMemo: RemoveMemo,
+  clover: Clover,
 } as const;
 
 export interface IconProps extends IconBaseType {
