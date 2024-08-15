@@ -44,7 +44,7 @@ export default function Memo() {
 
       <AnimatePresence mode="wait">
         {showCloseButton && (
-          // TODO: remove
+          // TODO: remove API
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -2,12 +2,14 @@ import { Icon } from '@/system/components';
 import { Textarea } from '@/system/components/Textarea/Textarea';
 import { useState } from 'react';
 import Memo from './Memo/Memo';
+import { cn } from '@/utils';
 
 export default function MemoContainer() {
   const [memo, setMemo] = useState<string>('');
+  const [textareaHeight, setTextareaHeight] = useState(22);
 
   return (
-    <section className="min-w-400 w-full h-screen border-1 bg-neutral-1">
+    <section className="min-w-400 h-screen border-1 bg-neutral-1">
       <div className="flex items-end p-16 w-full h-109 gap-8">
         <Icon name="filledMemo" size={24} />
         <p className="text-18 font-semibold">메모</p>
@@ -17,12 +19,19 @@ export default function MemoContainer() {
         <Memo />
       </div>
 
-      <div className="relative px-16 pt-16 pb-24 h-185">
+      <div className="max-w-400 relative px-16 pt-16 pb-24 h-185 flex flex-col justify-end">
         <div className="pt-13 px-16 pb-8 rounded-8 border-1 border-neutral-20 bg-white flex flex-col gap-4">
           <Textarea
             value={memo}
             onChange={(e) => setMemo(e.target.value)}
-            className="resize-none bg-white border-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+            onFocus={() => setTextareaHeight(88)}
+            onBlur={() => setTextareaHeight(22)}
+            rows={1}
+            className={cn(
+              'resize-none min-h-0 bg-white border-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0',
+              textareaHeight === 22 && 'overflow-hidden',
+            )}
+            style={{ height: `${textareaHeight}px`, transition: 'height 0.2s ease-in-out' }}
             maxLength={130}
           />
 
