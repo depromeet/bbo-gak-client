@@ -1,4 +1,4 @@
-import { Spacing } from '@/components/Spacing';
+import { Spacing } from '@/system/utils/Spacing';
 import { TouchButton } from '@/components/TouchButton';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { color } from '@/system/token/color';
@@ -17,7 +17,7 @@ import { motion } from 'framer-motion';
 import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
 import { Calendar } from '@/system/components/Calendar/Calendar';
 import { format } from 'date-fns/format';
-import { If } from '@/components/If';
+import { If } from '@/system/utils/If';
 
 interface Props {
   onSubmit: () => void;

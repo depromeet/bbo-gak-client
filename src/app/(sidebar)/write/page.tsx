@@ -5,9 +5,9 @@ import { useState } from 'react';
 import { Input } from '@/system/components/Input/Input';
 import { TagSelector } from './components/TagSelector/TagSelector';
 import { abilityTags, personalityTags, categoryTags, tags, categories } from './components/TagSelector/constants';
-import { If } from '@/components/If';
+import { If } from '@/system/utils/If';
 import { cn } from '@/utils';
-import { Spacing } from '@/components/Spacing';
+import { Spacing } from '@/system/utils/Spacing';
 import { Icon } from '@/system/components';
 import {
   DropdownMenu,

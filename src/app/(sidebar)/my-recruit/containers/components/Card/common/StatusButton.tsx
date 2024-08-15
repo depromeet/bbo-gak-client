@@ -1,4 +1,4 @@
-import { SwitchCase } from '@/components/SwitchCase';
+import { SwitchCase } from '@/system/utils/SwitchCase';
 import { Icon } from '@/system/components';
 import {
   DropdownMenu,
@@ -24,8 +24,9 @@ export function StatusButton({ currentStatus }: Props) {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        {statusList.map((item) => (
+        {statusList.map((item, index) => (
           <SwitchCase
+            key={index}
             value={item.variant}
             caseBy={{
               text:
