@@ -25,6 +25,7 @@ import { Calendar } from './SVG/Calendar';
 import { CalendarFill } from './SVG/CalendarFill';
 import { SubmitArrow } from '@/system/components/Icon/SVG/SubmitArrow';
 import { FilledMemo } from './SVG/FilledMemo';
+import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
 
 const iconMap = {
   bell: Bell,
@@ -53,6 +54,7 @@ const iconMap = {
   calendarFill: CalendarFill,
   submitArrow: SubmitArrow,
   filledMemo: FilledMemo,
+  removeMemo: RemoveMemo,
 } as const;
 
 export interface IconProps extends IconBaseType {

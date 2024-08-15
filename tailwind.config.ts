@@ -51,6 +51,9 @@ const config: Config = {
         nav: '0px 4px 25px 1px rgba(0,0,0,0.05)',
         memo: '0px 1px 5px 0px rgba(249, 249, 250, 0.50), 0px 1px 5px 0px rgba(152, 155, 162, 0.15)',
       },
+      clipPath: {
+        memo: 'polygon(0 0, 100% 0, 100% 87%, 88% 100%, 0 100%)',
+      },
       colors: {
         white: '#FFFFFF',
         black: '#000000',

@@ -13,11 +13,11 @@ export default function MemoContainer() {
         <p className="text-18 font-semibold">메모</p>
       </div>
 
-      <div className="w-full h-[calc(100vh-294px)] px-20 flex flex-col gap-16">
+      <div className="w-full h-[calc(100vh-294px)] px-16 flex flex-col gap-16 overflow-y-scroll">
         <Memo />
       </div>
 
-      <div className="px-16 pt-16 pb-24 h-185">
+      <div className="relative px-16 pt-16 pb-24 h-185">
         <div className="pt-13 px-16 pb-8 rounded-8 border-1 border-neutral-20 bg-white flex flex-col gap-4">
           <Textarea
             value={memo}
