@@ -25,7 +25,7 @@ export function QueryProvider({ children }: PropsWithChildren) {
   return (
     <QueryClientProvider client={queryClient}>
       {children}
-      {/* <ReactQueryDevtools /> */}
+      <ReactQueryDevtools />
     </QueryClientProvider>
   );
 }
