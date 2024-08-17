@@ -5,7 +5,7 @@ import Memo from './Memo/Memo';
 import { cn } from '@/utils';
 
 const TEXT_DEFAULT_HEIGHT = 22;
-const TEXT_FOCUS_HEIGHT = 22;
+const TEXT_FOCUS_HEIGHT = 80;
 
 export default function MemoContainer() {
   const [memo, setMemo] = useState<string>('');
