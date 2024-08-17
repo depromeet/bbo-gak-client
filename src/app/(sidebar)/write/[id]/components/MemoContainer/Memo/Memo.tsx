@@ -5,11 +5,16 @@ import { Textarea } from '@/system/components/Textarea/Textarea';
 import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
 import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
+import { GetMemosResponse } from '../../../api/useGetMemos';
+import { useMemosContext } from '../../../fetcher/MemosFetcher';
+import { useDeleteMemo } from '../../../api/useDeleteMemos';
 
-export default function Memo() {
-  const [text, setText] = useState('새로운 메모입니다');
+export default function Memo({ id: memoId, content, updatedAt }: GetMemosResponse[number]) {
+  const { cardId } = useMemosContext();
+  const [text, setText] = useState(content || '');
   const [showCloseButton, setShowCloseButton] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const { mutate } = useDeleteMemo(cardId);
 
   const adjustTextareaHeight = useCallback(() => {
     const textarea = textareaRef.current;
@@ -45,20 +50,19 @@ export default function Memo() {
 
       <AnimatePresence mode="wait">
         {showCloseButton && (
-          // TODO: remove API
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.2 }}
             exit={{ opacity: 0 }}
-            className="absolute top-16 right-32">
+            className="absolute top-16 right-32"
+            onClick={() => mutate(memoId)}>
             <RemoveMemo size={24} color="#37383C" />
           </motion.button>
         )}
       </AnimatePresence>
 
-      {/* TODO: 날짜 및 시간 */}
-      <div className="memo pl-16 text-10 pb-16 text-neutral-35">00.00.00</div>
+      <div className="memo pl-16 text-10 pb-16 text-neutral-35">{updatedAt.split(' ')[0].replaceAll('-', '.')}</div>
     </div>
   );
 }

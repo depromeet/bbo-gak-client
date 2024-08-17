@@ -3,11 +3,13 @@ import { Textarea } from '@/system/components/Textarea/Textarea';
 import { useState } from 'react';
 import Memo from './Memo/Memo';
 import { cn } from '@/utils';
+import { useMemosContext } from '../../fetcher/MemosFetcher';
 
 const TEXT_DEFAULT_HEIGHT = 22;
 const TEXT_FOCUS_HEIGHT = 22;
 
 export default function MemoContainer() {
+  const { memos } = useMemosContext();
   const [memo, setMemo] = useState<string>('');
   const [textareaHeight, setTextareaHeight] = useState(TEXT_DEFAULT_HEIGHT);
 
@@ -19,7 +21,9 @@ export default function MemoContainer() {
       </div>
 
       <div className="w-full h-[calc(100vh-294px)] px-16 flex flex-col gap-16 overflow-y-scroll">
-        <Memo />
+        {memos.map((memo) => (
+          <Memo key={memo.id} {...memo} />
+        ))}
       </div>
 
       <div className="max-w-400 relative px-16 pt-16 pb-24 h-185 flex flex-col justify-end">
