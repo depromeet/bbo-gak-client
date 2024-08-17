@@ -48,29 +48,3 @@ body {
 .react-colorful {
   width: 100% !important;
 }
-
-.memo-wrap {
-  filter: drop-shadow(0 0 17px rgba(195, 197, 192, 0.3));
-  position: relative;
-
-  .memo {
-    width: 378px;
-    height: 28px;
-    background: #fff;
-    clip-path: polygon(0 0, 100% 0, 100% -60%, 88% 100%, 0 100%);
-    position: relative;
-    border-bottom-left-radius: 8px;
-
-    &::before {
-      content: '';
-
-      position: absolute;
-      right: 0px;
-      bottom: -2px;
-      width: 12%;
-      height: 30px;
-      border-top-left-radius: 5px;
-      background: #eaebec;
-    }
-  }
-}

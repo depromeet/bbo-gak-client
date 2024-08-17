@@ -55,8 +55,8 @@ export default function Page() {
           <TagSelector.Title>분류</TagSelector.Title>
 
           <TagSelector.Trigger>
-            <If condition={!category}>카드의 종류를 선택해주세요</If>
-            <If condition={!!category}>
+            <If condition={category == null}>카드의 종류를 선택해주세요</If>
+            <If condition={category != null}>
               <ul className="flex gap-8">
                 <TagSelector.RemovalbleTag
                   key={category?.value}

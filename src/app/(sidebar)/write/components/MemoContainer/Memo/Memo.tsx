@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { Textarea } from '@/system/components/Textarea/Textarea';
 import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
 import { AnimatePresence } from 'framer-motion';
@@ -11,14 +11,14 @@ export default function Memo() {
   const [showCloseButton, setShowCloseButton] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const adjustTextareaHeight = () => {
+  const adjustTextareaHeight = useCallback(() => {
     const textarea = textareaRef.current;
 
     if (textarea) {
       textarea.style.height = 'auto';
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
-  };
+  }, []);
 
   useEffect(() => {
     adjustTextareaHeight();
@@ -26,6 +26,7 @@ export default function Memo() {
 
   return (
     <div
+      // using pure css in memo.css
       className="memo-wrap"
       onMouseEnter={() => setShowCloseButton(true)}
       onMouseLeave={() => setShowCloseButton(false)}>

@@ -4,9 +4,12 @@ import { useState } from 'react';
 import Memo from './Memo/Memo';
 import { cn } from '@/utils';
 
+const TEXT_DEFAULT_HEIGHT = 22;
+const TEXT_FOCUS_HEIGHT = 22;
+
 export default function MemoContainer() {
   const [memo, setMemo] = useState<string>('');
-  const [textareaHeight, setTextareaHeight] = useState(22);
+  const [textareaHeight, setTextareaHeight] = useState(TEXT_DEFAULT_HEIGHT);
 
   return (
     <section className="min-w-400 h-screen border-1 bg-neutral-1">
@@ -24,12 +27,12 @@ export default function MemoContainer() {
           <Textarea
             value={memo}
             onChange={(e) => setMemo(e.target.value)}
-            onFocus={() => setTextareaHeight(88)}
-            onBlur={() => setTextareaHeight(22)}
+            onFocus={() => setTextareaHeight(TEXT_FOCUS_HEIGHT)}
+            onBlur={() => setTextareaHeight(TEXT_DEFAULT_HEIGHT)}
             rows={1}
             className={cn(
               'resize-none min-h-0 bg-white border-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0',
-              textareaHeight === 22 && 'overflow-hidden',
+              textareaHeight === TEXT_DEFAULT_HEIGHT && 'overflow-hidden',
             )}
             style={{ height: `${textareaHeight}px`, transition: 'height 0.2s ease-in-out' }}
             maxLength={130}
