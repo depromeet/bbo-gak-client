@@ -7,14 +7,17 @@ import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { GetMemosResponse } from '../../../api/useGetMemos';
 import { useMemosContext } from '../../../fetcher/MemosFetcher';
-import { useDeleteMemo } from '../../../api/useDeleteMemos';
+import { useDeleteMemo } from '../../../api/useDeleteMemo';
+import { usePutMemo } from '@/app/(sidebar)/write/[id]/api/usesPutMemo';
 
 export default function Memo({ id: memoId, content, updatedAt }: GetMemosResponse[number]) {
   const { cardId } = useMemosContext();
-  const [text, setText] = useState(content || '');
+  const prevMemo = useRef<string>(content);
+  const [memo, setMemo] = useState(content || '');
   const [showCloseButton, setShowCloseButton] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { mutate } = useDeleteMemo(cardId);
+  const { mutate: putMemo } = usePutMemo(cardId);
 
   const adjustTextareaHeight = useCallback(() => {
     const textarea = textareaRef.current;
@@ -27,7 +30,11 @@ export default function Memo({ id: memoId, content, updatedAt }: GetMemosRespons
 
   useEffect(() => {
     adjustTextareaHeight();
-  }, [text]);
+
+    if (prevMemo.current !== memo) {
+      putMemo({ memoId, content: memo });
+    }
+  }, [memo]);
 
   return (
     <div
@@ -41,9 +48,9 @@ export default function Memo({ id: memoId, content, updatedAt }: GetMemosRespons
         <Textarea
           ref={textareaRef}
           rows={1}
-          className="w-full min-h-0 border-none p-0 text-14 resize-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0 rounded-0"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
+          className="w-full min-h-0 border-none p-0 memo-14 resize-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0 rounded-0"
+          value={memo}
+          onChange={(e) => setMemo(e.target.value)}
           autoFocus
         />
       </div>
@@ -62,7 +69,7 @@ export default function Memo({ id: memoId, content, updatedAt }: GetMemosRespons
         )}
       </AnimatePresence>
 
-      <div className="memo pl-16 text-10 pb-16 text-neutral-35">{updatedAt.split(' ')[0].replaceAll('-', '.')}</div>
+      <div className="memo pl-16 memo-10 pb-16 memo-neutral-35">{updatedAt.split(' ')[0].replaceAll('-', '.')}</div>
     </div>
   );
 }
