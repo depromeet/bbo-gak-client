@@ -12,7 +12,7 @@ export const logoutMutation = () =>
   useMutation({
     mutationFn: getLogout,
     onSuccess: () => {
-      localStorage.removeItem('accessToken');
+      deleteCookie('accessToken');
       deleteCookie('refreshToken');
       window.location.href = '/';
     },

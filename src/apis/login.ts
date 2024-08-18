@@ -20,7 +20,7 @@ export const loginMutation = () =>
   useMutation({
     mutationFn: postLogin,
     onSuccess: (data) => {
-      localStorage.setItem('accessToken', data.accessToken);
+      setCookie('accessToken', data.accessToken);
       setCookie('refreshToken', data.refreshToken);
       window.location.href = '/';
       alert('로그인 성공');

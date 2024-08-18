@@ -26,7 +26,7 @@ axiosInstance.interceptors.request.use(async (requestConfig: InternalAxiosReques
     return requestConfig;
   }
 
-  const token = localStorage.getItem('accessToken');
+  const token = getCookie('accessToken');
   const config = { ...requestConfig };
 
   if (token) {
@@ -52,11 +52,11 @@ axiosInstance.interceptors.response.use(
       const refreshToken = getCookie('refreshToken');
       if (refreshToken) {
         if (data?.status === 'UNAUTHORIZED') {
-          localStorage.removeItem('accessToken');
+          deleteCookie('accessToken');
           deleteCookie('refreshToken');
           try {
             const response = await postRefresh({ refreshToken });
-            localStorage.setItem('accessToken', response.data.accessToken);
+            setCookie('accessToken', response.data.accessToken);
             setCookie('refreshToken', response.data.refreshToken);
           } catch (refreshError) {
             window.location.href = '/login';

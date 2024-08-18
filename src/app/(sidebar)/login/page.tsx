@@ -4,6 +4,7 @@ import { loginMutation } from '@/apis/login';
 import { logoutMutation } from '@/apis/logout';
 import { SSRSafeSuspense } from '@/lib';
 import { Button } from '@/system/components';
+import { getCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { InputField } from '../my-recruit/components/NewRecruitDialogContent/InputField';
@@ -19,7 +20,7 @@ export default function Page() {
   const { mutate: logoutMutate } = logoutMutation();
 
   useEffect(() => {
-    const token = localStorage.getItem('accessToken');
+    const token = getCookie('accessToken');
     setIsLogin(token != null);
   }, []);
 
