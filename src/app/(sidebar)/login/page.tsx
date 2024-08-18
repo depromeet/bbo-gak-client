@@ -19,19 +19,23 @@ export default function Page() {
     setIsLogin(token != null);
   }, []);
 
-  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    try {
-      const response = await postLogin({ loginId, password });
-      localStorage.setItem('accessToken', response.data.accessToken);
+  const loginMutation = useMutation({
+    mutationFn: postLogin,
+    onSuccess: (data) => {
+      localStorage.setItem('accessToken', data.accessToken);
+      setCookie('refreshToken', data.refreshToken, { httpOnly: true, secure: true });
       alert('로그인 성공');
       router.replace('/');
-    } catch (error) {
+    },
+    onError: () => {
       alert('로그인 실패');
-    }
-  };
+    },
+  });
 
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    loginMutation.mutate({ loginId, password });
+  };
 
     return (
     <SSRSafeSuspense
