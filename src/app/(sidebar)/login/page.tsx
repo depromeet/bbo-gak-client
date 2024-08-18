@@ -1,10 +1,11 @@
 'use client';
 
 import { postLogin } from '@/apis/login';
+import { getLogout } from '@/apis/logout';
 import { SSRSafeSuspense } from '@/lib';
 import { Button } from '@/system/components';
 import { useMutation } from '@tanstack/react-query';
-import { setCookie } from 'cookies-next';
+import { deleteCookie, setCookie } from 'cookies-next';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { InputField } from '../my-recruit/components/NewRecruitDialogContent/InputField';
@@ -25,9 +26,9 @@ export default function Page() {
     mutationFn: postLogin,
     onSuccess: (data) => {
       localStorage.setItem('accessToken', data.accessToken);
-      setCookie('refreshToken', data.refreshToken, { httpOnly: true, secure: true });
-      alert('로그인 성공');
+      setCookie('refreshToken', data.refreshToken, { secure: true });
       router.replace('/');
+      alert('로그인 성공');
     },
     onError: () => {
       alert('로그인 실패');
@@ -38,6 +39,15 @@ export default function Page() {
     event.preventDefault();
     loginMutation.mutate({ loginId, password });
   };
+
+  const logoutMutation = useMutation({
+    mutationFn: getLogout,
+    onSuccess: () => {
+      localStorage.removeItem('accessToken');
+      deleteCookie('refreshToken');
+      router.push('/');
+    },
+  });
 
     return (
     <SSRSafeSuspense
