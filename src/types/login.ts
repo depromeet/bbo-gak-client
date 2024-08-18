@@ -8,3 +8,7 @@ export interface PostLoginResponse {
   accessToken: string;
   refreshToken: string;
 }
+
+export interface PostRefreshRequest {
+  refreshToken: string;
+}
