@@ -12,8 +12,8 @@ import { InputField } from '../my-recruit/components/NewRecruitDialogContent/Inp
 export default function Page() {
   const router = useRouter();
 
-  const [loginId, setLoginId] = useState('');
-  const [password, setPassword] = useState('');
+  const [loginId, setLoginId] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {

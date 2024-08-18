@@ -9,7 +9,7 @@ import type {
   Method,
 } from 'axios';
 import axios from 'axios';
-import { getCookie } from 'cookies-next';
+import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 import { postRefresh } from './refresh';
 
 const axiosInstance: AxiosInstance = axios.create({
@@ -49,14 +49,23 @@ axiosInstance.interceptors.response.use(
   async (error: AxiosError) => {
     if (axios.isAxiosError(error)) {
       const data = error.response?.data as serverErrorType;
-      if (data?.status === 'UNAUTHORIZED') {
-        const refreshToken = getCookie('refreshToken');
-        if (refreshToken) {
-          const response = await postRefresh({ refreshToken });
-          localStorage.setItem('accessToken', response.data.accessToken);
+      const refreshToken = getCookie('refreshToken');
+      if (refreshToken) {
+        if (data?.status === 'UNAUTHORIZED') {
+          localStorage.removeItem('accessToken');
+          deleteCookie('refreshToken');
+          try {
+            const response = await postRefresh({ refreshToken });
+            localStorage.setItem('accessToken', response.data.accessToken);
+            setCookie('refreshToken', response.data.refreshToken, { secure: true });
+          } catch (refreshError) {
+            window.location.href = '/login';
+          }
         }
       }
     }
+
+    return Promise.reject(error);
   },
 );
 
