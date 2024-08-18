@@ -1,4 +1,4 @@
-import { If } from '@/components/If';
+import { If } from '@/system/utils/If';
 import { ComponentProps, ReactNode } from 'react';
 
 interface Props extends ComponentProps<'input'> {

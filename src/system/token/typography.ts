@@ -42,16 +42,16 @@ export const lineHeight: Record<Typography, `${number}px`> = {
   caption2: '14px',
 } as const;
 
-export const letterSpacing: Record<Typography, `${number}em`> = {
-  title1: '-0.027em',
-  title2: '-0.0236em',
-  title3: '-0.023em',
-  heading1: '-0.012em',
-  heading2: '-0.002em',
-  body1: '0.0057em',
-  body2: '0.0096em',
-  label1: '0.0145em',
-  label2: '0.0194em',
-  caption1: '0.0252em',
-  caption2: '0.0311em',
+export const letterSpacing: Record<Typography, `${number}rem`> = {
+  title1: '-0.027rem',
+  title2: '-0.0236rem',
+  title3: '-0.023rem',
+  heading1: '-0.012rem',
+  heading2: '-0.002rem',
+  body1: '0.0057rem',
+  body2: '0.0096rem',
+  label1: '0.0145rem',
+  label2: '0.0194rem',
+  caption1: '0.0252rem',
+  caption2: '0.0311rem',
 } as const;

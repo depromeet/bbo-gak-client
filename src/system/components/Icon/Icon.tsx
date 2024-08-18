@@ -14,25 +14,34 @@ import { ProfileFill } from './SVG/ProfileFill';
 import type { IconBaseType } from '@/system/components/Icon/SVG/type';
 import { Delete } from './SVG/Delete';
 import { Pip } from './SVG/Pip';
+import { Remove } from './SVG/Remove';
 import Copy from './SVG/Copy';
 import { Up } from './SVG/Up';
 import { Check } from './SVG/Check';
+import { Trash } from './SVG/Trash';
 import { Link } from './SVG/Link';
 import { Unlink } from './SVG/Unlink';
 import { Calendar } from './SVG/Calendar';
 import { CalendarFill } from './SVG/CalendarFill';
+import { Clover } from './SVG/Clover';
+import { DownChevron } from './SVG/DownChevron';
+import { FolderFill } from './SVG/FolderFill';
+import { Close } from './SVG/Close';
 
 const iconMap = {
   bell: Bell,
   copy: Copy,
   check: Check,
+  close: Close,
   division: Division,
   folder: Folder,
+  folderFill: FolderFill,
   logout: Logout,
   memo: Memo,
   profile: Profile,
   profileFill: ProfileFill,
   rightChevron: RightChevron,
+  downChevron: DownChevron,
   search: Search,
   setting: Setting,
   down: Down,
@@ -40,11 +49,14 @@ const iconMap = {
   more: More,
   delete: Delete,
   pip: Pip,
+  remove: Remove,
+  trash: Trash,
   up: Up,
   link: Link,
   unlink: Unlink,
   calendar: Calendar,
   calendarFill: CalendarFill,
+  clover: Clover,
 } as const;
 
 export interface IconProps extends IconBaseType {
