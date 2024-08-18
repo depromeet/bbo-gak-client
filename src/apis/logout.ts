@@ -1,3 +1,5 @@
+import { useMutation } from '@tanstack/react-query';
+import { deleteCookie } from 'cookies-next';
 import { http } from './http';
 
 export const getLogout = async () => {
@@ -5,3 +7,13 @@ export const getLogout = async () => {
     url: '/users/logout',
   });
 };
+
+export const logoutMutation = () =>
+  useMutation({
+    mutationFn: getLogout,
+    onSuccess: () => {
+      localStorage.removeItem('accessToken');
+      deleteCookie('refreshToken');
+      window.location.href = '/';
+    },
+  });
