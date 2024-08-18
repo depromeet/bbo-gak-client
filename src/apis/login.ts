@@ -21,7 +21,7 @@ export const loginMutation = () =>
     mutationFn: postLogin,
     onSuccess: (data) => {
       localStorage.setItem('accessToken', data.accessToken);
-      setCookie('refreshToken', data.refreshToken, { secure: true });
+      setCookie('refreshToken', data.refreshToken);
       window.location.href = '/';
       alert('로그인 성공');
     },

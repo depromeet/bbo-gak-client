@@ -57,7 +57,7 @@ axiosInstance.interceptors.response.use(
           try {
             const response = await postRefresh({ refreshToken });
             localStorage.setItem('accessToken', response.data.accessToken);
-            setCookie('refreshToken', response.data.refreshToken, { secure: true });
+            setCookie('refreshToken', response.data.refreshToken);
           } catch (refreshError) {
             window.location.href = '/login';
           }
