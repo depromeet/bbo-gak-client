@@ -24,18 +24,28 @@ import { Link } from './SVG/Link';
 import { Unlink } from './SVG/Unlink';
 import { Calendar } from './SVG/Calendar';
 import { CalendarFill } from './SVG/CalendarFill';
+import { SubmitArrow } from '@/system/components/Icon/SVG/SubmitArrow';
+import { FilledMemo } from './SVG/FilledMemo';
+import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
+import { Clover } from './SVG/Clover';
+import { DownChevron } from './SVG/DownChevron';
+import { FolderFill } from './SVG/FolderFill';
+import { Close } from './SVG/Close';
 
 const iconMap = {
   bell: Bell,
   copy: Copy,
   check: Check,
+  close: Close,
   division: Division,
   folder: Folder,
+  folderFill: FolderFill,
   logout: Logout,
   memo: Memo,
   profile: Profile,
   profileFill: ProfileFill,
   rightChevron: RightChevron,
+  downChevron: DownChevron,
   search: Search,
   setting: Setting,
   down: Down,
@@ -51,6 +61,10 @@ const iconMap = {
   unlink: Unlink,
   calendar: Calendar,
   calendarFill: CalendarFill,
+  submitArrow: SubmitArrow,
+  filledMemo: FilledMemo,
+  removeMemo: RemoveMemo,
+  clover: Clover,
 } as const;
 
 export interface IconProps extends IconBaseType {

@@ -1,16 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import { http } from '../../../../apis/http';
-import { InfoCard, InfoCardType } from '@/types/info';
+import { InfoCardType, InfoType } from '@/types/info';
 
-type GetInfoCardListResponse = InfoCard[];
+type GetInfoCardListResponse = InfoCardType[];
 
-const getInfoCardList = (cardType: InfoCardType) => {
+const getInfoCardList = (cardType: InfoType) => {
   const convertedCardType = cardType.replaceAll(' ', '_');
 
   return http.get<GetInfoCardListResponse>({ url: `/cards?type=${convertedCardType}` });
 };
 
-export const useGetInfoCardList = (cardType: InfoCardType) => {
+export const useGetInfoCardList = (cardType: InfoType) => {
   return useQuery({
     queryKey: ['info-card-list', cardType],
     queryFn: async () => {

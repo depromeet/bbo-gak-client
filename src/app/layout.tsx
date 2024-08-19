@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { QueryProvider } from '@/lib';
 import '@/styles/globals.css';
+import '@/styles/memo.css';
 import { Inter } from 'next/font/google';
 import { cn } from '@/utils/tailwind-util';
 
@@ -18,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'bg-white')}>
+      <body className={cn(inter.className, 'bg-neutral-1')}>
         <QueryProvider>{children}</QueryProvider>
       </body>
     </html>

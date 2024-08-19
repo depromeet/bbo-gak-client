@@ -1,17 +1,16 @@
 'use client';
 
 import { useState } from 'react';
-import { mockInfoCount, mockInfoList } from '../mock';
 import { cn } from '@/utils/tailwind-util';
 import { Button, Icon } from '@/system/components';
-import { InfoCardItem } from './InfoCardItem';
 import { AddInfoCardDialog } from './AddInfoCardDialog';
-import { INFO_CARD_TYPES, InfoCardType } from '@/types/info';
+import { INFO_TYPES, InfoType } from '@/types/info';
 import { useGetInfoCardList } from '../apis/useGetInfoCardList';
 import { useGetCardTypeCount } from '../apis/useGetCardTypeCount';
+import { InfoCard } from '@/components/InfoCard';
 
 export function InfoCardList() {
-  const [currentCardType, setCurrentCardType] = useState<InfoCardType>('경험_정리');
+  const [currentCardType, setCurrentCardType] = useState<InfoType>('경험_정리');
 
   const { data: infoCardList } = useGetInfoCardList(currentCardType);
   const { data: cardCount } = useGetCardTypeCount();
@@ -20,7 +19,7 @@ export function InfoCardList() {
     <section>
       <div className="mb-[28px] flex justify-between">
         <div className="flex gap-[24px]">
-          {INFO_CARD_TYPES.map((type) => (
+          {INFO_TYPES.map((type) => (
             <button
               key={type}
               className="flex gap-[6px] items-center cursor-pointer"
@@ -50,9 +49,13 @@ export function InfoCardList() {
         </AddInfoCardDialog>
       </div>
       {infoCardList?.length ? (
-        <div className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
-          {infoCardList?.map((info) => <InfoCardItem key={info.id} {...info} />)}
-        </div>
+        <ul className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
+          {infoCardList?.map((info) => (
+            <li key={info.id} className="min-w-[343px]">
+              <InfoCard {...info} />
+            </li>
+          ))}
+        </ul>
       ) : (
         <div className="mt-50 text-center text-body1 text-neutral-30">아직 생성된 정보 카드가 없어요!</div>
       )}

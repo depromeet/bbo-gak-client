@@ -7,18 +7,18 @@ import {
   DropdownMenuTrigger,
 } from '@/system/components/DropdownMenu/DropdownMenu';
 import { Tag } from '@/system/components/Tag/Tag';
-import { INFO_CARD_TYPES, InfoCardTag, InfoCardType, TAG_TYPE_COLOR } from '@/types/info';
+import { TagType, InfoType, TAG_TYPE_COLOR, INFO_TYPES } from '@/types/info';
 import { PropsWithChildren, useState } from 'react';
 
-const mockTagList: InfoCardTag[] = [
+const mockTagList: TagType[] = [
   { id: 1, name: 'IT', type: '역량' },
   { id: 2, name: 'UI/UX', type: '인성' },
   { id: 3, name: '프로젝트 경험', type: '역량' },
 ];
 
 export function AddInfoCardDialog({ children }: PropsWithChildren) {
-  const [tagList, setTagList] = useState<InfoCardTag[]>([]);
-  const [typeList, setTypeList] = useState<InfoCardType[]>([]);
+  const [tagList, setTagList] = useState<TagType[]>([]);
+  const [typeList, setTypeList] = useState<InfoType[]>([]);
 
   return (
     <Dialog
@@ -77,7 +77,7 @@ export function AddInfoCardDialog({ children }: PropsWithChildren) {
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
-                {INFO_CARD_TYPES.map((type) => (
+                {INFO_TYPES.map((type) => (
                   <DropdownMenuItem key={type} onClick={() => setTypeList((prev) => [...prev, type])}>
                     {type}
                   </DropdownMenuItem>

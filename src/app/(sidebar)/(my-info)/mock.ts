@@ -1,4 +1,4 @@
-import { InfoCard } from '@/types/info';
+import { InfoCardType } from '@/types/info';
 
 export const mockInfoCount = {
   '경험 정리': 1,
@@ -6,11 +6,11 @@ export const mockInfoCount = {
   '면접 질문': 2,
 };
 
-export const mockInfoList: InfoCard[] = [
+export const mockInfoList: InfoCardType[] = [
   {
     id: 1,
     title: '제목',
-    updateDate: '2024-07-20T20:00:00',
+    updatedDate: '2024-07-20T20:00:00',
     cardTagList: [
       {
         id: 1,
@@ -27,7 +27,7 @@ export const mockInfoList: InfoCard[] = [
   {
     id: 2,
     title: 'test title2',
-    updateDate: '2024-07-10T20:00:00',
+    updatedDate: '2024-07-10T20:00:00',
     cardTagList: [
       {
         id: 1,
@@ -44,7 +44,7 @@ export const mockInfoList: InfoCard[] = [
   {
     id: 3,
     title: '제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
-    updateDate: '2024-07-15T20:00:00',
+    updatedDate: '2024-07-15T20:00:00',
     cardTagList: [
       {
         id: 1,

@@ -5,7 +5,7 @@ import { generateContext } from '@/lib';
 import { cn } from '@/utils';
 import { Remove } from '@/system/components/Icon/SVG/Remove';
 import { SVGProps } from 'react';
-import { If } from '@/components/If';
+import { If } from '@/system/utils/If';
 
 const [TagSelectorProvider, useTagSelectorContext] = generateContext<
   Omit<UseTagSelectorReturn, 'Component' | 'getBaseProps'>

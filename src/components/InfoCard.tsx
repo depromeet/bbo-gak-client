@@ -1,21 +1,22 @@
-import { Icon } from '@/system/components';
-import { Tag } from '@/system/components/Tag/Tag';
 import { formatToYYMMDD } from '@/utils/date';
+import { Icon } from '@/system/components';
+import { Tag, TagColor } from '@/system/components/index';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/system/components/DropdownMenu/DropdownMenu';
-import { InfoCard, TAG_TYPE_COLOR } from '@/types/info';
+import { InfoCardType, TAG_TYPE_COLOR } from '@/types/info';
+import { color } from '@/system/token/color';
 
-interface Props extends InfoCard {}
+type InfoCardProps = InfoCardType;
 
-export function InfoCardItem({ title, updateDate, cardTagList }: Props) {
-  const formattedDate = formatToYYMMDD(updateDate, { separator: '.' });
+export function InfoCard({ title, updatedDate, cardTagList }: InfoCardProps) {
+  const formattedDate = formatToYYMMDD(updatedDate, { separator: '.' });
 
   return (
-    <div className="flex flex-col justify-between min-w-[343px] h-[140px] p-[24px] rounded-[16px] bg-white border border-neutral-5 cursor-pointer hover:border-neutral-95 hover:shadow-[0px_4px_12px_0px_rgba(0,0,0,0.08)]">
+    <div className="flex flex-col justify-between h-[140px] p-[24px] rounded-[16px] bg-white border border-neutral-5 cursor-pointer hover:border-neutral-95 hover:shadow-[0px_4px_12px_0px_rgba(0,0,0,0.08)]">
       <div className="flex">
         <div className="flex-1 overflow-hidden">
           <div className="mb-[9px] text-[12px] text-neutral-20">{formattedDate}</div>
@@ -25,7 +26,7 @@ export function InfoCardItem({ title, updateDate, cardTagList }: Props) {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <button className="rounded-[4px] hover:bg-neutral-1" aria-label="more button">
-                <Icon name="more" color="#1B1C1E" />
+                <Icon name="more" color={color.neutral95} />
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
@@ -34,7 +35,7 @@ export function InfoCardItem({ title, updateDate, cardTagList }: Props) {
                 <div className="text-red-50 text-[15px] font-normal">삭제하기</div>
               </DropdownMenuItem>
               <DropdownMenuItem className="gap-[8px]">
-                <Icon name="pip" color="#70737C" />
+                <Icon name="pip" color={color.neutral50} />
                 <div className="text-neutral-95 text-[15px] font-normal">개별창으로 띄우기</div>
               </DropdownMenuItem>
             </DropdownMenuContent>

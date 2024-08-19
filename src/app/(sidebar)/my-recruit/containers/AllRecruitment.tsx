@@ -2,7 +2,7 @@
 
 import { Icon } from '@/system/components';
 import { RocketIcon } from './components/RocketIcon';
-import { Spacing } from '@/components/Spacing';
+import { Spacing } from '@/system/utils/Spacing';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,8 +12,13 @@ import {
 import { motion } from 'framer-motion';
 import { color } from '@/system/token/color';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import { cardList } from '../mock';
+import { RowCard } from './components/Card/RowCard';
+import { Droppable, useDndContext } from '@/lib/dnd-kit/dnd-kit';
 
 export function AllRecruitment() {
+  const { over } = useDndContext();
+
   return (
     <>
       <DropdownMenu>
@@ -43,6 +48,14 @@ export function AllRecruitment() {
           <span className="text-neutral-30 text-label1">등록된 공고가 없어요</span>
         </motion.button>
       </Dialog.Trigger>
+
+      <div className="flex flex-col gap-[12px]">
+        {cardList.map((cardInfo) => (
+          <Droppable key={`${cardInfo.period}-${cardInfo.title}`} id={cardInfo.id}>
+            <RowCard highlighted={cardInfo.id === over?.id} {...cardInfo} />
+          </Droppable>
+        ))}
+      </div>
     </>
   );
 }
