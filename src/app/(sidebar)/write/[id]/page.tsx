@@ -3,11 +3,9 @@
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { Input } from '@/system/components/Input/Input';
-// import { TagSelector } from './components/TagSelector/TagSelector';
-// import { abilityTags, personalityTags, categoryTags, tags, categories } from './components/TagSelector/constants';
-import { If } from '@/system/utils/If';
+import { TagSelector } from './components/TagSelector/TagSelector';
+import { abilityTags, personalityTags, categoryTags, tags, categories } from './components/TagSelector/constants';
 import { cn } from '@/utils';
-import { Spacing } from '@/system/utils/Spacing';
 import { Icon } from '@/system/components';
 import {
   DropdownMenu,
@@ -16,12 +14,14 @@ import {
   DropdownMenuTrigger,
 } from '@/system/components/DropdownMenu/DropdownMenu';
 import MemoContainer from './components/MemoContainer/MemoContainer';
-import { TagSelector } from './[id]/components/TagSelector/TagSelector';
-import { abilityTags, personalityTags, categoryTags, tags, categories } from './[id]/components/TagSelector/constants';
+import { MemosFetcher } from './fetcher/MemosFetcher';
+import { AsyncBoundaryWithQuery } from '@/lib';
+import { If } from '@/system/utils/If';
+import { Spacing } from '@/system/utils/Spacing';
 
 const Editor = dynamic(() => import('@/components/Editor/Editor').then(({ Editor }) => Editor), { ssr: false });
 
-export default function Page() {
+export default function Page({ params: { id: cardId } }: { params: { id: string } }) {
   const [category, setSelectedCategories] = useState<(typeof categories)[number] | null>(null);
   const [selectedTags, setSelectedTags] = useState<typeof tags>([]);
 
@@ -171,7 +171,11 @@ export default function Page() {
         </div>
       </section>
 
-      <MemoContainer />
+      <AsyncBoundaryWithQuery>
+        <MemosFetcher cardId={cardId}>
+          <MemoContainer />
+        </MemosFetcher>
+      </AsyncBoundaryWithQuery>
     </section>
   );
 }
