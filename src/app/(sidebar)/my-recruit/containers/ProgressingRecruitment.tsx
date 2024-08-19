@@ -1,4 +1,4 @@
-import { Spacing } from '@/components/Spacing';
+import { Spacing } from '@/system/utils/Spacing';
 import { ShoeIcon } from './components/ShoeIcon';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { motion } from 'framer-motion';

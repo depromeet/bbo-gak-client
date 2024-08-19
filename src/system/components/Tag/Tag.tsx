@@ -1,8 +1,9 @@
 import { cn } from '@/utils/tailwind-util';
 import { PropsWithChildren } from 'react';
 
+export type TagColor = 'default' | 'blue' | 'purple';
 export interface TagProps {
-  color?: 'default' | 'blue' | 'purple';
+  color?: TagColor;
 }
 
 // TODO: cva 사용 로직으로 변경

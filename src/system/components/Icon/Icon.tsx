@@ -29,11 +29,13 @@ import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
 import { Clover } from './SVG/Clover';
 import { DownChevron } from './SVG/DownChevron';
 import { FolderFill } from './SVG/FolderFill';
+import { Close } from './SVG/Close';
 
 const iconMap = {
   bell: Bell,
   copy: Copy,
   check: Check,
+  close: Close,
   division: Division,
   folder: Folder,
   folderFill: FolderFill,

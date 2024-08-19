@@ -1,4 +1,4 @@
-import { Spacing } from '@/components/Spacing';
+import { Spacing } from '@/system/utils/Spacing';
 import { Icon } from '@/system/components';
 import { color } from '@/system/token/color';
 import { dday } from '@/utils/date';
@@ -8,6 +8,7 @@ import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { DueDateDialog } from '../DueDateDialog';
 
 export type ProgressingCardType = {
+  id: number;
   type: '서류 마감' | '1차 면접' | '2차 면접';
   status: '지원 완료' | '서류 통과' | '서류 탈락';
   dueDate: Date | null;
@@ -52,17 +53,3 @@ export function BoxCard({ type, title, status, dueDate, period }: ProgressingCar
     </div>
   );
 }
-
-const statusList = [
-  { variant: 'text', text: '지원 준비' },
-  { variant: 'text', text: '지원 완료' },
-  { variant: 'border' },
-  { variant: 'text', text: '서류 통과' },
-  { variant: 'text', text: '서류 탈락' },
-  { variant: 'border' },
-  { variant: 'text', text: '면접 통과' },
-  { variant: 'text', text: '면접 탈락' },
-  { variant: 'border' },
-  { variant: 'text', text: '최종 합격' },
-  { variant: 'text', text: '최종 탈락' },
-] as const;

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { mockInfoCount, mockInfoList } from '../mock';
 import { cn } from '@/utils/tailwind-util';
 import { Icon } from '@/system/components';
-import { InfoCardItem } from './InfoCardItem';
+import { InfoCard } from '@/components/InfoCard';
 
 const INFO_OPTIONS = ['경험 정리', '자기소개서', '면접 질문'] as const;
 
@@ -46,11 +46,13 @@ export function InfoCardList() {
           <Icon name="add" color="#08F29B" />
         </button>
       </div>
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
+      <ul className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
         {infoList.map((info) => (
-          <InfoCardItem key={info.id} {...info} />
+          <li className="min-w-[343px]">
+            <InfoCard key={info.id} {...info} />
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   );
 }
