@@ -5,9 +5,7 @@ import { useState } from 'react';
 import { Input } from '@/system/components/Input/Input';
 import { TagSelector } from './components/TagSelector/TagSelector';
 import { abilityTags, personalityTags, categoryTags, tags, categories } from './components/TagSelector/constants';
-import { If } from '@/components/If';
 import { cn } from '@/utils';
-import { Spacing } from '@/components/Spacing';
 import { Icon } from '@/system/components';
 import {
   DropdownMenu,
@@ -18,6 +16,8 @@ import {
 import MemoContainer from './components/MemoContainer/MemoContainer';
 import { MemosFetcher } from './fetcher/MemosFetcher';
 import { AsyncBoundaryWithQuery } from '@/lib';
+import { If } from '@/system/utils/If';
+import { Spacing } from '@/system/utils/Spacing';
 
 const Editor = dynamic(() => import('@/components/Editor/Editor').then(({ Editor }) => Editor), { ssr: false });
 
