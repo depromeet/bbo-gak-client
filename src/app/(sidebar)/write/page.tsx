@@ -3,8 +3,8 @@
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { Input } from '@/system/components/Input/Input';
-import { TagSelector } from './components/TagSelector/TagSelector';
-import { abilityTags, personalityTags, categoryTags, tags, categories } from './components/TagSelector/constants';
+// import { TagSelector } from './components/TagSelector/TagSelector';
+// import { abilityTags, personalityTags, categoryTags, tags, categories } from './components/TagSelector/constants';
 import { If } from '@/system/utils/If';
 import { cn } from '@/utils';
 import { Spacing } from '@/system/utils/Spacing';
@@ -16,6 +16,8 @@ import {
   DropdownMenuTrigger,
 } from '@/system/components/DropdownMenu/DropdownMenu';
 import MemoContainer from './components/MemoContainer/MemoContainer';
+import { TagSelector } from './[id]/components/TagSelector/TagSelector';
+import { abilityTags, personalityTags, categoryTags, tags, categories } from './[id]/components/TagSelector/constants';
 
 const Editor = dynamic(() => import('@/components/Editor/Editor').then(({ Editor }) => Editor), { ssr: false });
 
