@@ -1,6 +1,6 @@
 import { generateContext } from '@/lib';
-import { GetMemosResponse, useGetMemos } from '../api/useGetMemos';
 import { StrictPropsWithChildren } from '@/types';
+import { GetMemosResponse, useGetMemos } from '../api/useGetMemos';
 
 const [MemosProvider, useMemosContext] = generateContext<{ memos: GetMemosResponse; cardId: string }>({
   name: 'memos-provider',
@@ -10,7 +10,7 @@ function MemosFetcher({ cardId, children }: StrictPropsWithChildren<{ cardId: st
   const { data } = useGetMemos(cardId);
 
   return (
-    <MemosProvider memos={data} cardId={cardId}>
+    <MemosProvider memos={data.data} cardId={cardId}>
       {children}
     </MemosProvider>
   );
