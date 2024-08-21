@@ -1,4 +1,4 @@
-import { CheckboxItem } from './compounds/CheckboxItem';
+import { CheckedItem } from './compounds/CheckedItem';
 import { Content } from './compounds/Content';
 import { Root } from './compounds/Root';
 import { Separator } from './compounds/Separator';
@@ -10,5 +10,5 @@ export const Dropdown = Object.assign(Root, {
   TriggerArrow,
   Content,
   Separator,
-  CheckboxItem,
+  CheckedItem,
 });

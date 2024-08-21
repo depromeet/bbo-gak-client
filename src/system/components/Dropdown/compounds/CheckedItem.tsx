@@ -11,7 +11,7 @@ interface Props extends ComponentProps<'button'> {
   checked?: boolean;
 }
 
-export const CheckboxItem = forwardRef<HTMLButtonElement, Props>(function CheckboxItem(
+export const CheckedItem = forwardRef<HTMLButtonElement, Props>(function CheckedItem(
   { checked, disabled, children, ...restProps },
   ref,
 ) {
