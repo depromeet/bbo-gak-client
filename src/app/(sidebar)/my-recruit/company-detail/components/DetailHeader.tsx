@@ -16,7 +16,7 @@ export default function DetailHeader() {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isLinked, setIsLinked] = useState<boolean>(false);
 
-  useOutsideClick(tooltipRef, () => setIsHovered(false));
+  useOutsideClick(tooltipRef, () => setIsLinked(false));
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
@@ -31,33 +31,34 @@ export default function DetailHeader() {
   };
 
   return (
-    <div className="flex justify-between items-center border-b-1 border-neutral-5 pb-[24px] mb-[32px]">
-      <div className="flex gap-[0.75rem] items-center">
-        <SemesterSelector />
-        <ApplicationStatus />
-        <input
-          className="pl-[6px] pr-[3px] px-[10px] rounded-[6px] text-neutral-95 text-heading1 font-bold border-none hover:bg-neutral-3 focus:outline-none focus:ring-2 focus:ring-mint-20 focus:ring-offset-2  focus:hover:bg-white"
-          onChange={(e) => handleTitleChange(e)}
-          value={title}
-          size={title.length}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-        />
+    <div className="fixed top-0 w-full bg-white border-b-1 border-neutral-5 px-[145px] py-[24px]">
+      <div className="flex justify-between items-center max-w-[1700px] mx-auto">
+        <div className="flex gap-[0.75rem] items-center">
+          <SemesterSelector />
+          <ApplicationStatus />
+          <input
+            className="pl-[6px] pr-[3px] px-[10px] rounded-[6px] text-neutral-95 text-heading1 font-bold border-none hover:bg-neutral-3 focus:outline-none focus:ring-2 focus:ring-mint-20 focus:ring-offset-2  focus:hover:bg-white"
+            onChange={(e) => handleTitleChange(e)}
+            value={title}
+            size={title.length}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+          />
 
-        <div ref={tooltipRef} className="relative">
-          {!isFocused && (
-            <Button
-              className="flex justify-center items-center rounded-full hover:bg-neutral-1"
-              aria-label={isLinked ? 'link button' : 'unlink button'}
-              onClick={() => handleLinkChange()}>
-              <Icon name={isLinked ? 'link' : 'unlink'} size={16} color={isLinked ? color.mint40 : color.neutral40} />
-            </Button>
-          )}
-          {isHovered && <TextBubble linkedOn={handleSetLink} />}
+          <div ref={tooltipRef} className="relative">
+            {!isFocused && (
+              <Button
+                className="flex justify-center items-center rounded-full hover:bg-neutral-1"
+                aria-label={isLinked ? 'link button' : 'unlink button'}
+                onClick={() => handleLinkChange()}>
+                <Icon name={isLinked ? 'link' : 'unlink'} size={16} color={isLinked ? color.mint40 : color.neutral40} />
+              </Button>
+            )}
+            {isHovered && <TextBubble linkedOn={handleSetLink} />}
+          </div>
         </div>
+        <HeaderButtons />
       </div>
-
-      <HeaderButtons />
     </div>
   );
 }
