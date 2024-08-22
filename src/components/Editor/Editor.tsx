@@ -16,8 +16,8 @@ export function Editor({ editor }: { editor: EditorType | null }) {
   }
 
   return (
-    <div className="flex w-[660px] h-full px-52" ref={menuContainerRef}>
-      <div className="relative flex flex-col flex-1 h-full overflow-hidden">
+    <div style={{ scrollbarWidth: 'none' }} className="flex w-[660px] relative px-52" ref={menuContainerRef}>
+      <div className="relative flex flex-col flex-1 h-full">
         <EditorContent editor={editor} className="flex-1 overflow-y-auto" />
         <LinkMenu editor={editor} appendTo={menuContainerRef} />
         <TextMenu editor={editor} />

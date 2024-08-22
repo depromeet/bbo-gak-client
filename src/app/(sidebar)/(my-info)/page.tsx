@@ -1,3 +1,5 @@
+'use client';
+
 import { Icon } from '@/system/components';
 import { InfoCardList } from './components/InfoCardList';
 

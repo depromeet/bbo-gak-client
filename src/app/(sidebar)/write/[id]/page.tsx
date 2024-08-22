@@ -109,7 +109,9 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
           </TagSelector.Content>
         </TagSelector>
 
-        <TagSelector classNames={{ content: 'h-264' }}>
+        <TagSelector
+          disabled={selectedTags.length === 3}
+          classNames={{ base: 'px-80', content: 'h-264', trigger: 'hover:bg-neutral-1' }}>
           <TagSelector.Title>태그</TagSelector.Title>
 
           <TagSelector.Trigger>

@@ -1,4 +1,4 @@
-import { InfoCard } from '@/types/info';
+import { InfoCardType } from '@/types/info';
 
 export const mockInfoCount = {
   '경험 정리': 1,
@@ -6,7 +6,7 @@ export const mockInfoCount = {
   '면접 질문': 2,
 };
 
-export const mockInfoList: InfoCard[] = [
+export const mockInfoList: InfoCardType[] = [
   {
     id: 1,
     title: '제목',
