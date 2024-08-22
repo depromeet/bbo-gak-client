@@ -23,4 +23,5 @@ export const useGetCardDetail = (cardId: number) =>
   useSuspenseQuery({
     queryKey: ['get-card-detail', cardId],
     queryFn: () => getCardDetail(cardId),
+    select: ({ data }) => data,
   });
