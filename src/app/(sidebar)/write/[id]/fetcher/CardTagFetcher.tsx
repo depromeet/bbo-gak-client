@@ -2,17 +2,17 @@
 
 import { generateContext } from '@/lib';
 import { StrictPropsWithChildren } from '@/types';
-import { GetCardDetailTagsResponse, useGetCardDetailTagsResponse } from '../api/useGetCardTags/useGetCardTags';
+import { useGetCardDetail } from '../api/useGetCardDetail/useGetCardDetail';
+import { GetCardDetailResponse } from '@/app/(sidebar)/write/[id]/api/useGetCardDetail/useGetCardDetail';
 
-const [CardDetailTagsProvider, useCardDetailTagsContext] = generateContext<{ tags: GetCardDetailTagsResponse }>({
+const [CardDetailTagsProvider, useCardDetailTagsContext] = generateContext<GetCardDetailResponse>({
   name: 'card-detail-tag-fetcher',
-  defaultValue: { tags: [] },
 });
 
 function CardTagFetcher({ children, cardId }: StrictPropsWithChildren<{ cardId: number }>) {
-  const { data } = useGetCardDetailTagsResponse(cardId);
+  const { data } = useGetCardDetail(cardId);
 
-  return <CardDetailTagsProvider tags={data.result}>{children}</CardDetailTagsProvider>;
+  return <CardDetailTagsProvider {...data}>{children}</CardDetailTagsProvider>;
 }
 
 export { CardTagFetcher, useCardDetailTagsContext };

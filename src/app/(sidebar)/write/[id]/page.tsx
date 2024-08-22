@@ -3,11 +3,17 @@
 import dynamic from 'next/dynamic';
 import { Input } from '@/system/components/Input/Input';
 import { TagSelector } from './TagSelector/TagSelector';
-import { abilityTags, personalityTags, categoryTags } from './TagSelector/constants';
 import { If } from '@/components/If';
-import { cn } from '@/utils';
 import { Spacing } from '@/components/Spacing';
+import { cn } from '@/utils';
 import { useWrite } from './hooks';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/system/components/DropdownMenu/DropdownMenu';
+import { Icon } from '@/system/components';
 
 const EditorProvider = dynamic(
   () => import('@/components/Editor/EditorProvider/EditorProvider').then(({ EditorProvider }) => EditorProvider),
@@ -15,19 +21,45 @@ const EditorProvider = dynamic(
 );
 
 export default function Page({ params: { id } }: { params: { id: string } }) {
-  const { handlePutCardTitle, handlePostCardTag, handleDeleteCardTag, title, selectedTags, selectedCategories } =
-    useWrite(Number(id));
+  const {
+    handlePutCardTitle,
+    handlePostCardTag,
+    handleDeleteCardTag,
+    title,
+    selectedTags,
+    selectedCategories,
+    personalityTags,
+    abilityTags,
+    categoryTags,
+  } = useWrite(Number(id));
 
   return (
     <section className="px-80 pt-64 w-full h-full">
       <EditorProvider cardId={Number(id)}>
-        <Input
-          value={title}
-          placeholder="제목을 입력해주세요."
-          onValueChange={handlePutCardTitle}
-          classNames={{ base: 'w-[552px]' }}
-          className="text-24 font-bold px-0 leading-32 tracking-[-0.0345rem] border-none"
-        />
+        <div className="flex justify-between px-80">
+          <Input
+            value={title}
+            onValueChange={handlePutCardTitle}
+            placeholder="제목을 입력해주세요."
+            classNames={{ base: 'w-[552px]' }}
+            className="text-[24px] font-bold px-0 leading-32 tracking-[-0.0345rem] border-none"
+          />
+          <div className="flex gap-8 items-center text-neutral-20">
+            <p>00.00.00</p>
+
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <Icon name="more" color="black" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem className="flex gap-4 w-176 h-52 pl-16 cursor-pointer">
+                  <Icon name="trash" size={20} color="#FF5C5C" />
+                  <p className="text-[#FF5C5C] text-15">삭제하기</p>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+        </div>
 
         <Spacing direction="column" size={24} />
 
@@ -88,10 +120,10 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                   <TagSelector.RemovalbleTag
                     key={tag.name}
                     className={cn(
-                      tag.type === 'ability' && 'text-[#418CC3] bg-[#E8F1FF]',
-                      tag.type === 'personality' && 'text-[#9C6BB3] bg-[#F1E8FF]',
+                      tag.type === '역량' && 'text-[#418CC3] bg-[#E8F1FF]',
+                      tag.type === '인성' && 'text-[#9C6BB3] bg-[#F1E8FF]',
                     )}
-                    color={tag.type === 'ability' ? '#418CC3' : '#9C6BB3'}
+                    color={tag.type === '역량' ? '#418CC3' : '#9C6BB3'}
                     onClick={(event) => {
                       event.stopPropagation();
                       handleDeleteCardTag(tag, 'tag');

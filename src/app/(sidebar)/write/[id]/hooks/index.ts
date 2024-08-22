@@ -1,18 +1,23 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { usePutCardTitle } from '../api/usePutCardTitle/usePutCardTitle';
 import { usePostCardTag } from '../api/usePostCardTag/usePostCardTag';
 import { useDeleteCardTag } from '../api/useDeleteCardTag/useDeleteCardTag';
 import { useCardDetailTagsContext } from '../fetcher/CardTagFetcher';
-import { GetCardDetailTagsResponse } from '../api/useGetCardTags/useGetCardTags';
+import { GetCardDetailResponse } from '@/app/(sidebar)/write/[id]/api/useGetCardDetail/useGetCardDetail';
 
 export function useWrite(id: number) {
-  const { tags } = useCardDetailTagsContext();
-  const [title, setTitle] = useState<string>('');
+  const { title: prevTitle, updatedDate, tagList } = useCardDetailTagsContext();
 
-  // FIXME: 분류/태그 구분
-  // 태그 중 역량 / 인성 태그 구분 필요
-  const [selectedTags, setSelectedTags] = useState<GetCardDetailTagsResponse>(tags);
-  const [selectedCategories, setSelectedCategories] = useState<GetCardDetailTagsResponse>(tags);
+  const personalityTags = useMemo(() => tagList.filter((tag) => tag.type === '인성'), [id]);
+  const abilityTags = useMemo(() => tagList.filter((tag) => tag.type === '역량'), [id]);
+  const categoryTags = useMemo(() => tagList.filter((tag) => tag.type === '분류'), [id]);
+
+  const [title, setTitle] = useState<string>(prevTitle || '');
+  const [selectedTags, setSelectedTags] = useState<GetCardDetailResponse['tagList']>([
+    ...personalityTags,
+    ...abilityTags,
+  ]);
+  const [selectedCategories, setSelectedCategories] = useState<GetCardDetailResponse['tagList']>(categoryTags);
 
   const { mutate: mutatePutCardTitle } = usePutCardTitle(id);
   const { mutate: mutatePostCardTag } = usePostCardTag(id);
@@ -24,7 +29,7 @@ export function useWrite(id: number) {
   }, []);
 
   const handlePostCardTag = useCallback(
-    (tag: any, type: 'category' | 'tag') => {
+    (tag: GetCardDetailResponse['tagList'][number], type: 'category' | 'tag') => {
       mutatePostCardTag(tag.id, {
         onSuccess: () => {
           if (type === 'category') {
@@ -39,7 +44,7 @@ export function useWrite(id: number) {
   );
 
   const handleDeleteCardTag = useCallback(
-    (tag: any, type: 'category' | 'tag') => {
+    (tag: GetCardDetailResponse['tagList'][0], type: 'category' | 'tag') => {
       mutateDeleteCardTag(tag.id, {
         onSuccess: () => {
           if (type === 'category') {
@@ -60,5 +65,9 @@ export function useWrite(id: number) {
     title,
     selectedTags,
     selectedCategories,
+    personalityTags,
+    abilityTags,
+    categoryTags,
+    updatedDate: updatedDate.split(' ')[0].replaceAll(/-/g, '.'),
   };
 }
