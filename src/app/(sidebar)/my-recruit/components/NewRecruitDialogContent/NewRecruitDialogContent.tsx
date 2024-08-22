@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import { Spacing } from '@/components/Spacing';
-=======
 import { Spacing } from '@/system/utils/Spacing';
->>>>>>> main
 import { TouchButton } from '@/components/TouchButton';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { color } from '@/system/token/color';

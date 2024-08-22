@@ -2,9 +2,9 @@
 
 import dynamic from 'next/dynamic';
 import { Input } from '@/system/components/Input/Input';
-import { TagSelector } from './TagSelector/TagSelector';
-import { If } from '@/components/If';
-import { Spacing } from '@/components/Spacing';
+import { TagSelector } from './components/TagSelector/TagSelector';
+import { If } from '@/system/utils/If';
+import { Spacing } from '@/system/utils/Spacing';
 import { cn } from '@/utils';
 import { useWrite } from './hooks';
 import {
