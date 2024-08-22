@@ -15,7 +15,6 @@ import type { IconBaseType } from '@/system/components/Icon/SVG/type';
 import { Delete } from './SVG/Delete';
 import { Pip } from './SVG/Pip';
 import { Remove } from './SVG/Remove';
-<<<<<<< HEAD
 import Copy from './SVG/Copy';
 import { Up } from './SVG/Up';
 import { Check } from './SVG/Check';
@@ -24,8 +23,6 @@ import { Link } from './SVG/Link';
 import { Unlink } from './SVG/Unlink';
 import { Calendar } from './SVG/Calendar';
 import { CalendarFill } from './SVG/CalendarFill';
-=======
->>>>>>> a9186b7 (feat)
 
 const iconMap = {
   bell: Bell,

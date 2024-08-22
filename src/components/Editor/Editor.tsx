@@ -1,17 +1,15 @@
 'use client';
 
 import { useRef } from 'react';
-import { EditorContent } from '@tiptap/react';
-import { useEditor } from '../Editor/useEditor';
+import { Editor as EditorType, EditorContent } from '@tiptap/react';
 import { LinkMenu } from './extensions/menu/LinkMenu';
 import { TextMenu } from '@/components/Editor/extensions/TextMenu';
 import { ColumnsMenu } from '@/components/Editor/extensions/MultiColum/ColumnsMenu';
 import { ImageBlockMenu } from '@/components/Editor/extensions/ImageBlock/ImageBlockMenu';
 import '@/styles/editor.css';
 
-export function Editor() {
+export function Editor({ editor }: { editor: EditorType | null }) {
   const menuContainerRef = useRef<HTMLDivElement>(null);
-  const { editor } = useEditor();
 
   if (!editor) {
     return null;

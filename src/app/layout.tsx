@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { QueryProvider } from '@/lib';
 import '@/styles/globals.css';
 import { Inter } from 'next/font/google';
-import { cn } from '@/utils/tailwind-util';
+import { cn } from '@/utils';
 
 const inter = Inter({ subsets: ['latin'] });
 
