@@ -3,7 +3,7 @@
 import dynamic from 'next/dynamic';
 import { Input } from '@/system/components/Input/Input';
 import { TagSelector } from './TagSelector/TagSelector';
-import { abilityTags, personalityTags, categoryTags, tags, categories } from './TagSelector/constants';
+import { abilityTags, personalityTags, categoryTags } from './TagSelector/constants';
 import { If } from '@/components/If';
 import { cn } from '@/utils';
 import { Spacing } from '@/components/Spacing';
@@ -17,17 +17,15 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
     handlePostCardTag,
     handleDeleteCardTag,
     title,
-    setTitle,
     selectedTags,
-    setSelectedTags,
     selectedCategories,
-    setSelectedCategories,
     editor,
   } = useWrite(Number(id));
 
   return (
     <section className="px-80 pt-64 w-full h-full">
       <Input
+        value={title}
         placeholder="제목을 입력해주세요."
         onValueChange={handlePutCardTitle}
         classNames={{ base: 'w-[552px]' }}
@@ -50,7 +48,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                   color="#37383C"
                   onClick={(event) => {
                     event.stopPropagation();
-                    setSelectedCategories((prev) => prev.filter(({ value }) => value !== category.value));
+                    handleDeleteCardTag(category, 'category');
                   }}>
                   {category.value}
                 </TagSelector.RemovalbleTag>
@@ -71,7 +69,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                   className="text-neutral-75 bg-neutral-3"
                   onClick={() => {
                     if (selectedCategories.length < 3 && !selectedCategories.find(({ value }) => value === tag.value)) {
-                      setSelectedCategories((prev) => [...prev, tag]);
+                      handlePostCardTag(tag, 'category');
                     }
                   }}>
                   {tag.value}
@@ -99,7 +97,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                   color={tag.type === 'ability' ? '#418CC3' : '#9C6BB3'}
                   onClick={(event) => {
                     event.stopPropagation();
-                    setSelectedTags((prev) => prev.filter(({ value }) => value !== tag.value));
+                    handleDeleteCardTag(tag, 'tag');
                   }}>
                   {tag.value}
                 </TagSelector.RemovalbleTag>
@@ -118,7 +116,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                   className="text-[#418CC3] bg-[#E8F1FF]"
                   onClick={() => {
                     if (selectedTags.length < 3 && !selectedTags.find(({ value }) => value === tag.value)) {
-                      setSelectedTags((prev) => [...prev, tag]);
+                      handlePostCardTag(tag, 'tag');
                     }
                   }}>
                   {tag.value}
@@ -135,7 +133,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                   className="text-[#9C6BB3] bg-[#F1E8FF]"
                   onClick={() => {
                     if (selectedTags.length < 3 && !selectedTags.find(({ value }) => value === tag.value)) {
-                      setSelectedTags((prev) => [...prev, tag]);
+                      handlePostCardTag(tag, 'tag');
                     }
                   }}>
                   {tag.value}
