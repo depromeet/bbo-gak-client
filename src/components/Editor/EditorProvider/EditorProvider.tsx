@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { usePutCardContent } from '@/app/(sidebar)/write/[id]/api/usePutCardContent/usePutCardContent';
 import { useEditor } from '@/components/Editor/useEditor';
 import { StrictPropsWithChildren } from '@/types';
@@ -11,20 +11,25 @@ export function EditorProvider({
   children,
   readOnly = false,
 }: StrictPropsWithChildren<{ cardId: number; readOnly?: boolean }>) {
-  const { editor } = useEditor();
+  const { editor, content } = useEditor({ readOnly });
   const { mutate: mutatePutCardContent } = usePutCardContent(cardId);
 
   // TODO: debounce
   useEffect(() => {
-    if (editor?.getJSON() && !readOnly) {
-      mutatePutCardContent(editor.getJSON());
+    if (editor && content && !readOnly) {
+      mutatePutCardContent(content);
     }
-  }, [editor?.getJSON(), readOnly]);
+  }, [content]);
 
   return (
     <>
       {children}
-      <Editor editor={editor} />
+
+      <div
+        style={{ scrollbarWidth: 'thin', scrollbarColor: '#DBDCDF' }}
+        className="px-80 h-[calc(100vh-264px)] overflow-x-hidden">
+        <Editor editor={editor} />
+      </div>
     </>
   );
 }

@@ -7,6 +7,7 @@ import { GetCardDetailResponse } from '@/app/(sidebar)/write/[id]/api/useGetCard
 
 const [CardDetailTagsProvider, useCardDetailTagsContext] = generateContext<GetCardDetailResponse>({
   name: 'card-detail-tag-fetcher',
+  defaultValue: { title: '', cardTypeValueList: [], content: {}, tagList: [], updatedDate: ' ' },
 });
 
 function CardTagFetcher({ children, cardId }: StrictPropsWithChildren<{ cardId: number }>) {

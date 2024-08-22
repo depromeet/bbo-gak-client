@@ -4,7 +4,7 @@ import { http } from '@/apis/http';
 
 const putCardContent = (cardId: number, content: JSONContent) =>
   http.put({
-    url: `/cards/${cardId}/title`,
+    url: `/cards/${cardId}/content`,
     data: content,
   });
 
