@@ -3,38 +3,50 @@ import { TouchButton } from '@/components/TouchButton';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { color } from '@/system/token/color';
 import { InputField } from './InputField';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Icon } from '@/system/components';
-import { getCurrentYearAndHalf, getNextYearAndHalf } from './date';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/system/components/DropdownMenu/DropdownMenu';
+import { Dropdown } from '@/system/components';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
 import { Calendar } from '@/system/components/Calendar/Calendar';
 import { format } from 'date-fns/format';
-import { If } from '@/system/utils/If';
+import { useGetSeasons } from '../../api/useGetSeasons';
+import { recruitStatusList } from '../../constant';
+import { SwitchCase } from '@/system/utils/SwitchCase';
+import { recruitScheduleStageList } from '@/app/(sidebar)/my-recruit/constant';
 
-interface Props {
-  onSubmit: () => void;
+export interface CardData {
+  season: string;
+  title: string;
+  siteUrl: string;
+  recruitScheduleStage: string;
+  deadline: string | null;
+}
+
+interface NewRecruitDialogContentProps {
+  onSubmit: (data: CardData) => void;
 }
 
 const TITLE_MAX_LENGTH = 30;
-// FIXME: 서버쪽에서 전달해주는 데이터로 교체
-const DEFAULT_DROPDOWN_PERIOD = [getCurrentYearAndHalf(), getNextYearAndHalf()];
 
-export function NewRecruitDialogContent() {
+export function NewRecruitDialogContent({ onSubmit }: NewRecruitDialogContentProps) {
   const [title, setTitle] = useState('');
-  const [selectedPeriod, setSelectedPeriod] = useState(getCurrentYearAndHalf());
-  const [link, setLink] = useState('');
+  const [siteUrl, setSiteUrl] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date>();
+  const [currentRecruitStage, setCurrentRecruitStage] = useState<string>(recruitStatusList[3].text);
 
-  const isButtonActivated = title.length !== 0;
+  const [selectedSeason, setSelectedSeason] = useState<string>();
+  const seasonList = useGetSeasons()?.data ?? [];
   const isDateSelected = selectedDate != null;
+
+  useEffect(() => {
+    if (selectedSeason == null) {
+      setSelectedSeason(seasonList[0]?.name);
+    }
+  }, [seasonList.length]);
+
+  const canSubmit = title.length !== 0 && selectedSeason != null;
 
   return (
     <div className="p-20">
@@ -57,35 +69,48 @@ export function NewRecruitDialogContent() {
       <Spacing size={8} />
 
       {/* 지원 시기 입력 */}
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button className="w-full flex justify-between items-center p-12 bg-neutral-1 border-neutral-20 rounded-[8px] border-[1px]">
-            <span>{selectedPeriod}</span>
-            <Icon name="down" size={24} color="#878A93" />
+      <Dropdown>
+        <Dropdown.Trigger asChild>
+          <button className="w-full flex justify-between items-center px-16 py-12 bg-neutral-1 border-neutral-20 rounded-[8px] border-[1px]">
+            <span>{selectedSeason}</span>
+            <Icon name="down" size={24} color={color.neutral40} />
           </button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-360 py-8">
-          {/* TODO: 이전 공고들의 연도들도 추가 */}
-          {[...DEFAULT_DROPDOWN_PERIOD].reverse().map((period) => (
-            <DropdownMenuItem
-              key={period}
-              className="w-full flex justify-between px-16 py-8"
-              onClick={() => setSelectedPeriod(period)}>
-              <span className={clsx('text-label1', period === selectedPeriod ? 'text-neutral-30' : 'text-neutral-80')}>
-                {period}
-              </span>
-              <If condition={period === selectedPeriod}>
-                <Icon size={16} name="check" color="#AEB0B6" />
-              </If>
-            </DropdownMenuItem>
+        </Dropdown.Trigger>
+        <Dropdown.Content className="w-360">
+          {seasonList.reverse().map((season) => (
+            <Dropdown.CheckedItem
+              key={season.name}
+              checked={season.name === selectedSeason}
+              disabled={season.name === selectedSeason}
+              onClick={() => setSelectedSeason(season.name)}>
+              <span className={'text-label1'}>{season.name}</span>
+            </Dropdown.CheckedItem>
           ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
+        </Dropdown.Content>
+      </Dropdown>
       <Spacing size={8} />
 
       {/* 마감일 입력 */}
-      <div className="w-full flex justify-between items-center p-12 bg-neutral-1 border-neutral-20 rounded-[8px] border-[1px]">
-        <span className="text-label1 text-neutral-95">서류마감</span>
+      <div className="w-full flex justify-between items-center px-8 pt-10 pb-8 bg-neutral-1 border-neutral-20 rounded-[8px] border-[1px]">
+        <Dropdown>
+          <Dropdown.Trigger>
+            <div className="flex items-center gap-[4px] px-8 py-4">
+              <span className="text-label1 text-neutral-95">{currentRecruitStage}</span>
+              <Icon name="down" color="#d9d9d9" />
+            </div>
+          </Dropdown.Trigger>
+          <Dropdown.Content>
+            {recruitScheduleStageList.map((item, index) => (
+              <Dropdown.CheckedItem
+                key={index}
+                checked={currentRecruitStage === item}
+                disabled={currentRecruitStage === item}
+                onClick={() => setCurrentRecruitStage(item)}>
+                {item}
+              </Dropdown.CheckedItem>
+            ))}
+          </Dropdown.Content>
+        </Dropdown>
         <Popover>
           <PopoverTrigger>
             <motion.div
@@ -98,9 +123,9 @@ export function NewRecruitDialogContent() {
               whileTap="touch"
               whileHover="hover"
               className="px-8 py-4 flex items-center gap-[4px] rounded-[4px]">
-              <Icon name={isDateSelected ? 'calendarFill' : 'calendar'} size={20} color="#AEB0B6" />
+              <Icon name={isDateSelected ? 'calendarFill' : 'calendar'} size={20} color={color.neutral30} />
               <span className={clsx('text-label2', isDateSelected ? 'text-neutral-95' : 'text-neutral-40')}>
-                {isDateSelected ? format(selectedDate, 'yyyy.mm.dd') : '마감일을 선택해주세요'}
+                {isDateSelected ? format(selectedDate, 'yyyy.MM.dd') : '마감일을 선택해주세요'}
               </span>
             </motion.div>
           </PopoverTrigger>
@@ -113,30 +138,37 @@ export function NewRecruitDialogContent() {
 
       {/* 공고 링크 입력 */}
       <InputField
-        value={link}
+        value={siteUrl}
         placeholder="공고 링크를 입력해주세요"
-        right={<Icon name={link.length === 0 ? 'unlink' : 'link'} size={16} color="#70737C" />}
-        onChange={(event) => setLink(event.target.value)}
+        right={<Icon name={siteUrl.length === 0 ? 'unlink' : 'link'} size={16} color={color.neutral50} />}
+        onChange={(event) => setSiteUrl(event.target.value)}
       />
       <Spacing size={20} />
 
       {/* 제출 버튼 */}
-      <TouchButton
-        variants={{
-          inactive: {
-            backgroundColor: color.neutral5,
-            color: color.neutral30,
-          },
-          active: {
-            backgroundColor: color.neutral95,
-            color: color.white,
-          },
-        }}
-        animate={isButtonActivated ? 'active' : 'inactive'}
-        disabled={isButtonActivated === false}
-        className="w-full flex justify-center items-center h-48 rounded-[6px]">
-        공고 추가하기
-      </TouchButton>
+      <Dialog.Close asChild>
+        <TouchButton
+          variants={{
+            inactive: { backgroundColor: color.neutral5, color: color.neutral30 },
+            active: { backgroundColor: color.neutral95, color: color.white },
+          }}
+          animate={canSubmit ? 'active' : 'inactive'}
+          disabled={canSubmit === false}
+          onClick={() => {
+            if (canSubmit) {
+              onSubmit({
+                title,
+                siteUrl,
+                season: selectedSeason,
+                recruitScheduleStage: currentRecruitStage,
+                deadline: selectedDate != null ? format(selectedDate, 'yyyy-MM-dd') : null,
+              });
+            }
+          }}
+          className="w-full flex justify-center items-center h-48 rounded-[6px]">
+          공고 추가하기
+        </TouchButton>
+      </Dialog.Close>
     </div>
   );
 }

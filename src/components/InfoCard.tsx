@@ -9,6 +9,7 @@ import {
 } from '@/system/components/DropdownMenu/DropdownMenu';
 import { color } from '@/system/token/color';
 import { InfoCardType, TagType } from '@/types/info';
+import { If } from '@/system/utils/If';
 
 type InfoCardProps = InfoCardType;
 
@@ -47,13 +48,15 @@ export function InfoCard({ title, updatedDate, cardTagList }: InfoCardProps) {
           </DropdownMenu>
         </div>
       </div>
-      <div className="flex gap-[8px]">
-        {cardTagList.map(({ id, type, name }) => (
-          <Tag key={id} color={TAG_TYPE_COLOR[type]}>
-            {name}
-          </Tag>
-        ))}
-      </div>
+      <If condition={cardTagList != null}>
+        <div className="flex gap-[8px]">
+          {cardTagList?.map(({ id, type, name }) => (
+            <Tag key={id} color={TAG_TYPE_COLOR[type]}>
+              {name}
+            </Tag>
+          ))}
+        </div>
+      </If>
     </div>
   );
 }

@@ -5517,6 +5517,7 @@ __metadata:
     tailwindcss: ^3.4.1
     tailwindcss-animate: ^1.0.7
     tippy.js: ^6.3.7
+    ts-pattern: ^5.3.1
     typescript: 5.1
     webpack: ^5.92.1
   languageName: unknown
@@ -13144,6 +13145,13 @@ __metadata:
   version: 0.1.13
   resolution: "ts-interface-checker@npm:0.1.13"
   checksum: 20c29189c2dd6067a8775e07823ddf8d59a33e2ffc47a1bd59a5cb28bb0121a2969a816d5e77eda2ed85b18171aa5d1c4005a6b88ae8499ec7cc49f78571cb5e
+  languageName: node
+  linkType: hard
+
+"ts-pattern@npm:^5.3.1":
+  version: 5.3.1
+  resolution: "ts-pattern@npm:5.3.1"
+  checksum: e9d59c9139a7861ce1db25f25ebd899456a6fade41a209b8755e7c615564eb5dfd84e086500bb9b4fb57326eb7fef61c4befa920b3137eaf5f314192ddc88ee1
   languageName: node
   linkType: hard
 
