@@ -1,19 +1,19 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { http } from '@/apis/http';
 
-export type GetCardDetailTags = Array<{
+export type GetCardDetailTagsResponse = Array<{
   id: number;
   name: string;
   type: string;
 }>;
 
-const getCardDetailTags = (cardId: number) =>
-  http.get<GetCardDetailTags>({
+const GetCardDetailTagsResponse = (cardId: number) =>
+  http.get<GetCardDetailTagsResponse>({
     url: `/cards/${cardId}/tags`,
   });
 
-export const useGetCardDetailTags = (cardId: number) =>
+export const useGetCardDetailTagsResponse = (cardId: number) =>
   useSuspenseQuery({
     queryKey: ['get-card-detail-tags'],
-    queryFn: () => getCardDetailTags(cardId),
+    queryFn: () => GetCardDetailTagsResponse(cardId),
   });

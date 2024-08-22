@@ -1,31 +1,26 @@
 import { useCallback, useState } from 'react';
-import { usePutCardContent } from '../api/usePutCardContent/usePutCardContent';
 import { usePutCardTitle } from '../api/usePutCardTitle/usePutCardTitle';
 import { usePostCardTag } from '../api/usePostCardTag/usePostCardTag';
 import { useDeleteCardTag } from '../api/useDeleteCardTag/useDeleteCardTag';
-import { tags, categories } from '@/app/(sidebar)/write/[id]/TagSelector/constants';
-import { useEditor } from '@/components/Editor/useEditor';
+import { useCardDetailTagsContext } from '../fetcher/CardTagFetcher';
+import { GetCardDetailTagsResponse } from '../api/useGetCardTags/useGetCardTags';
 
 export function useWrite(id: number) {
+  const { tags } = useCardDetailTagsContext();
   const [title, setTitle] = useState<string>('');
-  const [selectedTags, setSelectedTags] = useState<Array<(typeof tags)[number] & { id: number }>>([]);
-  const [selectedCategories, setSelectedCategories] = useState<Array<(typeof categories)[number] & { id: number }>>([]);
-  const { editor } = useEditor();
 
-  const { mutate: mutatePutCardContent } = usePutCardContent(id);
+  // FIXME: 분류/태그 구분
+  // 태그 중 역량 / 인성 태그 구분 필요
+  const [selectedTags, setSelectedTags] = useState<GetCardDetailTagsResponse>(tags);
+  const [selectedCategories, setSelectedCategories] = useState<GetCardDetailTagsResponse>(tags);
+
   const { mutate: mutatePutCardTitle } = usePutCardTitle(id);
   const { mutate: mutatePostCardTag } = usePostCardTag(id);
   const { mutate: mutateDeleteCardTag } = useDeleteCardTag(id);
 
-  const handleCardContent = useCallback(() => {
-    if (editor?.getJSON()) {
-      mutatePutCardContent(editor?.getJSON());
-    }
-  }, [editor?.getJSON()]);
-
   const handlePutCardTitle = useCallback((value: string) => {
     setTitle(value);
-    mutatePutCardTitle(title);
+    mutatePutCardTitle(value);
   }, []);
 
   const handlePostCardTag = useCallback(
@@ -65,7 +60,5 @@ export function useWrite(id: number) {
     title,
     selectedTags,
     selectedCategories,
-    editor,
-    handleCardContent,
   };
 }
