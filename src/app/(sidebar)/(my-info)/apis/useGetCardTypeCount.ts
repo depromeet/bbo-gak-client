@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { http } from '../../../../apis/http';
 
-type GetCardTypeCount = {
+type GetCardTypeCountResponse = {
   경험_정리: number;
   자기소개서: number;
   면접_질문: number;
 };
 
 const getCardTypeCount = () => {
-  return http.get<GetCardTypeCount>({ url: `/cards/type-count` });
+  return http.get<GetCardTypeCountResponse>({ url: `/cards/type-count` });
 };
 
 export const useGetCardTypeCount = () => {

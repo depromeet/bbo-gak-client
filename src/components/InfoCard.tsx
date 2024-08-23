@@ -12,20 +12,22 @@ import { color } from '@/system/token/color';
 
 type InfoCardProps = InfoCardType;
 
-export function InfoCard({ title, updatedDate, cardTagList }: InfoCardProps) {
+export function InfoCard({ title, updatedDate, tagList }: InfoCardProps) {
   const formattedDate = formatToYYMMDD(updatedDate, { separator: '.' });
 
   return (
-    <div className="flex flex-col justify-between h-[140px] p-[24px] rounded-[16px] bg-white border border-neutral-5 cursor-pointer hover:border-neutral-95 hover:shadow-[0px_4px_12px_0px_rgba(0,0,0,0.08)]">
+    <div className="flex flex-col justify-between h-[140px] p-[24px] rounded-[16px] bg-white border border-neutral-5 cursor-pointer transition-colors ease-in-out hover:border-neutral-95 hover:shadow-[0px_4px_12px_0px_rgba(0,0,0,0.08)]">
       <div className="flex">
         <div className="flex-1 overflow-hidden">
           <div className="mb-[9px] text-[12px] text-neutral-20">{formattedDate}</div>
-          <div className="w-auto truncate text-[16px] font-semibold">{title}</div>
+          <div className="w-auto truncate text-[16px] font-semibold">
+            {title || <div className="text-neutral-30">제목을 입력해주세요</div>}
+          </div>
         </div>
         <div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <button className="rounded-[4px] hover:bg-neutral-1" aria-label="more button">
+              <button className="rounded-full p-1 mt-[-2px] mr-[-10px] hover:bg-neutral-1" aria-label="more button">
                 <Icon name="more" color={color.neutral95} />
               </button>
             </DropdownMenuTrigger>
@@ -43,7 +45,7 @@ export function InfoCard({ title, updatedDate, cardTagList }: InfoCardProps) {
         </div>
       </div>
       <div className="flex gap-[8px]">
-        {cardTagList.map(({ id, type, name }) => (
+        {tagList.map(({ id, type, name }) => (
           <Tag key={id} color={TAG_TYPE_COLOR[type]}>
             {name}
           </Tag>

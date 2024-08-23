@@ -2,7 +2,7 @@ export interface InfoCardType {
   id: number;
   title: string;
   updatedDate: string;
-  cardTagList: TagType[];
+  tagList: TagType[];
 }
 
 export interface TagType {
