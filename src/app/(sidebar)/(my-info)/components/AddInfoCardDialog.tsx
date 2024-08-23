@@ -8,6 +8,7 @@ import { cn } from '@/utils/tailwind-util';
 import { Spacing } from '@/system/utils/Spacing';
 import { useGetCardTags } from '../apis/useGetCardTags';
 import { usePostCard } from '../apis/usePostCard';
+import { TouchButton } from '@/components/TouchButton';
 
 const mockTagList: TagType[] = [
   { id: 1, name: 'IT', type: '역량' },
@@ -160,12 +161,12 @@ export function AddInfoCardDialog({ children }: PropsWithChildren) {
             </TagSelector>
           </div>
           <DialogClose asChild>
-            <Button
+            <TouchButton
               className="rounded-6 bg-neutral-95 text-white py-13 disabled:bg-neutral-5 disabled:text-neutral-30"
               disabled={!selectedTagList.length || !selectedType}
               onClick={handleCreateCard}>
               선택 완료
-            </Button>
+            </TouchButton>
           </DialogClose>
         </div>
       </DialogContent>
