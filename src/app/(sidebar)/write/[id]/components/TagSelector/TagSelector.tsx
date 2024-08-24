@@ -1,11 +1,11 @@
-import { Button, ButtonProps } from '@/system/components';
-import type { StrictPropsWithChildren } from '@/types';
-import { UseTagSelectorProps, UseTagSelectorReturn, useTagSelector } from './useTagSelector';
 import { generateContext } from '@/lib';
-import { cn } from '@/utils';
+import { Button, ButtonProps } from '@/system/components';
 import { Remove } from '@/system/components/Icon/SVG/Remove';
-import { SVGProps } from 'react';
 import { If } from '@/system/utils/If';
+import type { StrictPropsWithChildren } from '@/types';
+import { cn } from '@/utils';
+import { SVGProps } from 'react';
+import { UseTagSelectorProps, UseTagSelectorReturn, useTagSelector } from './useTagSelector';
 
 const [TagSelectorProvider, useTagSelectorContext] = generateContext<
   Omit<UseTagSelectorReturn, 'Component' | 'getBaseProps'>
@@ -60,12 +60,21 @@ function Trigger({ children }: StrictPropsWithChildren) {
   );
 }
 
-function Content({ children }: StrictPropsWithChildren) {
+function Content({
+  children,
+  defaultOpen = false,
+  className,
+}: StrictPropsWithChildren<{ defaultOpen?: boolean; className?: string }>) {
   const { isOpen, getContentProps } = useTagSelectorContext();
 
   return (
-    <If condition={isOpen}>
-      <article {...getContentProps()}>{children}</article>
+    <If condition={isOpen || defaultOpen}>
+      <article
+        {...getContentProps()}
+        className={cn(getContentProps().className, className)} // 기존 클래스와 새로운 클래스 병합
+      >
+        {children}
+      </article>
     </If>
   );
 }

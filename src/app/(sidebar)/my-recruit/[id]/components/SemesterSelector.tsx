@@ -5,11 +5,12 @@ import { Key, useState } from 'react';
 import { SeasonType, useGetSeasons } from '../api/useGetSeason';
 import { usePatchSeason } from '../api/usePatchSeason';
 
-export default function SemesterSelector({ recruitId }: { recruitId: string }) {
+export default function SemesterSelector({ recruitId, season }: { recruitId: string; season: string }) {
   const { data: seasons } = useGetSeasons();
   const { mutate: patchSeason } = usePatchSeason();
 
-  const [clickSemester, setClickSemester] = useState<string>(seasons[0].name);
+  // const defaultSeason = seasons[0]?.name || '';
+  const [clickSemester, setClickSemester] = useState<string>(season);
 
   const handlePatchStatus = (status: string) => {
     setClickSemester(status);

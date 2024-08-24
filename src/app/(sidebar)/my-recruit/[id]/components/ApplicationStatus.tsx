@@ -6,8 +6,8 @@ import { cn } from '@/utils';
 import { useState } from 'react';
 import { usePatchStatus } from '../api/usePatchStatus';
 
-export function ApplicationStatus({ recruitId }: { recruitId: string }) {
-  const [clickStatus, setClickStatus] = useState<string>('서류 통과');
+export function ApplicationStatus({ recruitId, status }: { recruitId: string; status: string }) {
+  const [clickStatus, setClickStatus] = useState<string>(status);
 
   const { mutate: patchStatus } = usePatchStatus();
 
