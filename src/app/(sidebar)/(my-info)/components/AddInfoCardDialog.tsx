@@ -9,14 +9,11 @@ import { Spacing } from '@/system/utils/Spacing';
 import { useGetCardTags } from '../apis/useGetCardTags';
 import { usePostCard } from '../apis/usePostCard';
 import { TouchButton } from '@/components/TouchButton';
-
-const mockTagList: TagType[] = [
-  { id: 1, name: 'IT', type: '역량' },
-  { id: 2, name: 'UI/UX', type: '인성' },
-  { id: 3, name: '프로젝트 경험', type: '역량' },
-];
+import { useRouter } from 'next/navigation';
 
 export function AddInfoCardDialog({ children }: PropsWithChildren) {
+  const router = useRouter();
+
   const [selectedTagList, setSelectedTagList] = useState<TagType[]>([]);
   const [selectedType, setSelectedType] = useState<InfoType | null>(null);
 
@@ -24,18 +21,20 @@ export function AddInfoCardDialog({ children }: PropsWithChildren) {
   const [isOpenTypeSelector, setIsOpenTypeSelector] = useState(false);
 
   const { data: tagList } = useGetCardTags();
-  const { mutate: mutatePostCard } = usePostCard();
+  const { mutateAsync: mutatePostCard } = usePostCard();
 
   const abilityTagList = tagList?.filter((tag) => tag.type === '역량') ?? [];
   const personalityTagList = tagList?.filter((tag) => tag.type === '인성') ?? [];
 
-  const handleCreateCard = () => {
+  const handleCreateCard = async () => {
     if (!selectedType || !selectedTagList.length) return;
 
-    mutatePostCard({
+    const res = await mutatePostCard({
       cardType: selectedType,
       tagIdList: selectedTagList.map(({ id }) => id),
     });
+
+    router.push(`/write/${res.id}`);
   };
 
   return (
