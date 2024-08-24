@@ -8,6 +8,7 @@ import { AsyncBoundaryWithQuery } from '@/lib';
 import { SeasonDropdownContent } from '../components/SeasonDropdownContent';
 import { useState } from 'react';
 import { ALL_RECRUITMENT } from '../components/SeasonDropdownContent';
+import { CardSkeleton } from '@/app/(sidebar)/my-recruit/containers/components/CardSkeleton/CardSkeleton';
 
 export function AllRecruitment() {
   const [selectedSeason, setSelectedSeason] = useState(ALL_RECRUITMENT);
@@ -30,7 +31,19 @@ export function AllRecruitment() {
       </Dropdown>
       <Spacing size={24} />
 
-      <AsyncBoundaryWithQuery errorFallback={() => <></>} pendingFallback={<></>}>
+      <AsyncBoundaryWithQuery
+        errorFallback={
+          <>
+            <CardSkeleton variant="row" count={5} />
+            <Spacing size={88} />
+          </>
+        }
+        pendingFallback={
+          <>
+            <CardSkeleton variant="row" count={5} />
+            <Spacing size={88} />
+          </>
+        }>
         <AllRecruitList selectedSeason={selectedSeason} />
       </AsyncBoundaryWithQuery>
 

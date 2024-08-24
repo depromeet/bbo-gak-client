@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
 import { useRouter, usePathname } from 'next/navigation';
 import { MY_RECRUIT_PATH, MY_INFO_PATH } from '@/route';
+import { Logo } from '@/components/Logo';
+import { cn } from '@/utils';
 
 const SIDEBAR_CLASSNAME = {
   expanded: 'w-[220px]',
@@ -21,12 +23,12 @@ export function Sidebar() {
 
   return (
     <nav
-      className={`relative flex flex-col items-center px-[16px] py-[32px] h-screen bg-black ${SIDEBAR_CLASSNAME[expanded ? 'expanded' : 'shrinked']}`}>
+      className={`z-[10000] relative flex flex-col px-[16px] py-[32px] h-screen bg-black ${SIDEBAR_CLASSNAME[expanded ? 'expanded' : 'shrinked']}`}>
       <div className="relative mb-[32px]">
-        <div className="w-[40px] h-[40px]" />
+        <Logo />
         <button
           aria-label={expanded ? '사이드바 축소' : '사이드바 확장'}
-          className="absolute top-[50%] translate-y-[-50%] left-[72px]"
+          className={cn('absolute top-[50%] translate-y-[-50%]', expanded ? 'right-0' : 'right-[-62px]')}
           onClick={() => setExpanded(!expanded)}>
           <Icon name="division" color={expanded ? '#5A5C63' : '#AEB0B6'} />
         </button>
