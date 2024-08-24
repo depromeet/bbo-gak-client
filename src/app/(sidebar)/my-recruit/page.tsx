@@ -65,7 +65,6 @@ export default function MyRecruit() {
                     className="bg-white flex items-center gap-[4px] py-[8px] px-[12px] rounded-[6px] border-neutral-5 border-[1px]"
                     onClick={() => setSidebarOpened(!sidebarOpened)}>
                     <Icon name="copy" size={16} color={sidebarOpened ? color.neutral20 : color.neutral95} />
-
                     <span
                       className={
                         'text-label1 ' + cn('font-semibold', sidebarOpened ? 'text-neutral-20' : 'text-neutral-95')
