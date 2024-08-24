@@ -31,8 +31,7 @@ export const usePatchStatus = () => {
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['info-card-list'] });
-      queryClient.invalidateQueries({ queryKey: ['card-type-count'] });
+      queryClient.invalidateQueries({ queryKey: ['get-recruit-by-id'] });
     },
   });
 };
