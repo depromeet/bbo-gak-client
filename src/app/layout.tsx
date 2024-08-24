@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'bg-white')}>
+      <body className={cn(inter.className, 'bg-neutral-1')}>
         <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
