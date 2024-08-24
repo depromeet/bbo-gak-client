@@ -31,6 +31,7 @@ import { Setting } from './SVG/Setting';
 import { Trash } from './SVG/Trash';
 import { Unlink } from './SVG/Unlink';
 import { Up } from './SVG/Up';
+import { X } from './SVG/X';
 
 const iconMap = {
   bell: Bell,
@@ -53,6 +54,7 @@ const iconMap = {
   more: More,
   delete: Delete,
   pip: Pip,
+  x: X,
   remove: Remove,
   trash: Trash,
   up: Up,

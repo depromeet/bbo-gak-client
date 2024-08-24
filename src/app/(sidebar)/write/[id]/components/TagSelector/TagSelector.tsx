@@ -50,11 +50,11 @@ function RemovalbleTag({ children, className, color, onClick, ...props }: Strict
   );
 }
 
-function Trigger({ children }: StrictPropsWithChildren) {
+function Trigger({ children, className }: StrictPropsWithChildren<{ className?: string }>) {
   const { getTriggerProps } = useTagSelectorContext();
 
   return (
-    <Button type="button" {...getTriggerProps()}>
+    <Button type="button" {...getTriggerProps()} className={cn(getTriggerProps().className, className)}>
       {children}
     </Button>
   );
@@ -79,29 +79,39 @@ function Content({
   );
 }
 
-function Notice({ children }: StrictPropsWithChildren) {
-  const { disabled } = useTagSelectorContext();
-
-  return <p className={cn('text-[12px] font-medium text-neutral-40 pb-16', disabled && 'opacity-45')}>{children}</p>;
-}
-
-function TagList({ title, children }: StrictPropsWithChildren<{ title: string }>) {
+function Notice({ children, className }: StrictPropsWithChildren<{ className?: string }>) {
   const { disabled } = useTagSelectorContext();
 
   return (
-    <div className={cn('flex flex-col gap-8', disabled && 'opacity-45')}>
-      <p className="text-12 font-medium text-neutral-75">{title}</p>
+    <p className={cn('text-[12px] font-medium text-neutral-40 pb-16', disabled && 'opacity-45', className)}>
+      {children}
+    </p>
+  );
+}
+
+function TagList({ title, children, className }: StrictPropsWithChildren<{ title?: string; className?: string }>) {
+  const { disabled } = useTagSelectorContext();
+
+  return (
+    <div className={cn('flex flex-col gap-8', disabled && 'opacity-45', className)}>
+      {title && <p className="text-12 font-medium text-neutral-75">{title}</p>}
       <ul className="w-full flex flex-wrap gap-6">{children}</ul>
     </div>
   );
 }
 
-function TagSelector({ children, ...props }: StrictPropsWithChildren<UseTagSelectorProps>) {
+function TagSelector({
+  children,
+  className,
+  ...props
+}: StrictPropsWithChildren<UseTagSelectorProps & { className?: string }>) {
   const { Component, getBaseProps, ...restProps } = useTagSelector(props);
 
   return (
     <TagSelectorProvider {...restProps}>
-      <Component {...getBaseProps()}>{children}</Component>
+      <Component {...getBaseProps()} className={cn(getBaseProps().className, className)}>
+        {children}
+      </Component>
     </TagSelectorProvider>
   );
 }

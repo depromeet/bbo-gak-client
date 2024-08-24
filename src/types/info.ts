@@ -1,12 +1,21 @@
+export interface InfoCardType {
+  id: number;
+  title: string;
+  updatedDate: string;
+  tagList: TagType[];
+}
+
 export interface TagType {
   id: number;
   name: string;
   type: '인성' | '역량';
 }
 
-export interface InfoCardType {
-  id: number;
-  title: string;
-  updatedDate: string;
-  cardTagList: TagType[];
-}
+export const INFO_TYPES = ['경험_정리', '자기소개서', '면접_질문'] as const;
+
+export type InfoType = (typeof INFO_TYPES)[number];
+
+export const TAG_TYPE_COLOR = {
+  역량: 'blue',
+  인성: 'purple',
+} as const;
