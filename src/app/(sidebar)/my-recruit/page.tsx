@@ -43,8 +43,8 @@ export default function MyRecruit() {
         <div className="flex max-h-[100vh] overflow-auto">
           <div className="flex-1 max-w-[1700px] mx-auto">
             <div className="sticky top-0 px-[80px] z-[100]">
-              <Spacing size={64} className="bg-white" />
-              <div className="flex justify-between bg-white">
+              <Spacing size={64} className="bg-neutral-1" />
+              <div className="flex justify-between bg-neutral-1">
                 <h1 className="text-title2 font-bold">내 공고</h1>
                 <div className="flex gap-[16px]">
                   <TouchButton
@@ -69,7 +69,7 @@ export default function MyRecruit() {
                   </Dialog.Trigger>
                 </div>
               </div>
-              <Spacing size={34} className="bg-white" />
+              <Spacing size={34} className="bg-neutral-1" />
             </div>
             <div className="px-[80px]">
               <Spacing size={20} />
