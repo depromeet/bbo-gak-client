@@ -4,6 +4,7 @@ import { Calendar } from '@/system/components/Calendar/Calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
 import { color } from '@/system/token/color';
 import { Spacing } from '@/system/utils/Spacing';
+import { cn } from '@/utils';
 import clsx from 'clsx';
 import { format } from 'date-fns/format';
 import { motion } from 'framer-motion';
@@ -11,8 +12,6 @@ import { useState } from 'react';
 import { recruitScheduleStageList } from '../../constant';
 
 interface DueDateDialogProps {
-  title: string;
-  onDuedateAppend: () => void;
   title?: string;
   onDuedateAppend: () => void;
 }
@@ -34,10 +33,8 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
   return (
     <div className="p-20">
       <div className="flex items-center w-314">
-        <Icon name="folderFill" size={16} color={color.neutral95} />
+        {title && <Icon name="folderFill" size={16} color={color.neutral95} />}
         <Spacing size={4} direction="row" />
-        <span className="text-body1 font-semibold overflow-hidden text-ellipsis line-clamp-1">{title}</span>
-        <span className="text-body1">의 공고 일정 등록하기</span>
         <span
           className={cn('text-body1 font-semibold overflow-hidden text-ellipsis line-clamp-1', title ? 'flex-1' : '')}>
           {title ? `${title}의 공고 일정 등록하기` : '공고 일정 등록하기'}
