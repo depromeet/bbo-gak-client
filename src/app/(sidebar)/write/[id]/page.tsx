@@ -32,13 +32,15 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
     personalityTags,
     abilityTags,
     categoryTags,
+    content,
+    updatedDate,
   } = useWrite(Number(id));
 
   return (
     <section className="h-full">
       <section className="flex">
         <div className="pt-64 w-full">
-          <EditorProvider cardId={Number(id)}>
+          <EditorProvider cardId={Number(id)} initialContent={content}>
             <div className="flex justify-between px-80">
               <Input
                 value={title}
@@ -48,7 +50,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                 className="text-[24px] font-bold px-0 leading-32 tracking-[-0.0345rem] border-none"
               />
               <div className="flex gap-8 items-center text-neutral-20">
-                <p>00.00.00</p>
+                <p>{updatedDate}</p>
 
                 <DropdownMenu>
                   <DropdownMenuTrigger>
