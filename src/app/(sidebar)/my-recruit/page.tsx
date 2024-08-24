@@ -1,25 +1,24 @@
 'use client';
 
-import { Icon } from '@/system/components';
-import { TouchButton } from '@/components/TouchButton';
-import { Spacing } from '@/system/utils/Spacing';
-import { ProgressingRecruitment } from './containers/ProgressingRecruitment/ProgressingRecruitment';
-import { AllRecruitment } from './containers/AllRecruitment/AllRecruitment';
-import { useRef, useState } from 'react';
-import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
-import { NewRecruitDialogContent } from './components/NewRecruitDialogContent/NewRecruitDialogContent';
-import { RightSidebar } from './containers/RightSidebar/RightSidebar';
-import { DndContextWithOverlay, DragEndEvent } from '@/lib/dnd-kit/dnd-kit';
 import { InfoCard } from '@/components/InfoCard';
-import { AnimatePresence, motion } from 'framer-motion';
-import { usePostRecruit } from './api/usePostRecruit';
-import { CardData } from './components/NewRecruitDialogContent/NewRecruitDialogContent';
-import { cn } from '@/utils';
-import { color } from '@/system/token/color';
-import { usePostCardToRecruit } from './api/usePostCardToRecruit';
+import { TouchButton } from '@/components/TouchButton';
 import { useScroll } from '@/hooks/useScroll';
-import { If } from '@/system/utils/If';
+import { DndContextWithOverlay, DragEndEvent } from '@/lib/dnd-kit/dnd-kit';
+import { Icon } from '@/system/components';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import { color } from '@/system/token/color';
 import { fontSize } from '@/system/token/typography';
+import { If } from '@/system/utils/If';
+import { Spacing } from '@/system/utils/Spacing';
+import { cn } from '@/utils';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { usePostCardToRecruit } from './api/usePostCardToRecruit';
+import { usePostRecruit } from './api/usePostRecruit';
+import { CardData, NewRecruitDialogContent } from './components/NewRecruitDialogContent/NewRecruitDialogContent';
+import { AllRecruitment } from './containers/AllRecruitment/AllRecruitment';
+import { ProgressingRecruitment } from './containers/ProgressingRecruitment/ProgressingRecruitment';
+import { RightSidebar } from './containers/RightSidebar/RightSidebar';
 
 const STICKY_THRESHOLD = 30;
 

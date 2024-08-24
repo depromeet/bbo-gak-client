@@ -1,14 +1,13 @@
 'use client';
 
-import { Dropdown, Icon } from '@/system/components';
-import { RocketIcon } from '../components/RocketIcon';
-import { Spacing } from '@/system/utils/Spacing';
 import { AllRecruitList } from '@/app/(sidebar)/my-recruit/containers/AllRecruitment/AllRecruitList';
-import { AsyncBoundaryWithQuery } from '@/lib';
-import { SeasonDropdownContent } from '../components/SeasonDropdownContent';
-import { useState } from 'react';
-import { ALL_RECRUITMENT } from '../components/SeasonDropdownContent';
 import { CardSkeleton } from '@/app/(sidebar)/my-recruit/containers/components/CardSkeleton/CardSkeleton';
+import { AsyncBoundaryWithQuery } from '@/lib';
+import { Dropdown } from '@/system/components';
+import { Spacing } from '@/system/utils/Spacing';
+import { useState } from 'react';
+import { RocketIcon } from '../components/RocketIcon';
+import { ALL_RECRUITMENT, SeasonDropdownContent } from '../components/SeasonDropdownContent';
 
 export function AllRecruitment() {
   const [selectedSeason, setSelectedSeason] = useState(ALL_RECRUITMENT);
