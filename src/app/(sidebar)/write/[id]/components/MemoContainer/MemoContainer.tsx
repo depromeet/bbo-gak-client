@@ -22,7 +22,7 @@ export default function MemoContainer() {
         <p className="text-18 font-semibold">메모</p>
       </div>
 
-      <div className="w-full h-[calc(100vh-294px)] px-16 flex flex-col gap-16 overflow-y-scroll">
+      <div className="w-full h-[calc(100vh-294px)] px-16 flex flex-col gap-16 overflow-y-scroll overflow-x-hidden">
         {memos.map((memo) => (
           <Memo key={memo.id} {...memo} />
         ))}
