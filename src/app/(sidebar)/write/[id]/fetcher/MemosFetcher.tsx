@@ -1,16 +1,21 @@
 import { generateContext } from '@/lib';
-import { GetMemosResponse, useGetMemos } from '../api/useGetMemos';
 import { StrictPropsWithChildren } from '@/types';
+import { GetMemosResponse, useGetMemos } from '../api/useGetMemos';
 
-const [MemosProvider, useMemosContext] = generateContext<{ memos: GetMemosResponse; cardId: string }>({
+const [MemosProvider, useMemosContext] = generateContext<{
+  memos: GetMemosResponse;
+  cardId: number;
+  refetch: () => void;
+}>({
   name: 'memos-provider',
+  defaultValue: { memos: [], cardId: 0, refetch: () => {} },
 });
 
 function MemosFetcher({ cardId, children }: StrictPropsWithChildren<{ cardId: string }>) {
-  const { data } = useGetMemos(cardId);
+  const { data, refetch } = useGetMemos(cardId);
 
   return (
-    <MemosProvider memos={data} cardId={cardId}>
+    <MemosProvider memos={data} cardId={Number(cardId)} refetch={refetch}>
       {children}
     </MemosProvider>
   );

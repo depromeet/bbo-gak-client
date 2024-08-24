@@ -14,6 +14,7 @@ import { ProfileFill } from './SVG/ProfileFill';
 import type { IconBaseType } from '@/system/components/Icon/SVG/type';
 import { Delete } from './SVG/Delete';
 import { Pip } from './SVG/Pip';
+import { X } from './SVG/X';
 import { Remove } from './SVG/Remove';
 import Copy from './SVG/Copy';
 import { Up } from './SVG/Up';
@@ -52,6 +53,7 @@ const iconMap = {
   more: More,
   delete: Delete,
   pip: Pip,
+  x: X,
   remove: Remove,
   trash: Trash,
   up: Up,

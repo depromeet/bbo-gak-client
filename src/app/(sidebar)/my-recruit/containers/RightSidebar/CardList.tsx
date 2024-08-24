@@ -13,8 +13,8 @@ export function CardList({ type }: CardListProps) {
     <ul className="flex flex-col items-center gap-[8px] overflow-auto">
       {cardList.map(({ tagList, ...info }) => (
         <li key={info.id} className="w-full">
-          <Draggable id={info.id} dataForOverlay={{ ...info, cardTagList: tagList }}>
-            <InfoCard key={info.id} cardTagList={tagList} {...info} />
+          <Draggable id={info.id} dataForOverlay={{ ...info, tagList }}>
+            <InfoCard key={info.id} tagList={tagList} {...info} />
           </Draggable>
         </li>
       ))}
