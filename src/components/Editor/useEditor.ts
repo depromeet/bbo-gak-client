@@ -1,7 +1,10 @@
-import { useEditor as useTiptapEditor } from '@tiptap/react';
+import { JSONContent, useEditor as useTiptapEditor } from '@tiptap/react';
 import { ExtensionKit } from './extensionKit';
+import { useEffect, useState } from 'react';
 
-export function useEditor() {
+export function useEditor({ readOnly }: { readOnly?: boolean }) {
+  const [content, setContent] = useState<JSONContent>({});
+
   const editor = useTiptapEditor({
     autofocus: true,
     extensions: [...ExtensionKit()],
@@ -17,7 +20,17 @@ export function useEditor() {
       <p>뽀각에 오신 여러분을 환영해요 !</p>
     `,
     immediatelyRender: false,
+    onUpdate: () => {
+      const json = editor ? editor.getJSON() : {};
+      setContent(json);
+    },
   });
 
-  return { editor };
+  useEffect(() => {
+    if (editor && content && !readOnly) {
+      editor.commands.setContent(content, false, { preserveWhitespace: 'full' });
+    }
+  }, [editor, content]);
+
+  return { editor, content };
 }
