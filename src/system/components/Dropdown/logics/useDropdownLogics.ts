@@ -10,6 +10,8 @@ export function useDropdownLogics({ onOpenChange }: Props): DropdownLogics {
   return {
     content: {},
     separator: {},
+    trigger: {},
+    'trigger-background': {},
     'trigger-arrow': {},
     'checkbox-item': {
       onClick: () => onOpenChange(false),

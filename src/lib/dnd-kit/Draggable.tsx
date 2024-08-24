@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { useDraggable } from '@dnd-kit/core';
+import { motion } from 'framer-motion';
 
 interface DraggableProps {
   id: string | number;
@@ -13,8 +14,8 @@ export function Draggable({ id, children, dataForOverlay }: PropsWithChildren<Dr
   });
 
   return (
-    <div ref={setNodeRef} {...listeners} {...attributes} style={{ opacity: isDragging ? 0.5 : 1 }}>
+    <motion.div animate={{ opacity: isDragging ? 0.5 : 1 }} ref={setNodeRef} {...listeners} {...attributes}>
       {children}
-    </div>
+    </motion.div>
   );
 }

@@ -4,19 +4,18 @@ import { usePostCardTag } from '../api/usePostCardTag/usePostCardTag';
 import { useDeleteCardTag } from '../api/useDeleteCardTag/useDeleteCardTag';
 import { useCardDetailTagsContext } from '../fetcher/CardTagFetcher';
 import { GetCardDetailResponse } from '@/app/(sidebar)/write/[id]/api/useGetCardDetail/useGetCardDetail';
+import { useTagsContext } from '../fetcher/TagsFetcher';
 
 export function useWrite(id: number) {
   const { title: prevTitle, updatedDate, tagList, content } = useCardDetailTagsContext();
+  const { tags } = useTagsContext();
 
-  const personalityTags = useMemo(() => tagList.filter((tag) => tag.type === '인성'), [id]);
-  const abilityTags = useMemo(() => tagList.filter((tag) => tag.type === '역량'), [id]);
-  const categoryTags = useMemo(() => tagList.filter((tag) => tag.type === '분류'), [id]);
+  const personalityTags = useMemo(() => tags.filter((tag) => tag.type === '인성'), [id]);
+  const abilityTags = useMemo(() => tags.filter((tag) => tag.type === '역량'), [id]);
+  const categoryTags = useMemo(() => tags.filter((tag) => tag.type === '분류'), [id]);
 
   const [title, setTitle] = useState<string>(prevTitle || '');
-  const [selectedTags, setSelectedTags] = useState<GetCardDetailResponse['tagList']>([
-    ...personalityTags,
-    ...abilityTags,
-  ]);
+  const [selectedTags, setSelectedTags] = useState<GetCardDetailResponse['tagList']>(tagList);
   const [selectedCategories, setSelectedCategories] = useState<GetCardDetailResponse['tagList']>(categoryTags);
 
   const { mutate: mutatePutCardTitle } = usePutCardTitle(id);

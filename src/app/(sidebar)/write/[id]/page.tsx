@@ -15,6 +15,7 @@ import {
 } from '@/system/components/DropdownMenu/DropdownMenu';
 import { Icon } from '@/system/components';
 import MemoContainer from './components/MemoContainer/MemoContainer';
+import { MemosFetcher } from '@/app/(sidebar)/write/[id]/fetcher/MemosFetcher';
 
 const EditorProvider = dynamic(
   () => import('@/components/Editor/EditorProvider/EditorProvider').then(({ EditorProvider }) => EditorProvider),
@@ -191,7 +192,9 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
 
         <Spacing direction="column" size={20} />
 
-        <MemoContainer />
+        <MemosFetcher cardId={id}>
+          <MemoContainer />
+        </MemosFetcher>
       </section>
     </section>
   );
