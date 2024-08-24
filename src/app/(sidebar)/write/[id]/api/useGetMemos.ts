@@ -4,7 +4,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 export type GetMemosResponse = Array<{
   id: number;
   content: string;
-  updatedAt: string;
+  updatedDate: string;
 }>;
 
 const getMemos = (cardId: string) =>
