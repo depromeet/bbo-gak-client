@@ -4,9 +4,17 @@ import { color } from '@/system/token/color';
 import { SwitchCase } from '@/system/utils/SwitchCase';
 import { cn } from '@/utils';
 import { useState } from 'react';
+import { usePatchStatus } from '../api/usePatchStatus';
 
-export function ApplicationStatus() {
+export function ApplicationStatus({ recruitId }: { recruitId: string }) {
   const [clickStatus, setClickStatus] = useState<string>('서류 통과');
+
+  const { mutate: patchStatus } = usePatchStatus();
+
+  const handlePatchStatus = (status: string) => {
+    setClickStatus(status);
+    patchStatus({ newStatus: status, id: recruitId });
+  };
 
   return (
     <Dropdown>
@@ -16,7 +24,7 @@ export function ApplicationStatus() {
           <Dropdown.TriggerArrow />
         </div>
       </Dropdown.Trigger>
-      <Dropdown.Content align="start">
+      <Dropdown.Content className=" bg-white" align="start">
         {statusList.map((item, index) => (
           <SwitchCase
             key={index}
@@ -25,9 +33,7 @@ export function ApplicationStatus() {
               text:
                 item.variant === 'text' ? (
                   <Dropdown.CheckedItem
-                    onClick={() => {
-                      setClickStatus(item.text);
-                    }}
+                    onClick={() => handlePatchStatus(item.text)}
                     //NOTE text-neutral-50 컬러 안먹힘 확인필요
                     className={cn(clickStatus === item.text ? 'text-[#AEB0B8] flex justify-between' : '')}>
                     {item.text}

@@ -2,12 +2,16 @@ import { Icon } from '@/system/components';
 import { color } from '@/system/token/color';
 import clsx from 'clsx';
 import { useState } from 'react';
+import { usePatchSiteUrl } from '../api/usePatchSiteUrl';
 
-export default function TextBubble({ linkedOn }: { linkedOn: () => void }) {
+export default function TextBubble({ linkedOn, recruitId }: { linkedOn: () => void; recruitId: string }) {
   const [link, setLink] = useState<string>('');
+
+  const { mutate: newLink } = usePatchSiteUrl();
 
   const handleLinkConfirm = () => {
     if (link) {
+      newLink({ newSiteUrl: link, id: recruitId });
       linkedOn();
     }
   };
