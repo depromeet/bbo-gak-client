@@ -129,7 +129,7 @@ const config: Config = {
         yellow: {
           '1': '#D77B0F',
           bg: {
-            '1': '#FFF0B5',
+            '1': '#FFF3C2',
           },
         },
       },

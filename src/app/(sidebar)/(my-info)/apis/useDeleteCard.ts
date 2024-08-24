@@ -5,7 +5,7 @@ import { GET_CARD_TYPE_COUNT } from './useGetCardTypeCount';
 
 const deleteCard = (cardId: number) => {
   return http.delete({
-    url: `/card/${cardId}`,
+    url: `/cards/${cardId}`,
   });
 };
 

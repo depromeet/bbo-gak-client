@@ -5,7 +5,7 @@ import { GET_INFO_CARD_LIST } from './useGetInfoCardList';
 import { GET_CARD_TYPE_COUNT } from './useGetCardTypeCount';
 
 interface PostCardResponse {
-  id: number;
+  cardId: number;
 }
 
 const postCard = (cardType: InfoType, tagIdList: number[]) => {

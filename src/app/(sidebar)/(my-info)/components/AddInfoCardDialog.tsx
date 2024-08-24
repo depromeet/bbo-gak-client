@@ -34,7 +34,7 @@ export function AddInfoCardDialog({ children }: PropsWithChildren) {
       tagIdList: selectedTagList.map(({ id }) => id),
     });
 
-    router.push(`/write/${res.id}`);
+    router.push(`/write/${res.cardId}`);
   };
 
   return (
