@@ -7,8 +7,6 @@ import { Collapsible } from './Collapsible/Collapsible';
 import { useRouter, usePathname } from 'next/navigation';
 import { MY_RECRUIT_PATH, MY_INFO_PATH } from '@/route';
 
-// FIXME:
-const SELECTED = true;
 const SIDEBAR_CLASSNAME = {
   expanded: 'w-[220px]',
   shrinked: 'w-[72px]',
