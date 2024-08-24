@@ -1,15 +1,16 @@
-import { Spacing } from '@/system/utils/Spacing';
 import { Button, Icon } from '@/system/components';
-import { color } from '@/system/token/color';
-import clsx from 'clsx';
-import { motion } from 'framer-motion';
-import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
 import { Calendar } from '@/system/components/Calendar/Calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
+import { color } from '@/system/token/color';
+import { Spacing } from '@/system/utils/Spacing';
+import { cn } from '@/utils';
+import clsx from 'clsx';
 import { format } from 'date-fns/format';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 
 interface DueDateDialogProps {
-  title: string;
+  title?: string;
 }
 
 export function DueDateDialog({ title }: DueDateDialogProps) {
@@ -18,12 +19,14 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
   const isDateSelected = selectedDate != null;
 
   return (
-    <div className="p-20">
+    <div className="p-20 z-10">
       <div className="flex items-center w-314">
-        <Icon name="folderFill" size={16} color={color.neutral95} />
+        {title && <Icon name="folderFill" size={16} color={color.neutral95} />}
         <Spacing size={4} direction="row" />
-        <span className="text-body1 font-semibold flex-1 overflow-hidden text-ellipsis line-clamp-1">{title}</span>
-        <span className="text-body1">의 공고 일정 등록하기</span>
+        <span
+          className={cn('text-body1 font-semibold overflow-hidden text-ellipsis line-clamp-1', title ? 'flex-1' : '')}>
+          {title ? `${title}의 공고 일정 등록하기` : '공고 일정 등록하기'}
+        </span>
       </div>
       <Spacing size={4} />
       <span className="text-caption1 text-neutral-35">일정을 등록하면 잊지 않도록 알려드릴게요!</span>
