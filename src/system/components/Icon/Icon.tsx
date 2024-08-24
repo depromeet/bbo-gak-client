@@ -23,7 +23,7 @@ import { More } from './SVG/More';
 import { Pip } from './SVG/Pip';
 import { Profile } from './SVG/Profile';
 import { ProfileFill } from './SVG/ProfileFill';
-import Refresh from './SVG/Refresh';
+import { Refresh } from './SVG/Refresh';
 import { Remove } from './SVG/Remove';
 import { RightChevron } from './SVG/RightChevron';
 import { Search } from './SVG/Search';

@@ -80,6 +80,7 @@ function Content({
 }
 
 function Notice({ children, className }: StrictPropsWithChildren<{ className?: string }>) {
+function Notice({ children, className }: StrictPropsWithChildren<{ className?: string }>) {
   const { disabled } = useTagSelectorContext();
 
   return (
@@ -90,6 +91,7 @@ function Notice({ children, className }: StrictPropsWithChildren<{ className?: s
 }
 
 function TagList({ title, children, className }: StrictPropsWithChildren<{ title?: string; className?: string }>) {
+function TagList({ title, children, className }: StrictPropsWithChildren<{ title?: string; className?: string }>) {
   const { disabled } = useTagSelectorContext();
 
   return (
@@ -99,7 +101,6 @@ function TagList({ title, children, className }: StrictPropsWithChildren<{ title
     </div>
   );
 }
-
 function TagSelector({
   children,
   className,
@@ -109,6 +110,9 @@ function TagSelector({
 
   return (
     <TagSelectorProvider {...restProps}>
+      <Component {...getBaseProps()} className={cn(getBaseProps().className, className)}>
+        {children}
+      </Component>
       <Component {...getBaseProps()} className={cn(getBaseProps().className, className)}>
         {children}
       </Component>
