@@ -1,6 +1,6 @@
 import { IconBaseType } from './type';
 
-export default function Rocket({ size, color }: IconBaseType) {
+export function Rocket({ size, color }: IconBaseType) {
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M11.5 24V16.5L16.5 14V20.5L11.5 24Z" fill="#186D50" />

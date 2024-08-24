@@ -69,7 +69,10 @@ function Content({
 
   return (
     <If condition={isOpen || defaultOpen}>
-      <article {...getContentProps()} className={cn(getContentProps().className, className)}>
+      <article
+        {...getContentProps()}
+        className={cn(getContentProps().className, className)} // 기존 클래스와 새로운 클래스 병합
+      >
         {children}
       </article>
     </If>
@@ -96,6 +99,7 @@ function TagList({ title, children, className }: StrictPropsWithChildren<{ title
     </div>
   );
 }
+
 function TagSelector({
   children,
   className,

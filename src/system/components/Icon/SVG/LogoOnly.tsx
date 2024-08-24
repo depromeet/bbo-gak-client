@@ -1,6 +1,6 @@
 import { IconBaseType } from './type';
 
-export default function LogoOnly({ size, color }: IconBaseType) {
+export function LogoOnly({ size, color }: IconBaseType) {
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M9.61348 31.8391L12.8281 25.9752L6.07758 27.5573L9.61348 31.8391Z" fill="#20E79D" />
