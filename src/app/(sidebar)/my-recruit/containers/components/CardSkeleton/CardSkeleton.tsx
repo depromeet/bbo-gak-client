@@ -13,7 +13,7 @@ export function CardSkeleton({ variant, count }: Props) {
     .exhaustive();
 
   const itemClassName = match(variant)
-    .with('box', () => 'w-[280px] h-[142px] bg-neutral-3 rounded-t-[10px]')
+    .with('box', () => 'w-[280px] h-[142px] bg-neutral-3 rounded-[10px]')
     .with('row', () => 'w-full h-[70px] bg-neutral-3 rounded-[10px]')
     .exhaustive();
 
