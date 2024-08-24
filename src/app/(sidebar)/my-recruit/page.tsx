@@ -99,8 +99,6 @@ export default function MyRecruit() {
               <Spacing size={20} />
               <ProgressingRecruitment />
               <AllRecruitment />
-              {/* FIXME: */}
-              <div style={{ height: '200vh' }} />
             </div>
           </div>
 
