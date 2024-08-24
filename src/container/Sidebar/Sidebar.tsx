@@ -9,8 +9,6 @@ import { MY_RECRUIT_PATH, MY_INFO_PATH } from '@/route';
 import { Logo } from '@/components/Logo';
 import { cn } from '@/utils';
 
-// FIXME:
-const SELECTED = true;
 const SIDEBAR_CLASSNAME = {
   expanded: 'w-[220px]',
   shrinked: 'w-[72px]',
@@ -40,9 +38,7 @@ export function Sidebar() {
         <SidebarButton iconName="search" selected={false} expanded={expanded} expandedText="태그 검색" />
         <SidebarButton iconName="bell" selected={false} expanded={expanded} expandedText="알림" />
         {/* <SidebarButton iconName="memo" selected={false} expanded={expanded} expandedText="메모 모아보기" /> */}
-
         <div className="w-full px-[16px] h-[1px] bg-[#37383C]" />
-
         <Collapsible collapsed={expanded ? myInfoCollapsed : true} onCollapsedChange={setMyInfoCollapsed}>
           <SidebarButton
             iconName={pathname === MY_INFO_PATH ? 'profileFill' : 'profile'}
