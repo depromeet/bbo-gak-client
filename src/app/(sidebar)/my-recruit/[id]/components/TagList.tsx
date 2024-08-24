@@ -13,7 +13,7 @@ interface TagListProps {
 
 export default function TagList({ tagsData }: TagListProps) {
   const tagContainerRef = useRef<HTMLDivElement>(null);
-  const [tags, setTags] = useState<TagType[]>(tagsData);
+  const [tags, setTags] = useState<TagType[]>(tagsData || []);
   const [isOverflowing, setIsOverflowing] = useState<boolean>(true);
   const [selectedTags, setSelectedTags] = useState<number[]>([]);
   const [viewAllTags, setViewAllTags] = useState<boolean>(false);

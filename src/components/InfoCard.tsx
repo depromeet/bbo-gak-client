@@ -1,15 +1,15 @@
-import { formatToYYMMDD } from '@/utils/date';
+import { useDeleteCard } from '@/app/(sidebar)/(my-info)/apis/useDeleteCard';
 import { Icon } from '@/system/components';
-import { Tag } from '@/system/components/index';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/system/components/DropdownMenu/DropdownMenu';
-import { InfoCardType, TAG_TYPE_COLOR } from '@/types/info';
+import { Tag } from '@/system/components/index';
 import { color } from '@/system/token/color';
-import { useDeleteCard } from '@/app/(sidebar)/(my-info)/apis/useDeleteCard';
+import { InfoCardType, TAG_TYPE_COLOR } from '@/types/info';
+import { formatToYYMMDD } from '@/utils/date';
 import Link from 'next/link';
 import { MouseEventHandler } from 'react';
 
@@ -55,11 +55,12 @@ export function InfoCard({ id, title, updatedDate, tagList }: InfoCardProps) {
           </div>
         </div>
         <div className="flex gap-[8px]">
-          {tagList.map(({ id, type, name }) => (
-            <Tag key={id} color={TAG_TYPE_COLOR[type]}>
-              {name}
-            </Tag>
-          ))}
+          {tagList &&
+            tagList.map(({ id, type, name }) => (
+              <Tag key={id} color={TAG_TYPE_COLOR[type]}>
+                {name}
+              </Tag>
+            ))}
         </div>
       </div>
     </Link>

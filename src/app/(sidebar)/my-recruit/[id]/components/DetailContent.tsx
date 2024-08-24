@@ -12,10 +12,10 @@ import { useGetCardCount } from '../api/useGetCardCount';
 import { mockInfoList } from '../mocks';
 import TagList from './TagList';
 
-const INFO_OPTIONS = ['서류_준비', '과제_준비', '인터뷰_준비'] as const;
+const PROGRESS_OPTIONS = ['서류_준비', '과제_준비', '인터뷰_준비'] as const;
 
 export function DetailContent({ recruitId }: { recruitId: string }) {
-  const [currentOption, setCurrentOption] = useState<(typeof INFO_OPTIONS)[number]>('서류_준비');
+  const [currentOption, setCurrentOption] = useState<(typeof PROGRESS_OPTIONS)[number]>('서류_준비');
 
   const infoList = mockInfoList;
 
@@ -26,7 +26,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
     <section className="mt-60">
       <div className="flex justify-between mb-[28px]">
         <div className="flex gap-[24px]">
-          {INFO_OPTIONS.map((option) => {
+          {PROGRESS_OPTIONS.map((option) => {
             const isActive = currentOption === option;
 
             return (
@@ -56,7 +56,8 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
           <div className="text-white text-[14px] font-semibold">카드 추가</div>
         </Link>
       </div>
-      <TagList tagsData={tagsData} />
+
+      <TagList tagsData={tagsData || []} />
 
       <div className="overflow-y-auto h-[calc(100vh-350px)]">
         {infoList && infoList.length > 0 ? (
