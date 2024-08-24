@@ -13,7 +13,7 @@ import { useDeleteRecruit } from '../../api/useDeleteRecruit';
 import { useResizeObserver } from '@/hooks/useResizeObserver';
 import { AnimateHeight } from '@/system/utils/AnimateHeight';
 
-const 최초_노출_카드_갯수 = 4;
+const 최초_노출_카드_갯수 = 0;
 const CARD_GAP = 16;
 
 export function ProgressingRecruitList() {
@@ -56,6 +56,7 @@ export function ProgressingRecruitList() {
                     <BoxCard
                       key={`${cardInfo.season}-${cardInfo.title}`}
                       {...cardInfo}
+                      onDuedateAppend={() => {}}
                       onRecruitDelete={deleteRecruit}
                       onRecruitStatusChange={(id, status) => {
                         patchRecruitStatus({ id, recruitStatus: status });

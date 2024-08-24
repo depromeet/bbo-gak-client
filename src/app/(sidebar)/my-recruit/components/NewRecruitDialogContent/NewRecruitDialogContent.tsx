@@ -13,7 +13,6 @@ import { Calendar } from '@/system/components/Calendar/Calendar';
 import { format } from 'date-fns/format';
 import { useGetSeasons } from '../../api/useGetSeasons';
 import { recruitStatusList } from '../../constant';
-import { SwitchCase } from '@/system/utils/SwitchCase';
 import { recruitScheduleStageList } from '@/app/(sidebar)/my-recruit/constant';
 
 export interface CardData {
@@ -96,7 +95,7 @@ export function NewRecruitDialogContent({ onSubmit }: NewRecruitDialogContentPro
           <Dropdown.Trigger>
             <div className="flex items-center gap-[4px] px-8 py-4">
               <span className="text-label1 text-neutral-95">{currentRecruitStage}</span>
-              <Icon name="down" color="#d9d9d9" />
+              <Dropdown.TriggerArrow />
             </div>
           </Dropdown.Trigger>
           <Dropdown.Content>

@@ -11,6 +11,7 @@ import { RecruitCard } from '@/app/(sidebar)/my-recruit/type';
 interface BoxCardProps extends RecruitCard {
   onRecruitDelete: (id: number) => void;
   onRecruitStatusChange: (id: number, status: string) => void;
+  onDuedateAppend: () => void;
 }
 
 export const MIN_CARD_WIDTH = 250;
@@ -21,6 +22,7 @@ export function BoxCard({
   recruitStatus,
   season,
   nearestSchedule,
+  onDuedateAppend,
   onRecruitStatusChange,
   onRecruitDelete,
 }: BoxCardProps) {
@@ -36,7 +38,7 @@ export function BoxCard({
               <Icon name="add" size={24} color={color.neutral50} />
             </Dialog.Trigger>
             <Dialog.Content className="w-400">
-              <DueDateDialog title={title} />
+              <DueDateDialog title={title} onDuedateAppend={() => onDuedateAppend()} />
             </Dialog.Content>
           </Dialog>
         ) : (
