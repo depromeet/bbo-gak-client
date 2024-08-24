@@ -3,7 +3,6 @@
 import { useOutsideClick } from '@/hooks/useOutsideClick';
 import { Button, Icon } from '@/system/components';
 import { color } from '@/system/token/color';
-import { cn } from '@/utils';
 import { ChangeEvent, useRef, useState } from 'react';
 import { useGetRecruitById } from '../api/useGetRecruitById';
 import { usePatchTitle } from '../api/usePatchTitle';
@@ -13,13 +12,10 @@ import TextBubble from './TextBubble';
 
 export default function DetailHeader({ recruitId }: { recruitId: string }) {
   const { mutate: patchTitle } = usePatchTitle();
-
   const { data: recruitInfoById } = useGetRecruitById(recruitId);
 
-  console.log(recruitInfoById);
-
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const [title, setTitle] = useState<string>(recruitInfoById?.title || '');
+  const [title, setTitle] = useState<string>(recruitInfoById?.title);
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isLinked, setIsLinked] = useState<boolean>(false);
@@ -56,31 +52,34 @@ export default function DetailHeader({ recruitId }: { recruitId: string }) {
   };
 
   return (
-    <div className="flex gap-[0.75rem] items-center">
-      <SemesterSelector recruitId={recruitId} season={recruitInfoById?.season || ''} />
-      <ApplicationStatus recruitId={recruitId} status={recruitInfoById?.recruitStatus || ''} />
-      <input
-        className={cn(
-          'pl-[6px] mr-[6px] rounded-[6px] text-neutral-95 text-heading1 font-bold border-none hover:bg-neutral-3 focus:outline-none focus:ring-2 focus:ring-mint-20 focus:ring-offset-2  focus:hover:bg-white',
-        )}
-        onChange={handleTitleChange}
-        value={title}
-        onFocus={() => setIsFocused(true)}
-        onBlur={handleUpdateTitle}
-      />
+    <div className="fixed top-0  w-full bg-white border-b-1 border-neutral-5 px-[80px] py-[24px]">
+      <div className="flex justify-between items-center max-w-[1580px] mx-auto">
+        <div className="flex gap-[0.75rem] items-center">
+          <SemesterSelector recruitId={recruitId} season={recruitInfoById.season} />
+          <ApplicationStatus recruitId={recruitId} status={recruitInfoById.status} />
+          <input
+            className="pl-[6px] pr-[3px] px-[10px] rounded-[6px] text-neutral-95 text-heading1 font-bold border-none hover:bg-neutral-3 focus:outline-none focus:ring-2 focus:ring-mint-20 focus:ring-offset-2  focus:hover:bg-white"
+            onChange={handleTitleChange}
+            value={title}
+            size={title.length}
+            onFocus={() => setIsFocused(true)}
+            onBlur={handleUpdateTitle}
+          />
 
-      <div ref={tooltipRef} className="relative">
-        {!isFocused && (
-          <Button
-            className="flex justify-center items-center rounded-full hover:bg-neutral-1
+          <div ref={tooltipRef} className="relative">
+            {!isFocused && (
+              <Button
+                className="flex justify-center items-center rounded-full hover:bg-neutral-1
     hover:transition-delay: 2s hover:block"
-            aria-label={isLinked ? 'link button' : 'unlink button'}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}>
-            <Icon name={isLinked ? 'link' : 'unlink'} size={16} color={isLinked ? color.mint40 : color.neutral40} />
-          </Button>
-        )}
-        <TextBubble isHovered={isHovered} linkedOn={handleSetLink} recruitId={recruitId} />
+                aria-label={isLinked ? 'link button' : 'unlink button'}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}>
+                <Icon name={isLinked ? 'link' : 'unlink'} size={16} color={isLinked ? color.mint40 : color.neutral40} />
+              </Button>
+            )}
+            <TextBubble isHovered={isHovered} linkedOn={handleSetLink} recruitId={recruitId} />
+          </div>
+        </div>
       </div>
     </div>
   );
