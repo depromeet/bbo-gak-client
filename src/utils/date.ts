@@ -14,8 +14,9 @@ export const formatToYYMMDD = (dateString: string, { separator = '' }: Option = 
   return [yy, mm, dd].join(separator);
 };
 
-export const dday = (target: Date) => {
+export const dday = (target: Date | string) => {
+  const targetDate = typeof target === 'string' ? new Date(target) : target;
   const today = new Date();
 
-  return differenceInDays(target, today);
+  return differenceInDays(targetDate, today);
 };

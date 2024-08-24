@@ -8,6 +8,7 @@ import {
 } from '@/system/components/DropdownMenu/DropdownMenu';
 import { Tag } from '@/system/components/index';
 import { color } from '@/system/token/color';
+import { If } from '@/system/utils/If';
 import { InfoCardType, TAG_TYPE_COLOR } from '@/types/info';
 import { formatToYYMMDD } from '@/utils/date';
 import Link from 'next/link';
@@ -55,14 +56,22 @@ export function InfoCard({ id, title, updatedDate, tagList }: InfoCardProps) {
           </div>
         </div>
         <div className="flex gap-[8px]">
-          {tagList &&
-            tagList.map(({ id, type, name }) => (
-              <Tag key={id} color={TAG_TYPE_COLOR[type]}>
-                {name}
-              </Tag>
-            ))}
+          {tagList.map(({ id, type, name }) => (
+            <Tag key={id} color={TAG_TYPE_COLOR[type]}>
+              {name}
+            </Tag>
+          ))}
         </div>
       </div>
+      <If condition={tagList != null}>
+        <div className="flex gap-[8px]">
+          {tagList?.map(({ id, type, name }) => (
+            <Tag key={id} color={TAG_TYPE_COLOR[type]}>
+              {name}
+            </Tag>
+          ))}
+        </div>
+      </If>
     </Link>
   );
 }

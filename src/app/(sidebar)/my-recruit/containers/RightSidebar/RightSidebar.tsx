@@ -2,24 +2,21 @@ import { Spacing } from '@/system/utils/Spacing';
 import { TouchButton } from '@/components/TouchButton';
 import { Icon } from '@/system/components';
 import { color } from '@/system/token/color';
-import { mockInfoList } from '../mock';
-import { InfoCard } from '@/components/InfoCard';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/system/components/DropdownMenu/DropdownMenu';
-import { Draggable } from '@/lib/dnd-kit/dnd-kit';
 import { motion } from 'framer-motion';
+import { CardList } from './CardList';
+import { useState } from 'react';
+import { INFO_CATEGORIES } from '@/app/(sidebar)/my-recruit/constant';
+import { AsyncBoundaryWithQuery } from '@/lib';
+import { cn } from '@/utils';
+import { Dropdown } from '@/system/components/index';
 
 interface Props {
   onCloseButtonClick: () => void;
 }
 
-const infoCategoryList = ['경험 정리', '자기소개서', '면접 질문'];
-
 export function RightSidebar({ onCloseButtonClick }: Props) {
+  const [type, setType] = useState<(typeof INFO_CATEGORIES)[number]>(INFO_CATEGORIES[0]);
+
   return (
     <motion.div
       initial={{ width: 0 }}
@@ -39,32 +36,32 @@ export function RightSidebar({ onCloseButtonClick }: Props) {
         <Spacing size={25} />
         <div className="flex justify-between items-center">
           <span className="text-neutral-95 text-heading2 font-semibold">내 정보 가져오기</span>
-          <DropdownMenu>
-            <DropdownMenuTrigger>
+          <Dropdown>
+            <Dropdown.Trigger>
               <div className="flex gap-[4px] items-center">
-                <span className="text-label2 font-semibold">경험 정리</span>
-                <Icon name="down" color={color.neutral40} />
+                <span className="text-label2 font-semibold text-neutral-80">{type.replace('_', ' ')}</span>
+                <Dropdown.TriggerArrow />
               </div>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              {infoCategoryList.map((item) => (
-                <DropdownMenuItem key={item}>{item}</DropdownMenuItem>
+            </Dropdown.Trigger>
+            <Dropdown.Content>
+              {INFO_CATEGORIES.map((category) => (
+                <Dropdown.CheckedItem
+                  key={category}
+                  checked={type === category}
+                  disabled={type === category}
+                  onClick={() => setType(category)}>
+                  <span className={cn('text-label1 font-medium')}>{category.replace('_', ' ')}</span>
+                </Dropdown.CheckedItem>
               ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+            </Dropdown.Content>
+          </Dropdown>
         </div>
         <Spacing size={4} />
         <span className="text-label2 text-neutral-40">카드를 공고 폴더로 드래그해보세요</span>
         <Spacing size={24} />
-        <ul className="flex flex-col items-center gap-[8px] overflow-auto">
-          {mockInfoList.map((info) => (
-            <li key={info.id} className="w-full">
-              <Draggable id={info.id} dataForOverlay={info}>
-                <InfoCard key={info.id} {...info} />
-              </Draggable>
-            </li>
-          ))}
-        </ul>
+        <AsyncBoundaryWithQuery>
+          <CardList type={type} />
+        </AsyncBoundaryWithQuery>
       </motion.div>
     </motion.div>
   );

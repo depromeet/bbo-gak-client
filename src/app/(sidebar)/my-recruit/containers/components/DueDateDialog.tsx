@@ -1,28 +1,42 @@
-import { Button, Icon } from '@/system/components';
+import { recruitStatusList } from '@/app/(sidebar)/my-recruit/constant';
+import { Button, Dropdown, Icon } from '@/system/components';
 import { Calendar } from '@/system/components/Calendar/Calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
 import { color } from '@/system/token/color';
 import { Spacing } from '@/system/utils/Spacing';
-import { cn } from '@/utils';
 import clsx from 'clsx';
 import { format } from 'date-fns/format';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { recruitScheduleStageList } from '../../constant';
 
 interface DueDateDialogProps {
+  title: string;
+  onDuedateAppend: () => void;
   title?: string;
 }
 
 export function DueDateDialog({ title }: DueDateDialogProps) {
   const [selectedDate, setSelectedDate] = useState<Date>();
+  const [currentRecruitStage, setCurrentRecruitStage] = useState<string>(recruitStatusList[3].text);
+  const [dueDateList, setDueDateList] = useState<
+    Array<{
+      recruitScheduleStage: string | null;
+      deadLine: `${number}-${number}-${number}` | null;
+    }>
+  >([]);
 
   const isDateSelected = selectedDate != null;
+  const activatedAddButton =
+    dueDateList.length !== 0 && dueDateList[0].deadLine != null && dueDateList[0].recruitScheduleStage != null;
 
   return (
-    <div className="p-20 z-10">
+    <div className="p-20">
       <div className="flex items-center w-314">
-        {title && <Icon name="folderFill" size={16} color={color.neutral95} />}
+        <Icon name="folderFill" size={16} color={color.neutral95} />
         <Spacing size={4} direction="row" />
+        <span className="text-body1 font-semibold overflow-hidden text-ellipsis line-clamp-1">{title}</span>
+        <span className="text-body1">의 공고 일정 등록하기</span>
         <span
           className={cn('text-body1 font-semibold overflow-hidden text-ellipsis line-clamp-1', title ? 'flex-1' : '')}>
           {title ? `${title}의 공고 일정 등록하기` : '공고 일정 등록하기'}
@@ -33,7 +47,25 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
       <Spacing size={24} />
       {/* 마감일 입력 */}
       <div className="w-full flex justify-between items-center p-8 bg-neutral-1 rounded-[8px]">
-        <span className="text-label1 text-neutral-95">서류마감</span>
+        <Dropdown>
+          <Dropdown.Trigger>
+            <div className="flex items-center gap-[4px] px-8 py-4">
+              <span className="text-label1 text-neutral-95">{currentRecruitStage}</span>
+              <Dropdown.TriggerArrow />
+            </div>
+          </Dropdown.Trigger>
+          <Dropdown.Content>
+            {recruitScheduleStageList.map((item, index) => (
+              <Dropdown.CheckedItem
+                key={index}
+                checked={currentRecruitStage === item}
+                disabled={currentRecruitStage === item}
+                onClick={() => setCurrentRecruitStage(item)}>
+                {item}
+              </Dropdown.CheckedItem>
+            ))}
+          </Dropdown.Content>
+        </Dropdown>
         <Popover>
           <PopoverTrigger>
             <motion.div
@@ -58,7 +90,9 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
         </Popover>
       </div>
       <Spacing size={16} />
-      <Button className="w-full h-46 flex justify-center items-center gap-[4px] border-[1px] border-neutral-35 border-dashed rounded-[6px]">
+      <Button
+        disabled={activatedAddButton === false}
+        className="w-full h-46 flex justify-center items-center gap-[4px] border-[1px] border-neutral-35 border-dashed rounded-[6px]">
         <Icon name="add" color={color.neutral35} />
         <span className="text-caption1 font-medium text-neutral-35">일정 추가하기</span>
       </Button>
