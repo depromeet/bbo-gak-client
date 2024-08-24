@@ -11,20 +11,24 @@ import { NewRecruitDialogContent } from './components/NewRecruitDialogContent/Ne
 import { RightSidebar } from './containers/RightSidebar/RightSidebar';
 import { DndContextWithOverlay, DragEndEvent } from '@/lib/dnd-kit/dnd-kit';
 import { InfoCard } from '@/components/InfoCard';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { usePostRecruit } from './api/usePostRecruit';
 import { CardData } from './components/NewRecruitDialogContent/NewRecruitDialogContent';
 import { cn } from '@/utils';
 import { color } from '@/system/token/color';
 import { usePostCardToRecruit } from './api/usePostCardToRecruit';
 import { useScroll } from '@/hooks/useScroll';
+import { If } from '@/system/utils/If';
+import { fontSize } from '@/system/token/typography';
+
+const STICKY_THRESHOLD = 30;
 
 export default function MyRecruit() {
   const [sidebarOpened, setSidebarOpened] = useState(false);
 
   const headerRef = useRef<HTMLDivElement>(null);
   const [isSticky, setIsSticky] = useState(false);
-  useScroll(headerRef.current, (y) => setIsSticky(y > 100));
+  useScroll(headerRef, (y) => setIsSticky(y > STICKY_THRESHOLD));
 
   const { mutate: mutatePostCard } = usePostRecruit();
   const { mutate: mutatePostCardToRecruit } = usePostCardToRecruit();
@@ -40,18 +44,29 @@ export default function MyRecruit() {
   return (
     <DndContextWithOverlay OverlayElement={InfoCard} onDragEnd={onDragEnd}>
       <Dialog>
-        <div className="flex max-h-[100vh] overflow-auto">
+        <div ref={headerRef} className="flex max-h-[100vh] overflow-auto">
           <div className="flex-1 max-w-[1700px] mx-auto">
-            <div className="sticky top-0 px-[80px] z-[100]">
-              <Spacing size={64} className="bg-neutral-1" />
-              <div className="flex justify-between bg-neutral-1">
-                <h1 className="text-title2 font-bold">내 공고</h1>
+            <Spacing size={STICKY_THRESHOLD} />
+            <div className="sticky top-0 z-[100] bg-neutral-1">
+              <Spacing size={34} />
+              <div className="flex justify-between items-center px-[80px] bg-neutral-1">
+                <motion.h1
+                  variants={{
+                    big: { fontSize: fontSize.title2 },
+                    small: { fontSize: fontSize.heading1 },
+                  }}
+                  animate={isSticky ? 'small' : 'big'}
+                  className="text-title2 font-bold">
+                  내 공고
+                </motion.h1>
                 <div className="flex gap-[16px]">
                   <TouchButton
+                    layout
                     disabled={sidebarOpened}
                     className="bg-white flex items-center gap-[4px] py-[8px] px-[12px] rounded-[6px] border-neutral-5 border-[1px]"
                     onClick={() => setSidebarOpened(!sidebarOpened)}>
                     <Icon name="copy" size={16} color={sidebarOpened ? color.neutral20 : color.neutral95} />
+
                     <span
                       className={
                         'text-label1 ' + cn('font-semibold', sidebarOpened ? 'text-neutral-20' : 'text-neutral-95')
@@ -61,15 +76,24 @@ export default function MyRecruit() {
                   </TouchButton>
                   <Dialog.Trigger asChild>
                     <div>
-                      <TouchButton className="bg-neutral-95 flex items-center gap-[4px] py-[8px] px-[16px] rounded-[6px]">
-                        <Icon name="add" size={24} color="#20E79D" />
-                        <span className="text-label1 text-white font-semibold">새 공고</span>
+                      <TouchButton layout>
+                        <motion.div
+                          initial={{ padding: '8px 16px' }}
+                          variants={{ longPadding: { padding: '8px 16px' }, shortPadding: { padding: '8px 8px' } }}
+                          animate={isSticky ? 'shortPadding' : 'longPadding'}
+                          className="bg-neutral-95 flex items-center gap-[4px] rounded-[6px]">
+                          <Icon name="add" size={24} color="#20E79D" />
+                          {!isSticky && <span className="text-label1 text-white font-semibold">새 공고</span>}
+                        </motion.div>
                       </TouchButton>
                     </div>
                   </Dialog.Trigger>
                 </div>
               </div>
-              <Spacing size={34} className="bg-neutral-1" />
+              <Spacing size={34} />
+              <If condition={isSticky}>
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-neutral-5 h-[1px]" />
+              </If>
             </div>
             <div className="px-[80px]">
               <Spacing size={20} />
