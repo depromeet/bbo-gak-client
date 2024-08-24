@@ -9,8 +9,6 @@ const queryClientOption: QueryClientConfig = {
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      // NOTE: 추후 배포 시 변경
-      staleTime: Infinity,
     },
     mutations: {
       networkMode: 'always',
