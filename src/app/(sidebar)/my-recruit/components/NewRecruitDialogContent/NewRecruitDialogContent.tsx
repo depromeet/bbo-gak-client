@@ -68,7 +68,7 @@ export function NewRecruitDialogContent({ onSubmit }: NewRecruitDialogContentPro
       <Spacing size={8} />
 
       {/* 지원 시기 입력 */}
-      <Dropdown>
+      <Dropdown colorVariant="black">
         <Dropdown.Trigger asChild>
           <button className="w-full flex justify-between items-center px-16 py-12 bg-neutral-1 border-neutral-20 rounded-[8px] border-[1px]">
             <span>{selectedSeason}</span>

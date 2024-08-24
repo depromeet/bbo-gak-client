@@ -9,18 +9,25 @@ export interface UseTagSelectorProps {
   ref?: ReactRef<HTMLElement>;
   classNames?: ClassNamesType<'base' | 'content' | 'trigger'>;
   disabled?: boolean;
+  onChange?: (open: boolean) => void;
 }
 
 export function useTagSelector({ ...props }: UseTagSelectorProps) {
-  const { as, ref, classNames, disabled } = props;
+  const { as, ref, classNames, disabled, onChange } = props;
   const Component = as || 'div';
   const baseDOMRef = useDOMRef(ref);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  useOutsideClick(baseDOMRef, () => setIsOpen(false));
+  useOutsideClick(baseDOMRef, () => {
+    onChange?.(false);
+    setIsOpen(false);
+  });
 
   const handleTriggerClick = useCallback(() => {
-    setIsOpen((prev) => !prev);
+    setIsOpen((prev) => {
+      onChange?.(!prev);
+      return !prev;
+    });
   }, [isOpen]);
 
   const getBaseProps = useCallback(

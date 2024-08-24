@@ -9,7 +9,7 @@ interface Request {
 export const POST_CARD_TO_RECRUIT_KEY = 'post-card-to-recruit';
 
 function postCardToRecruit({ recruitId, cardId }: Request) {
-  return http.post({ url: `/api/v1/recruits/${recruitId}/cards/${cardId}` });
+  return http.post({ url: `/recruits/${recruitId}/cards/${cardId}` });
 }
 
 export function usePostCardToRecruit() {
