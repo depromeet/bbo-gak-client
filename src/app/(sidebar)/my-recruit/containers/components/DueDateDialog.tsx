@@ -31,10 +31,12 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
     dueDateList.length !== 0 && dueDateList[0].deadLine != null && dueDateList[0].recruitScheduleStage != null;
 
   return (
-    <div className="p-20 z-10">
+    <div className="p-20">
       <div className="flex items-center w-314">
-        {title && <Icon name="folderFill" size={16} color={color.neutral95} />}
+        <Icon name="folderFill" size={16} color={color.neutral95} />
         <Spacing size={4} direction="row" />
+        <span className="text-body1 font-semibold overflow-hidden text-ellipsis line-clamp-1">{title}</span>
+        <span className="text-body1">의 공고 일정 등록하기</span>
         <span
           className={cn('text-body1 font-semibold overflow-hidden text-ellipsis line-clamp-1', title ? 'flex-1' : '')}>
           {title ? `${title}의 공고 일정 등록하기` : '공고 일정 등록하기'}
