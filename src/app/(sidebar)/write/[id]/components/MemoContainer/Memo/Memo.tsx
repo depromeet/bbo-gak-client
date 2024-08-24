@@ -9,6 +9,7 @@ import { GetMemosResponse } from '../../../api/useGetMemos';
 import { useMemosContext } from '../../../fetcher/MemosFetcher';
 import { useDeleteMemo } from '../../../api/useDeleteMemo';
 import { usePutMemo } from '@/app/(sidebar)/write/[id]/api/usesPutMemo';
+import { If } from '@/system/utils/If';
 
 export default function Memo({ id: memoId, content, updatedAt }: GetMemosResponse[number]) {
   const { cardId } = useMemosContext();
@@ -56,7 +57,7 @@ export default function Memo({ id: memoId, content, updatedAt }: GetMemosRespons
       </div>
 
       <AnimatePresence mode="wait">
-        {showCloseButton && (
+        <If condition={showCloseButton}>
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -66,7 +67,7 @@ export default function Memo({ id: memoId, content, updatedAt }: GetMemosRespons
             onClick={() => mutate(memoId)}>
             <RemoveMemo size={24} color="#37383C" />
           </motion.button>
-        )}
+        </If>
       </AnimatePresence>
 
       <div className="memo pl-16 memo-10 pb-16 memo-neutral-35">{updatedAt.split(' ')[0].replaceAll('-', '.')}</div>
