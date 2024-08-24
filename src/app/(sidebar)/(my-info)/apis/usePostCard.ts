@@ -1,6 +1,8 @@
 import { http } from '@/apis/http';
 import { InfoType } from '@/types';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { GET_INFO_CARD_LIST } from './useGetInfoCardList';
+import { GET_CARD_TYPE_COUNT } from './useGetCardTypeCount';
 
 interface PostCardResponse {
   id: number;
@@ -26,8 +28,8 @@ export const usePostCard = () => {
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['info-card-list'] });
-      queryClient.invalidateQueries({ queryKey: ['card-type-count'] });
+      queryClient.invalidateQueries({ queryKey: [GET_INFO_CARD_LIST] });
+      queryClient.invalidateQueries({ queryKey: [GET_CARD_TYPE_COUNT] });
     },
   });
 };

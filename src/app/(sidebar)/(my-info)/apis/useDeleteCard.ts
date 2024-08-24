@@ -1,5 +1,7 @@
 import { http } from '@/apis/http';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { GET_INFO_CARD_LIST } from './useGetInfoCardList';
+import { GET_CARD_TYPE_COUNT } from './useGetCardTypeCount';
 
 const deleteCard = (cardId: number) => {
   return http.delete({
@@ -13,8 +15,8 @@ export const useDeleteCard = () => {
   return useMutation({
     mutationFn: deleteCard,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['info-card-list'] });
-      queryClient.invalidateQueries({ queryKey: ['card-type-count'] });
+      queryClient.invalidateQueries({ queryKey: [GET_INFO_CARD_LIST] });
+      queryClient.invalidateQueries({ queryKey: [GET_CARD_TYPE_COUNT] });
     },
   });
 };

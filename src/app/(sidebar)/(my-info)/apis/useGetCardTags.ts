@@ -2,6 +2,8 @@ import { http } from '@/apis/http';
 import { TagType } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 
+export const GET_TAGS = 'tags';
+
 type GetCardTagsRseponse = TagType[];
 
 const getCardTags = () => {
@@ -10,7 +12,7 @@ const getCardTags = () => {
 
 export const useGetCardTags = () => {
   return useQuery({
-    queryKey: ['tags'],
+    queryKey: [GET_TAGS],
     queryFn: async () => {
       const res = await getCardTags();
 
