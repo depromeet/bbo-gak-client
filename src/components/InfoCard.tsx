@@ -56,11 +56,12 @@ export function InfoCard({ id, title, updatedDate, tagList }: InfoCardProps) {
           </div>
         </div>
         <div className="flex gap-[8px]">
-          {tagList.map(({ id, type, name }) => (
-            <Tag key={id} color={TAG_TYPE_COLOR[type]}>
-              {name}
-            </Tag>
-          ))}
+          {tagList &&
+            tagList.map(({ id, type, name }) => (
+              <Tag key={id} color={TAG_TYPE_COLOR[type]}>
+                {name}
+              </Tag>
+            ))}
         </div>
       </div>
       <If condition={tagList != null}>

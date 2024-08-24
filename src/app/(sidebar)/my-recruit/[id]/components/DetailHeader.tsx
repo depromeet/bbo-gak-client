@@ -15,11 +15,10 @@ export default function DetailHeader({ recruitId }: { recruitId: string }) {
   const { data: recruitInfoById } = useGetRecruitById(recruitId);
 
   const tooltipRef = useRef<HTMLDivElement>(null);
-  const [title, setTitle] = useState<string>(recruitInfoById?.title);
+  const [title, setTitle] = useState<string>(recruitInfoById?.title || '');
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isLinked, setIsLinked] = useState<boolean>(false);
-
   useOutsideClick(tooltipRef, () => setIsLinked(false));
 
   const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -55,8 +54,8 @@ export default function DetailHeader({ recruitId }: { recruitId: string }) {
     <div className="fixed top-0  w-full bg-white border-b-1 border-neutral-5 px-[80px] py-[24px]">
       <div className="flex justify-between items-center max-w-[1580px] mx-auto">
         <div className="flex gap-[0.75rem] items-center">
-          <SemesterSelector recruitId={recruitId} season={recruitInfoById.season} />
-          <ApplicationStatus recruitId={recruitId} status={recruitInfoById.status} />
+          <SemesterSelector recruitId={recruitId} season={recruitInfoById?.season || ''} />
+          <ApplicationStatus recruitId={recruitId} status={recruitInfoById?.recruitStatus || ''} />
           <input
             className="pl-[6px] pr-[3px] px-[10px] rounded-[6px] text-neutral-95 text-heading1 font-bold border-none hover:bg-neutral-3 focus:outline-none focus:ring-2 focus:ring-mint-20 focus:ring-offset-2  focus:hover:bg-white"
             onChange={handleTitleChange}
