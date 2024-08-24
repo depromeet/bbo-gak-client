@@ -8,17 +8,17 @@ export type GetRecruitCardsType = Array<{
   tagList: string[];
 }>;
 
-const getRecruitCards = (id: string) => {
+const getRecruitCards = ({ id, progress }: { id: string; progress: string }) => {
   return http.get<GetRecruitCardsType>({
-    url: `/recruits/${id}/cards`,
+    url: `recruits/${id}/cards?type=${progress}`,
   });
 };
 
-export const useGetRecruitCards = (id: string) =>
+export const useGetRecruitCards = ({ id, progress }: { id: string; progress: string }) =>
   useSuspenseQuery({
     queryKey: ['get-recruit-card'],
     queryFn: async () => {
-      const res = await getRecruitCards(id);
+      const res = await getRecruitCards({ id, progress });
       return res.data;
     },
   });
