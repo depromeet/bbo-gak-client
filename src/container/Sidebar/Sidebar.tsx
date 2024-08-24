@@ -4,6 +4,8 @@ import { SidebarButton } from '@/container/Sidebar/SidebarButton';
 import { Icon } from '@/system/components';
 import { useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
+import { useRouter, usePathname } from 'next/navigation';
+import { MY_RECRUIT_PATH, MY_INFO_PATH } from '@/route';
 
 // FIXME:
 const SELECTED = true;
@@ -13,6 +15,8 @@ const SIDEBAR_CLASSNAME = {
 } as const;
 
 export function Sidebar() {
+  const router = useRouter();
+  const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
   const [myInfoCollapsed, setMyInfoCollapsed] = useState(true);
   const [myJDCollapsed, setMyJDCollapsed] = useState(true);
@@ -39,38 +43,41 @@ export function Sidebar() {
 
         <Collapsible collapsed={expanded ? myInfoCollapsed : true} onCollapsedChange={setMyInfoCollapsed}>
           <SidebarButton
-            iconName={SELECTED ? 'profileFill' : 'profile'}
-            selected={SELECTED}
+            iconName={pathname === MY_INFO_PATH ? 'profileFill' : 'profile'}
+            selected={pathname === MY_INFO_PATH}
             expanded={expanded}
             expandedText="내 정보"
             withHoverEffect={!expanded}
-            withTouchEffect={!SELECTED}
+            withTouchEffect={pathname !== MY_INFO_PATH}
             right={
               <Collapsible.Trigger>
                 <Collapsible.ArrowButton />
               </Collapsible.Trigger>
             }
+            onClick={() => router.push(MY_INFO_PATH)}
           />
           <Collapsible.Content>
             {/* FIXME: */}
-            <div style={{ color: 'white' }}>열렸다!</div>
+            <div style={{ color: 'white' }}>준비중이에요!</div>
           </Collapsible.Content>
         </Collapsible>
         <Collapsible collapsed={expanded ? myJDCollapsed : true} onCollapsedChange={setMyJDCollapsed}>
           <SidebarButton
             iconName="folder"
-            selected={false}
+            selected={pathname === MY_RECRUIT_PATH}
             expanded={expanded}
             expandedText="내 공고"
             withHoverEffect={!expanded}
+            withTouchEffect={pathname !== MY_RECRUIT_PATH}
             right={
               <Collapsible.Trigger>
                 <Collapsible.ArrowButton />
               </Collapsible.Trigger>
             }
+            onClick={() => router.push(MY_RECRUIT_PATH)}
           />
           <Collapsible.Content>
-            <div style={{ color: 'white' }}>열렸다!</div>
+            <div style={{ color: 'white' }}>준비중이에요!</div>
           </Collapsible.Content>
         </Collapsible>
       </div>
