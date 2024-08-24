@@ -14,7 +14,7 @@ export function AllRecruitment() {
 
   return (
     <>
-      <Dropdown>
+      <Dropdown colorVariant="black">
         <button className="flex gap-[8px] outline-none">
           <RocketIcon />
           <Dropdown.Trigger asChild>
@@ -30,7 +30,7 @@ export function AllRecruitment() {
       </Dropdown>
       <Spacing size={24} />
 
-      <AsyncBoundaryWithQuery>
+      <AsyncBoundaryWithQuery errorFallback={() => <></>} pendingFallback={<></>}>
         <AllRecruitList selectedSeason={selectedSeason} />
       </AsyncBoundaryWithQuery>
 

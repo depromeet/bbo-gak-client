@@ -1,5 +1,7 @@
 import { http } from '@/apis/http';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { GET_PROGRESSING_RECRUITS_KEY } from '@/app/(sidebar)/my-recruit/api/useGetProgressingRecruits';
+import { GET_ALL_RECRUITS_KEY } from '@/app/(sidebar)/my-recruit/api/useGetAllRecruits';
 
 interface Request {
   id: number;
@@ -13,9 +15,14 @@ function patchRecruitStatus({ id, recruitStatus }: Request) {
 }
 
 export function usePatchRecruitStatus() {
+  const queryClient = useQueryClient();
+
   const mutate = useMutation({
-    mutationKey: [PATCH_RECRUIT_STATUS_KEY],
     mutationFn: (data: Request) => patchRecruitStatus(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [GET_PROGRESSING_RECRUITS_KEY] });
+      queryClient.invalidateQueries({ queryKey: [GET_ALL_RECRUITS_KEY] });
+    },
   });
 
   return mutate;

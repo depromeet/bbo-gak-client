@@ -7,7 +7,7 @@ type Request = { season: string };
 
 type Response = { data: RecruitCard[] };
 
-export const GET_RECRUITS = 'recruits';
+export const GET_ALL_RECRUITS_KEY = 'recruits-all';
 
 function getAllRecruits() {
   return http.get({ url: '/recruits' });
@@ -19,7 +19,7 @@ function getRecruitsBySeason({ season }: Request) {
 
 export function useGetAllRecruits({ season }: Request) {
   const result = useSuspenseQuery({
-    queryKey: [GET_RECRUITS, season],
+    queryKey: [GET_ALL_RECRUITS_KEY, season],
     queryFn: season === ALL_RECRUITMENT ? getAllRecruits : () => getRecruitsBySeason({ season }),
   });
 
