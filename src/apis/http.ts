@@ -1,4 +1,3 @@
-import { serverErrorType } from '@/types/api';
 import { isProductionEnv } from '@/utils/common';
 import type {
   AxiosError,
@@ -48,10 +47,10 @@ axiosInstance.interceptors.response.use(
 
   async (error: AxiosError) => {
     if (axios.isAxiosError(error)) {
-      const data = error.response?.data as serverErrorType;
+      const data = error.response?.data;
       const refreshToken = getCookie('refreshToken');
       if (refreshToken) {
-        if (data?.status === 'UNAUTHORIZED') {
+        if (data === '토큰이 없습니다') {
           deleteCookie('accessToken');
           deleteCookie('refreshToken');
           try {
