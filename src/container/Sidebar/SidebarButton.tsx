@@ -12,6 +12,7 @@ interface SidebarButtonProps {
   expandedText?: string;
   withTouchEffect?: boolean;
   withHoverEffect?: boolean;
+  onClick?: () => void;
 }
 
 const DEFAULT_COLOR = '#F9F9FA';
@@ -25,6 +26,7 @@ export function SidebarButton({
   expandedText,
   withTouchEffect = true,
   withHoverEffect = true,
+  onClick,
 }: SidebarButtonProps) {
   const showTooltip = !expanded;
 
@@ -33,7 +35,8 @@ export function SidebarButton({
       className="relative p-[6px] w-full flex justify-between items-center"
       variants={{ touch: { scale: 0.96 } }}
       whileTap={withTouchEffect ? 'touch' : undefined}
-      whileHover={withHoverEffect ? 'hover' : undefined}>
+      whileHover={withHoverEffect ? 'hover' : undefined}
+      onClick={onClick}>
       <If condition={withHoverEffect}>
         <motion.div
           variants={{ hover: { backgroundColor: '#27282C' } }}
