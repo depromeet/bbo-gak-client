@@ -6,7 +6,7 @@ import { useCardDetailTagsContext } from '../fetcher/CardTagFetcher';
 import { GetCardDetailResponse } from '@/app/(sidebar)/write/[id]/api/useGetCardDetail/useGetCardDetail';
 
 export function useWrite(id: number) {
-  const { title: prevTitle, updatedDate, tagList } = useCardDetailTagsContext();
+  const { title: prevTitle, updatedDate, tagList, content } = useCardDetailTagsContext();
 
   const personalityTags = useMemo(() => tagList.filter((tag) => tag.type === '인성'), [id]);
   const abilityTags = useMemo(() => tagList.filter((tag) => tag.type === '역량'), [id]);
@@ -69,5 +69,6 @@ export function useWrite(id: number) {
     abilityTags,
     categoryTags,
     updatedDate: updatedDate.split(' ')[0].replaceAll(/-/g, '.'),
+    content,
   };
 }
