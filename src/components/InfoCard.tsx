@@ -32,9 +32,7 @@ export function InfoCard({ id, title, updatedDate, tagList }: InfoCardProps) {
         <div className="flex">
           <div className="flex-1 overflow-hidden">
             <div className="mb-[9px] text-[12px] text-neutral-20">{formattedDate}</div>
-            <div className="w-auto truncate text-[16px] font-semibold">
-              {title || <div className="text-neutral-30">제목을 입력해주세요</div>}
-            </div>
+            <div className="w-auto truncate text-[16px] font-semibold">{title || '제목을 입력해주세요'}</div>
           </div>
           <div>
             <DropdownMenu>
