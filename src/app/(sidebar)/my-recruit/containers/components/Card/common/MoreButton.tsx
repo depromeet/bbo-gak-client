@@ -1,24 +1,25 @@
 import { Icon } from '@/system/components';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/system/components/DropdownMenu/DropdownMenu';
+import { Dropdown } from '@/system/components';
 import { color } from '@/system/token/color';
 
-export function MoreButton() {
+interface MoreButtonProps {
+  onDeleteClick: () => void;
+}
+
+export function MoreButton({ onDeleteClick }: MoreButtonProps) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="outline-none">
+    <Dropdown>
+      <Dropdown.Trigger className="outline-none">
         <Icon name="more" size={24} color={color.neutral40} />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        <DropdownMenuItem className="gap-[8px]">
-          <Icon name="delete" color="#FF5C5C" />
-          <div className="text-red-50 text-[15px] font-normal">삭제하기</div>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </Dropdown.Trigger>
+      <Dropdown.Content>
+        <Dropdown.CheckedItem className="gap-[8px]" onClick={onDeleteClick}>
+          <div className="flex items-center">
+            <Icon name="delete" color="#FF5C5C" />
+            <div className="text-red-50 text-[15px] font-normal">삭제하기</div>
+          </div>
+        </Dropdown.CheckedItem>
+      </Dropdown.Content>
+    </Dropdown>
   );
 }

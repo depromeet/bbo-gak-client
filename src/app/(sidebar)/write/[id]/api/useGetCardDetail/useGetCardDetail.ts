@@ -12,7 +12,7 @@ export interface GetCardDetailResponse {
 }
 
 const getCardDetail = (cardId: number) =>
-  http.get({
+  http.get<GetCardDetailResponse>({
     url: `/cards/${cardId}`,
   });
 

@@ -1,1 +1,7 @@
-export type DropdownAnatomy = 'trigger-arrow' | 'content' | 'separator' | 'checkbox-item';
+export type DropdownAnatomy =
+  | 'trigger'
+  | 'trigger-background'
+  | 'trigger-arrow'
+  | 'content'
+  | 'separator'
+  | 'checkbox-item';
