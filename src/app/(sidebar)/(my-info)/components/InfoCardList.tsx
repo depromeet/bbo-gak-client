@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { cn } from '@/utils/tailwind-util';
-import { Button, Icon } from '@/system/components';
+import { Icon } from '@/system/components';
 import { AddInfoCardDialog } from './AddInfoCardDialog';
 import { INFO_TYPES, InfoType } from '@/types/info';
 import { useGetInfoCardList } from '../apis/useGetInfoCardList';

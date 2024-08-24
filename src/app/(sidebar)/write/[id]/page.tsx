@@ -16,6 +16,7 @@ import {
 import { Icon } from '@/system/components';
 import MemoContainer from './components/MemoContainer/MemoContainer';
 import { MemosFetcher } from '@/app/(sidebar)/write/[id]/fetcher/MemosFetcher';
+import { INFO_TYPES } from '@/types/info';
 
 const EditorProvider = dynamic(
   () => import('@/components/Editor/EditorProvider/EditorProvider').then(({ EditorProvider }) => EditorProvider),
@@ -29,12 +30,12 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
     handleDeleteCardTag,
     title,
     selectedTags,
-    selectedCategories,
+    selectedCategory,
     personalityTags,
     abilityTags,
-    categoryTags,
     content,
     updatedDate,
+    handlePostCardCategory,
   } = useWrite(Number(id));
 
   return (
@@ -73,21 +74,17 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
               <TagSelector.Title>분류</TagSelector.Title>
 
               <TagSelector.Trigger>
-                <If condition={!selectedCategories.length}>카드의 종류를 선택해주세요</If>
-                <If condition={!!selectedCategories.length}>
+                <If condition={!selectedCategory.length}>카드의 종류를 선택해주세요</If>
+                <If condition={!!selectedCategory.length}>
                   <ul className="flex gap-8">
-                    {selectedCategories.map((category) => (
-                      <TagSelector.RemovalbleTag
-                        key={category.name}
-                        className="text-neutral-75 bg-neutral-3 z-[10]"
-                        color="#37383C"
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          handleDeleteCardTag(category, 'category');
-                        }}>
-                        {category.name}
-                      </TagSelector.RemovalbleTag>
-                    ))}
+                    <TagSelector.RemovalbleTag
+                      className="text-yellow-1 bg-yellow-bg-1 z-[10]"
+                      color="#37383C"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                      }}>
+                      {selectedCategory}
+                    </TagSelector.RemovalbleTag>
                   </ul>
                 </If>
               </TagSelector.Trigger>
@@ -99,19 +96,12 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                   </TagSelector.Notice>
 
                   <TagSelector.TagList title="분류">
-                    {categoryTags.map((tag) => (
+                    {INFO_TYPES.map((type) => (
                       <TagSelector.Tag
-                        key={tag.name}
-                        className="text-neutral-75 bg-neutral-3"
-                        onClick={() => {
-                          if (
-                            selectedCategories.length < 3 &&
-                            !selectedCategories.find(({ name }) => name === tag.name)
-                          ) {
-                            handlePostCardTag(tag, 'category');
-                          }
-                        }}>
-                        {tag.name}
+                        key={type}
+                        className="text-yellow-1 bg-yellow-bg-1"
+                        onClick={() => handlePostCardCategory(type)}>
+                        {type.replaceAll('_', ' ')}
                       </TagSelector.Tag>
                     ))}
                   </TagSelector.TagList>
@@ -138,7 +128,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                         color={tag.type === '역량' ? '#418CC3' : '#9C6BB3'}
                         onClick={(event) => {
                           event.stopPropagation();
-                          handleDeleteCardTag(tag, 'tag');
+                          handleDeleteCardTag(tag);
                         }}>
                         {tag.name}
                       </TagSelector.RemovalbleTag>
@@ -158,7 +148,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                         className="text-[#418CC3] bg-[#E8F1FF]"
                         onClick={() => {
                           if (selectedTags.length < 3 && !selectedTags.find(({ name }) => name === tag.name)) {
-                            handlePostCardTag(tag, 'tag');
+                            handlePostCardTag(tag);
                           }
                         }}>
                         {tag.name}
@@ -175,7 +165,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                         className="text-[#9C6BB3] bg-[#F1E8FF]"
                         onClick={() => {
                           if (selectedTags.length < 3 && !selectedTags.find(({ name }) => name === tag.name)) {
-                            handlePostCardTag(tag, 'tag');
+                            handlePostCardTag(tag);
                           }
                         }}>
                         {tag.name}
