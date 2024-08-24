@@ -12,8 +12,8 @@ import { useState } from 'react';
 import { recruitScheduleStageList } from '../../constant';
 
 interface DueDateDialogProps {
-  title?: string;
   onDuedateAppend: () => void;
+  title?: string;
 }
 
 export function DueDateDialog({ title }: DueDateDialogProps) {
@@ -31,7 +31,7 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
     dueDateList.length !== 0 && dueDateList[0].deadLine != null && dueDateList[0].recruitScheduleStage != null;
 
   return (
-    <div className="p-20">
+    <div className="p-20 z-10">
       <div className="flex items-center w-314">
         {title && <Icon name="folderFill" size={16} color={color.neutral95} />}
         <Spacing size={4} direction="row" />
