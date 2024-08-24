@@ -16,4 +16,5 @@ export const useGetMemos = (cardId: string) =>
   useSuspenseQuery({
     queryKey: ['get-memos', cardId],
     queryFn: () => getMemos(cardId),
+    select: ({ data }) => data,
   });
