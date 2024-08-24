@@ -13,7 +13,6 @@ export function useWrite(id: number) {
 
   const personalityTags = useMemo(() => tags.filter((tag) => tag.type === '인성'), [id]);
   const abilityTags = useMemo(() => tags.filter((tag) => tag.type === '역량'), [id]);
-  const categoryTags = useMemo(() => tags.filter((tag) => tag.type === '분류'), [id]);
 
   const [title, setTitle] = useState<string>(prevTitle || '');
   const [selectedTags, setSelectedTags] = useState<GetCardDetailResponse['tagList']>(tagList);
