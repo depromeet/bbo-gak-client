@@ -69,10 +69,7 @@ function Content({
 
   return (
     <If condition={isOpen || defaultOpen}>
-      <article
-        {...getContentProps()}
-        className={cn(getContentProps().className, className)} // 기존 클래스와 새로운 클래스 병합
-      >
+      <article {...getContentProps()} className={cn(getContentProps().className, className)}>
         {children}
       </article>
     </If>
@@ -108,9 +105,6 @@ function TagSelector({
 
   return (
     <TagSelectorProvider {...restProps}>
-      <Component {...getBaseProps()} className={cn(getBaseProps().className, className)}>
-        {children}
-      </Component>
       <Component {...getBaseProps()} className={cn(getBaseProps().className, className)}>
         {children}
       </Component>
