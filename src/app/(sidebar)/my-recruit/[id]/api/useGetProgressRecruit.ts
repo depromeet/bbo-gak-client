@@ -14,11 +14,11 @@ export interface ProgressRecruitType {
   siteUrl: string;
   recruitStatus: string;
   createdDate: string;
-  nearestSchedule: NearestScheduleType;
+  nearestSchedule: NearestScheduleType | null;
 }
 
 const getProgressRecruit = () => {
-  return http.get<ProgressRecruitType>({
+  return http.get<ProgressRecruitType[]>({
     url: `/recruits/progressing`,
   });
 };

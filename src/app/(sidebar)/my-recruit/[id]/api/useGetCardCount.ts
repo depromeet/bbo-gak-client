@@ -2,7 +2,7 @@ import { http } from '@/apis/http';
 import { useQuery } from '@tanstack/react-query';
 
 export type getCardCountType = {
-  서류_준비: string;
+  서류_준비: number;
   과제_준비: number;
   인터뷰_준비: number;
 };

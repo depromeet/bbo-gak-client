@@ -2,7 +2,7 @@ import { http } from '@/apis/http';
 import { useQuery } from '@tanstack/react-query';
 
 interface recruitByIdType {
-  id: string;
+  id: number;
   title: string;
   season: string;
   siteUrl: string;
@@ -17,7 +17,7 @@ const getRecruitById = (id: string) => {
 
 export const useGetRecruitById = (id: string) =>
   useQuery({
-    queryKey: ['get-recruit-by-id'],
+    queryKey: ['get-recruit-by-id', id],
     queryFn: async () => {
       const res = await getRecruitById(id);
       return res.data;
