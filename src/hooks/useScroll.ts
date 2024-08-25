@@ -1,11 +1,12 @@
-import { useEffect } from 'react';
+import { RefObject, useEffect } from 'react';
 
-export function useScroll(target: HTMLDivElement | null, callback: (topOffsetY: number) => void) {
+export function useScroll(target: RefObject<HTMLDivElement>, callback: (topOffsetY: number) => void) {
   useEffect(() => {
-    const element = target ?? window;
+    const element = target.current ?? window;
+    console.log(element);
 
     const callback2 = () => {
-      const topOffsetY = target?.offsetTop ?? window.scrollY;
+      const topOffsetY = target.current?.scrollTop ?? window.scrollY;
       callback(topOffsetY);
     };
 
