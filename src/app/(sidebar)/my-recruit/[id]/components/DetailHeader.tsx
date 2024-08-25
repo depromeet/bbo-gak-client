@@ -17,9 +17,6 @@ export default function DetailHeader({ recruitId }: { recruitId: string }) {
   const { mutate: patchTitle } = usePatchTitle();
   const { data: recruitInfoById } = useGetRecruitById(recruitId);
 
-  const { mutate: patchTitle } = usePatchTitle();
-  const { data: recruitInfoById } = useGetRecruitById(recruitId);
-
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [title, setTitle] = useState<string>(recruitInfoById?.title || '');
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -100,7 +97,7 @@ function HeaderButtons({ recruitId }: { recruitId: string }) {
         </Dropdown.Trigger>
         <Dropdown.Content align="end">
           <Dropdown.CheckedItem className="gap-[8px]">
-            <DueDateDialog />
+            <DueDateDialog onDuedateAppend={() => {}} />
           </Dropdown.CheckedItem>
         </Dropdown.Content>
       </Dropdown>
