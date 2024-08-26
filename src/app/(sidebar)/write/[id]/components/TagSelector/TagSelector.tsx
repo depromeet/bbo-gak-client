@@ -60,6 +60,7 @@ function Trigger({ children, className }: StrictPropsWithChildren<{ className?: 
   );
 }
 
+
 function Content({
   children,
   defaultOpen = false,
@@ -73,6 +74,7 @@ function Content({
         {...getContentProps()}
         className={cn(getContentProps().className, className)} // 기존 클래스와 새로운 클래스 병합
       >
+
         {children}
       </article>
     </If>

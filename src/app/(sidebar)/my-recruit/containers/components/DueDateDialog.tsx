@@ -1,19 +1,18 @@
-import { recruitStatusList } from '@/app/(sidebar)/my-recruit/constant';
-import { Button, Dropdown, Icon } from '@/system/components';
-import { Calendar } from '@/system/components/Calendar/Calendar';
-import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
-import { color } from '@/system/token/color';
 import { Spacing } from '@/system/utils/Spacing';
+import { Button, Dropdown, Icon } from '@/system/components';
+import { color } from '@/system/token/color';
 import clsx from 'clsx';
-import { format } from 'date-fns/format';
 import { motion } from 'framer-motion';
+import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
+import { Calendar } from '@/system/components/Calendar/Calendar';
+import { format } from 'date-fns/format';
 import { useState } from 'react';
 import { recruitScheduleStageList } from '../../constant';
+import { recruitStatusList } from '@/app/(sidebar)/my-recruit/constant';
+import { RecruitCard } from '../../type';
 
 interface DueDateDialogProps {
   title: string;
-  onDuedateAppend: () => void;
-  title?: string;
   onDuedateAppend: () => void;
 }
 

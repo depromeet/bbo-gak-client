@@ -1,16 +1,16 @@
-import { useDeleteCard } from '@/app/(sidebar)/(my-info)/apis/useDeleteCard';
+import { formatToYYMMDD } from '@/utils/date';
 import { Icon } from '@/system/components';
+import { Tag } from '@/system/components/index';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/system/components/DropdownMenu/DropdownMenu';
-import { Tag } from '@/system/components/index';
+import { InfoCardType, TAG_TYPE_COLOR } from '@/types/info';
 import { color } from '@/system/token/color';
 import { If } from '@/system/utils/If';
-import { InfoCardType, TAG_TYPE_COLOR } from '@/types/info';
-import { formatToYYMMDD } from '@/utils/date';
+import { useDeleteCard } from '@/app/(sidebar)/(my-info)/apis/useDeleteCard';
 import Link from 'next/link';
 import { MouseEventHandler } from 'react';
 

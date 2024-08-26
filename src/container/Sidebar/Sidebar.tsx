@@ -8,6 +8,10 @@ import { cn } from '@/utils';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
+import { useRouter, usePathname } from 'next/navigation';
+import { MY_RECRUIT_PATH, MY_INFO_PATH } from '@/route';
+import { Logo } from '@/components/Logo';
+import { cn } from '@/utils';
 
 const SIDEBAR_CLASSNAME = {
   expanded: 'w-[220px]',

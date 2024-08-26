@@ -1,8 +1,8 @@
-import { AsyncBoundaryWithQuery } from '@/lib';
 import { Spacing } from '@/system/utils/Spacing';
-import { CardSkeleton } from '../components/CardSkeleton/CardSkeleton';
 import { ShoeIcon } from '../components/ShoeIcon';
+import { AsyncBoundaryWithQuery } from '@/lib';
 import { ProgressingRecruitList } from './ProgressingRecruitList';
+import { CardSkeleton } from '../components/CardSkeleton/CardSkeleton';
 
 export function ProgressingRecruitment() {
   return (

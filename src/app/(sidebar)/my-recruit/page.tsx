@@ -1,24 +1,25 @@
 'use client';
 
-import { InfoCard } from '@/components/InfoCard';
-import { TouchButton } from '@/components/TouchButton';
-import { useScroll } from '@/hooks/useScroll';
-import { DndContextWithOverlay, DragEndEvent } from '@/lib/dnd-kit/dnd-kit';
 import { Icon } from '@/system/components';
-import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
-import { color } from '@/system/token/color';
-import { fontSize } from '@/system/token/typography';
-import { If } from '@/system/utils/If';
+import { TouchButton } from '@/components/TouchButton';
 import { Spacing } from '@/system/utils/Spacing';
-import { cn } from '@/utils';
-import { AnimatePresence, motion } from 'framer-motion';
-import { useRef, useState } from 'react';
-import { usePostCardToRecruit } from './api/usePostCardToRecruit';
-import { usePostRecruit } from './api/usePostRecruit';
-import { CardData, NewRecruitDialogContent } from './components/NewRecruitDialogContent/NewRecruitDialogContent';
-import { AllRecruitment } from './containers/AllRecruitment/AllRecruitment';
 import { ProgressingRecruitment } from './containers/ProgressingRecruitment/ProgressingRecruitment';
+import { AllRecruitment } from './containers/AllRecruitment/AllRecruitment';
+import { useRef, useState } from 'react';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import { NewRecruitDialogContent } from './components/NewRecruitDialogContent/NewRecruitDialogContent';
 import { RightSidebar } from './containers/RightSidebar/RightSidebar';
+import { DndContextWithOverlay, DragEndEvent } from '@/lib/dnd-kit/dnd-kit';
+import { InfoCard } from '@/components/InfoCard';
+import { AnimatePresence, motion } from 'framer-motion';
+import { usePostRecruit } from './api/usePostRecruit';
+import { CardData } from './components/NewRecruitDialogContent/NewRecruitDialogContent';
+import { cn } from '@/utils';
+import { color } from '@/system/token/color';
+import { usePostCardToRecruit } from './api/usePostCardToRecruit';
+import { useScroll } from '@/hooks/useScroll';
+import { If } from '@/system/utils/If';
+import { fontSize } from '@/system/token/typography';
 
 const STICKY_THRESHOLD = 30;
 
@@ -65,6 +66,7 @@ export default function MyRecruit() {
                     className="bg-white flex items-center gap-[4px] py-[8px] px-[12px] rounded-[6px] border-neutral-5 border-[1px]"
                     onClick={() => setSidebarOpened(!sidebarOpened)}>
                     <Icon name="copy" size={16} color={sidebarOpened ? color.neutral20 : color.neutral95} />
+
                     <span
                       className={
                         'text-label1 ' + cn('font-semibold', sidebarOpened ? 'text-neutral-20' : 'text-neutral-95')
