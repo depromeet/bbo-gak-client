@@ -28,7 +28,6 @@ import { Pip } from './SVG/Pip';
 import { Profile } from './SVG/Profile';
 import { ProfileFill } from './SVG/ProfileFill';
 import { Refresh } from './SVG/Refresh';
-import { X } from './SVG/X';
 import { Remove } from './SVG/Remove';
 import { RightChevron } from './SVG/RightChevron';
 import { Rocket } from './SVG/Rocket';
