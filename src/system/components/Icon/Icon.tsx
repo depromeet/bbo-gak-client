@@ -8,15 +8,19 @@ import { CalendarFill } from './SVG/CalendarFill';
 import { Check } from './SVG/Check';
 import { Close } from './SVG/Close';
 import { Clover } from './SVG/Clover';
+import { CodingSignUp } from './SVG/CodingSignUp';
 import Copy from './SVG/Copy';
 import { Delete } from './SVG/Delete';
+import { DesignSignup } from './SVG/DesignSignup';
 import { Division } from './SVG/Division';
 import { Down } from './SVG/Down';
 import { DownChevron } from './SVG/DownChevron';
+import { Empty } from './SVG/Empty';
 import { FilledMemo } from './SVG/FilledMemo';
 import { Folder } from './SVG/Folder';
 import { FolderFill } from './SVG/FolderFill';
 import { Link } from './SVG/Link';
+import LogoOnly from './SVG/LogoOnly';
 import { Logout } from './SVG/Logout';
 import { Memo } from './SVG/Memo';
 import { More } from './SVG/More';
@@ -26,8 +30,11 @@ import { ProfileFill } from './SVG/ProfileFill';
 import { Refresh } from './SVG/Refresh';
 import { Remove } from './SVG/Remove';
 import { RightChevron } from './SVG/RightChevron';
+import Rocket from './SVG/Rocket';
 import { Search } from './SVG/Search';
 import { Setting } from './SVG/Setting';
+import Shoes from './SVG/Shoes';
+import { Tag } from './SVG/Tag';
 import { Trash } from './SVG/Trash';
 import { Unlink } from './SVG/Unlink';
 import { Up } from './SVG/Up';
@@ -67,6 +74,13 @@ const iconMap = {
   removeMemo: RemoveMemo,
   clover: Clover,
   refresh: Refresh,
+  empty: Empty,
+  tag: Tag,
+  designSignUp: DesignSignup,
+  shoes: Shoes,
+  rocket: Rocket,
+  logoOnly: LogoOnly,
+  codingSignUp: CodingSignUp,
 } as const;
 
 export interface IconProps extends IconBaseType {
