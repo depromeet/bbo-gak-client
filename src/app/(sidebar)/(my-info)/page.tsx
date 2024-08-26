@@ -2,7 +2,7 @@
 
 import { Dropdown, Icon } from '@/system/components';
 import { InfoCardList } from './components/InfoCardList';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { AddInfoCardDialog } from './components/AddInfoCardDialog';
 import { TouchButton } from '@/components/TouchButton';
 import { INFO_TYPES, InfoType } from '@/types';
@@ -11,6 +11,8 @@ import { cn } from '@/utils/tailwind-util';
 import { useGetCardTypeCount } from './apis/useGetCardTypeCount';
 import { If } from '@/system/utils/If';
 import { motion } from 'framer-motion';
+import { InfoCardSkeleton } from './components/InfoCardSkeleton';
+import { AsyncBoundaryWithQuery } from '@/lib';
 
 export default function MyInfo() {
   const [showHeader, setShowHeader] = useState(false);
@@ -105,7 +107,11 @@ export default function MyInfo() {
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mx-[-80px] bg-neutral-5 h-[1px]" />
           </If>
         </div>
-        <InfoCardList cardType={currentCardType} />
+        <AsyncBoundaryWithQuery
+          errorFallback={<InfoCardSkeleton count={4} />}
+          pendingFallback={<InfoCardSkeleton count={4} />}>
+          <InfoCardList cardType={currentCardType} />
+        </AsyncBoundaryWithQuery>
       </div>
     </div>
   );
