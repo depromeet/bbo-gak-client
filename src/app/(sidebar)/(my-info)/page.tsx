@@ -1,19 +1,107 @@
 'use client';
 
-import { Icon } from '@/system/components';
+import { Dropdown, Icon } from '@/system/components';
 import { InfoCardList } from './components/InfoCardList';
+import { useEffect, useRef, useState } from 'react';
+import { AddInfoCardDialog } from './components/AddInfoCardDialog';
+import { TouchButton } from '@/components/TouchButton';
+import { INFO_TYPES, InfoType } from '@/types';
+import { useScroll } from '@/hooks/useScroll';
+import { cn } from '@/utils/tailwind-util';
+import { useGetCardTypeCount } from './apis/useGetCardTypeCount';
+import { If } from '@/system/utils/If';
+import { motion } from 'framer-motion';
 
 export default function MyInfo() {
+  const [showHeader, setShowHeader] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  const [currentCardType, setCurrentCardType] = useState<InfoType>('경험_정리');
+
+  const { data: cardCount } = useGetCardTypeCount();
+
+  useScroll(headerRef, (y) => setShowHeader(y > 192));
+
   return (
-    <div className="max-w-[1700px] py-[64px] px-[80px] mx-auto bg-neutral-1">
-      <div className="mb-[72px] flex justify-between">
-        <h1 className="text-[28px] font-bold">내 정보</h1>
-        <button className="flex gap-[24px] p-[16px] border rounded-[8px] border-neutral-5 bg-white">
-          <div className="text-[16px] font-semibold">김뽀각님의 기본정보</div>
-          <Icon name="down" color="#878A93" />
-        </button>
+    <div ref={headerRef} className="max-h-[100vh] w-full overflow-auto">
+      <div className="mx-auto max-w-[1700px] py-[64px] px-[80px] bg-neutral-1">
+        <div className="mb-[48px] flex justify-between">
+          <h1 className="text-[28px] font-bold">내 정보</h1>
+        </div>
+        <div className="sticky top-0 bg-neutral-1">
+          <div className="flex justify-between py-[24px]">
+            <If condition={showHeader}>
+              <div className="flex gap-12 items-center">
+                <motion.h1 initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-heading1 font-bold">
+                  내 정보
+                </motion.h1>
+                <Dropdown>
+                  <Dropdown.Trigger className="rounded-6 border bg-white px-12 py-6">
+                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-4">
+                      <span className="text-label1 font-semibold text-neutral-95">
+                        {currentCardType.replaceAll('_', ' ')}
+                      </span>
+                      <Dropdown.TriggerArrow />
+                    </motion.div>
+                  </Dropdown.Trigger>
+                  <Dropdown.Content align="end">
+                    {INFO_TYPES.map((type) => (
+                      <Dropdown.CheckedItem
+                        key={type}
+                        checked={type === currentCardType}
+                        className={type === currentCardType ? 'text-neutral-30' : ''}
+                        onClick={() => setCurrentCardType(type)}>
+                        {type.replace('_', ' ')}
+                      </Dropdown.CheckedItem>
+                    ))}
+                  </Dropdown.Content>
+                </Dropdown>
+              </div>
+            </If>
+            <If condition={!showHeader}>
+              <div className="flex gap-[24px]">
+                {INFO_TYPES.map((type) => (
+                  <TouchButton
+                    key={type}
+                    className="flex gap-[6px] items-center cursor-pointer"
+                    onClick={() => setCurrentCardType(type)}>
+                    <div
+                      className={cn(
+                        'text-[18px] text-neutral-10 font-semibold',
+                        currentCardType === type && 'text-neutral-80',
+                      )}>
+                      {type.replaceAll('_', ' ')}
+                    </div>
+                    <div
+                      className={cn(
+                        'px-[8px] py-[2px] bg-neutral-10 rounded-[6px] text-neutral-1 text-[14px] font-semibold',
+                        currentCardType === type && 'bg-neutral-80',
+                      )}>
+                      {cardCount?.[type] || 0}
+                    </div>
+                  </TouchButton>
+                ))}
+              </div>
+            </If>
+            <AddInfoCardDialog>
+              <TouchButton layout>
+                <motion.div
+                  initial={{ padding: '8px 16px' }}
+                  variants={{ longPadding: { padding: '8px 16px' }, shortPadding: { padding: '8px 8px' } }}
+                  animate={showHeader ? 'shortPadding' : 'longPadding'}
+                  className="bg-neutral-95 flex items-center gap-[4px] rounded-[6px]">
+                  <Icon name="add" size={20} color="#20E79D" />
+                  {!showHeader && <span className="text-label1 text-white font-semibold">카드 추가</span>}
+                </motion.div>
+              </TouchButton>
+            </AddInfoCardDialog>
+          </div>
+          <If condition={showHeader}>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mx-[-80px] bg-neutral-5 h-[1px]" />
+          </If>
+        </div>
+        <InfoCardList cardType={currentCardType} />
       </div>
-      <InfoCardList />
     </div>
   );
 }
