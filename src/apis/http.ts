@@ -47,10 +47,10 @@ axiosInstance.interceptors.response.use(
 
   async (error: AxiosError) => {
     if (axios.isAxiosError(error)) {
-      const data = error.response?.data;
+      const status = error.response?.status;
       const refreshToken = getCookie('refreshToken');
-      if (refreshToken) {
-        if (data === '토큰이 없습니다') {
+      if (status === 401) {
+        if (refreshToken) {
           deleteCookie('accessToken');
           deleteCookie('refreshToken');
           try {
@@ -61,6 +61,7 @@ axiosInstance.interceptors.response.use(
             window.location.href = '/login';
           }
         }
+        window.location.href = '/login';
       }
     }
 
