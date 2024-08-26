@@ -33,17 +33,21 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
   return (
     <div className="p-20 z-10">
       <div className="flex items-center w-314">
-        <Icon name="folderFill" size={16} color={color.neutral95} />
-        <Spacing size={4} direction="row" />
-        <span className="text-body1 font-semibold overflow-hidden text-ellipsis line-clamp-1">{title}</span>
-        <span className="text-body1">의 공고 일정 등록하기</span>
+        {title && (
+          <>
+            <Icon name="folderFill" size={16} color={color.neutral95} />
+            <Spacing size={4} direction="row" />
+          </>
+        )}
         <span
           className={cn('text-body1 font-semibold overflow-hidden text-ellipsis line-clamp-1', title ? 'flex-1' : '')}>
           {title ? `${title}의 공고 일정 등록하기` : '공고 일정 등록하기'}
         </span>
       </div>
       <Spacing size={4} />
-      <span className="text-caption1 text-neutral-35">일정을 등록하면 잊지 않도록 알려드릴게요!</span>
+      <span className={(cn('text-caption1 text-neutral-35'), title ? '' : 'block text-start')}>
+        일정을 등록하면 잊지 않도록 알려드릴게요!
+      </span>
       <Spacing size={24} />
       {/* 마감일 입력 */}
       <div className="w-full flex justify-between items-center p-8 bg-neutral-1 rounded-[8px]">
@@ -51,7 +55,7 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
           <Dropdown.Trigger>
             <div className="flex items-center gap-[4px] px-8 py-4">
               <span className="text-label1 text-neutral-95">{currentRecruitStage}</span>
-              <Dropdown.TriggerArrow />
+              {title && <Dropdown.TriggerArrow />}
             </div>
           </Dropdown.Trigger>
           <Dropdown.Content>
