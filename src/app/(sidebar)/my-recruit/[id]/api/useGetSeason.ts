@@ -5,6 +5,8 @@ export interface SeasonType {
   name: string;
 }
 
+type Response = { data: SeasonType[] };
+
 const getSeasons = () => {
   return http.get<SeasonType[]>({
     url: `/seasons`,
@@ -17,5 +19,5 @@ export function useGetSeasons() {
     queryFn: () => getSeasons(),
   });
 
-  return result.data as unknown as SeasonType[];
+  return result.data as unknown as Response;
 }

@@ -12,7 +12,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 1,
     title: '제목 입력 제목 입력 제목 입력 제목 입력 제목 입력 제목 입력 제목 입력 제목 입력 제목 입력 ',
     updatedDate: '2024-07-20T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그',
@@ -29,7 +29,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 2,
     title: 'test title2',
     updatedDate: '2024-07-10T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그1',
@@ -46,7 +46,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 3,
     title: '제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목',
     updatedDate: '2024-07-15T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그1',
@@ -63,7 +63,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 4,
     title: '제목4 제목4 제목4 제목4 제목4 제목4 제목4 제목4 제목4 제목4',
     updatedDate: '2024-07-18T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그2',
@@ -80,7 +80,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 5,
     title: 'test title5',
     updatedDate: '2024-07-19T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그2',
@@ -97,7 +97,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 6,
     title: '제목6 제목6 제목6 제목6 제목6 제목6 제목6 제목6 제목6',
     updatedDate: '2024-07-17T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그3',
@@ -114,7 +114,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 7,
     title: '제목7 제목7 제목7 제목7 제목7 제목7 제목7 제목7 제목7',
     updatedDate: '2024-07-21T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그3',
@@ -131,7 +131,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 8,
     title: 'test title8',
     updatedDate: '2024-07-22T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그4',
@@ -148,7 +148,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 9,
     title: '제목9 제목9 제목9 제목9 제목9 제목9 제목9 제목9 제목9',
     updatedDate: '2024-07-23T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그4',
@@ -165,7 +165,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 10,
     title: '제목10 제목10 제목10 제목10 제목10 제목10 제목10 제목10 제목10',
     updatedDate: '2024-07-24T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그5',
@@ -182,7 +182,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 11,
     title: 'test title11',
     updatedDate: '2024-07-25T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그5',
@@ -199,7 +199,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 12,
     title: '제목12 제목12 제목12 제목12 제목12 제목12 제목12 제목12 제목12',
     updatedDate: '2024-07-26T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그6',
@@ -216,7 +216,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 13,
     title: '제목13 제목13 제목13 제목13 제목13 제목13 제목13 제목13 제목13',
     updatedDate: '2024-07-27T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그6',
@@ -233,7 +233,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 14,
     title: 'test title14',
     updatedDate: '2024-07-28T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그7',
@@ -250,7 +250,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 15,
     title: '제목15 제목15 제목15 제목15 제목15 제목15 제목15 제목15 제목15',
     updatedDate: '2024-07-29T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그7',
@@ -267,7 +267,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 16,
     title: 'test title16',
     updatedDate: '2024-07-30T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그8',
@@ -284,7 +284,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 17,
     title: '제목17 제목17 제목17 제목17 제목17 제목17 제목17 제목17 제목17',
     updatedDate: '2024-07-31T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그8',
@@ -301,7 +301,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 18,
     title: '제목18 제목18 제목18 제목18 제목18 제목18 제목18 제목18 제목18',
     updatedDate: '2024-08-01T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그9',
@@ -318,7 +318,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 19,
     title: 'test title19',
     updatedDate: '2024-08-02T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그9',
@@ -335,7 +335,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 20,
     title: '제목20 제목20 제목20 제목20 제목20 제목20 제목20 제목20 제목20',
     updatedDate: '2024-08-03T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그10',
@@ -352,7 +352,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 21,
     title: 'test title21',
     updatedDate: '2024-08-04T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그10',
@@ -369,7 +369,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 22,
     title: '제목22 제목22 제목22 제목22 제목22 제목22 제목22 제목22 제목22',
     updatedDate: '2024-08-05T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그11',
@@ -386,7 +386,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 23,
     title: '제목23 제목23 제목23 제목23 제목23 제목23 제목23 제목23 제목23',
     updatedDate: '2024-08-06T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그11',
@@ -403,7 +403,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 24,
     title: 'test title24',
     updatedDate: '2024-08-07T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '직무태그12',
@@ -420,7 +420,7 @@ export const mockInfoList: InfoCardType[] = [
     id: 25,
     title: '제목25 제목25 제목25 제목25 제목25 제목25 제목25 제목25 제목25',
     updatedDate: '2024-08-08T20:00:00',
-    cardTagList: [
+    tagList: [
       {
         id: 1,
         name: '인성태그12',

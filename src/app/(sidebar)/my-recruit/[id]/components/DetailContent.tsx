@@ -14,13 +14,16 @@ import TagList from './TagList';
 
 const PROGRESS_OPTIONS = ['서류_준비', '과제_준비', '인터뷰_준비'] as const;
 
+export type ProgressType = (typeof PROGRESS_OPTIONS)[number];
+
 export function DetailContent({ recruitId }: { recruitId: string }) {
-  const [currentOption, setCurrentOption] = useState<(typeof PROGRESS_OPTIONS)[number]>('서류_준비');
+  const [currentOption, setCurrentOption] = useState<ProgressType>('서류_준비');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const { data: cardCount } = useGetCardCount(recruitId);
   const { data: tagsData } = useGetAllTags();
   const { data: cardList } = useGetRecruitCards({ id: recruitId, progress: currentOption });
+
   const filteredCardList =
     selectedTags.length > 0
       ? cardList?.filter((card) => card.tagList.some((tag) => selectedTags.includes(tag.name)))
@@ -46,7 +49,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
                     'px-[8px] py-[2px] rounded-[6px] text-[14px] font-semibold',
                     isActive ? 'bg-neutral-80 text-neutral-1' : 'bg-neutral-10 text-neutral-1',
                   )}>
-                  {cardCount ? cardCount[option] : 0}
+                  {cardCount?.[option]}
                 </div>
               </button>
             );

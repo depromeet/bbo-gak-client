@@ -55,11 +55,11 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
 
   return (
     <div className="flex items-center ml-[24px] my-[30px] ">
+      <div className="flex mr-[24px]">
+        <Icon name="tag" size={28} />
+      </div>
       {viewAllTags ? (
         <>
-          <div className="flex mr-[24px]">
-            <Icon name="tag" size={28} />
-          </div>
           <TagSelector classNames={{ base: 'w-full mx-[24px]', trigger: cn('hover:bg-neutral-1') }}>
             <TagSelector.Content defaultOpen className="absolute w-full -top-28 -left-8 bg-white">
               <div className="px-16 pt-16 pb-24">

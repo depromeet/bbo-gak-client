@@ -9,7 +9,6 @@ export default function SemesterSelector({ recruitId, season }: { recruitId: str
   const { data: seasons } = useGetSeasons();
   const { mutate: patchSeason } = usePatchSeason();
 
-  // const defaultSeason = seasons[0]?.name || '';
   const [clickSemester, setClickSemester] = useState<string>(season);
 
   const handlePatchStatus = (status: string) => {
@@ -19,7 +18,6 @@ export default function SemesterSelector({ recruitId, season }: { recruitId: str
 
   return (
     <Dropdown>
-      {/* TODO  Content 열렸을 때 downChevron 유지되도록*/}
       <Dropdown.Trigger>
         <div className="flex items-center border border-gray-200 bg-white rounded px-[8px] py-[4px] group">
           <p className="text-label2 font-medium">{clickSemester}</p>

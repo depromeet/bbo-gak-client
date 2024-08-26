@@ -1,5 +1,6 @@
 import { http } from '@/apis/http';
 import { useSuspenseQuery } from '@tanstack/react-query';
+
 interface recruitByIdType {
   id: number;
   title: string;
@@ -8,7 +9,7 @@ interface recruitByIdType {
   recruitStatus: string;
 }
 
-type Response = { data: recruitByIdType[] };
+type Response = { data: recruitByIdType };
 
 const getRecruitById = (id: string) => {
   return http.get<recruitByIdType>({
