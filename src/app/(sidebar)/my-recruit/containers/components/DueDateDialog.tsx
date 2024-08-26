@@ -31,7 +31,7 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
     dueDateList.length !== 0 && dueDateList[0].deadLine != null && dueDateList[0].recruitScheduleStage != null;
 
   return (
-    <div className="p-20 z-10">
+    <div className="p-20">
       <div className="flex items-center w-314">
         {title && (
           <>
