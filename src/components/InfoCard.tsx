@@ -9,7 +9,6 @@ import {
 } from '@/system/components/DropdownMenu/DropdownMenu';
 import { InfoCardType, TAG_TYPE_COLOR } from '@/types/info';
 import { color } from '@/system/token/color';
-import { If } from '@/system/utils/If';
 import { useDeleteCard } from '@/app/(sidebar)/(my-info)/apis/useDeleteCard';
 import Link from 'next/link';
 import { MouseEventHandler } from 'react';
@@ -63,15 +62,6 @@ export function InfoCard({ id, title, updatedDate, tagList }: InfoCardProps) {
           ))}
         </div>
       </div>
-      <If condition={tagList != null}>
-        <div className="flex gap-[8px]">
-          {tagList?.map(({ id, type, name }) => (
-            <Tag key={id} color={TAG_TYPE_COLOR[type]}>
-              {name}
-            </Tag>
-          ))}
-        </div>
-      </If>
     </Link>
   );
 }

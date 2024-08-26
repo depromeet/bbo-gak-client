@@ -12,6 +12,7 @@ const postCard = (cardType: InfoType, tagIdList: number[]) => {
   return http.post<PostCardResponse>({
     url: `/card`,
     data: {
+      cardTypeValueGroup: '내_정보',
       cardTypeValueList: [cardType],
       tagIdList,
     },
