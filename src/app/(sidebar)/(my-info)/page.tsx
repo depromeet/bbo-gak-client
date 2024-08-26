@@ -36,13 +36,18 @@ export default function MyInfo() {
                   내 정보
                 </motion.h1>
                 <Dropdown>
-                  <Dropdown.Trigger className="rounded-6 border bg-white px-12 py-6">
-                    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-4">
-                      <span className="text-label1 font-semibold text-neutral-95">
-                        {currentCardType.replaceAll('_', ' ')}
-                      </span>
-                      <Dropdown.TriggerArrow />
-                    </motion.div>
+                  <Dropdown.Trigger>
+                    <TouchButton layout>
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="flex items-center gap-4 rounded-6 border bg-white px-12 py-6">
+                        <span className="text-label1 font-semibold text-neutral-95">
+                          {currentCardType.replaceAll('_', ' ')}
+                        </span>
+                        <Dropdown.TriggerArrow />
+                      </motion.div>
+                    </TouchButton>
                   </Dropdown.Trigger>
                   <Dropdown.Content align="end">
                     {INFO_TYPES.map((type) => (
