@@ -1,5 +1,5 @@
 import { http } from '@/apis/http';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 export interface SeasonType {
   name: string;
@@ -11,11 +11,11 @@ const getSeasons = () => {
   });
 };
 
-export const useGetSeasons = () =>
-  useQuery({
+export function useGetSeasons() {
+  const result = useSuspenseQuery({
     queryKey: ['get-seasons'],
-    queryFn: async () => {
-      const res = await getSeasons();
-      return res.data;
-    },
+    queryFn: () => getSeasons(),
   });
+
+  return result.data as unknown as SeasonType[];
+}

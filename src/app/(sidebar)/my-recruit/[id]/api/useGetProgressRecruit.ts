@@ -1,5 +1,5 @@
 import { http } from '@/apis/http';
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 export interface NearestScheduleType {
   id: number;
@@ -23,11 +23,11 @@ const getProgressRecruit = () => {
   });
 };
 
-export const useGetProgressRecruit = () =>
-  useQuery({
+export function useGetProgressRecruit() {
+  const result = useSuspenseQuery({
     queryKey: ['get-progress-recruit'],
-    queryFn: async () => {
-      const res = await getProgressRecruit();
-      return res.data;
-    },
+    queryFn: () => getProgressRecruit(),
   });
+
+  return result.data as unknown as ProgressRecruitType[];
+}

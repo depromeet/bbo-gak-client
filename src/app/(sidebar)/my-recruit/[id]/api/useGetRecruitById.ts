@@ -1,6 +1,5 @@
 import { http } from '@/apis/http';
-import { useQuery } from '@tanstack/react-query';
-
+import { useSuspenseQuery } from '@tanstack/react-query';
 interface recruitByIdType {
   id: number;
   title: string;
@@ -9,17 +8,19 @@ interface recruitByIdType {
   recruitStatus: string;
 }
 
+type Response = { data: recruitByIdType[] };
+
 const getRecruitById = (id: string) => {
   return http.get<recruitByIdType>({
     url: `/recruits/${id}`,
   });
 };
 
-export const useGetRecruitById = (id: string) =>
-  useQuery({
+export function useGetRecruitById(id: string) {
+  const result = useSuspenseQuery({
     queryKey: ['get-recruit-by-id', id],
-    queryFn: async () => {
-      const res = await getRecruitById(id);
-      return res.data;
-    },
+    queryFn: () => getRecruitById(id),
   });
+
+  return result.data as unknown as Response;
+}
