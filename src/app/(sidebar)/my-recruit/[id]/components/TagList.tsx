@@ -9,26 +9,28 @@ import { TAG_TYPE_COLOR, colorStyle } from '../mocks';
 
 interface TagListProps {
   tagsData: TagType[];
+  selectedTags: string[];
+  setSelectedTags: (tags: string[]) => void;
 }
 
-export default function TagList({ tagsData }: TagListProps) {
+export default function TagList({ tagsData, selectedTags, setSelectedTags }: TagListProps) {
   const tagContainerRef = useRef<HTMLDivElement>(null);
   const [tags, setTags] = useState<TagType[]>(tagsData || []);
+
   const [isOverflowing, setIsOverflowing] = useState<boolean>(true);
-  const [selectedTags, setSelectedTags] = useState<number[]>([]);
   const [viewAllTags, setViewAllTags] = useState<boolean>(false);
 
-  const handleTagClick = (id: number) => {
-    const clickedTag = tags.find((tag) => tag.id === id);
+  const handleTagClick = (name: string) => {
+    const clickedTag = tags.find((tag) => tag.name === name);
 
     if (clickedTag) {
-      const updatedTags = [clickedTag, ...tags.filter((tag) => tag.id !== id)];
+      const updatedTags = [clickedTag, ...tags.filter((tag) => tag.name !== name)];
       setTags(updatedTags);
 
-      if (selectedTags.includes(id)) {
-        setSelectedTags(selectedTags.filter((selectedId) => selectedId !== id));
+      if (selectedTags.includes(name)) {
+        setSelectedTags(selectedTags.filter((selectedName) => selectedName !== name));
       } else {
-        setSelectedTags([...selectedTags, id]);
+        setSelectedTags([...selectedTags, name]);
       }
     }
   };
@@ -53,40 +55,41 @@ export default function TagList({ tagsData }: TagListProps) {
 
   return (
     <div className="flex items-center ml-[24px] my-[30px] ">
-      <div className="flex mr-[24px]">
-        <span className="w-[24px] h-[24px] bg-slate-400"></span>
-        <span className="w-[24px] h-[24px] bg-slate-400"></span>
-      </div>
       {viewAllTags ? (
-        <TagSelector classNames={{ base: 'w-full mx-[24px]', trigger: cn('hover:bg-neutral-1') }}>
-          <TagSelector.Content defaultOpen className="absolute w-full -top-28 -left-8 bg-white">
-            <div className="px-16 pt-16 pb-24">
-              <TagSelector.Notice>
-                <div className="flex justify-between items-center pr-1">
-                  <p className="text-caption1 font-medium">원하는 태그로 필터링 해보세요</p>
-                  <button onClick={() => setSelectedTags([])} className="rounded-[6px] border border-[#DBDCDF] p-6">
-                    <Icon name="refresh" size={20} color={color.neutral95} />
-                  </button>
-                </div>
-              </TagSelector.Notice>
-              <TagSelector.TagList title="">
-                {tagsData &&
-                  tagsData.map((tag) => (
-                    <Tag
-                      key={tag.id}
-                      className={cn(
-                        selectedTags.includes(tag.id)
-                          ? colorStyle[TAG_TYPE_COLOR[tag.type]]
-                          : 'text-neutral-50 bg-neutral-3',
-                      )}
-                      onClick={() => handleTagClick(tag.id)}>
-                      {tag.name}
-                    </Tag>
-                  ))}
-              </TagSelector.TagList>
-            </div>
-          </TagSelector.Content>
-        </TagSelector>
+        <>
+          <div className="flex mr-[24px]">
+            <Icon name="tag" size={28} />
+          </div>
+          <TagSelector classNames={{ base: 'w-full mx-[24px]', trigger: cn('hover:bg-neutral-1') }}>
+            <TagSelector.Content defaultOpen className="absolute w-full -top-28 -left-8 bg-white">
+              <div className="px-16 pt-16 pb-24">
+                <TagSelector.Notice>
+                  <div className="flex justify-between items-center pr-1">
+                    <p className="text-caption1 font-medium">원하는 태그로 필터링 해보세요</p>
+                    <button onClick={() => setSelectedTags([])} className="rounded-[6px] border border-[#DBDCDF] p-6">
+                      <Icon name="refresh" size={20} color={color.neutral95} />
+                    </button>
+                  </div>
+                </TagSelector.Notice>
+                <TagSelector.TagList title="">
+                  {tagsData &&
+                    tagsData.map((tag) => (
+                      <Tag
+                        key={tag.id}
+                        className={cn(
+                          selectedTags.includes(tag.name)
+                            ? colorStyle[TAG_TYPE_COLOR[tag.type]]
+                            : 'text-neutral-50 bg-neutral-3',
+                        )}
+                        onClick={() => handleTagClick(tag.name)}>
+                        {tag.name}
+                      </Tag>
+                    ))}
+                </TagSelector.TagList>
+              </div>
+            </TagSelector.Content>
+          </TagSelector>
+        </>
       ) : (
         <div
           ref={tagContainerRef}
@@ -101,10 +104,12 @@ export default function TagList({ tagsData }: TagListProps) {
               <Tag
                 key={tag.id}
                 className={cn(
-                  selectedTags.includes(tag.id) ? colorStyle[TAG_TYPE_COLOR[tag.type]] : 'text-neutral-50 bg-neutral-3',
+                  selectedTags.includes(tag.name)
+                    ? colorStyle[TAG_TYPE_COLOR[tag.type]]
+                    : 'text-neutral-50 bg-neutral-3',
                   'mb-10 mt-5 flex-shrink-0',
                 )}
-                onClick={() => handleTagClick(tag.id)}>
+                onClick={() => handleTagClick(tag.name)}>
                 {tag.name}
               </Tag>
             ))}

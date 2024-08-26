@@ -1,10 +1,19 @@
 import { Icon } from '@/system/components';
 import { color } from '@/system/token/color';
+import { cn } from '@/utils';
 import clsx from 'clsx';
 import { useState } from 'react';
 import { usePatchSiteUrl } from '../api/usePatchSiteUrl';
 
-export default function TextBubble({ linkedOn, recruitId }: { linkedOn: () => void; recruitId: string }) {
+export default function TextBubble({
+  linkedOn,
+  recruitId,
+  isHovered,
+}: {
+  linkedOn: () => void;
+  recruitId: string;
+  isHovered: boolean;
+}) {
   const [link, setLink] = useState<string>('');
 
   const { mutate: newLink } = usePatchSiteUrl();
@@ -17,7 +26,11 @@ export default function TextBubble({ linkedOn, recruitId }: { linkedOn: () => vo
   };
 
   return (
-    <div className="absolute top-25 right-0 -left-98 inline-block bg-neutral-95 text-white text-sm py-2 px-4 rounded-md w-[210px]">
+    <div
+      className={cn(
+        'absolute top-25 right-0 -left-98 bg-neutral-95 text-white text-sm py-2 px-4 rounded-md w-[210px] transition-opacity duration-2000 hover:opacity-100',
+        isHovered ? 'opacity-100' : 'opacity-0',
+      )}>
       <div className="flex items-center gap-2 px-[12px] py-[6px] bg-neutral-95 w-full">
         <input
           className="text-label1 font-regular bg-neutral-95 text-neutral-1 focus:outline-none focus:bg-neutral-95 focus:text-neutral-40"

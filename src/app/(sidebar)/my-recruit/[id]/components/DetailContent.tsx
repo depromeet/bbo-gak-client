@@ -9,21 +9,25 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useGetAllTags } from '../api/useGetAllTag';
 import { useGetCardCount } from '../api/useGetCardCount';
-import { mockInfoList } from '../mocks';
+import { useGetRecruitCards } from '../api/useGetRecruitCards';
 import TagList from './TagList';
 
 const PROGRESS_OPTIONS = ['서류_준비', '과제_준비', '인터뷰_준비'] as const;
 
 export function DetailContent({ recruitId }: { recruitId: string }) {
   const [currentOption, setCurrentOption] = useState<(typeof PROGRESS_OPTIONS)[number]>('서류_준비');
-
-  const infoList = mockInfoList;
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const { data: cardCount } = useGetCardCount(recruitId);
   const { data: tagsData } = useGetAllTags();
+  const { data: cardList } = useGetRecruitCards({ id: recruitId, progress: currentOption });
+  const filteredCardList =
+    selectedTags.length > 0
+      ? cardList?.filter((card) => card.tagList.some((tag) => selectedTags.includes(tag.name)))
+      : cardList;
 
   return (
-    <section className="mt-60">
+    <section className="flex-1 py-[64px] px-[80px]">
       <div className="flex justify-between mb-[28px]">
         <div className="flex gap-[24px]">
           {PROGRESS_OPTIONS.map((option) => {
@@ -57,12 +61,12 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
         </Link>
       </div>
 
-      <TagList tagsData={tagsData || []} />
+      <TagList tagsData={tagsData || []} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
 
-      <div className="overflow-y-auto h-[calc(100vh-350px)]">
-        {infoList && infoList.length > 0 ? (
+      <div className="overflow-y-auto h-[calc(100vh-350px)] ::-webkit-scrollbar">
+        {filteredCardList && filteredCardList.length > 0 ? (
           <ul className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
-            {infoList.map((info: InfoCardType) => (
+            {filteredCardList.map((info: InfoCardType) => (
               <li key={info.id} className="min-w-[343px]">
                 <InfoCard {...info} />
               </li>
@@ -70,8 +74,8 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
           </ul>
         ) : (
           <div className="flex flex-col w-full h-full justify-center items-center">
-            <div className="w-[280px] h-[280px] bg-[#D9D9D9]" />
-            <p className="mt-[16px]">정보가 없습니다.</p>
+            <Icon name="empty" size={280} />
+            <p className="mt-[16px] text-body1 font-neutral-30">아직 생성된 정보 카드가 없어요!</p>
           </div>
         )}
       </div>
