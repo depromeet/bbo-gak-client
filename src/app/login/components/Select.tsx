@@ -24,7 +24,7 @@ export default function Select() {
         x: -150,
       }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="w-552 h-604 p-68 pt-116 flex flex-col justify-center gap-56 rounded-30 shadow-login bg-[white]">
+      className="w-552 h-604 p-68 pt-116 flex flex-col justify-center gap-56 rounded-30 bg-[white]">
       <div className="flex flex-col items-center gap-16">
         <h1 className="text-36 font-bold">환영해요 조혜원님!</h1>
 

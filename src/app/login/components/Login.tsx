@@ -22,7 +22,7 @@ export function Login() {
       }}
       transition={{ duration: 1 }}
       action={googleLogin}
-      className="w-552 h-604 p-68 pt-116 flex flex-col justify-between rounded-30 shadow-login">
+      className="w-552 h-604 p-68 pt-116 flex flex-col justify-between rounded-30 bg-[white]">
       <div className="flex flex-col items-center gap-16">
         <Icon name="cloverLogo" size={74} />
 

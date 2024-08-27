@@ -7,7 +7,7 @@ export default async function Layout({ children }: StrictPropsWithChildren) {
 
   return (
     <Redirect condition={!!session?.accessToken}>
-      <main className="h-screen flex justify-center items-center border-1 bg-[white]">{children}</main>;
+      <main className="h-screen flex justify-center items-center bg-neutral-95">{children}</main>;
     </Redirect>
   );
 }

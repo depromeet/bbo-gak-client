@@ -18,9 +18,9 @@ export default function Page() {
 
       <Funnel.Step name="select">
         {/* TODO: initial 로그인 여부 확인 */}
-        {/* <Redirect condition={!session.data?.accessToken}> */}
-        <Select />
-        {/* </Redirect> */}
+        <Redirect condition={!session.data?.accessToken}>
+          <Select />
+        </Redirect>
       </Funnel.Step>
     </Funnel>
   );
