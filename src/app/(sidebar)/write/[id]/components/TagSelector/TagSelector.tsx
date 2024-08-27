@@ -1,11 +1,11 @@
-import { Button, ButtonProps } from '@/system/components';
-import type { StrictPropsWithChildren } from '@/types';
-import { UseTagSelectorProps, UseTagSelectorReturn, useTagSelector } from './useTagSelector';
 import { generateContext } from '@/lib';
-import { cn } from '@/utils';
+import { Button, ButtonProps } from '@/system/components';
 import { Remove } from '@/system/components/Icon/SVG/Remove';
-import { SVGProps } from 'react';
 import { If } from '@/system/utils/If';
+import type { StrictPropsWithChildren } from '@/types';
+import { cn } from '@/utils';
+import { SVGProps } from 'react';
+import { UseTagSelectorProps, UseTagSelectorReturn, useTagSelector } from './useTagSelector';
 
 const [TagSelectorProvider, useTagSelectorContext] = generateContext<
   Omit<UseTagSelectorReturn, 'Component' | 'getBaseProps'>
@@ -60,11 +60,15 @@ function Trigger({ children, className }: StrictPropsWithChildren<{ className?: 
   );
 }
 
-function Content({ children, className }: StrictPropsWithChildren<{ className?: string }>) {
+function Content({
+  children,
+  defaultOpen = false,
+  className,
+}: StrictPropsWithChildren<{ defaultOpen?: boolean; className?: string }>) {
   const { isOpen, getContentProps } = useTagSelectorContext();
 
   return (
-    <If condition={isOpen}>
+    <If condition={isOpen || defaultOpen}>
       <article {...getContentProps()} className={cn(getContentProps().className, className)}>
         {children}
       </article>
