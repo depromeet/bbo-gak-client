@@ -1,59 +1,44 @@
 import { SwitchCase } from '@/system/utils/SwitchCase';
 import { Icon } from '@/system/components';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSeparator,
-} from '@/system/components/DropdownMenu/DropdownMenu';
+import { Dropdown } from '@/system/components';
 import { color } from '@/system/token/color';
 import { cn } from '@/utils';
+import { recruitStatusList } from '@/app/(sidebar)/my-recruit/constant';
 
 interface Props {
   currentStatus: string;
+  onRecruitStatusChange: (status: string) => void;
 }
 
-export function StatusButton({ currentStatus }: Props) {
+export function StatusButton({ currentStatus, onRecruitStatusChange }: Props) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="outline-none">
+    <Dropdown>
+      <Dropdown.Trigger className="outline-none">
         <div className="flex items-center">
           <span className="text-label2 text-neutral-35">{currentStatus}</span>
-          <Icon name="downChevron" color={color.neutral10} />
+          <Dropdown.TriggerArrow />
         </div>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent>
-        {statusList.map((item, index) => (
+      </Dropdown.Trigger>
+      <Dropdown.Content>
+        {recruitStatusList.map((item, index) => (
           <SwitchCase
             key={index}
             value={item.variant}
             caseBy={{
               text:
                 item.variant === 'text' ? (
-                  <DropdownMenuItem className={cn(currentStatus === item.text ? 'text-neutral-30' : '')}>
+                  <Dropdown.CheckedItem
+                    checked={currentStatus === item.text}
+                    disabled={currentStatus === item.text}
+                    onClick={() => onRecruitStatusChange(item.text)}>
                     {item.text}
-                  </DropdownMenuItem>
+                  </Dropdown.CheckedItem>
                 ) : null,
-              border: <DropdownMenuSeparator />,
+              border: <Dropdown.Separator />,
             }}
           />
         ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </Dropdown.Content>
+    </Dropdown>
   );
 }
-
-const statusList = [
-  { variant: 'text', text: '지원 준비' },
-  { variant: 'text', text: '지원 완료' },
-  { variant: 'border' },
-  { variant: 'text', text: '서류 통과' },
-  { variant: 'text', text: '서류 탈락' },
-  { variant: 'border' },
-  { variant: 'text', text: '면접 통과' },
-  { variant: 'text', text: '면접 탈락' },
-  { variant: 'border' },
-  { variant: 'text', text: '최종 합격' },
-  { variant: 'text', text: '최종 탈락' },
-] as const;
