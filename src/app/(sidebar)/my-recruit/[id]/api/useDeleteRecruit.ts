@@ -12,9 +12,5 @@ export const useDeleteRecruit = () => {
 
   return useMutation({
     mutationFn: deleteRecruit,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['info-card-list'] });
-      queryClient.invalidateQueries({ queryKey: ['card-type-count'] });
-    },
   });
 };
