@@ -9,7 +9,7 @@ export default function SemesterSelector({ recruitId, season }: { recruitId: str
   const { data: seasons } = useGetSeasons();
   const { mutate: patchSeason } = usePatchSeason();
 
-  const [clickSemester, setClickSemester] = useState<string>(season);
+  const [clickSemester, setClickSemester] = useState(season);
 
   const handlePatchStatus = (status: string) => {
     setClickSemester(status);

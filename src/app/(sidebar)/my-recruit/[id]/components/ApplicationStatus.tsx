@@ -7,7 +7,7 @@ import { useState } from 'react';
 import { usePatchStatus } from '../api/usePatchStatus';
 
 export function ApplicationStatus({ recruitId, status }: { recruitId: string; status: string }) {
-  const [clickStatus, setClickStatus] = useState<string>(status);
+  const [clickStatus, setClickStatus] = useState(status);
 
   const { mutate: patchStatus } = usePatchStatus();
 

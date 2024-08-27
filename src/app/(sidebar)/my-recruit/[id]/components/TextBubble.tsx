@@ -14,7 +14,7 @@ export default function TextBubble({
   recruitId: string;
   isHovered: boolean;
 }) {
-  const [link, setLink] = useState<string>('');
+  const [link, setLink] = useState('');
 
   const { mutate: newLink } = usePatchSiteUrl();
 
