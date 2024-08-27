@@ -26,7 +26,7 @@ axiosInstance.interceptors.request.use(async (requestConfig: InternalAxiosReques
     return requestConfig;
   }
 
-  const token = requestConfig.headers.Authorization || getCookie('accessToken');
+  const token = getCookie('accessToken');
   const config = { ...requestConfig };
 
   if (token) {
