@@ -10,8 +10,8 @@ export function CloverLogo({ size }: IconBaseType) {
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M56.3334 38.2911L48.1016 34.5625L49.2051 31.3438L57.8396 33.4778L56.3334 38.2911Z"
         fill="#007D4F"
       />
@@ -22,15 +22,15 @@ export function CloverLogo({ size }: IconBaseType) {
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M37.3315 31.6418L28.3101 30.1554L29.2755 26.0836L37.9076 28.5702L37.3315 31.6418Z"
         fill="#007D4F"
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M44.4442 36.1729L43.2908 44.256L38.7422 43.7969L41.1203 35.445L44.4442 36.1729Z"
         fill="#007D4F"
       />

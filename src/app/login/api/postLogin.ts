@@ -7,6 +7,6 @@ export const postLogin = (provider: 'GOOGLE' | 'KAKAO', token: string) =>
       provider,
     },
     headers: {
-      Authorization: `${token}`,
+      'SOCIAL-AUTH-TOKEN': token,
     },
   });

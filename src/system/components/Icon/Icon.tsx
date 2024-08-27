@@ -34,6 +34,8 @@ import { Close } from './SVG/Close';
 import { Kakao } from './SVG/KaKao';
 import { CloverLogo } from '@/system/components/Icon/SVG/CloverLogo';
 import { Google } from './SVG/Google';
+import { CodingSignUp } from './SVG/CondingSignUp';
+import { DesignSignup } from './SVG/DesignSignUp';
 
 const iconMap = {
   bell: Bell,
@@ -70,6 +72,8 @@ const iconMap = {
   clover: Clover,
   google: Google,
   cloverLogo: CloverLogo,
+  codingSignUp: CodingSignUp,
+  designSignUp: DesignSignup,
 } as const;
 
 export interface IconProps extends IconBaseType {
