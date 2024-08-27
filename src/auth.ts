@@ -59,7 +59,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         token.accessToken = newTokens.id_token;
         token.expiresAt = Math.floor(Date.now() / 1000 + newTokens.expires_in);
-        // Some providers only issue refresh tokens once, so preserve if we did not get a new one
         if (newTokens.refresh_token) {
           token.refreshToken = newTokens.refresh_token;
         }
