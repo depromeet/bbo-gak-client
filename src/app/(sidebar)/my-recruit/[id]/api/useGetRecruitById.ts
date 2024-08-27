@@ -9,8 +9,6 @@ interface recruitByIdType {
   recruitStatus: string;
 }
 
-type Response = { data: recruitByIdType };
-
 const getRecruitById = (id: string) => {
   return http.get<recruitByIdType>({
     url: `/recruits/${id}`,
@@ -20,8 +18,11 @@ const getRecruitById = (id: string) => {
 export function useGetRecruitById(id: string) {
   const result = useSuspenseQuery({
     queryKey: ['get-recruit-by-id', id],
-    queryFn: () => getRecruitById(id),
+    queryFn: async () => {
+      const res = await getRecruitById(id);
+      return res.data;
+    },
   });
 
-  return result.data as unknown as Response;
+  return result;
 }

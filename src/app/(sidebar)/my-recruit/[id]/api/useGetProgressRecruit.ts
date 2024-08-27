@@ -6,7 +6,6 @@ export interface NearestScheduleType {
   recruitScheduleStage: string;
   deadLine: string;
 }
-
 export interface ProgressRecruitType {
   id: number;
   title: string;
@@ -26,8 +25,11 @@ const getProgressRecruit = () => {
 export function useGetProgressRecruit() {
   const result = useSuspenseQuery({
     queryKey: ['get-progress-recruit'],
-    queryFn: () => getProgressRecruit(),
+    queryFn: async () => {
+      const res = await getProgressRecruit();
+      return res.data;
+    },
   });
 
-  return result.data as unknown as ProgressRecruitType[];
+  return result;
 }

@@ -9,8 +9,6 @@ export type GetRecruitCardsType = {
   tagList: TagType[];
 };
 
-type Response = { data: GetRecruitCardsType[] };
-
 const getRecruitCards = ({ id, progress }: { id: string; progress: string }) => {
   return http.get<GetRecruitCardsType[]>({
     url: `recruits/${id}/cards?type=${progress}`,
@@ -20,8 +18,11 @@ const getRecruitCards = ({ id, progress }: { id: string; progress: string }) => 
 export function useGetRecruitCards({ id, progress }: { id: string; progress: string }) {
   const result = useSuspenseQuery({
     queryKey: ['get-recruit-card-id', id, progress],
-    queryFn: () => getRecruitCards({ id, progress }),
+    queryFn: async () => {
+      const res = await getRecruitCards({ id, progress });
+      return res.data;
+    },
   });
 
-  return result.data as unknown as Response;
+  return result;
 }

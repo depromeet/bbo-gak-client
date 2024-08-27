@@ -5,8 +5,6 @@ export interface SeasonType {
   name: string;
 }
 
-type Response = { data: SeasonType[] };
-
 const getSeasons = () => {
   return http.get<SeasonType[]>({
     url: `/seasons`,
@@ -16,8 +14,11 @@ const getSeasons = () => {
 export function useGetSeasons() {
   const result = useSuspenseQuery({
     queryKey: ['get-seasons'],
-    queryFn: () => getSeasons(),
+    queryFn: async () => {
+      const res = await getSeasons();
+      return res.data;
+    },
   });
 
-  return result.data as unknown as Response;
+  return result;
 }

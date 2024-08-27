@@ -2,12 +2,12 @@ import { http } from '@/apis/http';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ProgressRecruitType } from './useGetProgressRecruit';
 
-interface patchSeasonProps {
+interface PatchSeasonProps {
   newSeason: string;
   id: string;
 }
 
-const patchSeason = ({ newSeason, id }: patchSeasonProps) => {
+const patchSeason = ({ newSeason, id }: PatchSeasonProps) => {
   return http.patch<ProgressRecruitType>({
     url: `/recruits/${id}/season`,
     data: {
@@ -20,7 +20,7 @@ export const usePatchSeason = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ newSeason, id }: patchSeasonProps) => {
+    mutationFn: async ({ newSeason, id }: PatchSeasonProps) => {
       const res = await patchSeason({ newSeason, id });
 
       return res.data;

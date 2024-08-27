@@ -2,8 +2,6 @@ import { http } from '@/apis/http';
 import { TagType } from '@/types';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-type Response = { data: TagType[] };
-
 const getAllTags = () => {
   return http.get<TagType[]>({
     url: `/tags`,
@@ -13,8 +11,11 @@ const getAllTags = () => {
 export function useGetAllTags() {
   const result = useSuspenseQuery({
     queryKey: ['get-all-tags'],
-    queryFn: () => getAllTags(),
+    queryFn: async () => {
+      const res = await getAllTags();
+      return res.data;
+    },
   });
 
-  return result.data as unknown as Response;
+  return result;
 }
