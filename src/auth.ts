@@ -7,14 +7,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],
   pages: {
     signIn: '/login',
+    // TODO: 에러 페이지로 이동
+    error: '/error',
   },
   callbacks: {
     async jwt({ token, account }) {
+      // TODO: 카카오 로그인
       const provider = account?.provider === 'google' ? 'GOOGLE' : 'KAKAO';
 
       const {
         data: { accessToken },
-      } = await postLogin(provider, account?.access_token!);
+      } = await postLogin(provider, account?.id_token!);
 
       token.accessToken = accessToken;
       return token;

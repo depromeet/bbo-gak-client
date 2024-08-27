@@ -31,6 +31,9 @@ import { Clover } from './SVG/Clover';
 import { DownChevron } from './SVG/DownChevron';
 import { FolderFill } from './SVG/FolderFill';
 import { Close } from './SVG/Close';
+import { Kakao } from './SVG/KaKao';
+import { CloverLogo } from '@/system/components/Icon/SVG/CloverLogo';
+import { Google } from './SVG/Google';
 
 const iconMap = {
   bell: Bell,
@@ -65,6 +68,8 @@ const iconMap = {
   filledMemo: FilledMemo,
   removeMemo: RemoveMemo,
   clover: Clover,
+  google: Google,
+  cloverLogo: CloverLogo,
 } as const;
 
 export interface IconProps extends IconBaseType {
