@@ -39,8 +39,8 @@ export default function Select() {
           <TouchButton
             onClick={() => setPosition('developer')}
             className={cn(
-              'relative flex flex-col justify-center items-center gap-16 w-190 h-212 hover:bg-neutral-1 transition-all rounded-18',
-              position === 'developer' && 'bg-neutral-1',
+              'relative flex flex-col justify-center items-center gap-16 w-190 h-212 hover:bg-neutral-1 transition-all rounded-18 border-1 border-transparent',
+              position === 'developer' && 'bg-[#EEF9F5] border-[#2DC98E] hover:bg-bg-[#EEF9F5]',
             )}>
             <Icon name="codingSignUp" size={120} />
             <p className="font-bold text-20 tracking-[-0.24px]">개발자</p>
@@ -49,8 +49,8 @@ export default function Select() {
           <TouchButton
             onClick={() => setPosition('designer')}
             className={cn(
-              'relative flex flex-col justify-center items-center gap-16 w-190 h-212 hover:bg-neutral-1 transition-all rounded-18',
-              position === 'designer' && 'bg-neutral-1',
+              'relative flex flex-col justify-center items-center gap-16 w-190 h-212 hover:bg-neutral-1 transition-all rounded-18 border-1 border-transparent',
+              position === 'designer' && 'bg-[#EEF9F5] border-[#2DC98E] hover:bg-bg-[#EEF9F5]',
             )}>
             <Icon name="designSignUp" size={120} />
             <p className="font-bold text-20 tracking-[-0.24px]">디자이너</p>
