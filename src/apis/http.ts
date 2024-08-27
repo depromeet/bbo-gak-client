@@ -14,7 +14,7 @@ import { postRefresh } from './refresh';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
-  timeout: 30000,
+  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -25,7 +25,6 @@ axiosInstance.interceptors.request.use(async (requestConfig: InternalAxiosReques
   if (typeof window === 'undefined') {
     return requestConfig;
   }
-
   const token = getCookie('accessToken');
   const config = { ...requestConfig };
 
