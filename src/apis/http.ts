@@ -50,6 +50,7 @@ axiosInstance.interceptors.response.use(
     if (axios.isAxiosError(error)) {
       const data = error.response?.data as serverErrorType;
       const refreshToken = getCookie('refreshToken');
+
       if (refreshToken) {
         if (data?.status === 'UNAUTHORIZED') {
           deleteCookie('accessToken');
