@@ -61,7 +61,7 @@ export function Sidebar() {
         </Collapsible>
         <Collapsible collapsed={expanded ? myJDCollapsed : true} onCollapsedChange={setMyJDCollapsed}>
           <SidebarButton
-            iconName="folder"
+            iconName={pathname === MY_RECRUIT_PATH ? 'workFill' : 'folder'}
             selected={pathname === MY_RECRUIT_PATH}
             expanded={expanded}
             expandedText="내 공고"

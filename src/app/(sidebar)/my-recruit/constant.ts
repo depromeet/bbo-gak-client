@@ -14,11 +14,4 @@ export const recruitStatusList = [
   { variant: 'text', text: '최종 탈락' },
 ] as const;
 
-export const INFO_CATEGORIES = [
-  '경험_정리',
-  '자기소개서',
-  '면접_질문',
-  '서류_준비',
-  '과제_준비',
-  '인터뷰_준비',
-] as const;
+export const INFO_CATEGORIES = ['경험_정리', '자기소개서', '면접_질문'] as const;
