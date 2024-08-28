@@ -2,7 +2,7 @@
 
 import { Dropdown, Icon } from '@/system/components';
 import { InfoCardList } from './components/InfoCardList';
-import { Onboarding } from './containers/Onboarding/Onboarding';
+// import { Onboarding } from './containers/Onboarding/Onboarding';
 import { useRef, useState } from 'react';
 import { AddInfoCardDialog } from './components/AddInfoCardDialog';
 import { TouchButton } from '@/components/TouchButton';
@@ -115,7 +115,7 @@ export default function MyInfo() {
         </AsyncBoundaryWithQuery>
       </div>
 
-      <Onboarding />
+      {/* <Onboarding /> */}
     </div>
   );
 }
