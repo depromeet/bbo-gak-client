@@ -31,6 +31,8 @@ import { Clover } from './SVG/Clover';
 import { DownChevron } from './SVG/DownChevron';
 import { FolderFill } from './SVG/FolderFill';
 import { Close } from './SVG/Close';
+import { FullScreenCorner } from './SVG/FullScreenCorner';
+import { ToLeft } from './SVG/ToLeft';
 
 const iconMap = {
   bell: Bell,
@@ -65,6 +67,8 @@ const iconMap = {
   filledMemo: FilledMemo,
   removeMemo: RemoveMemo,
   clover: Clover,
+  fullScreenCorner: FullScreenCorner,
+  toLeft: ToLeft,
 } as const;
 
 export interface IconProps extends IconBaseType {
