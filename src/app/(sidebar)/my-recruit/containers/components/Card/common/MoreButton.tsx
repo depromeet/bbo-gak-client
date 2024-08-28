@@ -12,7 +12,7 @@ export function MoreButton({ onDeleteClick }: MoreButtonProps) {
       <Dropdown.Trigger className="outline-none">
         <Icon name="more" size={24} color={color.neutral40} />
       </Dropdown.Trigger>
-      <Dropdown.Content>
+      <Dropdown.Content className="mr-[100px]">
         <Dropdown.CheckedItem className="gap-[8px]" onClick={onDeleteClick}>
           <div className="flex items-center">
             <Icon name="delete" color="#FF5C5C" />

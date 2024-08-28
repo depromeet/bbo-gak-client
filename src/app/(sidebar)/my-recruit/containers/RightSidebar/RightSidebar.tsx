@@ -43,7 +43,7 @@ export function RightSidebar({ onCloseButtonClick }: Props) {
                 <Dropdown.TriggerArrow />
               </div>
             </Dropdown.Trigger>
-            <Dropdown.Content>
+            <Dropdown.Content className="mr-[36px]">
               {INFO_CATEGORIES.map((category) => (
                 <Dropdown.CheckedItem
                   key={category}

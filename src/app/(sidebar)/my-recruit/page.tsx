@@ -10,7 +10,6 @@ import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { NewRecruitDialogContent } from './components/NewRecruitDialogContent/NewRecruitDialogContent';
 import { RightSidebar } from './containers/RightSidebar/RightSidebar';
 import { DndContextWithOverlay, DragEndEvent } from '@/lib/dnd-kit/dnd-kit';
-import { InfoCard } from '@/components/InfoCard';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePostRecruit } from './api/usePostRecruit';
 import { CardData } from './components/NewRecruitDialogContent/NewRecruitDialogContent';
@@ -20,6 +19,7 @@ import { usePostCardToRecruit } from './api/usePostCardToRecruit';
 import { useScroll } from '@/hooks/useScroll';
 import { If } from '@/system/utils/If';
 import { fontSize } from '@/system/token/typography';
+import { DraggableInfoCard } from '@/app/(sidebar)/my-recruit/components/DraggableInfoCard';
 
 const STICKY_THRESHOLD = 30;
 
@@ -42,7 +42,7 @@ export default function MyRecruit() {
   };
 
   return (
-    <DndContextWithOverlay OverlayElement={InfoCard} onDragEnd={onDragEnd}>
+    <DndContextWithOverlay OverlayElement={DraggableInfoCard} onDragEnd={onDragEnd}>
       <Dialog>
         <div ref={headerRef} className="flex max-h-[100vh] overflow-auto">
           <div className="flex-1 max-w-[1700px] mx-auto">

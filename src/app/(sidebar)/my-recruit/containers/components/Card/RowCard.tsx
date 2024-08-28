@@ -39,7 +39,7 @@ export function RowCard({
       <div
         className={cn(
           'px-24 py-22 flex-1 flex items-center border-1 border-l-transparent rounded-r-[10px] justify-between hover:border-neutral-95 hover:border-l-transparent',
-          highlighted ? 'border-mint-10 bg-[rgba(221,243,235,0.50)]' : 'border-neutral-5',
+          highlighted ? 'border-mint-10 bg-[rgba(221,243,235,0.50)]' : 'border-neutral-5 bg-[white]',
         )}>
         <div className="flex items-center">
           <span className="text-neutral-50 text-label2 font-medium">{season}</span>

@@ -2,7 +2,8 @@
 
 import { Dropdown, Icon } from '@/system/components';
 import { InfoCardList } from './components/InfoCardList';
-import { Suspense, useEffect, useRef, useState } from 'react';
+// import { Onboarding } from './containers/Onboarding/Onboarding';
+import { useRef, useState } from 'react';
 import { AddInfoCardDialog } from './components/AddInfoCardDialog';
 import { TouchButton } from '@/components/TouchButton';
 import { INFO_TYPES, InfoType } from '@/types';
@@ -113,6 +114,8 @@ export default function MyInfo() {
           <InfoCardList cardType={currentCardType} />
         </AsyncBoundaryWithQuery>
       </div>
+
+      {/* <Onboarding /> */}
     </div>
   );
 }
