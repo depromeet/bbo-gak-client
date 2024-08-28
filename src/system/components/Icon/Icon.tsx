@@ -1,26 +1,32 @@
-import { Search } from './SVG/Search';
-import { Folder } from './SVG/Folder';
-import { Bell } from './SVG/Bell';
-import { Memo } from './SVG/Memo';
-import { Profile } from './SVG/Profile';
-import { Setting } from './SVG/Setting';
-import { Logout } from './SVG/Logout';
-import { Down } from './SVG/Down';
-import { Add } from './SVG/Add';
-import { More } from './SVG/More';
-import { Division } from './SVG/Division';
-import { RightChevron } from './SVG/RightChevron';
-import { ProfileFill } from './SVG/ProfileFill';
 import type { IconBaseType } from '@/system/components/Icon/SVG/type';
-import { Delete } from './SVG/Delete';
-import { Pip } from './SVG/Pip';
-import { X } from './SVG/X';
-import { Remove } from './SVG/Remove';
-import Copy from './SVG/Copy';
-import { Up } from './SVG/Up';
+import { Add } from './SVG/Add';
+import { Bell } from './SVG/Bell';
 import { Check } from './SVG/Check';
-import { Trash } from './SVG/Trash';
+import { CodingSignUp } from './SVG/CodingSignUp';
+import { Copy } from './SVG/Copy';
+import { Delete } from './SVG/Delete';
+import { DesignSignup } from './SVG/DesignSignup';
+import { Division } from './SVG/Division';
+import { Down } from './SVG/Down';
+import { Empty } from './SVG/Empty';
+import { Folder } from './SVG/Folder';
 import { Link } from './SVG/Link';
+import { LogoOnly } from './SVG/LogoOnly';
+import { Logout } from './SVG/Logout';
+import { Memo } from './SVG/Memo';
+import { More } from './SVG/More';
+import { Pip } from './SVG/Pip';
+import { Profile } from './SVG/Profile';
+import { ProfileFill } from './SVG/ProfileFill';
+import { Refresh } from './SVG/Refresh';
+import { Remove } from './SVG/Remove';
+import { RightChevron } from './SVG/RightChevron';
+import { Rocket } from './SVG/Rocket';
+import { Search } from './SVG/Search';
+import { Setting } from './SVG/Setting';
+import { Shoes } from './SVG/Shoes';
+import { Tag } from './SVG/Tag';
+import { Trash } from './SVG/Trash';
 import { Unlink } from './SVG/Unlink';
 import { Calendar } from './SVG/Calendar';
 import { CalendarFill } from './SVG/CalendarFill';
@@ -33,6 +39,8 @@ import { FolderFill } from './SVG/FolderFill';
 import { Close } from './SVG/Close';
 import { FullScreenCorner } from './SVG/FullScreenCorner';
 import { ToLeft } from './SVG/ToLeft';
+import { Up } from './SVG/Up';
+import { X } from './SVG/X';
 
 const iconMap = {
   bell: Bell,
@@ -69,6 +77,14 @@ const iconMap = {
   clover: Clover,
   fullScreenCorner: FullScreenCorner,
   toLeft: ToLeft,
+  refresh: Refresh,
+  empty: Empty,
+  tag: Tag,
+  designSignUp: DesignSignup,
+  shoes: Shoes,
+  rocket: Rocket,
+  logoOnly: LogoOnly,
+  codingSignUp: CodingSignUp,
 } as const;
 
 export interface IconProps extends IconBaseType {
