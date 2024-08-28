@@ -12,18 +12,26 @@ import { color } from '@/system/token/color';
 import { useDeleteCard } from '@/app/(sidebar)/(my-info)/apis/useDeleteCard';
 import Link from 'next/link';
 import { MouseEventHandler } from 'react';
+import { useCardWindowContext } from './CardWindow/context';
 
 type InfoCardProps = InfoCardType;
 
 export function InfoCard({ id, title, updatedDate, tagList }: InfoCardProps) {
   const formattedDate = formatToYYMMDD(updatedDate, { separator: '.' });
 
+  const { open } = useCardWindowContext();
   const { mutate: deleteCard } = useDeleteCard();
 
   const handleDeleteCard: MouseEventHandler<HTMLDivElement> = (event) => {
     event.stopPropagation();
 
     deleteCard(id);
+  };
+
+  const handleOpenCardWindow: MouseEventHandler<HTMLDivElement> = (event) => {
+    event.stopPropagation();
+
+    open(id);
   };
 
   return (
@@ -46,7 +54,7 @@ export function InfoCard({ id, title, updatedDate, tagList }: InfoCardProps) {
                   <Icon name="delete" color="#FF5C5C" />
                   <div className="text-red-50 text-[15px] font-normal">삭제하기</div>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="gap-[8px]">
+                <DropdownMenuItem className="gap-[8px]" onClick={handleOpenCardWindow}>
                   <Icon name="pip" color={color.neutral50} />
                   <div className="text-neutral-95 text-[15px] font-normal">개별창으로 띄우기</div>
                 </DropdownMenuItem>

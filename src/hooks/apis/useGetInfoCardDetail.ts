@@ -1,6 +1,6 @@
 import { http } from '@/apis/http';
 import { InfoType, TagType } from '@/types';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export interface GetInfoCardDetailResponse {
   title: string;
@@ -16,7 +16,7 @@ const getInfoCardDetail = (cardId: number) =>
   });
 
 export const useGetInfoCardDetail = (cardId: number) =>
-  useSuspenseQuery({
+  useQuery({
     queryKey: ['get-info-card-detail', cardId],
     queryFn: async () => {
       const res = await getInfoCardDetail(cardId);

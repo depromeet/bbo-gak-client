@@ -1,14 +1,13 @@
 import { Sidebar } from '@/container/Sidebar/Sidebar';
 import { PropsWithChildren } from 'react';
-import { CardWindow } from './(my-info)/components/CardWindow';
+import { CardWindowLayout } from '@/components/CardWindow/context';
 
 export default function SidebarLayout({ children }: PropsWithChildren) {
   return (
     <div className="flex">
       <Sidebar />
       <div className="flex-grow relative">
-        {children}
-        <CardWindow cardId={1} />
+        <CardWindowLayout>{children}</CardWindowLayout>
       </div>
     </div>
   );
