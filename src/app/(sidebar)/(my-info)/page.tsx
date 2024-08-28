@@ -2,6 +2,7 @@
 
 import { Icon } from '@/system/components';
 import { InfoCardList } from './components/InfoCardList';
+import { Onboarding } from './containers/Onboarding/Onboarding';
 
 export default function MyInfo() {
   return (
@@ -14,6 +15,7 @@ export default function MyInfo() {
         </button>
       </div>
       <InfoCardList />
+      <Onboarding />
     </div>
   );
 }
