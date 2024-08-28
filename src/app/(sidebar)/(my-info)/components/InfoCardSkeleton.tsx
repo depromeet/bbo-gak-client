@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { match } from 'ts-pattern';
 
 interface InfoCardSkeletonProps {
   count: number;

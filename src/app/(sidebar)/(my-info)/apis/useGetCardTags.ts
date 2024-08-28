@@ -2,7 +2,7 @@ import { http } from '@/apis/http';
 import { TagType } from '@/types';
 import { useQuery } from '@tanstack/react-query';
 
-export const GET_TAGS = 'tags';
+export const GET_TAGS = 'tagList';
 
 type GetCardTagsRseponse = TagType[];
 
