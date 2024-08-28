@@ -2,4 +2,4 @@
 
 import { signIn } from '@/auth';
 
-export const googleLogin = () => signIn('google', { redirectTo: '/login?auth=select' });
+export const googleLogin = async () => await signIn('google', { redirectTo: '/login?auth=select' });

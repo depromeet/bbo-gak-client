@@ -1,4 +1,4 @@
-import { easeIn, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { TouchButton } from '@/components/TouchButton';
 import { Icon } from '@/system/components';
 import { cn } from '@/utils';
