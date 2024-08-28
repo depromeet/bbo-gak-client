@@ -1,14 +1,14 @@
 import { http } from '@/apis/http';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { JSONContent } from '@tiptap/react';
-import { Tag } from '../useGetTags/useGetTags';
+import { TagType } from '@/types';
 
 export interface GetCardDetailResponse {
   title: string;
   content: JSONContent;
   updatedDate: `${string} ${string}`;
   cardTypeValueList: string[];
-  tagList: Array<Tag>;
+  tagList: Array<TagType>;
 }
 
 const getCardDetail = (cardId: number) =>

@@ -19,7 +19,7 @@ export function StatusButton({ currentStatus, onRecruitStatusChange }: Props) {
           <Dropdown.TriggerArrow />
         </div>
       </Dropdown.Trigger>
-      <Dropdown.Content>
+      <Dropdown.Content className="mr-[100px]">
         {recruitStatusList.map((item, index) => (
           <SwitchCase
             key={index}

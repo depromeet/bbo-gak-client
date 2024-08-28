@@ -16,7 +16,8 @@ export function CollapsibleArrowButton() {
           collapsed: { rotate: '0deg' },
           expanded: { rotate: '-180deg' },
         }}
-        animate={collapsed ? 'collapsed' : 'expanded'}>
+        animate={collapsed ? 'collapsed' : 'expanded'}
+        transition={{ duration: 0.1 }}>
         <Icon name="rightChevron" color="#878A93" />
       </motion.div>
     </motion.div>

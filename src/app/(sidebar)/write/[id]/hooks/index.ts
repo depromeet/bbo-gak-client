@@ -7,16 +7,16 @@ import { GetCardDetailResponse } from '@/app/(sidebar)/write/[id]/api/useGetCard
 import { useTagsContext } from '../fetcher/TagsFetcher';
 
 export function useWrite(id: number) {
-  const { title: prevTitle, updatedDate, tagList, content } = useCardDetailTagsContext();
+  const { title: prevTitle, updatedDate, tagList, content, cardTypeValueList } = useCardDetailTagsContext();
   const { tags } = useTagsContext();
 
   const personalityTags = useMemo(() => tags.filter((tag) => tag.type === '인성'), [id]);
   const abilityTags = useMemo(() => tags.filter((tag) => tag.type === '역량'), [id]);
-  const categoryTags = useMemo(() => tags.filter((tag) => tag.type === '분류'), [id]);
+  const categoryTags = cardTypeValueList;
 
   const [title, setTitle] = useState<string>(prevTitle || '');
   const [selectedTags, setSelectedTags] = useState<GetCardDetailResponse['tagList']>(tagList);
-  const [selectedCategories, setSelectedCategories] = useState<GetCardDetailResponse['tagList']>(categoryTags);
+  const [selectedCategories, setSelectedCategories] = useState<any[]>(categoryTags);
 
   const { mutate: mutatePutCardTitle } = usePutCardTitle(id);
   const { mutate: mutatePostCardTag } = usePostCardTag(id);
