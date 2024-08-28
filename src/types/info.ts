@@ -19,3 +19,7 @@ export const TAG_TYPE_COLOR = {
   역량: 'blue',
   인성: 'purple',
 } as const;
+
+export const CARD_GROUP = ['내_정보', '내_공고'] as const;
+
+export type CardGroup = (typeof CARD_GROUP)[number];
