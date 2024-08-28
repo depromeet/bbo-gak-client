@@ -17,6 +17,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         // TODO: 카카오 로그인
         const provider = account?.provider === 'google' ? 'GOOGLE' : 'KAKAO';
 
+        console.log(account.access_token);
+
         const {
           data: { accessToken },
         } = await postLogin(provider, account?.access_token!);
