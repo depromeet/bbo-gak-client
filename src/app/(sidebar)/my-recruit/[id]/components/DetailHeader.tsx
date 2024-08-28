@@ -16,7 +16,7 @@ export default function DetailHeader({ recruitId }: { recruitId: string }) {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [isLinked, setIsLinked] = useState(false);
+  const [isLinked, setIsLinked] = useState(recruitInfoById.siteUrl !== '');
 
   useOutsideClick(tooltipRef, () => setIsLinked(false));
 
