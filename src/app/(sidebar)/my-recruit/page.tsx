@@ -82,7 +82,7 @@ export default function MyRecruit() {
                           variants={{ longPadding: { padding: '8px 16px' }, shortPadding: { padding: '8px 8px' } }}
                           animate={isSticky ? 'shortPadding' : 'longPadding'}
                           className="bg-neutral-95 flex items-center gap-[4px] rounded-[6px]">
-                          <Icon name="add" size={24} color="#20E79D" />
+                          <Icon name="add" size={20} color="#20E79D" />
                           {!isSticky && <span className="text-label1 text-white font-semibold">새 공고</span>}
                         </motion.div>
                       </TouchButton>

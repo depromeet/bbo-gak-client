@@ -1,4 +1,3 @@
-import { serverErrorType } from '@/types/api';
 import { isProductionEnv } from '@/utils/common';
 import type {
   AxiosError,
@@ -48,10 +47,10 @@ axiosInstance.interceptors.response.use(
 
   async (error: AxiosError) => {
     if (axios.isAxiosError(error)) {
-      const data = error.response?.data as serverErrorType;
+      const status = error.response?.status;
       const refreshToken = getCookie('refreshToken');
-      if (refreshToken) {
-        if (data?.status === 'UNAUTHORIZED') {
+      if (status === 401) {
+        if (refreshToken) {
           deleteCookie('accessToken');
           deleteCookie('refreshToken');
           try {
@@ -62,6 +61,7 @@ axiosInstance.interceptors.response.use(
             window.location.href = '/login';
           }
         }
+        window.location.href = '/login';
       }
     }
 

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 import { http } from '../../../../apis/http';
 import { InfoCardType, InfoType } from '@/types/info';
 
@@ -11,7 +11,7 @@ const getInfoCardList = (cardType: InfoType) => {
 };
 
 export const useGetInfoCardList = (cardType: InfoType) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: [GET_INFO_CARD_LIST, cardType],
     queryFn: async () => {
       const res = await getInfoCardList(cardType);
