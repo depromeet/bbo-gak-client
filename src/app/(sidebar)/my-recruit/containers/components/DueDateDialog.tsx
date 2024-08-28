@@ -35,7 +35,7 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
       <div className="flex items-center w-314">
         {title && (
           <>
-            <Icon name="folderFill" size={16} color={color.neutral95} />
+            <Icon name="folderFill" size={20} color={color.neutral95} />
             <Spacing size={4} direction="row" />
           </>
         )}
@@ -45,7 +45,7 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
         </span>
       </div>
       <Spacing size={4} />
-      <span className={(cn('text-caption1 text-neutral-35'), title ? '' : 'block text-start')}>
+      <span className={clsx('text-caption1 text-neutral-35', title ? '' : 'block text-start')}>
         일정을 등록하면 잊지 않도록 알려드릴게요!
       </span>
       <Spacing size={24} />
@@ -88,7 +88,7 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
               </span>
             </motion.div>
           </PopoverTrigger>
-          <PopoverContent className="w-200">
+          <PopoverContent className="w-270 mr-[120px]">
             <Calendar mode="single" selected={selectedDate} onSelect={setSelectedDate} />
           </PopoverContent>
         </Popover>
@@ -97,8 +97,8 @@ export function DueDateDialog({ title }: DueDateDialogProps) {
       <Button
         disabled={activatedAddButton === false}
         className="w-full h-46 flex justify-center items-center gap-[4px] border-[1px] border-neutral-35 border-dashed rounded-[6px]">
-        <Icon name="add" color={color.neutral35} />
-        <span className="text-caption1 font-medium text-neutral-35">일정 추가하기</span>
+        <Icon name="add" color={color.neutral70} />
+        <span className="text-caption1 font-medium text-neutral-70">일정 추가하기</span>
       </Button>
     </div>
   );

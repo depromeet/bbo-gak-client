@@ -128,7 +128,7 @@ export function NewRecruitDialogContent({ onSubmit }: NewRecruitDialogContentPro
               </span>
             </motion.div>
           </PopoverTrigger>
-          <PopoverContent className="w-200">
+          <PopoverContent className="w-270 mr-[120px]">
             <Calendar mode="single" selected={selectedDate} onSelect={setSelectedDate} />
           </PopoverContent>
         </Popover>

@@ -13,7 +13,7 @@ import { useDeleteRecruit } from '../../api/useDeleteRecruit';
 import { useResizeObserver } from '@/hooks/useResizeObserver';
 import { AnimateHeight } from '@/system/utils/AnimateHeight';
 
-const 최초_노출_카드_갯수 = 0;
+const 최초_노출_카드_갯수 = 1;
 const CARD_GAP = 16;
 
 export function ProgressingRecruitList() {
@@ -24,8 +24,9 @@ export function ProgressingRecruitList() {
   const { mutate: deleteRecruit } = useDeleteRecruit();
 
   const [cardsPerRow, setCardsPerRow] = useState(최초_노출_카드_갯수);
+  console.log('🚀 ~ ProgressingRecruitList ~ cardsPerRow:', cardsPerRow, recruitCards);
   const resizeRef = useResizeObserver(({ contentRect }) => {
-    setCardsPerRow(Math.floor(contentRect.width / (MIN_CARD_WIDTH + CARD_GAP)));
+    setCardsPerRow(Math.max(1, Math.floor(contentRect.width / (MIN_CARD_WIDTH + CARD_GAP))));
   });
   const gridTemplateColumns = new Array(cardsPerRow).fill('1fr').join(' ');
 
