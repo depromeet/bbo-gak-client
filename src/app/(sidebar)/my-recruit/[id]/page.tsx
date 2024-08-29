@@ -57,10 +57,8 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
                       <Icon name="calendarFill" size={16} color={color.neutral95} />
                     </div>
                   </Dropdown.Trigger>
-                  <Dropdown.Content align="end">
-                    <Dropdown.CheckedItem className="gap-[8px]">
-                      <DueDateDialog id={Number(recruitId)} onDuedateAppend={() => {}} />
-                    </Dropdown.CheckedItem>
+                  <Dropdown.Content align="end" className="gap-[8px]">
+                    <DueDateDialog onDuedateAppend={() => {}} />
                   </Dropdown.Content>
                 </Dropdown>
 
