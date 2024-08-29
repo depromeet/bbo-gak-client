@@ -2,11 +2,9 @@ import type { IconBaseType } from '@/system/components/Icon/SVG/type';
 import { Add } from './SVG/Add';
 import { Bell } from './SVG/Bell';
 import { Check } from './SVG/Check';
-import { Close } from './SVG/Close';
 import { CloverLogo } from '@/system/components/Icon/SVG/CloverLogo';
 import { Google } from './SVG/Google';
 import { CodingSignUp } from './SVG/CondingSignUp';
-import { DesignSignup } from './SVG/DesignSignup';
 import { Clover } from './SVG/Clover';
 import { Copy } from './SVG/Copy';
 import { Delete } from './SVG/Delete';
@@ -37,7 +35,6 @@ import { CalendarFill } from './SVG/CalendarFill';
 import { SubmitArrow } from '@/system/components/Icon/SVG/SubmitArrow';
 import { FilledMemo } from './SVG/FilledMemo';
 import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
-import { Clover } from './SVG/Clover';
 import { DownChevron } from './SVG/DownChevron';
 import { FolderFill } from './SVG/FolderFill';
 import { Close } from './SVG/Close';
@@ -46,6 +43,7 @@ import { ToLeft } from './SVG/ToLeft';
 import { Up } from './SVG/Up';
 import { X } from './SVG/X';
 import { WorkFill } from './SVG/WorkFill';
+import { DesignSignup } from './SVG/DesignSignUp';
 
 const iconMap = {
   bell: Bell,
