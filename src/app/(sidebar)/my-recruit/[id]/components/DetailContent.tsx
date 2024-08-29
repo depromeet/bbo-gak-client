@@ -1,18 +1,19 @@
 'use client';
 
+import { AddInfoCardDialog } from '@/app/(sidebar)/(my-info)/components/AddInfoCardDialog';
 import { InfoCard } from '@/components/InfoCard';
 import { TouchButton } from '@/components/TouchButton';
 import { Droppable } from '@/lib/dnd-kit/Droppable';
 import { Icon } from '@/system/components';
 import { InfoCardType } from '@/types';
 import { cn } from '@/utils/tailwind-util';
+import { useDndContext } from '@dnd-kit/core';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { usePostCardToRecruit } from '../../api/usePostCardToRecruit';
 import { useGetAllTags } from '../api/useGetAllTag';
 import { useGetCardCount } from '../api/useGetCardCount';
 import { useGetRecruitCards } from '../api/useGetRecruitCards';
-import { AddRecruitCardDialog } from './AddRecruitCardDialog';
 import TagList from './TagList';
 
 export const PROGRESS_OPTIONS = ['서류_준비', '과제_준비', '인터뷰_준비'] as const;
@@ -22,6 +23,8 @@ export type ProgressType = (typeof PROGRESS_OPTIONS)[number];
 export function DetailContent({ recruitId }: { recruitId: string }) {
   const [currentOption, setCurrentOption] = useState<ProgressType>('서류_준비');
   const [selectedTags, setSelectedTags] = useState<number[]>([]);
+
+  const { over } = useDndContext();
 
   const { data: cardCount } = useGetCardCount(recruitId);
   const { data: tagsData } = useGetAllTags();
@@ -41,7 +44,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
             const isActive = currentOption === option;
 
             return (
-              <button
+              <TouchButton
                 key={option}
                 className="flex gap-[6px] items-center cursor-pointer"
                 onClick={() => setCurrentOption(option)}>
@@ -55,12 +58,12 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
                   )}>
                   {cardCount?.[option]}
                 </div>
-              </button>
+              </TouchButton>
             );
           })}
         </div>
 
-        <AddRecruitCardDialog>
+        <AddInfoCardDialog>
           <TouchButton layout>
             <motion.div
               initial={{ padding: '8px 16px' }}
@@ -70,7 +73,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
               <span className="text-label1 text-white font-semibold">카드 추가</span>
             </motion.div>
           </TouchButton>
-        </AddRecruitCardDialog>
+        </AddInfoCardDialog>
       </div>
 
       <TagList tagsData={tagsData || []} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
@@ -79,20 +82,22 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
         {filteredCardList && filteredCardList.length > 0 ? (
           <ul className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
             {filteredCardList.map((info: InfoCardType) => (
-              <Droppable key={info.id} id={info.id}>
-                <li className="min-w-[343px]">
-                  <InfoCard {...info} />
-                </li>
-              </Droppable>
+              <li className="min-w-[343px]">
+                <InfoCard {...info} />
+              </li>
             ))}
           </ul>
         ) : (
-          <div className="flex flex-col w-full h-full justify-center items-center">
-            <Droppable id={1234}>
+          <Droppable id={1234}>
+            <div
+              className={cn(
+                'flex flex-col w-full h-full justify-center items-center mb-40',
+                over?.id === 1234 && 'border-mint-20 bg-[rgba(221,243,235,0.50)] rounded-20',
+              )}>
               <Icon name="empty" size={280} />
-              <p className="mt-[16px] text-body1 text-neutral-30">아직 생성된 정보 카드가 없어요!</p>
-            </Droppable>
-          </div>
+              <p className="my-[16px] text-body1 text-neutral-30">아직 생성된 정보 카드가 없어요!</p>
+            </div>
+          </Droppable>
         )}
       </div>
     </section>
