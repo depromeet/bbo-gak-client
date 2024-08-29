@@ -44,6 +44,7 @@ import { Trash } from './SVG/Trash';
 import { Unlink } from './SVG/Unlink';
 import { Up } from './SVG/Up';
 import { WorkFill } from './SVG/WorkFill';
+import { Downloads } from './SVG/Downloads';
 import { X } from './SVG/X';
 
 const iconMap = {
@@ -89,6 +90,7 @@ const iconMap = {
   rocket: Rocket,
   logoOnly: LogoOnly,
   workFill: WorkFill,
+  download: Downloads,
   arrowUp: ArrowUp,
   logout: Logout,
   profileFill: ProfileFill,
