@@ -3,13 +3,13 @@ import { TouchButton } from '@/components/TouchButton';
 import { Icon } from '@/system/components';
 import { cn } from '@/utils';
 import { useState } from 'react';
-import { useFunnelContext } from '@/system/components/Funnel/useFunnel';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 export default function Select() {
   const [position, setPosition] = useState<'designer' | 'developer' | ''>('');
-  const { setStep } = useFunnelContext();
   const session = useSession();
+  const { push } = useRouter();
 
   return (
     <motion.section
@@ -67,7 +67,7 @@ export default function Select() {
           position !== '' && 'text-white bg-[black]',
         )}
         onClick={() => {
-          setStep('aaa');
+          push('/');
         }}>
         선택 완료
       </TouchButton>
