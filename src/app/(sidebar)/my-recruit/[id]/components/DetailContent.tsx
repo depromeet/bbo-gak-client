@@ -76,7 +76,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
                     'px-[8px] py-[2px] rounded-[6px] text-[14px] font-semibold',
                     isActive ? 'bg-neutral-80 text-neutral-1' : 'bg-neutral-10 text-neutral-1',
                   )}>
-                  {cardCount?.[option]}
+                  {cardCount?.[option] || 0}
                 </div>
               </TouchButton>
             );

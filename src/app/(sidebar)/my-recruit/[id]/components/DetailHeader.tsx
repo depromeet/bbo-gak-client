@@ -16,7 +16,7 @@ export default function DetailHeader({ recruitId }: { recruitId: string }) {
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [isLinked, setIsLinked] = useState(recruitInfoById.siteUrl !== '');
+  const [isLinked, setIsLinked] = useState(recruitInfoById?.siteUrl !== '');
 
   useOutsideClick(tooltipRef, () => setIsLinked(false));
 
@@ -45,7 +45,7 @@ export default function DetailHeader({ recruitId }: { recruitId: string }) {
       <SemesterSelector recruitId={recruitId} season={recruitInfoById?.season || ''} />
       <ApplicationStatus recruitId={recruitId} status={recruitInfoById?.recruitStatus || ''} />
 
-      <TitleInput recruitInfoById={recruitInfoById} recruitId={recruitId} setIsFocused={setIsFocused} />
+      <TitleInput recruitId={recruitId} setIsFocused={setIsFocused} />
 
       <div ref={tooltipRef} className="relative">
         {!isFocused && (
