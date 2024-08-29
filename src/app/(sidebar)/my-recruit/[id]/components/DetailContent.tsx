@@ -37,7 +37,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
       : cardList;
 
   return (
-    <section className="flex-1 py-[64px] px-[80px]">
+    <section className="flex-1 py-[64px] px-[80px] bg-white">
       <div className="flex justify-between mb-[28px]">
         <div className="flex gap-[24px]">
           {PROGRESS_OPTIONS.map((option) => {
