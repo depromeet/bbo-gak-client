@@ -1,7 +1,10 @@
 import { http } from '@/apis/http';
+import { RecruitType } from '@/types/recruit';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-type GetCardCountType = Record<'서류_준비' | '과제_준비' | '인터뷰_준비', number>;
+type GetCardCountType = Record<RecruitType, number>;
+
+export const GET_CARD_COUNT = 'get-card-count';
 
 const getCardCount = (id: string) => {
   return http.get<GetCardCountType>({
@@ -11,7 +14,7 @@ const getCardCount = (id: string) => {
 
 export function useGetCardCount(id: string) {
   const result = useSuspenseQuery({
-    queryKey: ['get-progress-recruit'],
+    queryKey: ['get-card-count'],
     queryFn: async () => {
       const res = await getCardCount(id);
       return res.data;
