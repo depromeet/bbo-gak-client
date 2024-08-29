@@ -39,7 +39,7 @@ export function AllRecruitList({ selectedSeason }: Props) {
             <div className="flex flex-col gap-[12px]">
               {allRecruits.map((cardInfo) => (
                 <Droppable
-                  key={`${cardInfo.season}-${cardInfo.title}`}
+                  key={`${cardInfo.id}-${cardInfo.season}-${cardInfo.title}`}
                   id={cardInfo.id}
                   dataForOverlay={{ title: cardInfo.title }}>
                   <RowCard

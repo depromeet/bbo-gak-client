@@ -54,7 +54,7 @@ export function ProgressingRecruitList() {
                 <div ref={resizeRef} className="grid flex-wrap" style={{ gridTemplateColumns, gap: CARD_GAP }}>
                   {recruitCardForShow.map((cardInfo) => (
                     <BoxCard
-                      key={`${cardInfo.season}-${cardInfo.title}`}
+                      key={`${cardInfo.id}-${cardInfo.season}-${cardInfo.title}`}
                       {...cardInfo}
                       onDuedateAppend={() => {}}
                       onRecruitDelete={deleteRecruit}
