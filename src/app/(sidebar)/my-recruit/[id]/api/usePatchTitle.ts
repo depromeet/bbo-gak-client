@@ -5,12 +5,12 @@ interface PatchTitleResponse {
   title: string;
 }
 
-interface patchTitleProps {
+interface PatchTitleProps {
   newTitle: string;
   id: string;
 }
 
-const patchTitle = ({ newTitle, id }: patchTitleProps) => {
+const patchTitle = ({ newTitle, id }: PatchTitleProps) => {
   return http.patch<PatchTitleResponse>({
     url: `/recruits/${id}/title`,
     data: {
@@ -23,7 +23,7 @@ export const usePatchTitle = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ newTitle, id }: patchTitleProps) => {
+    mutationFn: async ({ newTitle, id }: PatchTitleProps) => {
       const res = await patchTitle({ newTitle, id });
 
       return res.data;

@@ -1,7 +1,7 @@
 import { http } from '@/apis/http';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-interface recruitByIdType {
+export interface RecruitByIdType {
   id: number;
   title: string;
   season: string;
@@ -10,7 +10,7 @@ interface recruitByIdType {
 }
 
 const getRecruitById = (id: string) => {
-  return http.get<recruitByIdType>({
+  return http.get<RecruitByIdType>({
     url: `/recruits/${id}`,
   });
 };

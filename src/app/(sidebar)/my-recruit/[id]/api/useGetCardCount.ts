@@ -1,10 +1,10 @@
 import { http } from '@/apis/http';
 import { useSuspenseQuery } from '@tanstack/react-query';
 
-type getCardCountType = Record<'서류_준비' | '과제_준비' | '인터뷰_준비', number>;
+type GetCardCountType = Record<'서류_준비' | '과제_준비' | '인터뷰_준비', number>;
 
 const getCardCount = (id: string) => {
-  return http.get<getCardCountType>({
+  return http.get<GetCardCountType>({
     url: `/recruits/${id}/cards/type-count`,
   });
 };

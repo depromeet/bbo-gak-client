@@ -1,10 +1,6 @@
-import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
-import { SubmitArrow } from '@/system/components/Icon/SVG/SubmitArrow';
 import type { IconBaseType } from '@/system/components/Icon/SVG/type';
 import { Add } from './SVG/Add';
 import { Bell } from './SVG/Bell';
-import { Calendar } from './SVG/Calendar';
-import { CalendarFill } from './SVG/CalendarFill';
 import { Check } from './SVG/Check';
 import { Close } from './SVG/Close';
 import { CloverLogo } from '@/system/components/Icon/SVG/CloverLogo';
@@ -16,11 +12,8 @@ import { Copy } from './SVG/Copy';
 import { Delete } from './SVG/Delete';
 import { Division } from './SVG/Division';
 import { Down } from './SVG/Down';
-import { DownChevron } from './SVG/DownChevron';
 import { Empty } from './SVG/Empty';
-import { FilledMemo } from './SVG/FilledMemo';
 import { Folder } from './SVG/Folder';
-import { FolderFill } from './SVG/FolderFill';
 import { Link } from './SVG/Link';
 import { LogoOnly } from './SVG/LogoOnly';
 import { Logout } from './SVG/Logout';
@@ -39,6 +32,17 @@ import { Shoes } from './SVG/Shoes';
 import { Tag } from './SVG/Tag';
 import { Trash } from './SVG/Trash';
 import { Unlink } from './SVG/Unlink';
+import { Calendar } from './SVG/Calendar';
+import { CalendarFill } from './SVG/CalendarFill';
+import { SubmitArrow } from '@/system/components/Icon/SVG/SubmitArrow';
+import { FilledMemo } from './SVG/FilledMemo';
+import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
+import { Clover } from './SVG/Clover';
+import { DownChevron } from './SVG/DownChevron';
+import { FolderFill } from './SVG/FolderFill';
+import { Close } from './SVG/Close';
+import { FullScreenCorner } from './SVG/FullScreenCorner';
+import { ToLeft } from './SVG/ToLeft';
 import { Up } from './SVG/Up';
 import { X } from './SVG/X';
 import { WorkFill } from './SVG/WorkFill';
@@ -80,6 +84,8 @@ const iconMap = {
   cloverLogo: CloverLogo,
   codingSignUp: CodingSignUp,
   designSignUp: DesignSignup,
+  fullScreenCorner: FullScreenCorner,
+  toLeft: ToLeft,
   refresh: Refresh,
   empty: Empty,
   tag: Tag,

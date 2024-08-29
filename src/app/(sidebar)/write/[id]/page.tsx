@@ -103,7 +103,8 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                   </TagSelector.Notice>
 
                   <TagSelector.TagList title="분류">
-                    {categoryTags.map((tag) => (
+                    {/* FIXME */}
+                    {/* {categoryTags.map((tag) => (
                       <TagSelector.Tag
                         key={tag}
                         className="text-neutral-75 bg-neutral-3"
@@ -117,7 +118,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                         }}>
                         {tag}
                       </TagSelector.Tag>
-                    ))}
+                    ))} */}
                   </TagSelector.TagList>
                 </div>
               </TagSelector.Content>
