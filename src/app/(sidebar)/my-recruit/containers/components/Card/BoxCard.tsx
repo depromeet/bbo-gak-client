@@ -5,6 +5,7 @@ import { dday } from '@/utils/date';
 import { MoreButton } from '@/app/(sidebar)/my-recruit/containers/components/Card/common/MoreButton';
 import { StatusButton } from '@/app/(sidebar)/my-recruit/containers/components/Card/common/StatusButton';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import Link from 'next/link';
 import { DueDateDialog } from '../DueDateDialog';
 import { RecruitCard } from '@/app/(sidebar)/my-recruit/type';
 

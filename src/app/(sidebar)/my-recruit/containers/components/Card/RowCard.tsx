@@ -4,7 +4,7 @@ import { Spacing } from '@/system/utils/Spacing';
 import { Icon } from '@/system/components';
 import { color } from '@/system/token/color';
 import { dday } from '@/utils/date';
-import { MoreButton } from '@/app/(sidebar)/my-recruit/containers/components/Card/common/MoreButton';
+import Link from 'next/link';
 import { StatusButton } from './common/StatusButton';
 import { cn } from '@/utils';
 import { RecruitCard } from '@/app/(sidebar)/my-recruit/type';
