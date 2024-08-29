@@ -87,6 +87,9 @@ const iconMap = {
   logoOnly: LogoOnly,
   workFill: WorkFill,
   arrowUp: ArrowUp,
+  logout: Logout,
+  profileFill: ProfileFill,
+  folder: Folder,
 } as const;
 
 export interface IconProps extends IconBaseType {

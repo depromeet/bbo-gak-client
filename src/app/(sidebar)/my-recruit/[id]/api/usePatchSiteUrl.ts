@@ -1,7 +1,7 @@
 import { http } from '@/apis/http';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ProgressRecruitType } from './useGetProgressRecruit';
 import { GET_RECRUIT_BY_ID } from './useGetRecruitById';
+import { ProgressRecruitType } from './usePatchSeason';
 
 interface PatchSiteProps {
   newSiteUrl: string;
