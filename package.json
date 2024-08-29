@@ -11,8 +11,7 @@
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "prettier:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix",
-    "lint:check": "eslint \"**/*.{js,jsx,ts,tsx}\"",
-    "postinstall": "prisma generate"
+    "lint:check": "eslint \"**/*.{js,jsx,ts,tsx}\""
   },
   "engines": {
     "node": "20.2.0"
