@@ -6,7 +6,7 @@ import { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from '
 import { If } from '@/system/utils/If';
 import { Spacing } from '@/system/utils/Spacing';
 import { TagType } from '@/types/info';
-import { RECRUIT_TYPES, RecruitType } from '@/types/recruit';
+import { CHOOSE_RECRUIT_TYPES, RecruitType } from '@/types/recruit';
 import { cn } from '@/utils/tailwind-util';
 import { useRouter } from 'next/navigation';
 import { PropsWithChildren, useState } from 'react';
@@ -151,7 +151,7 @@ export function AddRecruitCardDialog({ children, recruitId }: PropsWithChildren<
               <TagSelector.Content className="w-full left-0 top-46 border-t-0 px-16 pt-16 pb-20">
                 <TagSelector.Notice className="pb-12">1개만 선택 가능해요!</TagSelector.Notice>
                 <TagSelector.TagList>
-                  {RECRUIT_TYPES.map((type) => (
+                  {CHOOSE_RECRUIT_TYPES.map((type) => (
                     <TagSelector.Tag
                       key={type}
                       className="text-yellow-1 bg-yellow-bg-1"
