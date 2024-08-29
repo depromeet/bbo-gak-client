@@ -102,7 +102,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
         <div
           ref={contentRef}
           className={cn(
-            'p-10 overflow-y-auto h-[calc(100vh-350px)] ::-webkit-scrollbar',
+            'p-10 h-[calc(100vh-350px)] overflow-scroll [&::-webkit-scrollbar]:hidden',
             over?.id === 1234 && 'file:border-mint-20 bg-[rgba(221,243,235,0.50)] rounded-20',
           )}
           style={{ scrollBehavior: 'smooth' }}>

@@ -49,7 +49,7 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
       </div>
       {viewAllTags ? (
         <TagSelector classNames={{ base: 'w-full mx-[24px]', trigger: cn('hover:bg-neutral-1') }}>
-          <TagSelector.Content defaultOpen className="absolute w-full -top-28 -left-8 bg-white">
+          <TagSelector.Content defaultOpen className="absolute w-full -top-28 -left-8 rounded-12 bg-white">
             <div className="px-16 pt-16 pb-24">
               <TagSelector.Notice>
                 <div className="flex justify-between items-center pr-1">
