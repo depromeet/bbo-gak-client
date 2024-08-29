@@ -2,8 +2,8 @@ import { JSONContent, useEditor as useTiptapEditor } from '@tiptap/react';
 import { ExtensionKit } from './extensionKit';
 import { useEffect, useState } from 'react';
 
-export function useEditor({ readOnly, initialContent }: { initialContent?: JSONContent; readOnly?: boolean }) {
-  const [content, setContent] = useState<JSONContent>(initialContent || {});
+export function useEditor({ readOnly, initialContent = {} }: { initialContent?: JSONContent; readOnly?: boolean }) {
+  const [content, setContent] = useState<JSONContent>(JSON.parse((initialContent || JSON.stringify('')) as any) || {});
 
   const editor = useTiptapEditor({
     autofocus: true,
