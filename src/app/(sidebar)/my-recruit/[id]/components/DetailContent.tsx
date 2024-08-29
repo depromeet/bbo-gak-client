@@ -37,12 +37,11 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
       : cardList;
 
   return (
-    <section className="flex-1 py-[64px] px-[80px] bg-white">
+    <section className="flex-1 py-[64px] px-[80px]">
       <div className="flex justify-between mb-[28px]">
         <div className="flex gap-[24px]">
           {PROGRESS_OPTIONS.map((option) => {
             const isActive = currentOption === option;
-
             return (
               <TouchButton
                 key={option}
@@ -82,7 +81,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
         {filteredCardList && filteredCardList.length > 0 ? (
           <ul className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
             {filteredCardList.map((info: InfoCardType) => (
-              <li className="min-w-[343px]">
+              <li key={info.id} className="min-w-[343px]">
                 <InfoCard {...info} />
               </li>
             ))}
@@ -91,7 +90,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
           <Droppable id={1234}>
             <div
               className={cn(
-                'flex flex-col w-full h-full justify-center items-center mb-40',
+                'flex flex-col w-full h-full justify-center items-center my-80',
                 over?.id === 1234 && 'border-mint-20 bg-[rgba(221,243,235,0.50)] rounded-20',
               )}>
               <Icon name="empty" size={280} />
