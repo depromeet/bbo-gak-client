@@ -7,6 +7,7 @@ import { GetCardDetailResponse } from '@/app/(sidebar)/write/[id]/api/useGetCard
 import { useTagsContext } from '../fetcher/TagsFetcher';
 import { usePutCardType, PutCardTypeRequest } from '@/app/(sidebar)/write/[id]/api/usePutCardType/usePutCardType';
 import { InfoType } from '@/types';
+import { useQueryClient } from '@tanstack/react-query';
 
 export function useWrite(id: number) {
   const {
@@ -18,7 +19,9 @@ export function useWrite(id: number) {
     cardTypeValueGroup,
   } = useCardDetailTagsContext();
   const { tags } = useTagsContext();
-  const disabledCount = cardTypeValueGroup === '내_정보' ? 3 : 1;
+  const isMyInfo = cardTypeValueGroup === '내_정보';
+  const disabledCount = isMyInfo ? 3 : 1;
+  const queryClient = useQueryClient();
 
   const personalityTags = useMemo(() => tags.filter((tag) => tag.type === '인성'), [id]);
   const abilityTags = useMemo(() => tags.filter((tag) => tag.type === '역량'), [id]);
@@ -41,6 +44,19 @@ export function useWrite(id: number) {
   const handlePutCardType = useCallback(
     (tag: InfoType, method: 'put' | 'delete') => {
       if (method === 'put') {
+        if (isMyInfo) {
+          mutatePutCardType(
+            { cardTypeValueList: [tag], cardTypeValueGroup },
+            {
+              onSuccess: async () => {
+                setSelectedCategories([tag]);
+                await queryClient.invalidateQueries({ queryKey: ['get-card-detail'] });
+              },
+            },
+          );
+          return;
+        }
+
         mutatePutCardType(
           { cardTypeValueList: [...selectedCategories, tag], cardTypeValueGroup },
           {
@@ -61,7 +77,7 @@ export function useWrite(id: number) {
         },
       );
     },
-    [selectedCategories],
+    [selectedCategories, isMyInfo],
   );
 
   const handlePostCardTag = useCallback((tag: GetCardDetailResponse['tagList'][number]) => {

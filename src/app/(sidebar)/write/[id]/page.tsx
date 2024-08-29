@@ -16,6 +16,7 @@ import {
 import { Icon } from '@/system/components';
 import MemoContainer from './components/MemoContainer/MemoContainer';
 import { MemosFetcher } from '@/app/(sidebar)/write/[id]/fetcher/MemosFetcher';
+import { INFO_TYPES } from '@/types/info';
 
 const EditorProvider = dynamic(
   () => import('@/components/Editor/EditorProvider/EditorProvider').then(({ EditorProvider }) => EditorProvider),
@@ -83,13 +84,13 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                     {selectedCategories.map((category) => (
                       <TagSelector.RemovalbleTag
                         key={category}
-                        className="text-neutral-75 bg-neutral-3 z-[10]"
+                        className="text-yellow-1 bg-yellow-bg-1 z-[10]"
                         color="#37383C"
                         onClick={(event) => {
                           event.stopPropagation();
                           handlePutCardType(category, 'delete');
                         }}>
-                        {category}
+                        {category.replace('_', ' ')}
                       </TagSelector.RemovalbleTag>
                     ))}
                   </ul>
@@ -103,11 +104,10 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                   </TagSelector.Notice>
 
                   <TagSelector.TagList title="분류">
-                    {/* FIXME */}
-                    {/* {categoryTags.map((tag) => (
+                    {INFO_TYPES.map((tag) => (
                       <TagSelector.Tag
                         key={tag}
-                        className="text-neutral-75 bg-neutral-3"
+                        className="text-yellow-1 bg-yellow-bg-1"
                         onClick={() => {
                           if (
                             selectedCategories.length < disabledCount &&
@@ -116,9 +116,9 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                             handlePutCardType(tag, 'put');
                           }
                         }}>
-                        {tag}
+                        {tag.replace('_', ' ')}
                       </TagSelector.Tag>
-                    ))} */}
+                    ))}
                   </TagSelector.TagList>
                 </div>
               </TagSelector.Content>
