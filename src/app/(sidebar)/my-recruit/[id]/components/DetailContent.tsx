@@ -1,6 +1,5 @@
 'use client';
 
-import { AddInfoCardDialog } from '@/app/(sidebar)/(my-info)/components/AddInfoCardDialog';
 import { InfoCard } from '@/components/InfoCard';
 import { TouchButton } from '@/components/TouchButton';
 import { Droppable } from '@/lib/dnd-kit/Droppable';
@@ -14,6 +13,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useGetAllTags } from '../api/useGetAllTag';
 import { useGetCardCount } from '../api/useGetCardCount';
 import { useGetRecruitCards } from '../api/useGetRecruitCards';
+import { AddRecruitCardDialog } from './AddRecruitCardDialog';
 import TagList from './TagList';
 
 export function DetailContent({ recruitId }: { recruitId: string }) {
@@ -83,7 +83,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
           })}
         </div>
 
-        <AddInfoCardDialog>
+        <AddRecruitCardDialog recruitId={recruitId}>
           <TouchButton layout>
             <motion.div
               initial={{ padding: '8px 16px' }}
@@ -93,7 +93,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
               <span className="text-label1 text-white font-semibold">카드 추가</span>
             </motion.div>
           </TouchButton>
-        </AddInfoCardDialog>
+        </AddRecruitCardDialog>
       </div>
 
       <TagList tagsData={tagsData || []} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
