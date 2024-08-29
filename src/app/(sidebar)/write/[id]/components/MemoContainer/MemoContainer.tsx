@@ -30,7 +30,7 @@ export default function MemoContainer() {
   return (
     <section className="min-w-400 h-screen border-1 bg-neutral-1">
       <div className="flex items-end p-16 w-full h-109 gap-8">
-        <Icon name="filledMemo" size={24} />
+        <Icon name="memoColored" size={24} />
         <p className="text-18 font-semibold">메모</p>
       </div>
 

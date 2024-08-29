@@ -1,5 +1,5 @@
 import { http } from '@/apis/http';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 export const putMemo = (cardId: number, memoId: number, content: string) =>
   http.put({
@@ -7,8 +7,14 @@ export const putMemo = (cardId: number, memoId: number, content: string) =>
     data: { content },
   });
 
-export const usePutMemo = (cardId: number) =>
-  useMutation({
+export const usePutMemo = (cardId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
     mutationKey: ['put-memo', cardId],
     mutationFn: ({ memoId, content }: { memoId: number; content: string }) => putMemo(cardId, memoId, content),
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['get-memos'] });
+    },
   });
+};
