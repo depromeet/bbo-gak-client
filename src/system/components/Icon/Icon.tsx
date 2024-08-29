@@ -4,7 +4,6 @@ import { Bell } from './SVG/Bell';
 import { Check } from './SVG/Check';
 import { CloverLogo } from '@/system/components/Icon/SVG/CloverLogo';
 import { Google } from './SVG/Google';
-import { CodingSignUp } from './SVG/CondingSignUp';
 import { Clover } from './SVG/Clover';
 import { Copy } from './SVG/Copy';
 import { Delete } from './SVG/Delete';
@@ -43,7 +42,8 @@ import { ToLeft } from './SVG/ToLeft';
 import { Up } from './SVG/Up';
 import { X } from './SVG/X';
 import { WorkFill } from './SVG/WorkFill';
-import { DesignSignup } from './SVG/DesignSignUp';
+import { DesignSignUp } from './SVG/DesignSignUp';
+import { CodingSignUp } from './SVG/CodingSignUp';
 
 const iconMap = {
   bell: Bell,
@@ -81,7 +81,7 @@ const iconMap = {
   google: Google,
   cloverLogo: CloverLogo,
   codingSignUp: CodingSignUp,
-  designSignUp: DesignSignup,
+  designSignUp: DesignSignUp,
   fullScreenCorner: FullScreenCorner,
   toLeft: ToLeft,
   refresh: Refresh,
