@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { StatusButton } from './common/StatusButton';
 import { cn } from '@/utils';
 import { RecruitCard } from '@/app/(sidebar)/my-recruit/type';
+import { MoreButton } from './common/MoreButton';
 
 type RowCardProps = RecruitCard & {
   highlighted?: boolean;
