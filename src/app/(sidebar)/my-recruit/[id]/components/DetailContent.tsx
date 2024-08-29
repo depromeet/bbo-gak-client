@@ -23,6 +23,8 @@ export type ProgressType = (typeof PROGRESS_OPTIONS)[number];
 export function DetailContent({ recruitId }: { recruitId: string }) {
   const [currentOption, setCurrentOption] = useState<ProgressType>('서류_준비');
   const [selectedTags, setSelectedTags] = useState<number[]>([]);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   const { over } = useDndContext();
 
@@ -35,6 +37,34 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
     selectedTags.length > 0
       ? cardList?.filter((card) => card.tagList.some((tag) => selectedTags.includes(tag.id)))
       : cardList;
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (contentRef.current) {
+        setScrollPosition(contentRef.current.scrollTop);
+      }
+    };
+
+    const divElement = contentRef.current;
+    if (divElement) {
+      divElement.addEventListener('scroll', handleScroll);
+    }
+
+    return () => {
+      if (divElement) {
+        divElement.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, []);
+  const scrollToTop = () => {
+    console.log(contentRef);
+    if (contentRef.current) {
+      console.log('Scrolling to top'); // 이 로그가 출력되는지 확인
+      contentRef.current.scrollTop = 0;
+    } else {
+      console.log('contentRef.current is null'); // 참조가 제대로 안 될 경우
+    }
+  };
 
   return (
     <section className="flex-1 py-[64px] px-[80px]">
@@ -77,7 +107,10 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
 
       <TagList tagsData={tagsData || []} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
 
-      <div className="overflow-y-auto h-[calc(100vh-350px)] ::-webkit-scrollbar">
+      <div
+        ref={contentRef}
+        className="overflow-y-auto h-[calc(100vh-350px)] ::-webkit-scrollbar"
+        style={{ scrollBehavior: 'smooth' }}>
         {filteredCardList && filteredCardList.length > 0 ? (
           <ul className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
             {filteredCardList.map((info: InfoCardType) => (
@@ -85,6 +118,21 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
                 <InfoCard {...info} />
               </li>
             ))}
+            {scrollPosition > 0 && (
+              <TouchButton
+                layout
+                onClick={scrollToTop}
+                className="fixed flex flex-col justify-center items-center a w-62 h-62 rounded-full right-[95px] bottom-[40px] bg-neutral-95 border-neutral-9">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}>
+                  <Icon name="arrowUp" size={24} />
+                  <span className="text-neutral-1 text-caption1">TOP</span>
+                </motion.div>
+              </TouchButton>
+            )}
           </ul>
         ) : (
           <Droppable id={1234}>
