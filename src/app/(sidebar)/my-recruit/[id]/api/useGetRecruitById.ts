@@ -17,14 +17,13 @@ const getRecruitById = (id: string) => {
   });
 };
 
-export function useGetRecruitById(id: string) {
-  const result = useSuspenseQuery({
-    queryKey: [GET_RECRUIT_BY_ID, id],
+export const useGetRecruitById = (id: string) => {
+  return useSuspenseQuery({
+    queryKey: [GET_RECRUIT_BY_ID],
     queryFn: async () => {
       const res = await getRecruitById(id);
+
       return res.data;
     },
   });
-
-  return result;
-}
+};
