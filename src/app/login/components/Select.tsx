@@ -5,11 +5,25 @@ import { cn } from '@/utils';
 import { useState } from 'react';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { usePutUserJob } from '../api/usePutUserJob';
+
+const jobMapper = {
+  developer: '개발자',
+  designer: '디자이너',
+} as const;
 
 export default function Select() {
   const [position, setPosition] = useState<'designer' | 'developer' | ''>('');
   const session = useSession();
   const { push } = useRouter();
+  const { mutateAsync } = usePutUserJob();
+
+  const handleSubmit = async () => {
+    if (position === '') return;
+
+    await mutateAsync(jobMapper[position]);
+    push('/');
+  };
 
   return (
     <motion.section
@@ -66,9 +80,7 @@ export default function Select() {
           'bg-neutral-5 rounded-6 py-13 h-48 px-20 w-full text-15 font-semibold text-neutral-30 transition-all',
           position !== '' && 'text-white bg-[black]',
         )}
-        onClick={() => {
-          push('/');
-        }}>
+        onClick={handleSubmit}>
         선택 완료
       </TouchButton>
     </motion.section>

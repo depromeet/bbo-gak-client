@@ -1,6 +1,22 @@
 import { http } from '@/apis/http';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ProgressRecruitType } from './useGetProgressRecruit';
+import { GET_RECRUIT_BY_ID } from './useGetRecruitById';
+
+export interface NearestScheduleType {
+  id: number;
+  recruitScheduleStage: string;
+  deadLine: string;
+}
+
+export interface ProgressRecruitType {
+  id: number;
+  title: string;
+  season: string;
+  siteUrl: string;
+  recruitStatus: string;
+  createdDate: string;
+  nearestSchedule: NearestScheduleType | null;
+}
 
 interface PatchSeasonProps {
   newSeason: string;
@@ -26,7 +42,7 @@ export const usePatchSeason = () => {
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['get-recruit-by-id'] });
+      queryClient.invalidateQueries({ queryKey: [GET_RECRUIT_BY_ID] });
     },
   });
 };
