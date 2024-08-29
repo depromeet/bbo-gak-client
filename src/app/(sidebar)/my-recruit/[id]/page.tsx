@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { useDeleteRecruit } from '../api/useDeleteRecruit';
 import { usePostCardToRecruit } from '../api/usePostCardToRecruit';
 import { RightSidebar } from '../containers/RightSidebar/RightSidebar';
-import { DueDateDialog } from '../containers/components/DueDateDialog';
+import { DueDateDialog } from '../containers/components/DueDateDialog/DueDateDialog';
 import { DetailContent } from './components/DetailContent';
 import DetailHeader from './components/DetailHeader';
 
@@ -59,7 +59,7 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
                   </Dropdown.Trigger>
                   <Dropdown.Content align="end">
                     <Dropdown.CheckedItem className="gap-[8px]">
-                      <DueDateDialog onDuedateAppend={() => {}} />
+                      <DueDateDialog id={Number(recruitId)} onDuedateAppend={() => {}} />
                     </Dropdown.CheckedItem>
                   </Dropdown.Content>
                 </Dropdown>

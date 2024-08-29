@@ -24,7 +24,6 @@ export function ProgressingRecruitList() {
   const { mutate: deleteRecruit } = useDeleteRecruit();
 
   const [cardsPerRow, setCardsPerRow] = useState(최초_노출_카드_갯수);
-  console.log('🚀 ~ ProgressingRecruitList ~ cardsPerRow:', cardsPerRow, recruitCards);
   const resizeRef = useResizeObserver(({ contentRect }) => {
     setCardsPerRow(Math.max(1, Math.floor(contentRect.width / (MIN_CARD_WIDTH + CARD_GAP))));
   });

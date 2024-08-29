@@ -44,6 +44,7 @@ import { X } from './SVG/X';
 import { WorkFill } from './SVG/WorkFill';
 import { DesignSignUp } from './SVG/DesignSignUp';
 import { CodingSignUp } from './SVG/CodingSignUp';
+import { Downloads } from './SVG/Downloads';
 
 const iconMap = {
   bell: Bell,
@@ -91,6 +92,7 @@ const iconMap = {
   rocket: Rocket,
   logoOnly: LogoOnly,
   workFill: WorkFill,
+  download: Downloads,
 } as const;
 
 export interface IconProps extends IconBaseType {

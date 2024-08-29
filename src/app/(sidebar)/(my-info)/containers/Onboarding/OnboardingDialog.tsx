@@ -1,13 +1,15 @@
-import { Dialog, DialogContent, DialogTrigger } from '@/system/components/Dialog/Dialog';
+import { Dialog, DialogContent } from '@/system/components/Dialog/Dialog';
 import { Logo } from './Logo';
 import { Spacing } from '@/system/utils/Spacing';
 import { AnimateSlide } from '@/system/utils/AnimateSlide/AnimateSlide';
 import { TouchButton } from '@/components/TouchButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { If } from '@/system/utils/If';
 import { cn } from '@/utils';
-import { motion } from 'framer-motion';
+import { motion, useAnimationControls } from 'framer-motion';
 import { color } from '@/system/token/color';
+import { LogoLeaf } from './LogoLeaf';
+import { Icon } from '@/system/components';
 
 const MAX_INDEX = 3;
 
@@ -18,6 +20,7 @@ interface OnboardingDialogProps {
 export function OnboardingDialog({}: OnboardingDialogProps) {
   const [step, setStep] = useState<'text' | 'card' | 'finish'>('text');
   const [currentIndex, setCurrentIndex] = useState(0);
+  const controls = useAnimationControls();
 
   const onNextClick = () => {
     if (currentIndex < MAX_INDEX) {
@@ -27,11 +30,29 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
     setStep('card');
   };
 
+  useEffect(() => {
+    if (step === 'card') {
+      const interval = setInterval(() => controls.start('wiggle'), 100);
+
+      const timeout = setTimeout(() => {
+        clearInterval(interval);
+        setStep('finish');
+      }, 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [step]);
+
   return (
     <Dialog open>
       <DialogContent className="p-0 w-auto max-w-[auto]">
         <motion.div
-          animate={step !== 'text' ? { width: 260, height: 440, transition: { delay: 0.2 } } : {}}
+          variants={{
+            text: {},
+            // wiggle: { x: [-2, 2, -2, 2] },
+            card: { width: 260, height: 440, transition: { delay: 0.2 } },
+            finish: { width: 260, height: 440, transition: { delay: 0.2 } },
+          }}
+          animate={step}
           className="relative flex flex-col items-center p-[24px]">
           <Spacing size={8} />
           <button
@@ -112,16 +133,23 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
             className="absolute bg-white top-0 left-0 w-full h-full rounded-[24px]"
           />
         </If>
-        <If condition={step !== 'text'}>
-          <TouchButton className="absolute bottom-[-84px] p-0">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
-              className="px-[20px] py-[13px] flex gap-[6px] text-white bg-neutral-95 rounded-[6px] text-bold2 font-semibold">
-              행운의 취뽀 부적 다운받기
-            </motion.div>
-          </TouchButton>
+        <If condition={step === 'finish'}>
+          <div className="absolute left-[50%] translate-x-[-50%] bottom-[-84px]">
+            <TouchButton>
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1 }}
+                className="px-[20px] py-[13px] flex items-center gap-[6px] text-white bg-neutral-95 rounded-[6px] text-bold2 font-semibold whitespace-pre">
+                <LogoLeaf />
+                <span className="flex items-center">
+                  행운의 취뽀 부적 다운받기
+                  <Icon name="download" />
+                </span>
+                <LogoLeaf />
+              </motion.div>
+            </TouchButton>
+          </div>
         </If>
       </DialogContent>
     </Dialog>

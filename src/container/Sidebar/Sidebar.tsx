@@ -61,12 +61,12 @@ export function Sidebar() {
         </Collapsible>
         <Collapsible collapsed={expanded ? myJDCollapsed : true} onCollapsedChange={setMyJDCollapsed}>
           <SidebarButton
-            iconName={pathname === MY_RECRUIT_PATH ? 'workFill' : 'folder'}
-            selected={pathname === MY_RECRUIT_PATH}
+            iconName={pathname.includes(MY_RECRUIT_PATH) ? 'workFill' : 'folder'}
+            selected={pathname.includes(MY_RECRUIT_PATH)}
             expanded={expanded}
             expandedText="내 공고"
             withHoverEffect={!expanded}
-            withTouchEffect={pathname !== MY_RECRUIT_PATH}
+            withTouchEffect={!pathname.includes(MY_RECRUIT_PATH)}
             right={
               <Collapsible.Trigger>
                 <Collapsible.ArrowButton />
