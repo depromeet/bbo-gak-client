@@ -43,6 +43,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
+
+  secret: process.env.NEXTAUTH_SECRET,
 });
 
 declare module 'next-auth' {
