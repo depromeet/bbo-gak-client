@@ -6,22 +6,19 @@ import { TouchButton } from '@/components/TouchButton';
 import { Droppable } from '@/lib/dnd-kit/Droppable';
 import { Icon } from '@/system/components';
 import { InfoCardType } from '@/types';
+import { RECRUIT_TYPES, RecruitType } from '@/types/recruit';
 import { cn } from '@/utils/tailwind-util';
 import { useDndContext } from '@dnd-kit/core';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePostCardToRecruit } from '../../api/usePostCardToRecruit';
 import { useGetAllTags } from '../api/useGetAllTag';
 import { useGetCardCount } from '../api/useGetCardCount';
 import { useGetRecruitCards } from '../api/useGetRecruitCards';
 import TagList from './TagList';
 
-export const PROGRESS_OPTIONS = ['서류_준비', '과제_준비', '인터뷰_준비'] as const;
-
-export type ProgressType = (typeof PROGRESS_OPTIONS)[number];
-
 export function DetailContent({ recruitId }: { recruitId: string }) {
-  const [currentOption, setCurrentOption] = useState<ProgressType>('서류_준비');
+  const [currentOption, setCurrentOption] = useState<RecruitType>('서류_준비');
   const [selectedTags, setSelectedTags] = useState<number[]>([]);
   const [scrollPosition, setScrollPosition] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -70,7 +67,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
     <section className="flex-1 py-[64px] px-[80px]">
       <div className="flex justify-between mb-[28px]">
         <div className="flex gap-[24px]">
-          {PROGRESS_OPTIONS.map((option) => {
+          {RECRUIT_TYPES.map((option) => {
             const isActive = currentOption === option;
             return (
               <TouchButton
