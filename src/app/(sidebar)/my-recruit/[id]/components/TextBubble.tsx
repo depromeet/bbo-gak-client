@@ -20,7 +20,6 @@ export default function TextBubble({
   const [isLinked, setIsLinked] = useState(false);
 
   useEffect(() => {
-    console.log(isLinked);
     if (recruitInfoById?.siteUrl) {
       setLink(recruitInfoById.siteUrl);
       setIsLinked(true);

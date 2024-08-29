@@ -11,7 +11,6 @@ import { cn } from '@/utils/tailwind-util';
 import { useDndContext } from '@dnd-kit/core';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { usePostCardToRecruit } from '../../api/usePostCardToRecruit';
 import { useGetAllTags } from '../api/useGetAllTag';
 import { useGetCardCount } from '../api/useGetCardCount';
 import { useGetRecruitCards } from '../api/useGetRecruitCards';
@@ -28,7 +27,6 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
   const { data: cardCount } = useGetCardCount(recruitId);
   const { data: tagsData } = useGetAllTags();
   const { data: cardList } = useGetRecruitCards({ id: recruitId, type: currentOption, tagIds: selectedTags });
-  const { mutate: mutatePostCardToRecruit } = usePostCardToRecruit();
 
   const filteredCardList =
     selectedTags.length > 0
@@ -54,12 +52,8 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
     };
   }, []);
   const scrollToTop = () => {
-    console.log(contentRef);
     if (contentRef.current) {
-      console.log('Scrolling to top'); // 이 로그가 출력되는지 확인
       contentRef.current.scrollTop = 0;
-    } else {
-      console.log('contentRef.current is null'); // 참조가 제대로 안 될 경우
     }
   };
 
@@ -104,46 +98,45 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
 
       <TagList tagsData={tagsData || []} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
 
-      <div
-        ref={contentRef}
-        className="overflow-y-auto h-[calc(100vh-350px)] ::-webkit-scrollbar"
-        style={{ scrollBehavior: 'smooth' }}>
-        {filteredCardList && filteredCardList.length > 0 ? (
-          <ul className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
-            {filteredCardList.map((info: InfoCardType) => (
-              <li key={info.id} className="min-w-[343px]">
-                <InfoCard {...info} />
-              </li>
-            ))}
-            {scrollPosition > 0 && (
-              <TouchButton
-                layout
-                onClick={scrollToTop}
-                className="fixed flex flex-col justify-center items-center a w-62 h-62 rounded-full right-[95px] bottom-[40px] bg-neutral-95 border-neutral-9">
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}>
-                  <Icon name="arrowUp" size={24} />
-                  <span className="text-neutral-1 text-caption1">TOP</span>
-                </motion.div>
-              </TouchButton>
-            )}
-          </ul>
-        ) : (
-          <Droppable id={1234}>
-            <div
-              className={cn(
-                'flex flex-col w-full h-full justify-center items-center my-80',
-                over?.id === 1234 && 'border-mint-20 bg-[rgba(221,243,235,0.50)] rounded-20',
-              )}>
+      <Droppable id={1234}>
+        <div
+          ref={contentRef}
+          className={cn(
+            'p-10 overflow-y-auto h-[calc(100vh-350px)] ::-webkit-scrollbar',
+            over?.id === 1234 && 'file:border-mint-20 bg-[rgba(221,243,235,0.50)] rounded-20',
+          )}
+          style={{ scrollBehavior: 'smooth' }}>
+          {filteredCardList && filteredCardList.length > 0 ? (
+            <ul className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
+              {filteredCardList.map((info: InfoCardType) => (
+                <li key={info.id} className="min-w-[343px]">
+                  <InfoCard {...info} />
+                </li>
+              ))}
+              {scrollPosition > 0 && (
+                <TouchButton
+                  layout
+                  onClick={scrollToTop}
+                  className="fixed flex flex-col justify-center items-center a w-62 h-62 rounded-full right-[95px] bottom-[40px] bg-neutral-95 border-neutral-9">
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}>
+                    <Icon name="arrowUp" size={24} />
+                    <span className="text-neutral-1 text-caption1">TOP</span>
+                  </motion.div>
+                </TouchButton>
+              )}
+            </ul>
+          ) : (
+            <div className={'flex flex-col w-full h-full justify-center items-center'}>
               <Icon name="empty" size={280} />
               <p className="my-[16px] text-body1 text-neutral-30">아직 생성된 정보 카드가 없어요!</p>
             </div>
-          </Droppable>
-        )}
-      </div>
+          )}
+        </div>
+      </Droppable>
     </section>
   );
 }

@@ -1,10 +1,12 @@
 import { TagSelector } from '@/app/(sidebar)/write/[id]/components/TagSelector/TagSelector';
+import { TouchButton } from '@/components/TouchButton';
 import { Button, ButtonProps, Icon } from '@/system/components';
 import { color } from '@/system/token/color';
 import { If } from '@/system/utils/If';
 import { StrictPropsWithChildren, TagType } from '@/types';
 import { cn } from '@/utils';
-import { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { useRef, useState } from 'react';
 import { TAG_TYPE_COLOR, colorStyle } from '../mocks';
 
 interface TagListProps {
@@ -16,9 +18,9 @@ interface TagListProps {
 export default function TagList({ tagsData, selectedTags, setSelectedTags }: TagListProps) {
   const tagContainerRef = useRef<HTMLDivElement>(null);
   const [tags, setTags] = useState<TagType[]>(tagsData || []);
+  const [viewAllTags, setViewAllTags] = useState<boolean>(false);
 
   const [isOverflowing, setIsOverflowing] = useState<boolean>(true);
-  const [viewAllTags, setViewAllTags] = useState<boolean>(false);
 
   const handleTagClick = (id: number) => {
     const clickedTag = tags.find((tag) => tag.id === id);
@@ -35,28 +37,10 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
     }
   };
 
-  const checkOverflow = () => {
-    const container = tagContainerRef.current;
-    if (container) {
-      const isOverflow =
-        container.scrollHeight > container.clientHeight || container.scrollWidth > container.clientWidth;
-      setIsOverflowing(isOverflow);
-    }
-  };
-
   const handleResetTag = () => {
     setSelectedTags([]);
     setViewAllTags(false);
   };
-
-  useEffect(() => {
-    checkOverflow();
-
-    window.addEventListener('resize', checkOverflow);
-    return () => {
-      window.removeEventListener('resize', checkOverflow);
-    };
-  }, []);
 
   return (
     <div className="flex items-center ml-[24px] my-[30px] ">
@@ -64,41 +48,37 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
         <Icon name="tag" size={28} />
       </div>
       {viewAllTags ? (
-        <>
-          <TagSelector classNames={{ base: 'w-full mx-[24px]', trigger: cn('hover:bg-neutral-1') }}>
-            <TagSelector.Content defaultOpen className="absolute w-full -top-28 -left-8 bg-white">
-              <div className="px-16 pt-16 pb-24">
-                <TagSelector.Notice>
-                  <div className="flex justify-between items-center pr-1">
-                    <p className="text-caption1 font-medium">원하는 태그로 필터링 해보세요</p>
-                    <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
-                      <Icon name="refresh" size={20} color={color.neutral95} />
-                    </button>
-                  </div>
-                </TagSelector.Notice>
-                <TagSelector.TagList title="">
-                  {tagsData &&
-                    tagsData.map((tag) => (
-                      <Tag
-                        key={tag.id}
-                        className={cn(
-                          selectedTags.includes(tag.id)
-                            ? colorStyle[TAG_TYPE_COLOR[tag.type]]
-                            : 'text-neutral-50 bg-neutral-3',
-                        )}
-                        onClick={() => handleTagClick(tag.id)}>
-                        {tag.name}
-                      </Tag>
-                    ))}
-                </TagSelector.TagList>
-              </div>
-            </TagSelector.Content>
-          </TagSelector>
-        </>
+        <TagSelector classNames={{ base: 'w-full mx-[24px]', trigger: cn('hover:bg-neutral-1') }}>
+          <TagSelector.Content defaultOpen className="absolute w-full -top-28 -left-8 bg-white">
+            <div className="px-16 pt-16 pb-24">
+              <TagSelector.Notice>
+                <div className="flex justify-between items-center pr-1">
+                  <p className="text-caption1 font-medium">원하는 태그로 필터링 해보세요</p>
+                  <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
+                    <Icon name="refresh" size={20} color={color.neutral95} />
+                  </button>
+                </div>
+              </TagSelector.Notice>
+              <TagSelector.TagList title="">
+                {tagsData &&
+                  tagsData.map((tag) => (
+                    <Tag
+                      key={tag.id}
+                      className={cn(
+                        selectedTags.includes(tag.id)
+                          ? colorStyle[TAG_TYPE_COLOR[tag.type]]
+                          : 'text-neutral-50 bg-neutral-3',
+                      )}
+                      onClick={() => handleTagClick(tag.id)}>
+                      {tag.name}
+                    </Tag>
+                  ))}
+              </TagSelector.TagList>
+            </div>
+          </TagSelector.Content>
+        </TagSelector>
       ) : (
-        <div
-          ref={tagContainerRef}
-          className=" flex flex-wrap relative gap-[12px] overflow-hidden h-38 w-full items-start">
+        <div ref={tagContainerRef} className="flex flex-wrap relative gap-[12px] overflow-hidden h-38 items-start">
           {selectedTags.length > 0 && (
             <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
               <Icon name="refresh" size={20} color={color.neutral95} />
@@ -121,22 +101,23 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
           </If>
         </div>
       )}
-      <div className="right-0 flex bg-clip-padding bg-left bg-gradient-to-r from-white to-transparent w-fit">
-        <div>
-          <If condition={isOverflowing}>
-            <button
-              onClick={() => setViewAllTags((prev) => !prev)}
-              className="p-[10px] rounded-full bg-white border-[1px] border-neutral-10"
-              aria-label="downChevron button">
-              {viewAllTags ? (
-                <Icon name="up" color={color.neutral40} />
-              ) : (
-                <Icon name="downChevron" color={color.neutral40} />
-              )}
-            </button>
-          </If>
+
+      <If condition={isOverflowing}>
+        <div className="right-0 bg-clip-padding bg-left bg-gradient-to-r from-white to-transparent w-fit">
+          <TouchButton
+            layout
+            aria-label="downChevron button"
+            onClick={() => setViewAllTags((prev) => !prev)}
+            className="p-[10px] rounded-full bg-white border-[1px] border-neutral-10">
+            <motion.div
+              initial={{ rotate: 0 }}
+              animate={{ rotate: viewAllTags ? 180 : 0 }}
+              transition={{ duration: 0.3 }}>
+              <Icon name="downChevron" color={color.neutral40} />
+            </motion.div>
+          </TouchButton>
         </div>
-      </div>
+      </If>
     </div>
   );
 }
