@@ -1,5 +1,6 @@
 import { http } from '@/apis/http';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { GET_RECRUIT_BY_ID } from './useGetRecruitById';
 
 interface PatchStatusResponse {
   status: string;
@@ -31,7 +32,7 @@ export const usePatchStatus = () => {
       return res.data;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['get-recruit-by-id'] });
+      queryClient.invalidateQueries({ queryKey: [GET_RECRUIT_BY_ID] });
     },
   });
 };

@@ -20,7 +20,6 @@ export default function TextBubble({
   const [isLinked, setIsLinked] = useState(false);
 
   useEffect(() => {
-    console.log(isLinked);
     if (recruitInfoById?.siteUrl) {
       setLink(recruitInfoById.siteUrl);
       setIsLinked(true);
@@ -53,7 +52,7 @@ export default function TextBubble({
         {isLinked ? (
           <>
             <a
-              href={`/${link}`}
+              href={`https://${link}`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-label1 font-regular border-b-1 text-neutral-1 focus:outline-none focus:bg-neutral-95 focus:text-neutral-40 text-underlined max-w-[158px] truncate">
