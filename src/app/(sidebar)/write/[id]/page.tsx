@@ -35,6 +35,8 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
     categoryTags,
     content,
     updatedDate,
+    disabledCount,
+    handlePutCardType,
   } = useWrite(Number(id));
 
   return (
@@ -69,7 +71,9 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
 
             <Spacing direction="column" size={24} />
 
-            <TagSelector classNames={{ base: 'px-80', trigger: 'hover:bg-neutral-1' }}>
+            <TagSelector
+              disabled={selectedCategories.length === disabledCount}
+              classNames={{ base: 'px-80', trigger: 'hover:bg-neutral-1' }}>
               <TagSelector.Title>분류</TagSelector.Title>
 
               <TagSelector.Trigger>
@@ -78,14 +82,14 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                   <ul className="flex gap-8">
                     {selectedCategories.map((category) => (
                       <TagSelector.RemovalbleTag
-                        key={category.name}
+                        key={category}
                         className="text-neutral-75 bg-neutral-3 z-[10]"
                         color="#37383C"
                         onClick={(event) => {
                           event.stopPropagation();
-                          handleDeleteCardTag(category, 'category');
+                          handlePutCardType(category, 'delete');
                         }}>
-                        {category.name}
+                        {category}
                       </TagSelector.RemovalbleTag>
                     ))}
                   </ul>
@@ -102,17 +106,17 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                     {/* FIXME */}
                     {/* {categoryTags.map((tag) => (
                       <TagSelector.Tag
-                        key={tag.name}
+                        key={tag}
                         className="text-neutral-75 bg-neutral-3"
                         onClick={() => {
                           if (
-                            selectedCategories.length < 3 &&
-                            !selectedCategories.find(({ name }) => name === tag.name)
+                            selectedCategories.length < disabledCount &&
+                            !selectedCategories.find((category) => category === tag)
                           ) {
-                            handlePostCardTag(tag, 'category');
+                            handlePutCardType(tag, 'put');
                           }
                         }}>
-                        {tag.name}
+                        {tag}
                       </TagSelector.Tag>
                     ))} */}
                   </TagSelector.TagList>
@@ -139,7 +143,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                         color={tag.type === '역량' ? '#418CC3' : '#9C6BB3'}
                         onClick={(event) => {
                           event.stopPropagation();
-                          handleDeleteCardTag(tag, 'tag');
+                          handleDeleteCardTag(tag);
                         }}>
                         {tag.name}
                       </TagSelector.RemovalbleTag>
@@ -159,7 +163,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                         className="text-[#418CC3] bg-[#E8F1FF]"
                         onClick={() => {
                           if (selectedTags.length < 3 && !selectedTags.find(({ name }) => name === tag.name)) {
-                            handlePostCardTag(tag, 'tag');
+                            handlePostCardTag(tag);
                           }
                         }}>
                         {tag.name}
@@ -176,7 +180,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                         className="text-[#9C6BB3] bg-[#F1E8FF]"
                         onClick={() => {
                           if (selectedTags.length < 3 && !selectedTags.find(({ name }) => name === tag.name)) {
-                            handlePostCardTag(tag, 'tag');
+                            handlePostCardTag(tag);
                           }
                         }}>
                         {tag.name}

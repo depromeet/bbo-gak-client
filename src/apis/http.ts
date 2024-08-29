@@ -10,6 +10,7 @@ import type {
 import axios from 'axios';
 import { deleteCookie, getCookie, setCookie } from 'cookies-next';
 import { postRefresh } from './refresh';
+import { ACCESS_TOKEN, REFRESH_TOKEN } from '@/app/login/constants/token';
 
 const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -24,8 +25,7 @@ axiosInstance.interceptors.request.use(async (requestConfig: InternalAxiosReques
   if (typeof window === 'undefined') {
     return requestConfig;
   }
-
-  const token = getCookie('accessToken');
+  const token = getCookie(ACCESS_TOKEN);
   const config = { ...requestConfig };
 
   if (token) {
@@ -48,15 +48,17 @@ axiosInstance.interceptors.response.use(
   async (error: AxiosError) => {
     if (axios.isAxiosError(error)) {
       const status = error.response?.status;
-      const refreshToken = getCookie('refreshToken');
+      const refreshToken = getCookie(REFRESH_TOKEN);
+
       if (status === 401) {
         if (refreshToken) {
-          deleteCookie('accessToken');
-          deleteCookie('refreshToken');
+          deleteCookie(ACCESS_TOKEN);
+          deleteCookie(REFRESH_TOKEN);
+
           try {
             const response = await postRefresh({ refreshToken });
-            setCookie('accessToken', response.data.accessToken);
-            setCookie('refreshToken', response.data.refreshToken);
+            setCookie(ACCESS_TOKEN, response.data.accessToken);
+            setCookie(REFRESH_TOKEN, response.data.refreshToken);
           } catch (refreshError) {
             window.location.href = '/login';
           }

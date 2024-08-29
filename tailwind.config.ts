@@ -4,7 +4,7 @@ import { fontWeightVariant, fontWeight } from './src/system/token/fontWeight';
 
 const px0To10 = { ...Array.from(Array(11)).reduce((acc, _, i) => ({ ...acc, [i]: `${i}px` }), {}) };
 const px0To100 = { ...Array.from(Array(101)).reduce((acc, _, i) => ({ ...acc, [i]: `${i}px` }), {}) };
-const px0To500 = { ...Array.from(Array(501)).reduce((acc, _, i) => ({ ...acc, [i]: `${i}px` }), {}) };
+const px0To2000 = { ...Array.from(Array(2001)).reduce((acc, _, i) => ({ ...acc, [i]: `${i}px` }), {}) };
 
 const typographyToken = typographyVariant.reduce(
   (acc, typo) => ({
@@ -29,8 +29,8 @@ const config: Config = {
       },
     },
     extend: {
-      width: px0To500,
-      height: px0To500,
+      width: px0To2000,
+      height: px0To2000,
       borderWidth: px0To10,
       fontSize: {
         ...px0To100,
@@ -38,9 +38,9 @@ const config: Config = {
       },
       fontWeight: fontWeightToken,
       lineHeight: px0To100,
-      minWidth: px0To500,
-      minHeight: px0To500,
-      spacing: px0To500,
+      minWidth: px0To2000,
+      minHeight: px0To2000,
+      spacing: px0To2000,
       borderRadius: { ...px0To100, button: 6 },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -50,6 +50,7 @@ const config: Config = {
         drodpown: '0px 0px 10px 5px rgba(0, 0, 0, 0.08)',
         nav: '0px 4px 25px 1px rgba(0,0,0,0.05)',
         memo: '0px 1px 5px 0px rgba(249, 249, 250, 0.50), 0px 1px 5px 0px rgba(152, 155, 162, 0.15)',
+        login: '0px 2px 8px 0px rgba(0, 0, 0, 0.12), 0px 0px 1px 0px rgba(0, 0, 0, 0.08)',
       },
       colors: {
         white: '#FFFFFF',
