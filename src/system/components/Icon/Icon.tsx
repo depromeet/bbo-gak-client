@@ -19,18 +19,15 @@ import { Down } from './SVG/Down';
 import { DownChevron } from './SVG/DownChevron';
 import { Empty } from './SVG/Empty';
 import { FilledMemo } from './SVG/FilledMemo';
-import { Folder } from './SVG/Folder';
 import { FolderFill } from './SVG/FolderFill';
 import { FullScreenCorner } from './SVG/FullScreenCorner';
 import { Google } from './SVG/Google';
 import { Link } from './SVG/Link';
 import { LogoOnly } from './SVG/LogoOnly';
-import { Logout } from './SVG/Logout';
 import { Memo } from './SVG/Memo';
 import { More } from './SVG/More';
 import { Pip } from './SVG/Pip';
 import { Profile } from './SVG/Profile';
-import { ProfileFill } from './SVG/ProfileFill';
 import { Refresh } from './SVG/Refresh';
 import { Remove } from './SVG/Remove';
 import { RightChevron } from './SVG/RightChevron';
@@ -52,12 +49,9 @@ const iconMap = {
   check: Check,
   close: Close,
   division: Division,
-  folder: Folder,
   folderFill: FolderFill,
-  logout: Logout,
   memo: Memo,
   profile: Profile,
-  profileFill: ProfileFill,
   rightChevron: RightChevron,
   downChevron: DownChevron,
   search: Search,
