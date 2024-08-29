@@ -1,5 +1,5 @@
 import { http } from '@/apis/http';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 interface Request {
   recruitId: number;
@@ -13,9 +13,15 @@ function postCardToRecruit({ recruitId, cardId }: Request) {
 }
 
 export function usePostCardToRecruit() {
+  const queryClient = useQueryClient();
+
   const mutate = useMutation({
     mutationKey: [POST_CARD_TO_RECRUIT_KEY],
     mutationFn: (data: Request) => postCardToRecruit(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['get-progress-recruit'] });
+      queryClient.invalidateQueries({ queryKey: ['get-recruit-by-id'] });
+    },
   });
 
   return mutate;

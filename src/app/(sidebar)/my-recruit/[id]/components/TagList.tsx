@@ -43,7 +43,7 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
   };
 
   return (
-    <div className="flex items-center ml-[24px] my-[30px] ">
+    <div className="flex w-full items-center ml-[24px] my-[30px] ">
       <div className="flex mr-[24px]">
         <Icon name="tag" size={28} />
       </div>
@@ -78,7 +78,9 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
           </TagSelector.Content>
         </TagSelector>
       ) : (
-        <div ref={tagContainerRef} className="flex flex-wrap relative gap-[12px] overflow-hidden h-38 items-start">
+        <div
+          ref={tagContainerRef}
+          className="flex w-full flex-wrap relative gap-[12px] overflow-hidden h-38 items-start">
           {selectedTags.length > 0 && (
             <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
               <Icon name="refresh" size={20} color={color.neutral95} />
