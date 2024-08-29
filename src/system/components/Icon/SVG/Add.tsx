@@ -14,7 +14,7 @@ export function Add({ size, color }: IconBaseType) {
         <rect width={size} height={size} fill="#D9D9D9" />
       </mask>
       <g mask="url(#mask0_3051_19736)">
-        <path d="M9.99967 3.3335V16.6668M16.6663 10.0002H3.33301" stroke={color} stroke-width="1.5" />
+        <path d="M9.99967 3.3335V16.6668M16.6663 10.0002H3.33301" stroke={color} strokeWidth="1.5" />
       </g>
     </svg>
   );

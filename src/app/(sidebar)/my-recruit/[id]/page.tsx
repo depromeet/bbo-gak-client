@@ -10,29 +10,33 @@ import { DragEndEvent } from '@dnd-kit/core';
 import { AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useDeleteRecruit } from '../api/useDeleteRecruit';
 import { usePostCardToRecruit } from '../api/usePostCardToRecruit';
 import { RightSidebar } from '../containers/RightSidebar/RightSidebar';
 import { DueDateDialog } from '../containers/components/DueDateDialog';
-import { useDeleteRecruit } from './api/useDeleteRecruit';
 import { DetailContent } from './components/DetailContent';
 import DetailHeader from './components/DetailHeader';
 
 export default function CompanyDetail({ params: { id: recruitId } }: { params: { id: string } }) {
+  const router = useRouter();
   const [sidebarOpened, setSidebarOpened] = useState(false);
   const { mutate: deleteRecruit } = useDeleteRecruit();
   const { mutate: mutatePostCardToRecruit } = usePostCardToRecruit();
-  const router = useRouter();
 
   const handleDeleteRecruit = () => {
-    deleteRecruit(recruitId);
+    deleteRecruit(parseInt(recruitId, 10));
     router.push('/my-recruit');
   };
 
-  const onDragEnd = ({ over, active }: DragEndEvent) => {
-    if (over == null || active == null || typeof over.id !== 'number' || typeof active.id !== 'number') {
+  const onDragEnd = ({ active }: DragEndEvent) => {
+    if (active == null || typeof active.id !== 'number') {
       return;
     }
-    mutatePostCardToRecruit({ recruitId: over.id, cardId: active.id });
+
+    mutatePostCardToRecruit({
+      recruitId: parseInt(recruitId, 10),
+      cardId: active.id,
+    });
   };
 
   return (

@@ -9,8 +9,8 @@ import { TAG_TYPE_COLOR, colorStyle } from '../mocks';
 
 interface TagListProps {
   tagsData: TagType[];
-  selectedTags: string[];
-  setSelectedTags: (tags: string[]) => void;
+  selectedTags: number[];
+  setSelectedTags: (tags: number[]) => void;
 }
 
 export default function TagList({ tagsData, selectedTags, setSelectedTags }: TagListProps) {
@@ -20,17 +20,17 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
   const [isOverflowing, setIsOverflowing] = useState<boolean>(true);
   const [viewAllTags, setViewAllTags] = useState<boolean>(false);
 
-  const handleTagClick = (name: string) => {
-    const clickedTag = tags.find((tag) => tag.name === name);
+  const handleTagClick = (id: number) => {
+    const clickedTag = tags.find((tag) => tag.id === id);
 
     if (clickedTag) {
-      const updatedTags = [clickedTag, ...tags.filter((tag) => tag.name !== name)];
+      const updatedTags = [clickedTag, ...tags.filter((tag) => tag.id !== id)];
       setTags(updatedTags);
 
-      if (selectedTags.includes(name)) {
-        setSelectedTags(selectedTags.filter((selectedName) => selectedName !== name));
+      if (selectedTags.includes(id)) {
+        setSelectedTags(selectedTags.filter((selectedId) => selectedId !== id));
       } else {
-        setSelectedTags([...selectedTags, name]);
+        setSelectedTags([...selectedTags, id]);
       }
     }
   };
@@ -42,6 +42,11 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
         container.scrollHeight > container.clientHeight || container.scrollWidth > container.clientWidth;
       setIsOverflowing(isOverflow);
     }
+  };
+
+  const handleResetTag = () => {
+    setSelectedTags([]);
+    setViewAllTags(false);
   };
 
   useEffect(() => {
@@ -66,7 +71,7 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
                 <TagSelector.Notice>
                   <div className="flex justify-between items-center pr-1">
                     <p className="text-caption1 font-medium">원하는 태그로 필터링 해보세요</p>
-                    <button onClick={() => setSelectedTags([])} className="rounded-[6px] border border-[#DBDCDF] p-6">
+                    <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
                       <Icon name="refresh" size={20} color={color.neutral95} />
                     </button>
                   </div>
@@ -77,11 +82,11 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
                       <Tag
                         key={tag.id}
                         className={cn(
-                          selectedTags.includes(tag.name)
+                          selectedTags.includes(tag.id)
                             ? colorStyle[TAG_TYPE_COLOR[tag.type]]
                             : 'text-neutral-50 bg-neutral-3',
                         )}
-                        onClick={() => handleTagClick(tag.name)}>
+                        onClick={() => handleTagClick(tag.id)}>
                         {tag.name}
                       </Tag>
                     ))}
@@ -95,7 +100,7 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
           ref={tagContainerRef}
           className=" flex flex-wrap relative gap-[12px] overflow-hidden h-38 w-full items-start">
           {selectedTags.length > 0 && (
-            <button onClick={() => setSelectedTags([])} className="rounded-[6px] border border-[#DBDCDF] p-6">
+            <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
               <Icon name="refresh" size={20} color={color.neutral95} />
             </button>
           )}
@@ -104,12 +109,10 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
               <Tag
                 key={tag.id}
                 className={cn(
-                  selectedTags.includes(tag.name)
-                    ? colorStyle[TAG_TYPE_COLOR[tag.type]]
-                    : 'text-neutral-50 bg-neutral-3',
+                  selectedTags.includes(tag.id) ? colorStyle[TAG_TYPE_COLOR[tag.type]] : 'text-neutral-50 bg-neutral-3',
                   'mb-10 mt-5 flex-shrink-0',
                 )}
-                onClick={() => handleTagClick(tag.name)}>
+                onClick={() => handleTagClick(tag.id)}>
                 {tag.name}
               </Tag>
             ))}

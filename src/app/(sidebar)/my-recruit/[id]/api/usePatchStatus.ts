@@ -5,12 +5,12 @@ interface PatchStatusResponse {
   status: string;
 }
 
-interface patchStatusProps {
+interface PatchStatusProps {
   newStatus: string;
   id: string;
 }
 
-const patchStatus = ({ newStatus, id }: patchStatusProps) => {
+const patchStatus = ({ newStatus, id }: PatchStatusProps) => {
   return http.patch<PatchStatusResponse>({
     url: `/recruits/${id}/status`,
     data: {
@@ -23,7 +23,7 @@ export const usePatchStatus = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async ({ newStatus, id }: patchStatusProps) => {
+    mutationFn: async ({ newStatus, id }: PatchStatusProps) => {
       const res = await patchStatus({ newStatus, id });
 
       console.log(res);
