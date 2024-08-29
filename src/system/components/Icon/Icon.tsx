@@ -1,3 +1,4 @@
+import { CloverLogo } from '@/system/components/Icon/SVG/CloverLogo';
 import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
 import { SubmitArrow } from '@/system/components/Icon/SVG/SubmitArrow';
 import type { IconBaseType } from '@/system/components/Icon/SVG/type';
@@ -12,7 +13,7 @@ import { Clover } from './SVG/Clover';
 import { CodingSignUp } from './SVG/CodingSignUp';
 import { Copy } from './SVG/Copy';
 import { Delete } from './SVG/Delete';
-import { DesignSignup } from './SVG/DesignSignup';
+import { DesignSignUp } from './SVG/DesignSignUp';
 import { Division } from './SVG/Division';
 import { Down } from './SVG/Down';
 import { DownChevron } from './SVG/DownChevron';
@@ -21,6 +22,7 @@ import { FilledMemo } from './SVG/FilledMemo';
 import { Folder } from './SVG/Folder';
 import { FolderFill } from './SVG/FolderFill';
 import { FullScreenCorner } from './SVG/FullScreenCorner';
+import { Google } from './SVG/Google';
 import { Link } from './SVG/Link';
 import { LogoOnly } from './SVG/LogoOnly';
 import { Logout } from './SVG/Logout';
@@ -77,16 +79,18 @@ const iconMap = {
   filledMemo: FilledMemo,
   removeMemo: RemoveMemo,
   clover: Clover,
+  google: Google,
+  cloverLogo: CloverLogo,
+  codingSignUp: CodingSignUp,
+  designSignUp: DesignSignUp,
   fullScreenCorner: FullScreenCorner,
   toLeft: ToLeft,
   refresh: Refresh,
   empty: Empty,
   tag: Tag,
-  designSignUp: DesignSignup,
   shoes: Shoes,
   rocket: Rocket,
   logoOnly: LogoOnly,
-  codingSignUp: CodingSignUp,
   workFill: WorkFill,
   arrowUp: ArrowUp,
 } as const;
