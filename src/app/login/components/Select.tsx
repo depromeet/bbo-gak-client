@@ -35,7 +35,7 @@ export default function Select() {
       }}
       exit={{
         opacity: 0,
-        x: -150,
+        scale: 0,
       }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="w-552 h-604 p-68 pt-116 flex flex-col justify-center gap-56 rounded-30 bg-[white]">

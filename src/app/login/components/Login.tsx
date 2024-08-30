@@ -14,13 +14,11 @@ export function Login() {
   const { setStep } = useFunnelContext();
   const login = useGoogleLogin({
     onSuccess: (res) => {
-      console.log('success', res.access_token);
-
       mutate(
         { provider: 'GOOGLE', token: res.access_token },
         {
           onSuccess: ({ data: { isFirstLogin, accessToken, refreshToken } }) => {
-            const jobSelection = isFirstLogin ? SELECT : NONE;
+            const jobSelection = isFirstLogin ? NONE : SELECT;
             setCookie(ACCESS_TOKEN, accessToken);
             setCookie(REFRESH_TOKEN, refreshToken);
             setCookie(JOB_SELECTION, jobSelection);
@@ -45,7 +43,7 @@ export function Login() {
       }}
       exit={{
         opacity: 0,
-        x: 120,
+        x: -120,
       }}
       transition={{ duration: 1 }}
       className="w-552 h-604 p-68 pt-116 flex flex-col justify-between rounded-30 bg-[white]">
