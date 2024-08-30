@@ -42,8 +42,13 @@ export function Login() {
         y: 0,
       }}
       exit={{
-        opacity: 0,
-        x: -120,
+        opacity: [1, 1, 0],
+        scale: [1, 1.05, 0],
+        transition: {
+          duration: 0.7,
+          times: [0, 0.3, 1],
+          ease: 'easeInOut',
+        },
       }}
       transition={{ duration: 1 }}
       className="w-552 h-604 p-68 pt-116 flex flex-col justify-between rounded-30 bg-[white]">
