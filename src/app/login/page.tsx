@@ -21,7 +21,7 @@ export default function Page() {
       </Funnel.Step>
 
       <Funnel.Step name="select">
-        <Redirect condition={isSelectJob} to="/login">
+        <Redirect condition={isSelectJob}>
           <Select />
         </Redirect>
       </Funnel.Step>

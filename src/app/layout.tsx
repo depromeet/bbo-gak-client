@@ -5,7 +5,7 @@ import '@/styles/memo.css';
 import { Inter } from 'next/font/google';
 import { cn } from '@/utils';
 import { Suspense } from 'react';
-import { GoogleProvider } from '@/app/GoogleProvider';
+import { GoogleProvider } from '@/lib/GoogleProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
