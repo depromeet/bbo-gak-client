@@ -39,7 +39,7 @@ export function SecondSection() {
         <Spacing size={24} />
         <span className="text-title2 text-mint-10">자주쓰는 정보를 태그로 쉽게 분류할 수 있어요</span>
         <Spacing size={100} />
-        <div className="rounded-[30px] border-neutral-95 border-[8px] overflow-hidden mx-[20px]">
+        <div className="mx-[20px]">
           <Image src="/landing/image152_2.png" alt="" width={1010} height={640} />
         </div>
         <Spacing size={160} />
