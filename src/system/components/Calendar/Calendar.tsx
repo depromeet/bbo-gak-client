@@ -42,6 +42,7 @@ const buttonVariants = cva(
 function Calendar({ className, classNames, showOutsideDays = true, ...props }: CalendarProps) {
   return (
     <DayPicker
+      disabled={{ before: new Date() }}
       showOutsideDays={showOutsideDays}
       className={cn('p-3', className)}
       classNames={{

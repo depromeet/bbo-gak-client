@@ -40,7 +40,7 @@ export function RowCard({
     <div
       className={cn('w-full rounded-[10px] overflow-hidden flex cursor-pointer', pointerEventsClassName)}
       onClick={() => router.push(`/my-recruit/${id}`)}>
-      <div className={cn('w-12 disabled:bg-neutral-10 h-70', rightMarkBackgroundColorClassName)} />
+      <div className={cn('w-12 disabled:bg-neutral-10', rightMarkBackgroundColorClassName)} />
       <div
         className={cn(
           'px-24 py-22 flex-1 flex items-center border-1 border-l-transparent rounded-r-[10px] justify-between hover:border-neutral-95 hover:border-l-transparent',
@@ -53,7 +53,7 @@ export function RowCard({
             <div className="px-6 py-4 rounded-[4px] bg-neutral-95 flex gap-[2px]">
               <Icon name="clover" size={20} color={color.mint30} />
               <span className="text-white text-label2 ">
-                {recruitStatus} D-{dday(nearestSchedule?.deadLine!)}
+                {nearestSchedule?.recruitScheduleStage} D-{dday(nearestSchedule?.deadLine!)}
               </span>
             </div>
           </If>
