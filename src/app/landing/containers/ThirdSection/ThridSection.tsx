@@ -22,11 +22,11 @@ export function ThirdSection() {
 
           <Spacing size={100} direction="row" />
 
-          <div className="w-[1010px] rounded-[16px] border-neutral-95 border-[8px] overflow-hidden mx-[20px]">
-            <Image src="/landing/image153.png" alt="" width={1010} height={640} />
+          <div className="w-[1010px] rounded-[30px] border-neutral-95 border-[8px] overflow-hidden mx-[20px]">
+            <Image src="/landing/image153_2.png" alt="" width={1010} height={640} />
           </div>
           <div className="absolute bottom-[-180px] right-[47%]">
-            <Image src="/landing/image142.png" alt="" width={468} height={452} />
+            <Image src="/landing/image142_2.png" alt="" width={468} height={452} />
           </div>
         </div>
       </div>
@@ -35,8 +35,8 @@ export function ThirdSection() {
 
       <div className="relative h-[640px]">
         <div className="absolute flex top-[50%] left-[50%] gap-[12px] translate-x-[calc(-50%-100px)] -translate-y-1/2">
-          <div className="w-[1010px] rounded-[16px] border-neutral-95 border-[8px] overflow-hidden mx-[20px]">
-            <Image src="/landing/image154.png" alt="" width={1010} height={640} />
+          <div className="w-[1010px] rounded-[30px] border-neutral-95 border-[8px] overflow-hidden mx-[20px]">
+            <Image src="/landing/image154_2.png" alt="" width={1010} height={640} />
           </div>
 
           <Spacing size={70} direction="row" />
@@ -46,7 +46,13 @@ export function ThirdSection() {
             <div className="flex flex-col">
               <Badge variant="B">2</Badge>
               <Spacing size={20} />
-              <Image src="/landing/image155.png" alt="" width={323} height={48} />
+              <Image
+                src="/landing/image155_2.png"
+                alt=""
+                width={323}
+                height={48}
+                // className="border-[1px] border-neutral-20 rounded-[12px]"
+              />
               <Spacing size={16} />
               <span className="text-[24px] whitespace-pre">
                 {`미리 모아둔 내 정보들을 단계별로 분류해\n`}

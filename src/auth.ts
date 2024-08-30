@@ -6,7 +6,17 @@ import { cookies } from 'next/headers';
 import { ACCESS_TOKEN, JOB_SELECTION, REFRESH_TOKEN, SELECT, NONE } from './app/login/constants/token';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [Google],
+  providers: [
+    Google({
+      authorization: {
+        params: {
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code',
+        },
+      },
+    }),
+  ],
   pages: {
     signIn: '/login',
     error: '/error',
@@ -43,6 +53,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       return session;
     },
   },
+
+  secret: process.env.AUTH_SECRET,
 });
 
 declare module 'next-auth' {

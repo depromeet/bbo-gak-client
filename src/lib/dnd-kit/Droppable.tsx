@@ -6,11 +6,12 @@ import { motion, useAnimationControls } from 'framer-motion';
 interface DroppableProps {
   id: string | number;
   children?: ReactNode;
+  dataForOverlay?: any;
 }
 
-export function Droppable({ id, children }: DroppableProps) {
+export function Droppable({ id, children, dataForOverlay }: DroppableProps) {
   const animationControl = useAnimationControls();
-  const { setNodeRef } = useDroppable({ id });
+  const { setNodeRef } = useDroppable({ id, data: dataForOverlay });
   const { selectedId } = useDndAdditionalContext();
 
   useEffect(() => {

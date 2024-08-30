@@ -4,7 +4,7 @@ export const recruitStatusList = [
   { variant: 'text', text: '지원 준비' },
   { variant: 'text', text: '지원 완료' },
   { variant: 'border' },
-  { variant: 'text', text: '서류 마감' },
+  { variant: 'text', text: '서류 통과' },
   { variant: 'text', text: '서류 탈락' },
   { variant: 'border' },
   { variant: 'text', text: '면접 통과' },

@@ -13,6 +13,7 @@ import { If } from '@/system/utils/If';
 import { motion } from 'framer-motion';
 import { InfoCardSkeleton } from './components/InfoCardSkeleton';
 import { AsyncBoundaryWithQuery } from '@/lib';
+import { Onboarding } from './containers/Onboarding/Onboarding';
 
 export default function MyInfo() {
   const [showHeader, setShowHeader] = useState(false);
@@ -112,6 +113,9 @@ export default function MyInfo() {
           pendingFallback={<InfoCardSkeleton count={4} />}>
           <InfoCardList cardType={currentCardType} />
         </AsyncBoundaryWithQuery>
+        <If condition={false}>
+          <Onboarding />
+        </If>
       </div>
     </div>
   );

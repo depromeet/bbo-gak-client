@@ -13,7 +13,7 @@ import { useState } from 'react';
 import { useDeleteRecruit } from '../api/useDeleteRecruit';
 import { usePostCardToRecruit } from '../api/usePostCardToRecruit';
 import { RightSidebar } from '../containers/RightSidebar/RightSidebar';
-import { DueDateDialog } from '../containers/components/DueDateDialog';
+import { DueDateDialog } from '../containers/components/DueDateDialog/DueDateDialog';
 import { DetailContent } from './components/DetailContent';
 import DetailHeader from './components/DetailHeader';
 
@@ -42,7 +42,7 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
   return (
     <AsyncBoundaryWithQuery>
       <DndContextWithOverlay OverlayElement={InfoCard} onDragEnd={onDragEnd}>
-        <div className="flex overflow-hidden max-h-[100vh]">
+        <div className="flex overflow-hidden max-h-[100vh] bg-white">
           <div className="flex-1 mx-auto max-w-[1700px]">
             <div className="z-[-1] fixed left-0 top-0 w-full h-[100px] bg-white border-b-1 border-neutral-5 "></div>
             <div className="flex justify-between w-full px-[80px] py-[24px]">
@@ -59,7 +59,7 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
                   </Dropdown.Trigger>
                   <Dropdown.Content align="end">
                     <Dropdown.CheckedItem className="gap-[8px]">
-                      <DueDateDialog onDuedateAppend={() => {}} />
+                      <DueDateDialog id={Number(recruitId)} onDuedateAppend={() => {}} />
                     </Dropdown.CheckedItem>
                   </Dropdown.Content>
                 </Dropdown>

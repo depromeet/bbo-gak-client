@@ -8,6 +8,7 @@ import { cn } from '@/utils';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
+import { deleteCookie } from 'cookies-next';
 
 const SIDEBAR_CLASSNAME = {
   expanded: 'w-[220px]',
@@ -21,6 +22,11 @@ export function Sidebar() {
   const [myInfoCollapsed, setMyInfoCollapsed] = useState(true);
   const [myJDCollapsed, setMyJDCollapsed] = useState(true);
 
+  const logout = () => {
+    deleteCookie('accessToken');
+    deleteCookie('refreshToken');
+    router.push('/login');
+  };
   return (
     <nav
       className={`z-[10000] relative flex flex-col px-[16px] py-[32px] h-screen bg-black ${SIDEBAR_CLASSNAME[expanded ? 'expanded' : 'shrinked']}`}>
@@ -61,12 +67,12 @@ export function Sidebar() {
         </Collapsible>
         <Collapsible collapsed={expanded ? myJDCollapsed : true} onCollapsedChange={setMyJDCollapsed}>
           <SidebarButton
-            iconName={pathname === MY_RECRUIT_PATH ? 'workFill' : 'folder'}
-            selected={pathname === MY_RECRUIT_PATH}
+            iconName={pathname.includes(MY_RECRUIT_PATH) ? 'workFill' : 'folder'}
+            selected={pathname.includes(MY_RECRUIT_PATH)}
             expanded={expanded}
             expandedText="내 공고"
             withHoverEffect={!expanded}
-            withTouchEffect={pathname !== MY_RECRUIT_PATH}
+            withTouchEffect={!pathname.includes(MY_RECRUIT_PATH)}
             right={
               <Collapsible.Trigger>
                 <Collapsible.ArrowButton />
@@ -82,7 +88,13 @@ export function Sidebar() {
 
       <div className="w-full mt-auto flex flex-col items-center gap-[28px]">
         {/* <SidebarButton iconName="setting" selected={false} expanded={expanded} expandedText="내 설정" /> */}
-        <SidebarButton iconName="logout" selected={false} expanded={expanded} expandedText="로그아웃" />
+        <SidebarButton
+          iconName="logout"
+          selected={false}
+          expanded={expanded}
+          expandedText="로그아웃"
+          onClick={logout}
+        />
       </div>
     </nav>
   );
