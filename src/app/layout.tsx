@@ -4,8 +4,8 @@ import '@/styles/globals.css';
 import '@/styles/memo.css';
 import { Inter } from 'next/font/google';
 import { cn } from '@/utils';
-import { SessionProvider } from 'next-auth/react';
 import { Suspense } from 'react';
+import { GoogleProvider } from '@/app/GoogleProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,9 +26,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(inter.className, 'bg-neutral-1')}>
         <QueryProvider>
-          <SessionProvider>
+          <GoogleProvider>
             <Suspense>{children}</Suspense>
-          </SessionProvider>
+          </GoogleProvider>
         </QueryProvider>
       </body>
     </html>
