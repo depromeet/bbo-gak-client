@@ -6,36 +6,40 @@ import { If } from '@/system/utils/If';
 import { StrictPropsWithChildren, TagType } from '@/types';
 import { cn } from '@/utils';
 import { motion } from 'framer-motion';
-import { useRef, useState } from 'react';
-import { useGetAllTags } from '../api/useGetAllTag';
+import { useEffect, useRef, useState } from 'react';
 import { TAG_TYPE_COLOR, colorStyle } from '../mocks';
 
 interface TagListProps {
+  tagsData: TagType[];
   selectedTags: number[];
   setSelectedTags: (tags: number[]) => void;
 }
 
-export default function TagList({ selectedTags, setSelectedTags }: TagListProps) {
-  const { data: tagsData } = useGetAllTags();
-
+export default function TagList({ selectedTags, setSelectedTags, tagsData }: TagListProps) {
   const tagContainerRef = useRef<HTMLDivElement>(null);
   const [tags, setTags] = useState<TagType[]>(tagsData || []);
 
   const [viewAllTags, setViewAllTags] = useState<boolean>(false);
   const [isOverflowing, setIsOverflowing] = useState<boolean>(true);
-
   const handleTagClick = (id: number) => {
     const clickedTag = tags.find((tag) => tag.id === id);
 
     if (clickedTag) {
-      const updatedTags = [clickedTag, ...tags.filter((tag) => tag.id !== id)];
-      setTags(updatedTags);
+      let updatedTags;
 
       if (selectedTags.includes(id)) {
         setSelectedTags(selectedTags.filter((selectedId) => selectedId !== id));
+
+        updatedTags = [
+          ...tags.filter((tag) => selectedTags.includes(tag.id) && tag.id !== id),
+          ...tags.filter((tag) => !selectedTags.includes(tag.id) || tag.id === id),
+        ];
       } else {
         setSelectedTags([...selectedTags, id]);
+        updatedTags = [clickedTag, ...tags.filter((tag) => tag.id !== id)];
       }
+
+      setTags(updatedTags);
     }
   };
 
@@ -43,6 +47,10 @@ export default function TagList({ selectedTags, setSelectedTags }: TagListProps)
     setSelectedTags([]);
     setViewAllTags(false);
   };
+
+  useEffect(() => {
+    setTags(tagsData || []);
+  }, [tagsData]);
 
   return (
     <div className="flex w-full items-center my-[30px] Gap">

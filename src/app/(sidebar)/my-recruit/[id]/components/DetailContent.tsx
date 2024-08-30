@@ -11,6 +11,7 @@ import { useDndContext } from '@dnd-kit/core';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { useGetRecruitCardCount } from '../api/useGetCardCount';
+import { useGetCategoryTags } from '../api/useGetCategoryTags';
 import { useGetRecruitCards } from '../api/useGetRecruitCards';
 import { AddRecruitCardDialog } from './AddRecruitCardDialog';
 import TagList from './TagList';
@@ -25,6 +26,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
 
   const { data: cardCount } = useGetRecruitCardCount(recruitId);
   const { data: cardList } = useGetRecruitCards({ id: recruitId, type: currentOption, tagIds: selectedTags });
+  const { data: tagsData } = useGetCategoryTags({ recruitId, type: currentOption });
 
   const filteredCardList =
     selectedTags.length > 0
@@ -107,7 +109,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
         </AddRecruitCardDialog>
       </div>
 
-      <TagList selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
+      <TagList tagsData={tagsData} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
 
       <div
         ref={contentRef}
