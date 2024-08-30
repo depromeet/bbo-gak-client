@@ -1,9 +1,9 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/system/components/DropdownMenu/DropdownMenu';
 import { DropdownButton, DropdownCategoryTitle } from '@/components/Editor/extensions/EditorDropdown/Dropdown';
 import { EditorIcon } from '@/components/Editor/extensions/EditorIcon/EditorIcon';
 import { Surface } from '@/components/Editor/extensions/Surface/Surface';
 import { Toolbar } from '@/components/Editor/extensions/Toolbar/Toolbar';
 import { useCallback } from 'react';
+import { Dropdown } from '@/system/components';
 
 const FONT_FAMILY_GROUPS = [
   {
@@ -45,15 +45,15 @@ export function FontFamilyPicker({ onChange, value }: FontFamilyPickerProps) {
   const selectFont = useCallback((font: string) => () => onChange(font), [onChange]);
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <Dropdown>
+      <Dropdown.Trigger asChild>
         <Toolbar.Button className="w-62 h-32 border-none" active={!!currentValue?.value}>
           {currentFontLabel}
           <EditorIcon name="ChevronDown" className="w-8 h-8" />
         </Toolbar.Button>
-      </DropdownMenuTrigger>
+      </Dropdown.Trigger>
 
-      <DropdownMenuContent asChild>
+      <Dropdown.Content asChild>
         <Surface className="flex flex-col gap-4 px-8 py-16">
           {FONT_FAMILY_GROUPS.map(({ label, options }) => (
             <div key={label} className="flex flex-col font-semibold text-10 ">
@@ -70,7 +70,7 @@ export function FontFamilyPicker({ onChange, value }: FontFamilyPickerProps) {
             </div>
           ))}
         </Surface>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </Dropdown.Content>
+    </Dropdown>
   );
 }
