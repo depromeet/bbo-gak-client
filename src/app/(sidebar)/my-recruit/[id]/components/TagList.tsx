@@ -45,18 +45,20 @@ export default function TagList({ selectedTags, setSelectedTags }: TagListProps)
   };
 
   return (
-    <div className="flex w-full items-center ml-[24px] my-[30px] ">
+    <div className="flex w-full items-center my-[30px] ">
       <div className="flex mr-[24px]">
         <Icon name="tag" size={28} />
       </div>
       {viewAllTags ? (
         <TagSelector classNames={{ base: 'w-full mx-[24px]', trigger: cn('hover:bg-neutral-1') }}>
-          <TagSelector.Content defaultOpen className="absolute w-full -top-28 -left-8 rounded-12 bg-white">
+          <TagSelector.Content
+            defaultOpen
+            className="absolute w-full -top-28 -left-8 rounded-bl-12 rounded-br-12 rounded-12 bg-white">
             <div className="px-16 pt-16 pb-24">
               <TagSelector.Notice>
                 <div className="flex justify-between items-center pr-1">
                   <p className="text-caption1 font-medium">원하는 태그로 필터링 해보세요</p>
-                  <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
+                  <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6 ">
                     <Icon name="refresh" size={20} color={color.neutral95} />
                   </button>
                 </div>
