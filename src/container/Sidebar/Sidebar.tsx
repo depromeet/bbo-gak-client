@@ -4,11 +4,12 @@ import { Logo } from '@/components/Logo';
 import { SidebarButton } from '@/container/Sidebar/SidebarButton';
 import { MY_INFO_PATH, MY_RECRUIT_PATH } from '@/route';
 import { Icon } from '@/system/components';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { cn } from '@/utils';
+import { deleteCookie } from 'cookies-next';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
-import { deleteCookie } from 'cookies-next';
 
 const SIDEBAR_CLASSNAME = {
   expanded: 'w-[220px]',
@@ -41,7 +42,17 @@ export function Sidebar() {
       </div>
 
       <div className="flex flex-col items-center gap-[36px] w-full">
-        <SidebarButton iconName="search" selected={false} expanded={expanded} expandedText="태그 검색" />
+        <Dialog>
+          <Dialog.Trigger className="w-full">
+            <SidebarButton iconName="search" selected={false} expanded={expanded} expandedText="태그 검색" />
+          </Dialog.Trigger>
+          <Dialog.Content className="w-448 rounded-45 pl-32 pr-20 pt-56 pb-60">
+            <div className="flex flex-col justify-center items-center gap-12">
+              <Icon name="warning" size={36} color="#AEB0B6" />
+              <p className="text-heading-1 font-bold">아직 준비 중이에요!</p>
+            </div>
+          </Dialog.Content>
+        </Dialog>
         <SidebarButton iconName="bell" selected={false} expanded={expanded} expandedText="알림" />
         {/* <SidebarButton iconName="memo" selected={false} expanded={expanded} expandedText="메모 모아보기" /> */}
         <div className="w-full px-[16px] h-[1px] bg-[#37383C]" />
