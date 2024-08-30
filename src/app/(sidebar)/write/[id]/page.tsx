@@ -46,9 +46,12 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
     <section className="h-full">
       <section className="flex">
         <div className="pt-40 w-full">
-          <div className="h-16">
+          <div className="h-16 pl-80">
             <If condition={recruitTitle != null}>
-              <div className="flex gap-4 text-12 text-neutral-30 mt-8">icon {recruitTitle}</div>
+              <div className="flex gap-4 text-12 text-neutral-30 mt-8">
+                <Icon name="announcementFolder" size={16} color="#CCCDD1" />
+                <p>{recruitTitle}</p>
+              </div>
             </If>
           </div>
 
