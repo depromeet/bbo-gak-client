@@ -20,6 +20,7 @@ import { useScroll } from '@/hooks/useScroll';
 import { If } from '@/system/utils/If';
 import { fontSize } from '@/system/token/typography';
 import { DraggableInfoCard } from '@/app/(sidebar)/my-recruit/components/DraggableInfoCard';
+import { AsyncBoundaryWithQuery } from '@/lib';
 
 const STICKY_THRESHOLD = 30;
 
@@ -107,9 +108,11 @@ export default function MyRecruit() {
           </AnimatePresence>
         </div>
 
-        <Dialog.Content className="w-400">
-          <NewRecruitDialogContent onSubmit={onCreateNewRecruitCard} />
-        </Dialog.Content>
+        <AsyncBoundaryWithQuery>
+          <Dialog.Content className="w-400">
+            <NewRecruitDialogContent onSubmit={onCreateNewRecruitCard} />
+          </Dialog.Content>
+        </AsyncBoundaryWithQuery>
       </Dialog>
     </DndContextWithOverlay>
   );

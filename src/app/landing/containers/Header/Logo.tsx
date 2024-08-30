@@ -8,8 +8,8 @@ export function LOGO() {
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M28.6628 19.1455L24.5469 17.2813L25.0987 15.6719L29.4159 16.7389L28.6628 19.1455Z"
         fill="#007D4F"
       />
@@ -20,15 +20,15 @@ export function LOGO() {
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M19.1619 15.8209L14.6512 15.0777L15.1339 13.0418L19.4499 14.2851L19.1619 15.8209Z"
         fill="#007D4F"
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M22.726 18.0864L22.1493 22.128L19.875 21.8984L21.0641 17.7225L22.726 18.0864Z"
         fill="#007D4F"
       />

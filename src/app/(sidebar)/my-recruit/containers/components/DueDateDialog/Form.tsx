@@ -7,72 +7,29 @@ import { format } from 'date-fns/format';
 import { motion } from 'framer-motion';
 import { recruitScheduleStageList } from '@/app/(sidebar)/my-recruit/constant';
 import { useState } from 'react';
-import { usePostRecruitSchedule } from '../../../api/usePostRecruitSchedule';
-import { usePutRecruitScheduleDeadline } from '../../../api/usePutRecruitScheduleDeadline';
-import { usePutRecruitScheduleStage } from '../../../api/usePutRecruitScheduleStage';
 import { If } from '@/system/utils/If';
 
 interface Props {
-  id?: number;
-  recruitId: number;
-  deadLine?: string;
-  recruitScheduleStage?: string;
+  selectedDate?: Date;
+  currentRecruitStage: string;
   hasDeleteButton?: boolean;
   hasArrow: boolean;
+  onStageClick: (item: string) => void;
+  onDeadLineClick: (date?: Date) => void;
   onDeleteClick?: () => void;
 }
 
 // 매번 서버요청 안하도록 리팩토링
 export function Form({
-  id,
-  recruitId,
   hasArrow,
-  deadLine,
-  recruitScheduleStage,
+  currentRecruitStage,
+  selectedDate,
   hasDeleteButton,
+  onStageClick,
+  onDeadLineClick,
   onDeleteClick,
 }: Props) {
-  const [selectedDate, setSelectedDate] = useState<Date | undefined>(deadLine != null ? new Date(deadLine) : undefined);
-  const [currentRecruitStage, setCurrentRecruitStage] = useState<string>(
-    recruitScheduleStage ?? recruitScheduleStageList[0],
-  );
-
   const isDateSelected = selectedDate != null;
-  const { mutate: postRecruitSchedule } = usePostRecruitSchedule();
-  const { mutate: putRecruitScheduleDeadline } = usePutRecruitScheduleDeadline();
-  const { mutate: putRecruitScheduleState } = usePutRecruitScheduleStage();
-
-  const handleStageClick = (item: string) => {
-    if (id != null) {
-      putRecruitScheduleState({ id: recruitId, recruitScheduleId: id, recruitScheduleStage: item });
-      return;
-    }
-    setCurrentRecruitStage(item);
-    if (selectedDate == null) {
-      return;
-    }
-    postRecruitSchedule({
-      id: recruitId,
-      deadLine: format(selectedDate, 'yyyy-MM-dd'),
-      recruitScheduleStage: currentRecruitStage,
-    });
-  };
-
-  const handleDeadlineClick = (date?: Date) => {
-    if (date == null) {
-      return;
-    }
-    if (id != null) {
-      putRecruitScheduleDeadline({ id: recruitId, recruitScheduleId: id, deadLine: format(date, 'yyyy-MM-dd') });
-      return;
-    }
-    setSelectedDate(date);
-    postRecruitSchedule({
-      id: recruitId,
-      deadLine: format(date, 'yyyy-MM-dd'),
-      recruitScheduleStage: currentRecruitStage,
-    });
-  };
 
   return (
     <div className="w-full flex justify-between items-center p-8 bg-neutral-1 rounded-[8px]">
@@ -89,7 +46,7 @@ export function Form({
               key={index}
               checked={currentRecruitStage === item}
               disabled={currentRecruitStage === item}
-              onClick={() => handleStageClick(item)}>
+              onClick={() => onStageClick(item)}>
               {item}
             </Dropdown.CheckedItem>
           ))}
@@ -115,7 +72,7 @@ export function Form({
             </motion.div>
           </PopoverTrigger>
           <PopoverContent className="w-270 mr-[120px]">
-            <Calendar mode="single" selected={selectedDate} onSelect={handleDeadlineClick} />
+            <Calendar mode="single" selected={selectedDate} onSelect={onDeadLineClick} />
           </PopoverContent>
           <If condition={hasDeleteButton}>
             <button onClick={onDeleteClick}>

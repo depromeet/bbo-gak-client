@@ -12,8 +12,8 @@ export function Logo() {
           <path
             id="Vector 2726 (Stroke)"
             opacity="0.9"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M84.5041 57.4366L72.1562 51.8438L73.8116 47.0156L86.7633 50.2167L84.5041 57.4366Z"
             fill="#007D4F"
           />
@@ -26,16 +26,16 @@ export function Logo() {
           <path
             id="Line 316 (Stroke)"
             opacity="0.9"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M56.0012 47.4627L42.4691 45.2332L43.9172 39.1254L56.8653 42.8553L56.0012 47.4627Z"
             fill="#007D4F"
           />
           <path
             id="Line 317 (Stroke)"
             opacity="0.9"
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M66.6703 54.2593L64.9401 66.384L58.1172 65.6953L61.6844 53.1675L66.6703 54.2593Z"
             fill="#007D4F"
           />

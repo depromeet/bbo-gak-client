@@ -57,7 +57,7 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
                     </div>
                   </Dropdown.Trigger>
                   <Dropdown.Content align="end" className="gap-[8px]">
-                    <DueDateDialog id={Number(recruitId)} onDuedateAppend={() => {}} />
+                    <DueDateDialog id={Number(recruitId)} />
                   </Dropdown.Content>
                 </Dropdown>
 
