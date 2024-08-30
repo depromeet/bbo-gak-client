@@ -1,6 +1,5 @@
 'use client';
 
-import { useOutsideClick } from '@/hooks/useOutsideClick';
 import { Button, Icon } from '@/system/components';
 import { color } from '@/system/token/color';
 import { useRef, useState } from 'react';
@@ -12,16 +11,13 @@ import TitleInput from './TitleInput';
 
 export default function DetailHeader({ recruitId }: { recruitId: string }) {
   const { data: recruitInfoById } = useGetRecruitById(recruitId);
+  const siteUrl = recruitInfoById?.siteUrl;
 
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [isLinked, setIsLinked] = useState(recruitInfoById.siteUrl !== '');
-
-  useOutsideClick(tooltipRef, () => setIsLinked(false));
 
   const handleSetLink = () => {
-    setIsLinked(true);
     setIsHovered(false);
   };
   let timeoutId: NodeJS.Timeout | null = null;
@@ -45,17 +41,16 @@ export default function DetailHeader({ recruitId }: { recruitId: string }) {
       <SemesterSelector recruitId={recruitId} season={recruitInfoById?.season || ''} />
       <ApplicationStatus recruitId={recruitId} status={recruitInfoById?.recruitStatus || ''} />
 
-      <TitleInput recruitInfoById={recruitInfoById} recruitId={recruitId} setIsFocused={setIsFocused} />
+      <TitleInput recruitId={recruitId} setIsFocused={setIsFocused} />
 
       <div ref={tooltipRef} className="relative">
         {!isFocused && (
           <Button
-            className="flex justify-center items-center rounded-full hover:bg-neutral-1
-    hover:transition-delay: 2s hover:block"
-            aria-label={isLinked ? 'link button' : 'unlink button'}
+            className="flex justify-center items-center rounded-full hover:bg-neutral-1 hover:transition-delay: 2s hover:block"
+            aria-label={siteUrl ? 'link button' : 'unlink button'}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}>
-            <Icon name={isLinked ? 'link' : 'unlink'} size={16} color={isLinked ? color.mint40 : color.neutral40} />
+            <Icon name={siteUrl ? 'link' : 'unlink'} size={16} color={siteUrl ? color.mint40 : color.neutral40} />
           </Button>
         )}
         <TextBubble isHovered={isHovered} linkedOn={handleSetLink} recruitId={recruitId} />

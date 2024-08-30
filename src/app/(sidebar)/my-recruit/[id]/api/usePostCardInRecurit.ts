@@ -1,7 +1,7 @@
 import { http } from '@/apis/http';
 import { RecruitType } from '@/types/recruit';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { GET_CARD_COUNT } from './useGetCardCount';
+import { GET_RECRUIT_CARD_COUNT } from './useGetCardCount';
 import { GET_RECRUIT_CARD_ID } from './useGetRecruitCards';
 
 interface PostCardResponse {
@@ -39,7 +39,7 @@ export const usePostCardInRecruit = () => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [GET_RECRUIT_CARD_ID] });
-      queryClient.invalidateQueries({ queryKey: [GET_CARD_COUNT] });
+      queryClient.invalidateQueries({ queryKey: [GET_RECRUIT_CARD_COUNT] });
     },
   });
 };

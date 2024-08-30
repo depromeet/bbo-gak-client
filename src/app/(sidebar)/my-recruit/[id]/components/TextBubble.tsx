@@ -13,26 +13,27 @@ export default function TextBubble({
   recruitId: string;
   isHovered: boolean;
 }) {
-  const { data: recruitInfoById } = useGetRecruitById(recruitId);
+  const { data: recruitById } = useGetRecruitById(recruitId);
+  const siteUrl = recruitById?.siteUrl;
   const { mutate: newLink } = usePatchSiteUrl();
 
   const [link, setLink] = useState('');
   const [isLinked, setIsLinked] = useState(false);
 
   useEffect(() => {
-    if (recruitInfoById?.siteUrl) {
-      setLink(recruitInfoById.siteUrl);
+    if (siteUrl) {
+      setLink(siteUrl);
       setIsLinked(true);
     } else {
       setLink('');
       setIsLinked(false);
     }
-  }, [recruitInfoById]);
+    console.log('siteUrl', Boolean(siteUrl));
+  }, [siteUrl]);
 
   const handleLinkConfirm = () => {
     if (link) {
       newLink({ newSiteUrl: link, id: recruitId });
-      linkedOn();
     }
   };
 

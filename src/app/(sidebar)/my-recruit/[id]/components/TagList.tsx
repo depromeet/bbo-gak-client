@@ -7,19 +7,21 @@ import { StrictPropsWithChildren, TagType } from '@/types';
 import { cn } from '@/utils';
 import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { useGetAllTags } from '../api/useGetAllTag';
 import { TAG_TYPE_COLOR, colorStyle } from '../mocks';
 
 interface TagListProps {
-  tagsData: TagType[];
   selectedTags: number[];
   setSelectedTags: (tags: number[]) => void;
 }
 
-export default function TagList({ tagsData, selectedTags, setSelectedTags }: TagListProps) {
+export default function TagList({ selectedTags, setSelectedTags }: TagListProps) {
+  const { data: tagsData } = useGetAllTags();
+
   const tagContainerRef = useRef<HTMLDivElement>(null);
   const [tags, setTags] = useState<TagType[]>(tagsData || []);
-  const [viewAllTags, setViewAllTags] = useState<boolean>(false);
 
+  const [viewAllTags, setViewAllTags] = useState<boolean>(false);
   const [isOverflowing, setIsOverflowing] = useState<boolean>(true);
 
   const handleTagClick = (id: number) => {
@@ -43,18 +45,20 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
   };
 
   return (
-    <div className="flex w-full items-center ml-[24px] my-[30px] ">
+    <div className="flex w-full items-center my-[30px] ">
       <div className="flex mr-[24px]">
         <Icon name="tag" size={28} />
       </div>
       {viewAllTags ? (
         <TagSelector classNames={{ base: 'w-full mx-[24px]', trigger: cn('hover:bg-neutral-1') }}>
-          <TagSelector.Content defaultOpen className="absolute w-full -top-28 -left-8 rounded-12 bg-white">
-            <div className="px-16 pt-16 pb-24">
+          <TagSelector.Content
+            defaultOpen
+            className="absolute w-full -top-28 -left-8 rounded-bl-12 rounded-br-12 rounded-12 bg-white">
+            <div className="p-20">
               <TagSelector.Notice>
                 <div className="flex justify-between items-center pr-1">
                   <p className="text-caption1 font-medium">원하는 태그로 필터링 해보세요</p>
-                  <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
+                  <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6 ">
                     <Icon name="refresh" size={20} color={color.neutral95} />
                   </button>
                 </div>
@@ -82,9 +86,9 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
           ref={tagContainerRef}
           className="flex w-full flex-wrap relative gap-[12px] overflow-hidden h-38 items-start">
           {selectedTags.length > 0 && (
-            <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
+            <TouchButton layout onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
               <Icon name="refresh" size={20} color={color.neutral95} />
-            </button>
+            </TouchButton>
           )}
           {tags &&
             tags.map((tag) => (

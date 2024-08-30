@@ -10,8 +10,7 @@ import { cn } from '@/utils/tailwind-util';
 import { useDndContext } from '@dnd-kit/core';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { useGetAllTags } from '../api/useGetAllTag';
-import { useGetCardCount } from '../api/useGetCardCount';
+import { useGetRecruitCardCount } from '../api/useGetCardCount';
 import { useGetRecruitCards } from '../api/useGetRecruitCards';
 import { AddRecruitCardDialog } from './AddRecruitCardDialog';
 import TagList from './TagList';
@@ -22,10 +21,9 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
   const [scrollPosition, setScrollPosition] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const { over } = useDndContext();
+  const { active } = useDndContext();
 
-  const { data: cardCount } = useGetCardCount(recruitId);
-  const { data: tagsData } = useGetAllTags();
+  const { data: cardCount } = useGetRecruitCardCount(recruitId);
   const { data: cardList } = useGetRecruitCards({ id: recruitId, type: currentOption, tagIds: selectedTags });
 
   const filteredCardList =
@@ -58,27 +56,40 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
   };
 
   return (
-    <section className="flex-1 py-[64px] px-[80px]">
+    <section className="flex-1 py-[32px] px-[80px]">
       <div className="flex justify-between mb-[28px]">
-        <div className="flex gap-[24px]">
+        <div className="flex items-center gap-24">
           {RECRUIT_TYPES.map((option) => {
             const isActive = currentOption === option;
+            const copyCardSelected = option === '내_정보_복사' && active;
+
             return (
-              <TouchButton
-                key={option}
-                className="flex gap-[6px] items-center cursor-pointer"
-                onClick={() => setCurrentOption(option)}>
-                <div className={cn('text-[18px] font-semibold', isActive ? 'text-neutral-80' : 'text-neutral-10')}>
-                  {option.replace(/_/g, ' ')}
-                </div>
-                <div
+              <Droppable key={option} id={1234}>
+                <TouchButton
                   className={cn(
-                    'px-[8px] py-[2px] rounded-[6px] text-[14px] font-semibold',
-                    isActive ? 'bg-neutral-80 text-neutral-1' : 'bg-neutral-10 text-neutral-1',
-                  )}>
-                  {cardCount?.[option]}
-                </div>
-              </TouchButton>
+                    'flex gap-[6px] justify-center items-center cursor-pointer py-12 shrink-0',
+                    copyCardSelected &&
+                      'border-1 border-mint-30 bg-[rgba(221,243,235,0.50)] rounded-12 shrink-0 m-[-1px] px-12 -ml-13',
+                  )}
+                  onClick={() => setCurrentOption(option)}>
+                  <div
+                    className={cn(
+                      'text-[18px] font-semibold ',
+                      isActive ? 'text-neutral-80' : 'text-neutral-10',
+                      copyCardSelected && 'text-mint-40',
+                    )}>
+                    {option.replace(/_/g, ' ')}
+                  </div>
+                  <div
+                    className={cn(
+                      'text-heading-2 px-[8px] py-[2px] rounded-[6px] text-[14px] font-semibold',
+                      isActive ? 'bg-neutral-80 text-neutral-1' : 'bg-neutral-10 text-neutral-1',
+                      copyCardSelected && 'bg-mint-30 text-neutral-1',
+                    )}>
+                    {cardCount?.[option] || 0}
+                  </div>
+                </TouchButton>
+              </Droppable>
             );
           })}
         </div>
@@ -96,47 +107,42 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
         </AddRecruitCardDialog>
       </div>
 
-      <TagList tagsData={tagsData || []} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
+      <TagList selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
 
-      <Droppable id={1234}>
-        <div
-          ref={contentRef}
-          className={cn(
-            'p-10 h-[calc(100vh-350px)] overflow-scroll [&::-webkit-scrollbar]:hidden',
-            over?.id === 1234 && 'file:border-mint-20 bg-[rgba(221,243,235,0.50)] rounded-20',
-          )}
-          style={{ scrollBehavior: 'smooth' }}>
-          {filteredCardList && filteredCardList.length > 0 ? (
-            <ul className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
-              {filteredCardList.map((info: InfoCardType) => (
-                <li key={info.id} className="min-w-[343px]">
-                  <InfoCard {...info} />
-                </li>
-              ))}
-              {scrollPosition > 0 && (
-                <TouchButton
-                  layout
-                  onClick={scrollToTop}
-                  className="fixed flex flex-col justify-center items-center a w-62 h-62 rounded-full right-[95px] bottom-[40px] bg-neutral-95 border-neutral-9">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}>
-                    <Icon name="arrowUp" size={24} />
-                    <span className="text-neutral-1 text-caption1">TOP</span>
-                  </motion.div>
-                </TouchButton>
-              )}
-            </ul>
-          ) : (
-            <div className={'flex flex-col w-full h-full justify-center items-center'}>
-              <Icon name="empty" size={280} />
-              <p className="my-[16px] text-body1 text-neutral-30">아직 생성된 정보 카드가 없어요!</p>
-            </div>
-          )}
-        </div>
-      </Droppable>
+      <div
+        ref={contentRef}
+        className={'h-[calc(100vh-350px)] overflow-scroll [&::-webkit-scrollbar]:hidden'}
+        style={{ scrollBehavior: 'smooth' }}>
+        {filteredCardList && filteredCardList.length > 0 ? (
+          <ul className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
+            {filteredCardList.map((info: InfoCardType) => (
+              <li key={info.id} className="min-w-[343px]">
+                <InfoCard {...info} />
+              </li>
+            ))}
+            {scrollPosition > 0 && (
+              <TouchButton
+                layout
+                onClick={scrollToTop}
+                className="fixed flex flex-col justify-center items-center a w-62 h-62 rounded-full right-[95px] bottom-[40px] bg-neutral-95 border-neutral-9">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}>
+                  <Icon name="arrowUp" size={24} />
+                  <span className="text-neutral-1 text-caption1">TOP</span>
+                </motion.div>
+              </TouchButton>
+            )}
+          </ul>
+        ) : (
+          <div className={'flex flex-col w-full h-full justify-center items-center'}>
+            <Icon name="empty" size={280} />
+            <p className="my-[16px] text-body1 text-neutral-30">아직 생성된 정보 카드가 없어요!</p>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

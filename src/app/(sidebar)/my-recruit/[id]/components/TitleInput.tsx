@@ -1,16 +1,16 @@
 import { cn } from '@/utils';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { RecruitByIdType } from '../api/useGetRecruitById';
+import { useGetRecruitById } from '../api/useGetRecruitById';
 import { usePatchTitle } from '../api/usePatchTitle';
 
 interface TitleInputProps {
-  recruitInfoById: RecruitByIdType;
   recruitId: string;
   setIsFocused: (value: boolean) => void;
 }
 
-export default function TitleInput({ recruitInfoById, recruitId, setIsFocused }: TitleInputProps) {
+export default function TitleInput({ recruitId, setIsFocused }: TitleInputProps) {
   const { mutate: patchTitle } = usePatchTitle();
+  const { data: recruitInfoById } = useGetRecruitById(recruitId);
   const [title, setTitle] = useState(recruitInfoById?.title || '');
   const titleRef = useRef<HTMLSpanElement>(null);
 
@@ -36,7 +36,7 @@ export default function TitleInput({ recruitInfoById, recruitId, setIsFocused }:
     <>
       <input
         className={cn(
-          'pl-[6px] mr-[6px] rounded-[6px] text-neutral-95 text-heading1 font-bold border-none bg-white hover:bg-neutral-3 focus:outline-none focus:ring-2 focus:ring-mint-20 focus:ring-offset-2  focus:hover:bg-white',
+          'text-center rounded-[6px] text-neutral-95 text-heading1 font-bold border-none bg-white hover:bg-neutral-3 focus:outline-none focus:ring-2 focus:ring-mint-20 focus:ring-offset-2  focus:hover:bg-white',
         )}
         style={{ width: `${titleWidth}px` }}
         onChange={handleTitleChange}

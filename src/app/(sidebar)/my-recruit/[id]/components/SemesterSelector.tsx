@@ -18,11 +18,11 @@ export default function SemesterSelector({ recruitId, season }: { recruitId: str
 
   return (
     <Dropdown>
-      <Dropdown.Trigger>
-        <div className="flex items-center border border-gray-200 bg-white rounded px-[8px] py-[4px] group">
+      <Dropdown.Trigger className="group">
+        <div className="flex h-28 items-center border border-gray-200 bg-white rounded px-[8px] py-[4px]">
           <p className="text-label2 font-medium">{clickSemester}</p>
-          <span className="hidden group-hover:block group-active:block">
-            <Icon name="downChevron" size={22} color={color.neutral50} />
+          <span className="hidden group-hover:block group-active:block mt-[-2px]">
+            <Icon name="downChevron" size={20} color={color.neutral40} />
           </span>
         </div>
       </Dropdown.Trigger>

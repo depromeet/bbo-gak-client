@@ -1,6 +1,6 @@
 import { http } from '@/apis/http';
 import { TagType } from '@/types';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 export type GetRecruitCardsType = {
   id: number;
@@ -22,7 +22,7 @@ const getRecruitCards = ({ id, type, tagIds }: { id: string; type: string; tagId
 };
 
 export function useGetRecruitCards({ id, type, tagIds }: { id: string; type: string; tagIds?: number[] }) {
-  const result = useSuspenseQuery({
+  const result = useQuery({
     queryKey: [GET_RECRUIT_CARD_ID, id, type, tagIds],
     queryFn: async () => {
       const res = await getRecruitCards({ id, type, tagIds });
