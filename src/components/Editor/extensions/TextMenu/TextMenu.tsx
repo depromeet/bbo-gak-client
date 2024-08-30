@@ -30,13 +30,13 @@ export function TextMenu({ editor }: TextMenuProps) {
 
   return (
     <BubbleMenu
-      className="py-16 px-8"
+      className="ml-100 py-16 px-8 h-fit w-fit"
       tippyOptions={{ popperOptions: { placement: 'top-start' } }}
       editor={editor}
       pluginKey="textMenu"
       shouldShow={states.shouldShow}
       updateDelay={100}>
-      <Toolbar.Wrapper>
+      <Toolbar.Wrapper className="relative">
         <Toolbar.Divider />
         <MemoContentTypePicker options={blockOptions} />
         <MemoFontFamilyPicker onChange={commands.onSetFont} value={states.currentFont || ''} />

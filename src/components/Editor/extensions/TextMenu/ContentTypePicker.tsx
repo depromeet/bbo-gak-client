@@ -4,7 +4,7 @@ import { Surface } from '@/components/Editor/extensions/Surface/Surface';
 import { EditorIcon } from '@/components/Editor/extensions/EditorIcon/EditorIcon';
 import { DropdownButton, DropdownCategoryTitle } from '@/components/Editor/extensions/EditorDropdown/Dropdown';
 import { Toolbar } from '@/components/Editor/extensions/Toolbar/Toolbar';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/system/components/DropdownMenu/DropdownMenu';
+import { Button, Dropdown } from '@/system/components';
 
 export type ContentTypePickerOption = {
   label: string;
@@ -35,15 +35,17 @@ export function ContentTypePicker({ options }: ContentTypePickerProps) {
   const activeItem = useMemo(() => options.find((option) => option.type === 'option' && option.isActive()), [options]);
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <Dropdown>
+      <Dropdown.Trigger asChild>
         <Toolbar.Button className="w-46 h-32 border-none" active={activeItem?.id !== 'paragraph' && !!activeItem?.type}>
-          <EditorIcon name={(activeItem?.type === 'option' && activeItem.icon) || 'Pilcrow'} />
-          <EditorIcon name="ChevronDown" className="w-8 h-8" />
+          <Button className="w-46 h-32 border-none flex items-center">
+            <EditorIcon name={(activeItem?.type === 'option' && activeItem.icon) || 'Pilcrow'} />
+            <EditorIcon name="ChevronDown" className="w-8 h-8" />
+          </Button>
         </Toolbar.Button>
-      </DropdownMenuTrigger>
+      </Dropdown.Trigger>
 
-      <DropdownMenuContent asChild>
+      <Dropdown.Content asChild>
         <Surface className="flex flex-col gap-1 px-8 py-16">
           {options.map((option) => {
             if (isOption(option)) {
@@ -65,7 +67,7 @@ export function ContentTypePicker({ options }: ContentTypePickerProps) {
             );
           })}
         </Surface>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </Dropdown.Content>
+    </Dropdown>
   );
 }
