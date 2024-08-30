@@ -58,19 +58,18 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
   return (
     <section className="flex-1 py-[32px] px-[80px]">
       <div className="flex justify-between mb-[28px]">
-        <div className="flex items-center">
+        <div className="flex items-center gap-24">
           {RECRUIT_TYPES.map((option) => {
             const isActive = currentOption === option;
             const copyCardSelected = option === '내_정보_복사' && active;
 
             return (
-              <Droppable id={1234}>
+              <Droppable key={option} id={1234}>
                 <TouchButton
-                  key={option}
                   className={cn(
-                    'flex gap-[6px] cursor-pointer pr-12 py-12  shrink-0',
+                    'flex gap-[6px] justify-center items-center cursor-pointer py-12 shrink-0',
                     copyCardSelected &&
-                      'border-1 border-mint-30 bg-[rgba(221,243,235,0.50)] rounded-12 shrink-0 m-[-1px]',
+                      'border-1 border-mint-30 bg-[rgba(221,243,235,0.50)] rounded-12 shrink-0 m-[-1px] px-12 -ml-13',
                   )}
                   onClick={() => setCurrentOption(option)}>
                   <div
@@ -112,7 +111,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
 
       <div
         ref={contentRef}
-        className={'p-10 h-[calc(100vh-350px)] overflow-scroll [&::-webkit-scrollbar]:hidden'}
+        className={'h-[calc(100vh-350px)] overflow-scroll [&::-webkit-scrollbar]:hidden'}
         style={{ scrollBehavior: 'smooth' }}>
         {filteredCardList && filteredCardList.length > 0 ? (
           <ul className="grid grid-cols-[repeat(auto-fill,minmax(343px,1fr))] gap-[16px]">
