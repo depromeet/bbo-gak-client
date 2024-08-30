@@ -18,6 +18,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         // TODO: 카카오 로그인
         const provider = account?.provider === 'google' ? 'GOOGLE' : 'KAKAO';
 
+        console.log(account);
+
         const {
           data: { accessToken, refreshToken, isFirstLogin },
         } = await postLogin(provider, account?.access_token!);
@@ -44,7 +46,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     },
   },
 
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.AUTH_SECRET,
 });
 
 declare module 'next-auth' {
