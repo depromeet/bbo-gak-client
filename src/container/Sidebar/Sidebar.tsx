@@ -16,6 +16,7 @@ import { useGetCardTypeCount } from '@/app/(sidebar)/(my-info)/apis/useGetCardTy
 import { useGetRecruitTitles } from '@/app/(sidebar)/my-recruit/api/useGetRecruitTitles';
 import { If } from '@/system/utils/If';
 import { motion } from 'framer-motion';
+import { useNotificationContext } from '@/components/Notification/context';
 
 export function Sidebar() {
   const router = useRouter();
@@ -23,6 +24,8 @@ export function Sidebar() {
   const [expanded, setExpanded] = useState(true);
   const [myInfoCollapsed, setMyInfoCollapsed] = useState(true);
   const [myJDCollapsed, setMyJDCollapsed] = useState(true);
+
+  const { isOpen: isNotificationOpen, toggle: toggleNotification } = useNotificationContext();
 
   const { data: typeCounts } = useGetCardTypeCount();
   const { data: recruiteTitles } = useGetRecruitTitles();
@@ -61,7 +64,7 @@ export function Sidebar() {
           aria-label={expanded ? '사이드바 축소' : '사이드바 확장'}
           className={cn(
             'absolute top-[50%] translate-y-[-50%] p-6 rounded-6',
-            expanded ? 'right-0 hover:bg-neutral-80' : 'right-[-68px] border hover:bg-neutral-3',
+            expanded ? 'right-0 hover:bg-neutral-80' : 'right-[-68px] bg-neutral-1 border hover:bg-neutral-3',
           )}
           onClick={() => setExpanded(!expanded)}>
           <Icon name="division" color={expanded ? '#5A5C63' : '#AEB0B6'} />
@@ -70,7 +73,13 @@ export function Sidebar() {
 
       <div className="flex flex-col items-center gap-[36px] w-full">
         <SidebarButton iconName="search" selected={false} expanded={expanded} expandedText="태그 검색" />
-        <SidebarButton iconName="bell" selected={false} expanded={expanded} expandedText="알림" />
+        <SidebarButton
+          iconName="bell"
+          selected={isNotificationOpen}
+          expanded={expanded}
+          expandedText="알림"
+          onClick={toggleNotification}
+        />
         {/* <SidebarButton iconName="memo" selected={false} expanded={expanded} expandedText="메모 모아보기" /> */}
         <div className="w-full px-[16px] h-[1px] bg-[#37383C]" />
         <Collapsible collapsed={expanded ? myInfoCollapsed : true} onCollapsedChange={setMyInfoCollapsed}>

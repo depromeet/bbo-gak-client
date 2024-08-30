@@ -48,6 +48,7 @@ import { MemoColored } from './SVG/MemoColored';
 import { Downloads } from './SVG/Downloads';
 import { X } from './SVG/X';
 import { AnnouncementFolder } from './SVG/AnnouncementFolder';
+import { IllustAlarm } from './SVG/IllustAlarm';
 
 const iconMap = {
   bell: Bell,
@@ -99,6 +100,7 @@ const iconMap = {
   profileFill: ProfileFill,
   folder: Folder,
   announcementFolder: AnnouncementFolder,
+  IllustAlarm: IllustAlarm,
 } as const;
 
 export interface IconProps extends IconBaseType {
