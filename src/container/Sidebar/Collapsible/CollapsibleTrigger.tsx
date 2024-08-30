@@ -14,7 +14,8 @@ export function CollapsibleTrigger({ children }: Props) {
       onClick={(e) => {
         e.stopPropagation();
         onCollapsedChange(!collapsed);
-      }}>
+      }}
+      className="overflow-hidden">
       {children}
     </button>
   );

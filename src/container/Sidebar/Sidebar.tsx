@@ -15,11 +15,7 @@ import { Spacing } from '@/system/utils/Spacing';
 import { useGetCardTypeCount } from '@/app/(sidebar)/(my-info)/apis/useGetCardTypeCount';
 import { useGetRecruitTitles } from '@/app/(sidebar)/my-recruit/api/useGetRecruitTitles';
 import { If } from '@/system/utils/If';
-
-const SIDEBAR_CLASSNAME = {
-  expanded: 'w-[220px]',
-  shrinked: 'w-[72px]',
-} as const;
+import { motion } from 'framer-motion';
 
 export function Sidebar() {
   const router = useRouter();
@@ -49,13 +45,21 @@ export function Sidebar() {
   };
 
   return (
-    <nav
-      className={`z-[10000] relative flex flex-col px-[16px] py-[32px] h-screen bg-black ${SIDEBAR_CLASSNAME[expanded ? 'expanded' : 'shrinked']}`}>
+    <motion.nav
+      variants={{
+        expanded: { width: '220px' },
+        shrinked: { width: '72px' },
+      }}
+      animate={expanded ? 'expanded' : 'shrinked'}
+      className={`z-[10000] relative flex flex-col px-[16px] py-[32px] h-screen bg-black`}>
       <div className="relative mb-[32px]">
         <Logo />
         <button
           aria-label={expanded ? '사이드바 축소' : '사이드바 확장'}
-          className={cn('absolute top-[50%] translate-y-[-50%]', expanded ? 'right-0' : 'right-[-62px]')}
+          className={cn(
+            'absolute top-[50%] translate-y-[-50%] p-6 rounded-6',
+            expanded ? 'right-0 hover:bg-neutral-80' : 'right-[-68px] border hover:bg-neutral-3',
+          )}
           onClick={() => setExpanded(!expanded)}>
           <Icon name="division" color={expanded ? '#5A5C63' : '#AEB0B6'} />
         </button>
@@ -86,8 +90,8 @@ export function Sidebar() {
             <div className="flex flex-col">
               {INFO_TYPES.map((type) => (
                 <CollapsibleItemButton key={type} onClick={() => handleInfoTypeClick(type)}>
-                  <div>{type.replaceAll('_', ' ')}</div>
-                  <div className="px-4">{typeCounts?.[type] || 0}</div>
+                  <div className="truncate">{type.replaceAll('_', ' ')}</div>
+                  <div className="px-4 truncate">{typeCounts?.[type] || 0}</div>
                 </CollapsibleItemButton>
               ))}
             </div>
@@ -147,7 +151,7 @@ export function Sidebar() {
           onClick={logout}
         />
       </div>
-    </nav>
+    </motion.nav>
   );
 }
 
