@@ -41,7 +41,7 @@ export function ImageBlockMenu({ editor, appendTo }: MenuProps): JSX.Element {
     [editor],
   );
 
-  const imageWidth: string = editor.getAttributes('imageBlock').width;
+  const imageWidth: string = editor.getAttributes('imageBlock').width || '50%';
 
   return (
     <BaseBubbleMenu
