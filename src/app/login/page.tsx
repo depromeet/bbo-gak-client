@@ -1,10 +1,10 @@
 'use client';
 
-import { useFunnel } from '@/system/components/Funnel/useFunnel';
-import { Login } from './components/Login';
 import { Redirect } from '@/components/Redirect';
-import Select from './components/Select';
+import { useFunnel } from '@/system/components/Funnel/useFunnel';
 import { getCookie } from 'cookies-next';
+import { Login } from './components/Login';
+import Select from './components/Select';
 import { ACCESS_TOKEN, JOB_SELECTION, SELECT } from './constants/token';
 
 export default function Page() {
