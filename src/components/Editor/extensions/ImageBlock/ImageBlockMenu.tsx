@@ -41,6 +41,8 @@ export function ImageBlockMenu({ editor, appendTo }: MenuProps): JSX.Element {
     [editor],
   );
 
+  const imageWidth: string = editor.getAttributes('imageBlock').width || '50%';
+
   return (
     <BaseBubbleMenu
       editor={editor}
@@ -86,7 +88,7 @@ export function ImageBlockMenu({ editor, appendTo }: MenuProps): JSX.Element {
 
         <Toolbar.Divider />
 
-        <ImageBlockWidth onChange={onWidthChange} value={Number(editor.getAttributes('imageBlock').width)} />
+        <ImageBlockWidth onChange={onWidthChange} value={Number(imageWidth.slice(0, imageWidth.length - 1))} />
       </Toolbar.Wrapper>
     </BaseBubbleMenu>
   );
