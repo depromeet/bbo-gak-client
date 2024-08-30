@@ -21,7 +21,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
   const [scrollPosition, setScrollPosition] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const { over, active } = useDndContext();
+  const { active } = useDndContext();
 
   const { data: cardCount } = useGetRecruitCardCount(recruitId);
   const { data: cardList } = useGetRecruitCards({ id: recruitId, type: currentOption, tagIds: selectedTags });
@@ -62,12 +62,13 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
           {RECRUIT_TYPES.map((option) => {
             const isActive = currentOption === option;
             const copyCardSelected = option === '내_정보_복사' && active;
+
             return (
               <Droppable id={1234}>
                 <TouchButton
                   key={option}
                   className={cn(
-                    'flex gap-[6px] cursor-pointer p-12  shrink-0',
+                    'flex gap-[6px] cursor-pointer pr-12 py-12  shrink-0',
                     copyCardSelected &&
                       'border-1 border-mint-30 bg-[rgba(221,243,235,0.50)] rounded-12 shrink-0 m-[-1px]',
                   )}
