@@ -1,21 +1,22 @@
 'use client';
 
+import { useGetCardTypeCount } from '@/app/(sidebar)/(my-info)/apis/useGetCardTypeCount';
+import { useGetRecruitTitles } from '@/app/(sidebar)/my-recruit/api/useGetRecruitTitles';
 import { Logo } from '@/components/Logo';
+import { TouchButton } from '@/components/TouchButton';
 import { SidebarButton } from '@/container/Sidebar/SidebarButton';
 import { MY_INFO_PATH, MY_RECRUIT_PATH } from '@/route';
 import { Icon } from '@/system/components';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import { If } from '@/system/utils/If';
+import { Spacing } from '@/system/utils/Spacing';
+import { INFO_TYPES, InfoType } from '@/types';
 import { cn } from '@/utils';
+import { deleteCookie } from 'cookies-next';
+import { motion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import { PropsWithChildren, useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
-import { deleteCookie } from 'cookies-next';
-import { INFO_TYPES, InfoType } from '@/types';
-import { TouchButton } from '@/components/TouchButton';
-import { Spacing } from '@/system/utils/Spacing';
-import { useGetCardTypeCount } from '@/app/(sidebar)/(my-info)/apis/useGetCardTypeCount';
-import { useGetRecruitTitles } from '@/app/(sidebar)/my-recruit/api/useGetRecruitTitles';
-import { If } from '@/system/utils/If';
-import { motion } from 'framer-motion';
 import { useNotificationContext } from '@/components/Notification/context';
 
 export function Sidebar() {
@@ -72,7 +73,17 @@ export function Sidebar() {
       </div>
 
       <div className="flex flex-col items-center gap-[36px] w-full">
-        <SidebarButton iconName="search" selected={false} expanded={expanded} expandedText="태그 검색" />
+        <Dialog>
+          <Dialog.Trigger className="w-full">
+            <SidebarButton iconName="search" selected={false} expanded={expanded} expandedText="태그 검색" />
+          </Dialog.Trigger>
+          <Dialog.Content className="w-448 rounded-45 pl-32 pr-20 pt-56 pb-60">
+            <div className="flex flex-col justify-center items-center gap-12">
+              <Icon name="warning" size={36} color="#AEB0B6" />
+              <p className="text-heading-1 font-bold">아직 준비 중이에요!</p>
+            </div>
+          </Dialog.Content>
+        </Dialog>
         <SidebarButton
           iconName="bell"
           selected={isNotificationOpen}

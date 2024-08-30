@@ -1,11 +1,11 @@
-import type { Metadata } from 'next';
 import { QueryProvider } from '@/lib';
+import { GoogleProvider } from '@/lib/GoogleProvider';
 import '@/styles/globals.css';
 import '@/styles/memo.css';
 import { cn } from '@/utils';
-import { Suspense } from 'react';
-import { GoogleProvider } from '@/lib/GoogleProvider';
+import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+import { Suspense } from 'react';
 
 const Pretendard = localFont({
   src: './fonts/PretendardVariable.woff2',

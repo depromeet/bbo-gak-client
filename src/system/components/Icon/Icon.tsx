@@ -3,6 +3,7 @@ import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
 import { SubmitArrow } from '@/system/components/Icon/SVG/SubmitArrow';
 import type { IconBaseType } from '@/system/components/Icon/SVG/type';
 import { Add } from './SVG/Add';
+import { AnnouncementFolder } from './SVG/AnnouncementFolder';
 import { ArrowUp } from './SVG/ArrowUp';
 import { Bell } from './SVG/Bell';
 import { Calendar } from './SVG/Calendar';
@@ -10,11 +11,14 @@ import { CalendarFill } from './SVG/CalendarFill';
 import { Check } from './SVG/Check';
 import { Close } from './SVG/Close';
 import { Clover } from './SVG/Clover';
+import { CodingSignUp } from './SVG/CodingSignUp';
 import { Copy } from './SVG/Copy';
 import { Delete } from './SVG/Delete';
+import { DesignSignUp } from './SVG/DesignSignUp';
 import { Division } from './SVG/Division';
 import { Down } from './SVG/Down';
 import { DownChevron } from './SVG/DownChevron';
+import { Downloads } from './SVG/Downloads';
 import { Empty } from './SVG/Empty';
 import { FilledMemo } from './SVG/FilledMemo';
 import { Folder } from './SVG/Folder';
@@ -25,6 +29,7 @@ import { Link } from './SVG/Link';
 import { LogoOnly } from './SVG/LogoOnly';
 import { Logout } from './SVG/Logout';
 import { Memo } from './SVG/Memo';
+import { MemoColored } from './SVG/MemoColored';
 import { More } from './SVG/More';
 import { Pip } from './SVG/Pip';
 import { Profile } from './SVG/Profile';
@@ -41,13 +46,9 @@ import { ToLeft } from './SVG/ToLeft';
 import { Trash } from './SVG/Trash';
 import { Unlink } from './SVG/Unlink';
 import { Up } from './SVG/Up';
+import Warning from './SVG/Warning';
 import { WorkFill } from './SVG/WorkFill';
-import { DesignSignUp } from './SVG/DesignSignUp';
-import { CodingSignUp } from './SVG/CodingSignUp';
-import { MemoColored } from './SVG/MemoColored';
-import { Downloads } from './SVG/Downloads';
 import { X } from './SVG/X';
-import { AnnouncementFolder } from './SVG/AnnouncementFolder';
 import { IllustAlarm } from './SVG/IllustAlarm';
 
 const iconMap = {
@@ -101,6 +102,7 @@ const iconMap = {
   folder: Folder,
   announcementFolder: AnnouncementFolder,
   IllustAlarm: IllustAlarm,
+  warning: Warning,
 } as const;
 
 export interface IconProps extends IconBaseType {

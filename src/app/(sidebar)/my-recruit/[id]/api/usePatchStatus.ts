@@ -27,8 +27,6 @@ export const usePatchStatus = () => {
     mutationFn: async ({ newStatus, id }: PatchStatusProps) => {
       const res = await patchStatus({ newStatus, id });
 
-      console.log(res);
-
       return res.data;
     },
     onSuccess: () => {
