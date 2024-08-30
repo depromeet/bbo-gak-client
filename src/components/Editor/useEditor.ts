@@ -16,21 +16,22 @@ export function useEditor({ readOnly, initialContent = {} }: { initialContent?: 
         class: 'min-h-full',
       },
     },
-    content: `
-      <p>뽀각에 오신 여러분을 환영해요 !</p>
-    `,
+
     immediatelyRender: false,
     onUpdate: () => {
+      if (readOnly) {
+        return;
+      }
       const json = editor ? editor.getJSON() : {};
       setContent(json);
     },
   });
 
   useEffect(() => {
-    if (editor && content && !readOnly) {
-      editor.commands.setContent(content, false, { preserveWhitespace: 'full' });
+    if (editor) {
+      editor.commands?.setContent?.(content, false, { preserveWhitespace: 'full' });
     }
-  }, [editor, content]);
+  }, [editor]);
 
   return { editor, content };
 }
