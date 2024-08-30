@@ -1,9 +1,9 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { http } from '@/apis/http';
-import { CardGroup, InfoType } from '@/types/info';
+import { CardGroup, TypeTag } from '@/types/info';
 
 export interface PutCardTypeRequest {
-  cardTypeValueList: Array<InfoType>;
+  cardTypeValueList: Array<TypeTag>;
   cardTypeValueGroup: CardGroup;
   cardId: number;
 }
@@ -17,8 +17,15 @@ const putCardType = ({ cardId, cardTypeValueList, cardTypeValueGroup }: PutCardT
     },
   });
 
-export const usePutCardType = (cardId: number) =>
-  useMutation({
+export const usePutCardType = (cardId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
     mutationKey: ['put-card-type'],
     mutationFn: (cardInfo: Omit<PutCardTypeRequest, 'cardId'>) => putCardType({ ...cardInfo, cardId }),
+
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['get-progress-recruit'] });
+    },
   });
+};

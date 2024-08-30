@@ -33,7 +33,6 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
     selectedCategories,
     personalityTags,
     abilityTags,
-    categoryTags,
     content,
     updatedDate,
     disabledCount,
@@ -88,6 +87,9 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                         color="#37383C"
                         onClick={(event) => {
                           event.stopPropagation();
+                          if (category === '내_정보_복사') {
+                            return;
+                          }
                           handlePutCardType(category, 'delete');
                         }}>
                         {category.replace('_', ' ')}

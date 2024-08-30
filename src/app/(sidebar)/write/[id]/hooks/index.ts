@@ -5,9 +5,9 @@ import { useDeleteCardTag } from '../api/useDeleteCardTag/useDeleteCardTag';
 import { useCardDetailTagsContext } from '../fetcher/CardTagFetcher';
 import { GetCardDetailResponse } from '@/app/(sidebar)/write/[id]/api/useGetCardDetail/useGetCardDetail';
 import { useTagsContext } from '../fetcher/TagsFetcher';
-import { usePutCardType, PutCardTypeRequest } from '@/app/(sidebar)/write/[id]/api/usePutCardType/usePutCardType';
-import { InfoType } from '@/types';
+import { usePutCardType } from '@/app/(sidebar)/write/[id]/api/usePutCardType/usePutCardType';
 import { useQueryClient } from '@tanstack/react-query';
+import { TypeTag } from '@/types/info';
 
 export function useWrite(id: number) {
   const {
@@ -29,7 +29,7 @@ export function useWrite(id: number) {
 
   const [title, setTitle] = useState<string>(prevTitle || '');
   const [selectedTags, setSelectedTags] = useState<GetCardDetailResponse['tagList']>(tagList);
-  const [selectedCategories, setSelectedCategories] = useState<PutCardTypeRequest['cardTypeValueList']>(categoryTags);
+  const [selectedCategories, setSelectedCategories] = useState<Array<TypeTag>>(categoryTags);
 
   const { mutate: mutatePutCardTitle } = usePutCardTitle(id);
   const { mutate: mutatePostCardTag } = usePostCardTag(id);
@@ -42,7 +42,7 @@ export function useWrite(id: number) {
   }, []);
 
   const handlePutCardType = useCallback(
-    (tag: InfoType, method: 'put' | 'delete') => {
+    (tag: TypeTag, method: 'put' | 'delete') => {
       if (method === 'put') {
         if (isMyInfo) {
           mutatePutCardType(
@@ -106,7 +106,6 @@ export function useWrite(id: number) {
     selectedCategories,
     personalityTags,
     abilityTags,
-    categoryTags,
     updatedDate: updatedDate.split(' ')[0].replaceAll(/-/g, '.'),
     content,
     disabledCount,
