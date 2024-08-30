@@ -177,7 +177,12 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
             animate={step}
             className="absolute bg-white top-0 left-0 w-full h-full rounded-[24px]">
             <If condition={step === 'finish'}>
-              <button className="absolute right-0 top-[-32px]" onClick={() => setOpen(false)}>
+              <button
+                className="absolute right-0 top-[-32px]"
+                onClick={() => {
+                  setOpen(false);
+                  putOnboardStatus();
+                }}>
                 <Icon size={24} name="close" color={color.neutral95} />
               </button>
             </If>
