@@ -20,7 +20,7 @@ import { motion } from 'framer-motion';
 export function Sidebar() {
   const router = useRouter();
   const pathname = usePathname();
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   const [myInfoCollapsed, setMyInfoCollapsed] = useState(true);
   const [myJDCollapsed, setMyJDCollapsed] = useState(true);
 
@@ -51,9 +51,11 @@ export function Sidebar() {
         shrinked: { width: '72px' },
       }}
       animate={expanded ? 'expanded' : 'shrinked'}
-      className={`z-[10000] relative flex flex-col px-[16px] py-[32px] h-screen bg-black`}>
+      className={`z-[10000] relative shrink-0 flex flex-col px-[16px] py-[32px] h-screen bg-black`}>
       <div className="relative mb-[32px]">
-        <Logo />
+        <TouchButton>
+          <Logo />
+        </TouchButton>
         <button
           aria-label={expanded ? '사이드바 축소' : '사이드바 확장'}
           className={cn(
