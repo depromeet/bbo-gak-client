@@ -34,10 +34,6 @@ body {
 }
 
 .tiptap {
-  :first-child {
-    margin-top: 0;
-  }
-
   blockquote {
     border-left: 3px solid gray;
     margin: 1.5rem auto;
@@ -45,7 +41,8 @@ body {
   }
 }
 
-.tiptap > {
+.tiptap > :first-child {
+  margin-top: 0;
 }
 
 .react-colorful {
