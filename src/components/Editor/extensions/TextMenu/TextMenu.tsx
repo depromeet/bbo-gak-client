@@ -30,7 +30,7 @@ export function TextMenu({ editor }: TextMenuProps) {
 
   return (
     <BubbleMenu
-      className="py-16 px-8"
+      className="ml-100 py-16 px-8 h-fit w-fit"
       tippyOptions={{ popperOptions: { placement: 'top-start' } }}
       editor={editor}
       pluginKey="textMenu"
