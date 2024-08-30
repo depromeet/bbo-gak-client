@@ -10,7 +10,6 @@ import { cn } from '@/utils/tailwind-util';
 import { useDndContext } from '@dnd-kit/core';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { useGetAllTags } from '../api/useGetAllTag';
 import { useGetCardCount } from '../api/useGetCardCount';
 import { useGetRecruitCards } from '../api/useGetRecruitCards';
 import { AddRecruitCardDialog } from './AddRecruitCardDialog';
@@ -25,7 +24,6 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
   const { over } = useDndContext();
 
   const { data: cardCount } = useGetCardCount(recruitId);
-  const { data: tagsData } = useGetAllTags();
   const { data: cardList } = useGetRecruitCards({ id: recruitId, type: currentOption, tagIds: selectedTags });
 
   const filteredCardList =
@@ -96,7 +94,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
         </AddRecruitCardDialog>
       </div>
 
-      <TagList tagsData={tagsData || []} selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
+      <TagList selectedTags={selectedTags} setSelectedTags={setSelectedTags} />
 
       <Droppable id={1234}>
         <div

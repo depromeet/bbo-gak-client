@@ -7,19 +7,21 @@ import { StrictPropsWithChildren, TagType } from '@/types';
 import { cn } from '@/utils';
 import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
+import { useGetAllTags } from '../api/useGetAllTag';
 import { TAG_TYPE_COLOR, colorStyle } from '../mocks';
 
 interface TagListProps {
-  tagsData: TagType[];
   selectedTags: number[];
   setSelectedTags: (tags: number[]) => void;
 }
 
-export default function TagList({ tagsData, selectedTags, setSelectedTags }: TagListProps) {
+export default function TagList({ selectedTags, setSelectedTags }: TagListProps) {
+  const { data: tagsData } = useGetAllTags();
+
   const tagContainerRef = useRef<HTMLDivElement>(null);
   const [tags, setTags] = useState<TagType[]>(tagsData || []);
-  const [viewAllTags, setViewAllTags] = useState<boolean>(false);
 
+  const [viewAllTags, setViewAllTags] = useState<boolean>(false);
   const [isOverflowing, setIsOverflowing] = useState<boolean>(true);
 
   const handleTagClick = (id: number) => {
@@ -82,9 +84,9 @@ export default function TagList({ tagsData, selectedTags, setSelectedTags }: Tag
           ref={tagContainerRef}
           className="flex w-full flex-wrap relative gap-[12px] overflow-hidden h-38 items-start">
           {selectedTags.length > 0 && (
-            <button onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
+            <TouchButton layout onClick={handleResetTag} className="rounded-[6px] border border-[#DBDCDF] p-6">
               <Icon name="refresh" size={20} color={color.neutral95} />
-            </button>
+            </TouchButton>
           )}
           {tags &&
             tags.map((tag) => (
