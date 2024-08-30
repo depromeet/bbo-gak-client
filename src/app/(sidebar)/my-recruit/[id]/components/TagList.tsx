@@ -54,7 +54,7 @@ export default function TagList({ selectedTags, setSelectedTags }: TagListProps)
           <TagSelector.Content
             defaultOpen
             className="absolute w-full -top-28 -left-8 rounded-bl-12 rounded-br-12 rounded-12 bg-white">
-            <div className="px-16 pt-16 pb-24">
+            <div className="p-20">
               <TagSelector.Notice>
                 <div className="flex justify-between items-center pr-1">
                   <p className="text-caption1 font-medium">원하는 태그로 필터링 해보세요</p>
