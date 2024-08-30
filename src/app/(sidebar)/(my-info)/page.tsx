@@ -15,6 +15,7 @@ import { InfoCardSkeleton } from './components/InfoCardSkeleton';
 import { AsyncBoundaryWithQuery } from '@/lib';
 import { Onboarding } from './containers/Onboarding/Onboarding';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useGetOnboardStatus } from './apis/useGetOnboadStatus';
 
 const getType = (typeParam: string | null) => {
   if (typeParam && INFO_TYPES.includes(typeParam as InfoType)) {
@@ -31,6 +32,8 @@ export default function MyInfo() {
   const [showHeader, setShowHeader] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
 
+  const { isOnboardComplete } = useGetOnboardStatus().data;
+
   const typeParam = searchParams.get('type');
   const currentCardType = getType(typeParam);
 
@@ -41,8 +44,6 @@ export default function MyInfo() {
   };
 
   useScroll(headerRef, (y) => setShowHeader(y > 192));
-
-  const params = useSearchParams();
 
   return (
     <div ref={headerRef} className="max-h-[100vh] w-full overflow-auto">
@@ -132,7 +133,7 @@ export default function MyInfo() {
           pendingFallback={<InfoCardSkeleton count={4} />}>
           <InfoCardList cardType={currentCardType} />
         </AsyncBoundaryWithQuery>
-        <If condition={params.get('onboarding') === 'true'}>
+        <If condition={!isOnboardComplete}>
           <Onboarding />
         </If>
       </div>
