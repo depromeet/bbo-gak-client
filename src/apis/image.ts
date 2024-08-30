@@ -16,29 +16,18 @@ export const postImagePresignedUrl = (extensions: PostImagePresignedUrlRequest) 
     data: extensions,
   });
 
-export const usePostImagePresignedUrl = () =>
-  useMutation({
-    mutationKey: ['post-image-presigned-url'],
-    mutationFn: postImagePresignedUrl,
-  });
-
 export const postImage = ({ cardId, urls }: { cardId: number } & { urls: PostImageRequest }) =>
   http.post<PostImageResponse>({
     url: `/card-images/static-urls/${cardId}`,
     data: urls,
   });
 
-export const usePostIamge = () =>
-  useMutation({
-    mutationKey: ['post-image'],
-    mutationFn: postImage,
-  });
-
-export const putImageToS3 = ({ url, file }: { url: string; file: File }) =>
-  http.put({
-    url,
-    data: file,
+export const putImageToS3 = async ({ url, file }: { url: string; file: ArrayBuffer }) =>
+  await fetch(url, {
+    method: 'PUT',
+    body: file,
     headers: {
       'Content-Type': 'image/png',
     },
+    cache: 'no-store',
   });

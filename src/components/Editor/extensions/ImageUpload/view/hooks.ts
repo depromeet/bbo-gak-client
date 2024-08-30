@@ -1,7 +1,6 @@
 import { postImagePresignedUrl, postImage, putImageToS3 } from '@/apis/image';
 import { usePathname } from 'next/navigation';
 import { DragEvent, useCallback, useEffect, useRef, useState } from 'react';
-// import { usePostImagePresignedUrl, usePostIamge } from '@/apis/image';
 
 function getFileExtension(file: File) {
   return file.name.split('.').pop()?.toUpperCase();
@@ -19,16 +18,21 @@ export function useUploader({ onUpload }: { onUpload: (url: string) => void }) {
 
         const file = (await postImagePresignedUrl([{ fileExtension: extension }])).data[0];
         const { presignedUrl, filename } = file;
-        console.log('presignedUrl', presignedUrl);
 
-        const value = await putImageToS3({ file: _file!, url: presignedUrl });
+        const arrayBuffer = await new Promise<ArrayBuffer>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as ArrayBuffer);
+          reader.onerror = reject;
+          reader.readAsArrayBuffer(_file!);
+        });
 
-        console.log('value', value);
+        await putImageToS3({ file: arrayBuffer, url: presignedUrl });
 
-        // const staticUrl = (
-        //   await postImage({ cardId: Number(pathname.split('/').at(-1)), urls: [{ fileName: filename }] })
-        // ).data[0].staticUrl;
-        // onUpload(staticUrl);
+        const staticUrl = (
+          await postImage({ cardId: Number(pathname.split('/').at(-1)), urls: [{ fileName: filename }] })
+        ).data[0].staticUrl;
+
+        onUpload(staticUrl);
       } catch (errPayload: any) {
         const error = errPayload?.response?.data?.error || 'Something went wrong';
         console.error(error);
