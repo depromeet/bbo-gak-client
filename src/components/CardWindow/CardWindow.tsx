@@ -8,6 +8,8 @@ import { formatToYYMMDD } from '@/utils/date';
 import { motion } from 'framer-motion';
 import { If } from '@/system/utils/If';
 import { useRouter } from 'next/navigation';
+import { useEditor } from '../Editor/useEditor';
+import { Editor } from '../Editor/Editor';
 
 interface CardWindowProps {
   cardId: number;
@@ -19,6 +21,14 @@ export function CardWindow({ cardId, onClose }: CardWindowProps) {
   const [isRight, setIsRight] = useState(true);
 
   const { data: card, isLoading } = useGetInfoCardDetail(cardId);
+  const { editor, content } = useEditor({
+    initialContent: card?.content,
+    readOnly: true,
+  });
+
+  if (!editor) {
+    return null;
+  }
 
   return (
     <motion.div
@@ -95,7 +105,9 @@ export function CardWindow({ cardId, onClose }: CardWindowProps) {
             ))}
           </div>
           <Spacing size={20} />
-          <div className="min-h-200 max-h-[600px] overflow-auto">{card?.content || '내용을 입력해주세요'}</div>
+          <div className="min-h-200 max-h-[600px] overflow-auto">
+            <Editor editor={editor} />
+          </div>
         </div>
       </If>
     </motion.div>

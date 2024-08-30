@@ -2,10 +2,27 @@ import { JSONContent, useEditor as useTiptapEditor } from '@tiptap/react';
 import { ExtensionKit } from './extensionKit';
 import { useEffect, useState } from 'react';
 
-export function useEditor({ readOnly, initialContent = {} }: { initialContent?: JSONContent; readOnly?: boolean }) {
-  const [content, setContent] = useState<JSONContent>(JSON.parse((initialContent || JSON.stringify('')) as any) || {});
+export function useEditor({
+  readOnly,
+  initialContent = {},
+}: {
+  initialContent?: JSONContent | string;
+  readOnly?: boolean;
+}) {
+  const [content, setContent] = useState<JSONContent>(() => {
+    try {
+      const parsedContent = initialContent
+        ? JSON.parse(typeof initialContent === 'string' ? initialContent : JSON.stringify(initialContent))
+        : '';
+
+      return parsedContent || {};
+    } catch (error) {
+      return {};
+    }
+  });
 
   const editor = useTiptapEditor({
+    editable: readOnly,
     autofocus: true,
     extensions: [...ExtensionKit()],
     editorProps: {
