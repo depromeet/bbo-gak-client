@@ -58,7 +58,7 @@ export default function Memo({ id: memoId, content, updatedDate }: GetMemosRespo
 
         <AnimatePresence mode="wait">
           <If condition={showCloseButton}>
-            <DeleteMemoDialog memo={memo} memoId={memoId} cardId={cardId}>
+            <DeleteMemoDialog memo={memo} memoId={memoId}>
               <motion.button
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

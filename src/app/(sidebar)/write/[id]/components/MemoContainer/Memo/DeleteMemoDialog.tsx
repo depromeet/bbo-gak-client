@@ -2,13 +2,14 @@ import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/system/comp
 import { StrictPropsWithChildren } from '@/types';
 import { useDeleteMemo } from '@/app/(sidebar)/write/[id]/api/useDeleteMemo';
 import { TouchButton } from '@/components/TouchButton';
+import { useMemosContext } from '@/app/(sidebar)/write/[id]/fetcher/MemosFetcher';
 
 export function DeleteMemoDialog({
-  cardId,
   memo,
   children,
   memoId,
-}: StrictPropsWithChildren<{ memo: string; cardId: number; memoId: number }>) {
+}: StrictPropsWithChildren<{ memo: string; memoId: number }>) {
+  const { cardId } = useMemosContext();
   const { mutate } = useDeleteMemo(cardId);
 
   return (
