@@ -5,17 +5,16 @@ import { GetMemosResponse, useGetMemos } from '../api/useGetMemos';
 const [MemosProvider, useMemosContext] = generateContext<{
   memos: GetMemosResponse;
   cardId: number;
-  refetch: () => void;
 }>({
   name: 'memos-provider',
-  defaultValue: { memos: [], cardId: 0, refetch: () => {} },
+  defaultValue: { memos: [], cardId: 0 },
 });
 
 function MemosFetcher({ cardId, children }: StrictPropsWithChildren<{ cardId: string }>) {
-  const { data, refetch } = useGetMemos(cardId);
+  const { data } = useGetMemos(cardId);
 
   return (
-    <MemosProvider memos={data} cardId={Number(cardId)} refetch={refetch}>
+    <MemosProvider memos={data} cardId={Number(cardId)}>
       {children}
     </MemosProvider>
   );
