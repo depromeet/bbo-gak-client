@@ -6,13 +6,15 @@ import { MY_INFO_PATH, MY_RECRUIT_PATH } from '@/route';
 import { Icon } from '@/system/components';
 import { cn } from '@/utils';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
 import { deleteCookie } from 'cookies-next';
 import { INFO_TYPES, InfoType } from '@/types';
 import { TouchButton } from '@/components/TouchButton';
 import { Spacing } from '@/system/utils/Spacing';
 import { useGetCardTypeCount } from '@/app/(sidebar)/(my-info)/apis/useGetCardTypeCount';
+import { useGetRecruitTitles } from '@/app/(sidebar)/my-recruit/api/useGetRecruitTitles';
+import { If } from '@/system/utils/If';
 
 const SIDEBAR_CLASSNAME = {
   expanded: 'w-[220px]',
@@ -27,6 +29,7 @@ export function Sidebar() {
   const [myJDCollapsed, setMyJDCollapsed] = useState(true);
 
   const { data: typeCounts } = useGetCardTypeCount();
+  const { data: recruiteTitles } = useGetRecruitTitles();
 
   const logout = () => {
     deleteCookie('accessToken');
@@ -82,13 +85,10 @@ export function Sidebar() {
             <Spacing size={14} />
             <div className="flex flex-col">
               {INFO_TYPES.map((type) => (
-                <TouchButton
-                  key={type}
-                  onClick={() => handleInfoTypeClick(type)}
-                  className="flex justify-between text-neutral-10 py-6 hover:bg-neutral-80 mx-[-16px] px-[22px]">
+                <CollapsibleItemButton key={type} onClick={() => handleInfoTypeClick(type)}>
                   <div>{type.replaceAll('_', ' ')}</div>
                   <div className="px-4">{typeCounts?.[type] || 0}</div>
-                </TouchButton>
+                </CollapsibleItemButton>
               ))}
             </div>
           </Collapsible.Content>
@@ -109,7 +109,30 @@ export function Sidebar() {
             onClick={() => router.push(MY_RECRUIT_PATH)}
           />
           <Collapsible.Content>
-            <div style={{ color: 'white' }}>준비중이에요!</div>
+            <If condition={recruiteTitles?.length === 0}>
+              <Spacing size={20} />
+              <div className="text-caption1 font-regular text-neutral-30 text-center">
+                현재 지원중인 공고가 없습니다.
+              </div>
+            </If>
+            <If condition={recruiteTitles?.length !== 0}>
+              <Spacing size={14} />
+              <div className="flex flex-col">
+                {recruiteTitles?.map((data) => (
+                  <CollapsibleItemButton key={data.id} onClick={() => router.push(`${MY_RECRUIT_PATH}/${data.id}`)}>
+                    <div className="px-6 truncate">{data.title}</div>
+                  </CollapsibleItemButton>
+                ))}
+              </div>
+              <Spacing size={32} />
+              <div className="flex justify-center">
+                <TouchButton
+                  className="bg-neutral-80 text-neutral-30 px-8 py-6 rounded-6 text-caption1 font-regular"
+                  onClick={() => router.push(MY_RECRUIT_PATH)}>
+                  모든 공고 보기
+                </TouchButton>
+              </div>
+            </If>
           </Collapsible.Content>
         </Collapsible>
       </div>
@@ -125,5 +148,15 @@ export function Sidebar() {
         />
       </div>
     </nav>
+  );
+}
+
+function CollapsibleItemButton({ onClick, children }: PropsWithChildren<{ onClick: () => void }>) {
+  return (
+    <TouchButton
+      onClick={onClick}
+      className="flex justify-between text-neutral-10 py-6 hover:bg-neutral-80 mx-[-16px] px-[22px] text-label2 font-regular">
+      {children}
+    </TouchButton>
   );
 }
