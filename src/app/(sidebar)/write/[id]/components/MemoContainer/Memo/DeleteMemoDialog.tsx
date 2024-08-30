@@ -18,7 +18,8 @@ export function DeleteMemoDialog({
         <div className="mt-36 text-20 font-bold text-center flex flex-col items-center justify-center">
           <div className="flex">
             <span>'</span>
-            <p className="w-370 overflow-hidden text-ellipsis whitespace-nowrap">{memo}</p> <span>'</span>
+            <p className="w-370 overflow-hidden text-ellipsis whitespace-nowrap">{memo}</p>
+            <span>'</span>
           </div>
           <p>메모를 정말 삭제하시겠습니까?</p>
         </div>
