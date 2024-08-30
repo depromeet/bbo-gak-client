@@ -66,9 +66,7 @@ export default function Memo({ id: memoId, content, updatedDate }: GetMemosRespo
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.2 }}
                 exit={{ opacity: 0 }}
-                className="absolute top-16 right-32"
-                // onClick={() => mutate(memoId)}>
-              >
+                className="absolute top-16 right-20">
                 <RemoveMemo size={24} color="#37383C" />
               </motion.button>
             </DeleteMemoDialog>
