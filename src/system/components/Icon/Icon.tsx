@@ -101,6 +101,7 @@ const iconMap = {
   folder: Folder,
   announcementFolder: AnnouncementFolder,
   warning: Warning,
+  announcementFolder: AnnouncementFolder,
 } as const;
 
 export interface IconProps extends IconBaseType {
