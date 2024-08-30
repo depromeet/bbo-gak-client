@@ -8,7 +8,7 @@ export interface Request {
   season: string;
   siteUrl: string;
   recruitScheduleStage: string;
-  deadline: string | null;
+  deadLine: string | null;
 }
 
 export const POST_RECRUIT_KEY = 'post-recruit';

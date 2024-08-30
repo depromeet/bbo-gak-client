@@ -20,7 +20,7 @@ export interface CardData {
   title: string;
   siteUrl: string;
   recruitScheduleStage: string;
-  deadline: string | null;
+  deadLine: string | null;
 }
 
 interface NewRecruitDialogContentProps {
@@ -160,7 +160,7 @@ export function NewRecruitDialogContent({ onSubmit }: NewRecruitDialogContentPro
                 siteUrl,
                 season: selectedSeason,
                 recruitScheduleStage: currentRecruitStage,
-                deadline: selectedDate != null ? format(selectedDate, 'yyyy-MM-dd') : null,
+                deadLine: selectedDate != null ? format(selectedDate, 'yyyy-MM-dd') : null,
               });
             }
           }}
