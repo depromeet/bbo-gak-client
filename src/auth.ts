@@ -6,7 +6,17 @@ import { cookies } from 'next/headers';
 import { ACCESS_TOKEN, JOB_SELECTION, REFRESH_TOKEN, SELECT, NONE } from './app/login/constants/token';
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [Google],
+  providers: [
+    Google({
+      authorization: {
+        params: {
+          prompt: 'consent',
+          access_type: 'offline',
+          response_type: 'code',
+        },
+      },
+    }),
+  ],
   pages: {
     signIn: '/login',
     error: '/error',
@@ -17,8 +27,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (account) {
         // TODO: 카카오 로그인
         const provider = account?.provider === 'google' ? 'GOOGLE' : 'KAKAO';
-
-        console.log(account);
 
         const {
           data: { accessToken, refreshToken, isFirstLogin },
