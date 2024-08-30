@@ -2,12 +2,16 @@ import type { Metadata } from 'next';
 import { QueryProvider } from '@/lib';
 import '@/styles/globals.css';
 import '@/styles/memo.css';
-import { Inter } from 'next/font/google';
 import { cn } from '@/utils';
 import { Suspense } from 'react';
 import { GoogleProvider } from '@/lib/GoogleProvider';
+import localFont from 'next/font/local';
 
-const inter = Inter({ subsets: ['latin'] });
+const Pretendard = localFont({
+  src: './fonts/PretendardVariable.woff2',
+  display: 'swap',
+  weight: '45 920',
+});
 
 export const metadata: Metadata = {
   title: '뽀각',
@@ -24,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className, 'bg-neutral-1')}>
+      <body className={cn(Pretendard.className, 'bg-neutral-1')}>
         <QueryProvider>
           <GoogleProvider>
             <Suspense>{children}</Suspense>
