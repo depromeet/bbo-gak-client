@@ -14,6 +14,7 @@ const [CardDetailTagsProvider, useCardDetailTagsContext] = generateContext<GetCa
     tagList: [],
     updatedDate: ' ',
     cardTypeValueGroup: '내_정보',
+    createdAt: '',
   },
 });
 

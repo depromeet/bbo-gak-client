@@ -37,6 +37,8 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
     updatedDate,
     disabledCount,
     handlePutCardType,
+    deleteCard,
+    createdAt,
   } = useWrite(Number(id));
 
   return (
@@ -53,14 +55,22 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                 className="text-[24px] font-bold px-0 leading-32 tracking-[-0.0345rem] border-none"
               />
               <div className="flex gap-8 items-center text-neutral-20">
-                <p>{updatedDate}</p>
+                <div className="flex items-center gap-4">
+                  <If condition={updatedDate != null}>
+                    <p className="text-12 text-neutral-50">{updatedDate}</p>
+                  </If>
+
+                  <p className="text-12">{updatedDate != null ? `(${createdAt || ''})` : createdAt}</p>
+                </div>
 
                 <DropdownMenu>
                   <DropdownMenuTrigger>
                     <Icon name="more" color="black" />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem className="flex gap-4 w-176 h-52 pl-16 cursor-pointer">
+                    <DropdownMenuItem
+                      onClick={() => deleteCard(Number(id))}
+                      className="flex gap-4 w-176 h-52 pl-16 cursor-pointer">
                       <Icon name="trash" size={20} color="#FF5C5C" />
                       <p className="text-[#FF5C5C] text-15">삭제하기</p>
                     </DropdownMenuItem>

@@ -8,6 +8,7 @@ export interface GetCardDetailResponse {
   title: string;
   content: JSONContent;
   updatedDate: `${string} ${string}`;
+  createdAt: string;
   cardTypeValueList: Array<TypeTag>;
   tagList: Array<TagType>;
   cardTypeValueGroup: CardGroup;
