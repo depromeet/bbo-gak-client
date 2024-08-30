@@ -26,6 +26,7 @@ export const usePutCardType = (cardId: number) => {
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['get-progress-recruit'] });
+      await queryClient.invalidateQueries({ queryKey: ['cards'] });
     },
   });
 };
