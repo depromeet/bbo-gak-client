@@ -1,23 +1,38 @@
+import { postImagePresignedUrl, postImage, putImageToS3 } from '@/apis/image';
+import { usePathname } from 'next/navigation';
 import { DragEvent, useCallback, useEffect, useRef, useState } from 'react';
 
-// TODO: Image API 연결
-export class API {
-  public static uploadImage = async () => {
-    await new Promise((r) => setTimeout(r, 500));
-    return '/placeholder-image.jpg';
-  };
+function getFileExtension(file: File) {
+  return file.name.split('.').pop()?.toUpperCase();
 }
 
 export function useUploader({ onUpload }: { onUpload: (url: string) => void }) {
   const [loading, setLoading] = useState(false);
+  const pathname = usePathname();
 
   const uploadFile = useCallback(
     async (_file?: File) => {
       setLoading(true);
       try {
-        const url = await API.uploadImage();
+        const extension = getFileExtension(_file!) || '';
 
-        onUpload(url);
+        const file = (await postImagePresignedUrl([{ fileExtension: extension }])).data[0];
+        const { presignedUrl, filename } = file;
+
+        const arrayBuffer = await new Promise<ArrayBuffer>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as ArrayBuffer);
+          reader.onerror = reject;
+          reader.readAsArrayBuffer(_file!);
+        });
+
+        await putImageToS3({ file: arrayBuffer, url: presignedUrl });
+
+        const staticUrl = (
+          await postImage({ cardId: Number(pathname.split('/').at(-1)), urls: [{ fileName: filename }] })
+        ).data[0].staticUrl;
+
+        onUpload(staticUrl);
       } catch (errPayload: any) {
         const error = errPayload?.response?.data?.error || 'Something went wrong';
         console.error(error);
