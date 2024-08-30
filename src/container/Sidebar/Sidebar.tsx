@@ -17,14 +17,6 @@ import { motion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 import { PropsWithChildren, useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
-import { deleteCookie } from 'cookies-next';
-import { INFO_TYPES, InfoType } from '@/types';
-import { TouchButton } from '@/components/TouchButton';
-import { Spacing } from '@/system/utils/Spacing';
-import { useGetCardTypeCount } from '@/app/(sidebar)/(my-info)/apis/useGetCardTypeCount';
-import { useGetRecruitTitles } from '@/app/(sidebar)/my-recruit/api/useGetRecruitTitles';
-import { If } from '@/system/utils/If';
-import { motion } from 'framer-motion';
 
 export function Sidebar() {
   const router = useRouter();

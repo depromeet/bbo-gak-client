@@ -58,7 +58,6 @@ export default function TagList({ selectedTags, setSelectedTags, tagsData }: Tag
         <Icon name="tag" size={28} />
       </div>
 
-
       {viewAllTags ? (
         <TagSelector classNames={{ base: 'w-full mx-[24px]', trigger: cn('hover:bg-neutral-1') }}>
           <TagSelector.Content
@@ -68,11 +67,6 @@ export default function TagList({ selectedTags, setSelectedTags, tagsData }: Tag
               <TagSelector.Notice>
                 <div className="flex justify-between items-center pr-1">
                   <p className="text-caption1 font-medium">원하는 태그로 필터링 해보세요</p>
-                  <TouchButton
-                    layout
-                    whileHover="hover"
-                    onClick={handleResetTag}
-                    className="relative rounded-[6px] border border-[#DBDCDF] p-6">
                   <TouchButton
                     layout
                     whileHover="hover"

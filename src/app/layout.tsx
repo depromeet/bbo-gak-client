@@ -6,9 +6,6 @@ import { cn } from '@/utils';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import { Suspense } from 'react';
-import { GoogleProvider } from '@/lib/GoogleProvider';
-import localFont from 'next/font/local';
-
 
 const Pretendard = localFont({
   src: './fonts/PretendardVariable.woff2',
