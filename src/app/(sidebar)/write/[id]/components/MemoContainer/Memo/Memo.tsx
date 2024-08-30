@@ -7,10 +7,8 @@ import { AnimatePresence } from 'framer-motion';
 import { motion } from 'framer-motion';
 import { GetMemosResponse } from '../../../api/useGetMemos';
 import { useMemosContext } from '../../../fetcher/MemosFetcher';
-import { useDeleteMemo } from '../../../api/useDeleteMemo';
 import { usePutMemo } from '@/app/(sidebar)/write/[id]/api/usesPutMemo';
 import { If } from '@/system/utils/If';
-import { Dialog } from '@/system/components/Dialog/Dialog';
 import { DeleteMemoDialog } from './DeleteMemoDialog';
 
 export default function Memo({ id: memoId, content, updatedDate }: GetMemosResponse[number]) {
