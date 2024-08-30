@@ -1,3 +1,5 @@
+'use client';
+
 import { TouchButton } from '@/components/TouchButton';
 import { LOGO } from './Logo';
 import { Text } from './Text';
