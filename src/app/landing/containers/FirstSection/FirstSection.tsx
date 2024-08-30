@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 export function FirstSection() {
   return (
-    <div className="bg-neutral-95 h-[100vh] flex flex-col items-center justify-between pt-[88px] pb-[30px]">
+    <div className="bg-neutral-95 h-[100vh] flex flex-col items-center justify-between pt-[188px] pb-[30px]">
       <Image src="/landing/landing_scape.png" alt="" width={1440} height={900} className="z-[0] absolute top-0" />
       <div className="flex flex-col items-center">
         <span className="text-white font-[700] text-[48px]">아.. 그때 써놓은 자소서 항목 어딨더라?</span>
