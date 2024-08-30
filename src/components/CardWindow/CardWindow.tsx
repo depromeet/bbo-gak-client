@@ -9,7 +9,9 @@ import { motion } from 'framer-motion';
 import { If } from '@/system/utils/If';
 import { useRouter } from 'next/navigation';
 import { useEditor } from '../Editor/useEditor';
-import { Editor } from '../Editor/Editor';
+import dynamic from 'next/dynamic';
+
+const Editor = dynamic(() => import('../Editor/Editor').then(({ Editor }) => Editor), { ssr: false });
 
 interface CardWindowProps {
   cardId: number;
@@ -21,7 +23,7 @@ export function CardWindow({ cardId, onClose }: CardWindowProps) {
   const [isRight, setIsRight] = useState(true);
 
   const { data: card, isLoading } = useGetInfoCardDetail(cardId);
-  const { editor, content } = useEditor({
+  const { editor } = useEditor({
     initialContent: card?.content,
     readOnly: true,
   });

@@ -18,7 +18,8 @@ export function useWrite(id: number) {
     content,
     cardTypeValueList,
     cardTypeValueGroup,
-    createdAt,
+    createdDate,
+    recruitTitle,
   } = useCardDetailTagsContext();
   const { tags } = useTagsContext();
   const isMyInfo = cardTypeValueGroup === '내_정보';
@@ -113,6 +114,7 @@ export function useWrite(id: number) {
     updatedDate: updatedDate.split(' ')[0].replaceAll(/-/g, '.'),
     content,
     disabledCount,
-    createdAt,
+    createdDate: createdDate.split(' ')[0].replaceAll(/-/g, '.'),
+    recruitTitle,
   };
 }

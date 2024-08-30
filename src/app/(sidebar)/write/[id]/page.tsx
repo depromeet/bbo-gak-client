@@ -38,13 +38,20 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
     disabledCount,
     handlePutCardType,
     deleteCard,
-    createdAt,
+    createdDate,
+    recruitTitle,
   } = useWrite(Number(id));
 
   return (
     <section className="h-full">
       <section className="flex">
-        <div className="pt-64 w-full">
+        <div className="pt-40 w-full">
+          <div className="h-16">
+            <If condition={recruitTitle != null}>
+              <div className="flex gap-4 text-12 text-neutral-30 mt-8">icon {recruitTitle}</div>
+            </If>
+          </div>
+
           <EditorProvider cardId={Number(id)} initialContent={content}>
             <div className="flex justify-between px-80">
               <Input
@@ -60,7 +67,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                     <p className="text-12 text-neutral-50">{updatedDate}</p>
                   </If>
 
-                  <p className="text-12">{updatedDate != null ? `(${createdAt || ''})` : createdAt}</p>
+                  <p className="text-12">{updatedDate != null ? `(${createdDate || ''})` : createdDate}</p>
                 </div>
 
                 <DropdownMenu>

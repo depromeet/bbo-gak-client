@@ -3,7 +3,7 @@ import { ExtensionKit } from './extensionKit';
 import { useEffect, useState } from 'react';
 
 export function useEditor({
-  readOnly,
+  readOnly = false,
   initialContent = {},
 }: {
   initialContent?: JSONContent | string;
@@ -22,7 +22,7 @@ export function useEditor({
   });
 
   const editor = useTiptapEditor({
-    editable: readOnly,
+    editable: !readOnly,
     autofocus: true,
     extensions: [...ExtensionKit()],
     editorProps: {
