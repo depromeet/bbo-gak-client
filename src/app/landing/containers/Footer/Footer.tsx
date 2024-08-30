@@ -1,3 +1,5 @@
+'use client';
+
 import { TouchButton } from '@/components/TouchButton';
 import { Spacing } from '@/system/utils/Spacing';
 import { NoteIcon } from './components/NoteIcon';
