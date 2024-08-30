@@ -53,8 +53,8 @@ export function Sidebar() {
       }}
       animate={expanded ? 'expanded' : 'shrinked'}
       className={`z-[10000] relative shrink-0 flex flex-col px-[16px] py-[32px] h-screen bg-black`}>
-      <div className="relative mb-[32px]">
-        <TouchButton>
+      <div className="flex relative mb-[32px]">
+        <TouchButton onClick={() => router.push(MY_INFO_PATH)}>
           <Logo />
         </TouchButton>
         <button
