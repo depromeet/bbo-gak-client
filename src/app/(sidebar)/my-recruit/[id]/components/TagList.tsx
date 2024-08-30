@@ -1,6 +1,6 @@
 import { TagSelector } from '@/app/(sidebar)/write/[id]/components/TagSelector/TagSelector';
 import { TouchButton } from '@/components/TouchButton';
-import { Button, ButtonProps, Icon, Text } from '@/system/components';
+import { Button, ButtonProps, Icon } from '@/system/components';
 import { color } from '@/system/token/color';
 import { If } from '@/system/utils/If';
 import { StrictPropsWithChildren, TagType } from '@/types';
@@ -53,7 +53,7 @@ export default function TagList({ selectedTags, setSelectedTags, tagsData }: Tag
   }, [tagsData]);
 
   return (
-    <div className="flex w-full items-center my-[30px] Gap">
+    <div className="flex w-full items-center my-[30px]">
       <div className="flex mr-[24px]">
         <Icon name="tag" size={28} />
       </div>
@@ -73,14 +73,6 @@ export default function TagList({ selectedTags, setSelectedTags, tagsData }: Tag
                     onClick={handleResetTag}
                     className="relative rounded-[6px] border border-[#DBDCDF] p-6">
                     <Icon name="refresh" size={20} color={color.neutral95} />
-                    <motion.div
-                      className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
-                      initial={{ opacity: 0 }}
-                      variants={{ hover: { opacity: 1 } }}>
-                      <Text typography="label1" color="white">
-                        태그 필터 초기화
-                      </Text>
-                    </motion.div>
                   </TouchButton>
                 </div>
               </TagSelector.Notice>
@@ -111,14 +103,6 @@ export default function TagList({ selectedTags, setSelectedTags, tagsData }: Tag
               onClick={handleResetTag}
               className="relative rounded-[6px] border border-[#DBDCDF] p-6 mr-14">
               <Icon name="refresh" size={20} color={color.neutral95} />
-              <motion.div
-                className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
-                initial={{ opacity: 0 }}
-                variants={{ hover: { opacity: 1 } }}>
-                <Text typography="label1" color="white">
-                  태그 필터 초기화
-                </Text>
-              </motion.div>
             </TouchButton>
           )}
 
@@ -159,15 +143,6 @@ export default function TagList({ selectedTags, setSelectedTags, tagsData }: Tag
               animate={{ rotate: viewAllTags ? 180 : 0 }}
               transition={{ duration: 0.3 }}>
               <Icon name="downChevron" color={color.neutral40} />
-            </motion.div>
-
-            <motion.div
-              className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
-              initial={{ opacity: 0 }}
-              variants={{ hover: { opacity: 1 } }}>
-              <Text typography="label1" color="white">
-                모든 태그 보기
-              </Text>
             </motion.div>
           </TouchButton>
         </div>

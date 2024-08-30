@@ -61,7 +61,7 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
                       className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
                       initial={{ opacity: 0 }}
                       variants={{ hover: { opacity: 1 } }}>
-                      <Text typography="label1" color="white">
+                      <Text typography="body1" color="white">
                         공고 일정 등록
                       </Text>
                     </motion.div>
@@ -83,7 +83,7 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
                   className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
                   initial={{ opacity: 0 }}
                   variants={{ hover: { opacity: 1 } }}>
-                  <Text typography="label1" color="white">
+                  <Text typography="body1" color="white">
                     내 정보 가져오기
                   </Text>
                 </motion.div>
