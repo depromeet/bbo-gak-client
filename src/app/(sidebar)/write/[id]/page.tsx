@@ -64,13 +64,13 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                 classNames={{ base: 'w-[552px]' }}
                 className="text-[24px] font-bold px-0 leading-32 tracking-[-0.0345rem] border-none"
               />
-              <div className="flex gap-8 items-center text-neutral-20">
+              <div className="flex gap-8 items-center text-neutral-20 whitespace-nowrap">
                 <div className="flex items-center gap-4">
                   <If condition={updatedDate != null}>
-                    <p className="text-12 text-neutral-50">{updatedDate}</p>
+                    <p className="text-12 text-neutral-50">{updatedDate} 수정됨</p>
                   </If>
 
-                  <p className="text-12">{updatedDate != null ? `(${createdDate || ''})` : createdDate}</p>
+                  <p className="text-12">{updatedDate != null ? `(${createdDate || ''} 생성됨)` : createdDate}</p>
                 </div>
 
                 <DropdownMenu>
