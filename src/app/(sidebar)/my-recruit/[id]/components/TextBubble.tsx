@@ -34,7 +34,6 @@ export default function TextBubble({
   const handleLinkConfirm = () => {
     if (link) {
       newLink({ newSiteUrl: link, id: recruitId });
-      // linkedOn();
     }
   };
 

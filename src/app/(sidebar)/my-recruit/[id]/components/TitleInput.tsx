@@ -36,7 +36,7 @@ export default function TitleInput({ recruitId, setIsFocused }: TitleInputProps)
     <>
       <input
         className={cn(
-          'pl-[6px] mr-[6px] rounded-[6px] text-neutral-95 text-heading1 font-bold border-none bg-white hover:bg-neutral-3 focus:outline-none focus:ring-2 focus:ring-mint-20 focus:ring-offset-2  focus:hover:bg-white',
+          'text-center rounded-[6px] text-neutral-95 text-heading1 font-bold border-none bg-white hover:bg-neutral-3 focus:outline-none focus:ring-2 focus:ring-mint-20 focus:ring-offset-2  focus:hover:bg-white',
         )}
         style={{ width: `${titleWidth}px` }}
         onChange={handleTitleChange}
