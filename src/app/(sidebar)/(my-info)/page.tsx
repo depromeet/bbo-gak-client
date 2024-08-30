@@ -14,6 +14,7 @@ import { motion } from 'framer-motion';
 import { InfoCardSkeleton } from './components/InfoCardSkeleton';
 import { AsyncBoundaryWithQuery } from '@/lib';
 import { Onboarding } from './containers/Onboarding/Onboarding';
+import { useSearchParams } from 'next/navigation';
 
 export default function MyInfo() {
   const [showHeader, setShowHeader] = useState(false);
@@ -24,6 +25,8 @@ export default function MyInfo() {
   const { data: cardCount } = useGetCardTypeCount();
 
   useScroll(headerRef, (y) => setShowHeader(y > 192));
+
+  const params = useSearchParams();
 
   return (
     <div ref={headerRef} className="max-h-[100vh] w-full overflow-auto">
@@ -113,7 +116,7 @@ export default function MyInfo() {
           pendingFallback={<InfoCardSkeleton count={4} />}>
           <InfoCardList cardType={currentCardType} />
         </AsyncBoundaryWithQuery>
-        <If condition={false}>
+        <If condition={params.get('onboarding') === 'true'}>
           <Onboarding />
         </If>
       </div>

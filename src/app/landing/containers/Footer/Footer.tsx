@@ -1,11 +1,16 @@
+'use client';
+
 import { TouchButton } from '@/components/TouchButton';
 import { Spacing } from '@/system/utils/Spacing';
 import { NoteIcon } from './components/NoteIcon';
 import { PencilIcon } from './components/PencilIcon';
 import { CloverIcon } from './components/CloverIcon';
 import { TitleIcon } from './components/TitleIcon';
+import { useRouter } from 'next/navigation';
 
 export function Footer() {
+  const router = useRouter();
+
   return (
     <footer className="flex flex-col items-center justify-center bg-neutral-95">
       <Spacing size={120} />
@@ -21,7 +26,9 @@ export function Footer() {
         <TitleIcon />
       </div>
       <Spacing size={37} />
-      <TouchButton className="bg-mint-30 rounded-[6px] px-[20px] py-[13px] text-body2 text-neutral-95 font-semibold">
+      <TouchButton
+        className="bg-mint-30 rounded-[6px] px-[20px] py-[13px] text-body2 text-neutral-95 font-semibold"
+        onClick={() => router.push('/login')}>
         취뽀하러 가기
       </TouchButton>
       <Spacing size={180} />
