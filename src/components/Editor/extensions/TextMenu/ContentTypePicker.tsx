@@ -4,7 +4,6 @@ import { Surface } from '@/components/Editor/extensions/Surface/Surface';
 import { EditorIcon } from '@/components/Editor/extensions/EditorIcon/EditorIcon';
 import { DropdownButton, DropdownCategoryTitle } from '@/components/Editor/extensions/EditorDropdown/Dropdown';
 import { Toolbar } from '@/components/Editor/extensions/Toolbar/Toolbar';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/system/components/DropdownMenu/DropdownMenu';
 import { Button, Dropdown } from '@/system/components';
 
 export type ContentTypePickerOption = {

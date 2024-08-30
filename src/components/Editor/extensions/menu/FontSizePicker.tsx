@@ -3,7 +3,6 @@ import { DropdownButton } from '@/components/Editor/extensions/EditorDropdown/Dr
 import { EditorIcon } from '@/components/Editor/extensions/EditorIcon/EditorIcon';
 import { Surface } from '@/components/Editor/extensions/Surface/Surface';
 import { Toolbar } from '@/components/Editor/extensions/Toolbar/Toolbar';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/system/components/DropdownMenu/DropdownMenu';
 import { Dropdown } from '@/system/components';
 
 const FONT_SIZES = [
