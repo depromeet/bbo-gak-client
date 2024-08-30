@@ -28,7 +28,6 @@ export default function TextBubble({
       setLink('');
       setIsLinked(false);
     }
-    console.log('siteUrl', Boolean(siteUrl));
   }, [siteUrl]);
 
   const handleLinkConfirm = () => {
