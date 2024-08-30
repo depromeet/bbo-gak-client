@@ -18,6 +18,11 @@ import { usePathname, useRouter } from 'next/navigation';
 import { PropsWithChildren, useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
 
+const SIDEBAR_CLASSNAME = {
+  expanded: 'w-[220px]',
+  shrinked: 'w-[72px]',
+} as const;
+
 export function Sidebar() {
   const router = useRouter();
   const pathname = usePathname();
@@ -71,7 +76,7 @@ export function Sidebar() {
 
       <div className="flex flex-col items-center gap-[36px] w-full">
         <Dialog>
-          <Dialog.Trigger asChild className="w-full">
+          <Dialog.Trigger className="w-full">
             <SidebarButton iconName="search" selected={false} expanded={expanded} expandedText="태그 검색" />
           </Dialog.Trigger>
           <Dialog.Content className="w-448 rounded-45 pl-32 pr-20 pt-56 pb-60">
