@@ -10,7 +10,7 @@ import { cn } from '@/utils/tailwind-util';
 import { useDndContext } from '@dnd-kit/core';
 import { motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { useGetCardCount } from '../api/useGetCardCount';
+import { useGetRecruitCardCount } from '../api/useGetCardCount';
 import { useGetRecruitCards } from '../api/useGetRecruitCards';
 import { AddRecruitCardDialog } from './AddRecruitCardDialog';
 import TagList from './TagList';
@@ -21,9 +21,10 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
   const [scrollPosition, setScrollPosition] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const { over } = useDndContext();
+  const { over, active } = useDndContext();
 
-  const { data: cardCount } = useGetCardCount(recruitId);
+
+  const { data: cardCount } = useGetRecruitCardCount(recruitId);
   const { data: cardList } = useGetRecruitCards({ id: recruitId, type: currentOption, tagIds: selectedTags });
 
   const filteredCardList =

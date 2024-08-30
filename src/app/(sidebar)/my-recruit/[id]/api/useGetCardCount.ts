@@ -4,19 +4,19 @@ import { useQuery } from '@tanstack/react-query';
 
 type GetCardCountType = Record<RecruitType, number>;
 
-export const GET_CARD_COUNT = 'get-card-count';
+export const GET_RECRUIT_CARD_COUNT = 'get-card-count';
 
-const getCardCount = (id: string) => {
+const getRecruitCardCount = (id: string) => {
   return http.get<GetCardCountType>({
     url: `/recruits/${id}/cards/type-count`,
   });
 };
 
-export function useGetCardCount(id: string) {
+export function useGetRecruitCardCount(id: string) {
   const result = useQuery({
-    queryKey: [GET_CARD_COUNT],
+    queryKey: [GET_RECRUIT_CARD_COUNT],
     queryFn: async () => {
-      const res = await getCardCount(id);
+      const res = await getRecruitCardCount(id);
       return res.data;
     },
   });
