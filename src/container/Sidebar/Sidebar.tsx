@@ -9,6 +9,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
 import { deleteCookie } from 'cookies-next';
+import { INFO_TYPES, InfoType } from '@/types';
+import { TouchButton } from '@/components/TouchButton';
+import { Spacing } from '@/system/utils/Spacing';
+import { useGetCardTypeCount } from '@/app/(sidebar)/(my-info)/apis/useGetCardTypeCount';
 
 const SIDEBAR_CLASSNAME = {
   expanded: 'w-[220px]',
@@ -22,11 +26,25 @@ export function Sidebar() {
   const [myInfoCollapsed, setMyInfoCollapsed] = useState(true);
   const [myJDCollapsed, setMyJDCollapsed] = useState(true);
 
+  const { data: typeCounts } = useGetCardTypeCount();
+
   const logout = () => {
     deleteCookie('accessToken');
     deleteCookie('refreshToken');
     router.push('/login');
   };
+
+  const handleInfoTypeClick = (type: InfoType) => {
+    const targetPath = `${MY_INFO_PATH}?type=${type}`;
+
+    if (pathname === MY_INFO_PATH) {
+      router.replace(targetPath);
+      return;
+    }
+
+    router.push(targetPath);
+  };
+
   return (
     <nav
       className={`z-[10000] relative flex flex-col px-[16px] py-[32px] h-screen bg-black ${SIDEBAR_CLASSNAME[expanded ? 'expanded' : 'shrinked']}`}>
@@ -61,8 +79,18 @@ export function Sidebar() {
             onClick={() => router.push(MY_INFO_PATH)}
           />
           <Collapsible.Content>
-            {/* FIXME: */}
-            <div style={{ color: 'white' }}>준비중이에요!</div>
+            <Spacing size={14} />
+            <div className="flex flex-col">
+              {INFO_TYPES.map((type) => (
+                <TouchButton
+                  key={type}
+                  onClick={() => handleInfoTypeClick(type)}
+                  className="flex justify-between text-neutral-10 py-6 hover:bg-neutral-80 mx-[-16px] px-[22px]">
+                  <div>{type.replaceAll('_', ' ')}</div>
+                  <div className="px-4">{typeCounts?.[type] || 0}</div>
+                </TouchButton>
+              ))}
+            </div>
           </Collapsible.Content>
         </Collapsible>
         <Collapsible collapsed={expanded ? myJDCollapsed : true} onCollapsedChange={setMyJDCollapsed}>
