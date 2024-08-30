@@ -11,20 +11,21 @@ const TEXT_DEFAULT_HEIGHT = 22;
 const TEXT_FOCUS_HEIGHT = 80;
 
 export default function MemoContainer() {
-  const { invalidateQueries } = useQueryClient();
-  const { memos, cardId, refetch } = useMemosContext();
+  const queryClient = useQueryClient();
+  const { memos, cardId } = useMemosContext();
   const [memo, setMemo] = useState<string>('');
   const [textareaHeight, setTextareaHeight] = useState(TEXT_DEFAULT_HEIGHT);
   const { mutate } = usePostMemo(cardId);
 
   const handlePostMemo = useCallback(() => {
-    mutate(memo, {
-      onSuccess: () => {
-        setMemo('');
-        invalidateQueries({ queryKey: ['get-memos'] });
-        refetch();
-      },
-    });
+    if (memo.length > 0) {
+      mutate(memo, {
+        onSuccess: async () => {
+          setMemo('');
+          await queryClient.invalidateQueries({ queryKey: ['get-memos'] });
+        },
+      });
+    }
   }, [memo]);
 
   return (

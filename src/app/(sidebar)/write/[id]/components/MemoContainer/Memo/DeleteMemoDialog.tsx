@@ -2,12 +2,14 @@ import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/system/comp
 import { StrictPropsWithChildren } from '@/types';
 import { useDeleteMemo } from '@/app/(sidebar)/write/[id]/api/useDeleteMemo';
 import { TouchButton } from '@/components/TouchButton';
+import { useMemosContext } from '@/app/(sidebar)/write/[id]/fetcher/MemosFetcher';
 
 export function DeleteMemoDialog({
-  cardId,
   memo,
   children,
-}: StrictPropsWithChildren<{ memo: string; cardId: number }>) {
+  memoId,
+}: StrictPropsWithChildren<{ memo: string; memoId: number }>) {
+  const { cardId } = useMemosContext();
   const { mutate } = useDeleteMemo(cardId);
 
   return (
@@ -29,7 +31,7 @@ export function DeleteMemoDialog({
             <TouchButton className="border-1 border-neutral-5 rounded-6 w-190 h-48">취소</TouchButton>
           </DialogClose>
 
-          <TouchButton className="bg-neutral-95 text-white rounded-6 w-190 h-48" onClick={() => mutate(cardId)}>
+          <TouchButton className="bg-neutral-95 text-white rounded-6 w-190 h-48" onClick={() => mutate(memoId)}>
             삭제
           </TouchButton>
         </div>
