@@ -23,7 +23,7 @@ export function InfoCardList({ cardType }: InfoCardListProps) {
           ))}
         </ul>
       ) : (
-        <div className="flex flex-col h-[calc(100vh-400px)] items-center justify-center">
+        <div className="flex flex-col h-[calc(100vh-400px)] items-center justify-center gap-16">
           <Icon name="empty" size={280} />
           <p className="text-center text-body1 text-neutral-30">아직 생성된 정보 카드가 없어요!</p>
         </div>
