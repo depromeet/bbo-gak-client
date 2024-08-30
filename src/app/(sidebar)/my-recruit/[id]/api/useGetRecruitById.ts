@@ -19,7 +19,7 @@ const getRecruitById = (id: string) => {
 
 export const useGetRecruitById = (id: string) => {
   return useSuspenseQuery({
-    queryKey: [GET_RECRUIT_BY_ID],
+    queryKey: [GET_RECRUIT_BY_ID, id],
     queryFn: async () => {
       const res = await getRecruitById(id);
 

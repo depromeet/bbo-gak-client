@@ -14,15 +14,31 @@ import { motion } from 'framer-motion';
 import { InfoCardSkeleton } from './components/InfoCardSkeleton';
 import { AsyncBoundaryWithQuery } from '@/lib';
 import { Onboarding } from './containers/Onboarding/Onboarding';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
+
+const getType = (typeParam: string | null) => {
+  if (typeParam && INFO_TYPES.includes(typeParam as InfoType)) {
+    return typeParam as InfoType;
+  }
+
+  return '경험_정리';
+};
 
 export default function MyInfo() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [showHeader, setShowHeader] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
 
-  const [currentCardType, setCurrentCardType] = useState<InfoType>('경험_정리');
+  const typeParam = searchParams.get('type');
+  const currentCardType = getType(typeParam);
 
   const { data: cardCount } = useGetCardTypeCount();
+
+  const handleTypeChange = (type: InfoType) => {
+    router.replace(`?type=${type}`);
+  };
 
   useScroll(headerRef, (y) => setShowHeader(y > 192));
 
@@ -61,7 +77,7 @@ export default function MyInfo() {
                         key={type}
                         checked={type === currentCardType}
                         className={type === currentCardType ? 'text-neutral-30' : ''}
-                        onClick={() => setCurrentCardType(type)}>
+                        onClick={() => handleTypeChange(type)}>
                         {type.replace('_', ' ')}
                       </Dropdown.CheckedItem>
                     ))}
@@ -75,7 +91,7 @@ export default function MyInfo() {
                   <TouchButton
                     key={type}
                     className="flex gap-[6px] items-center cursor-pointer"
-                    onClick={() => setCurrentCardType(type)}>
+                    onClick={() => handleTypeChange(type)}>
                     <div
                       className={cn(
                         'text-[18px] text-neutral-10 font-semibold',
