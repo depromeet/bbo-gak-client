@@ -22,7 +22,7 @@ export function ThirdSection() {
 
           <Spacing size={100} direction="row" />
 
-          <div className="w-[1010px] rounded-[30px] border-neutral-95 border-[8px] overflow-hidden mx-[20px]">
+          <div className="w-[1010px] mx-[20px]">
             <Image src="/landing/image153_2.png" alt="" width={1010} height={640} />
           </div>
           <div className="absolute bottom-[-180px] right-[47%]">
@@ -35,7 +35,7 @@ export function ThirdSection() {
 
       <div className="relative h-[640px]">
         <div className="absolute flex top-[50%] left-[50%] gap-[12px] translate-x-[calc(-50%-100px)] -translate-y-1/2">
-          <div className="w-[1010px] rounded-[30px] border-neutral-95 border-[8px] overflow-hidden mx-[20px]">
+          <div className="w-[1010px] mx-[20px]">
             <Image src="/landing/image154_2.png" alt="" width={1010} height={640} />
           </div>
 
