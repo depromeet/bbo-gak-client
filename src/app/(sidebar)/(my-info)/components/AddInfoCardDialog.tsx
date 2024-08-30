@@ -10,6 +10,7 @@ import { useGetCardTags } from '../apis/useGetCardTags';
 import { usePostCard } from '../apis/usePostCard';
 import { TouchButton } from '@/components/TouchButton';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 
 export function AddInfoCardDialog({ children }: PropsWithChildren) {
   const router = useRouter();
@@ -61,7 +62,7 @@ export function AddInfoCardDialog({ children }: PropsWithChildren) {
               disabled={selectedTagList.length === 3}
               onChange={(open) => setIsOpenTagSelector(open)}>
               <TagSelector.Trigger className="w-full bg-neutral-1 h-46 border-b-0 py-10 px-12 text-neutral-30">
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between items-center">
                   <If condition={!selectedTagList.length}>키워드 태그를 선택해주세요</If>
                   <If condition={!!selectedTagList.length}>
                     <ul className="flex gap-8">
@@ -82,7 +83,15 @@ export function AddInfoCardDialog({ children }: PropsWithChildren) {
                       ))}
                     </ul>
                   </If>
-                  {!isOpenTagSelector && <Icon name="downChevron" color="#878A93" size={20} />}
+                  <motion.div
+                    variants={{
+                      closed: { rotate: '0deg' },
+                      opened: { rotate: '-180deg' },
+                    }}
+                    transition={{ duration: 0.1 }}
+                    animate={isOpenTagSelector ? 'opened' : 'closed'}>
+                    <Icon name="downChevron" color="#878A93" />
+                  </motion.div>
                 </div>
               </TagSelector.Trigger>
 
@@ -124,7 +133,7 @@ export function AddInfoCardDialog({ children }: PropsWithChildren) {
             </TagSelector>
             <TagSelector className="w-full" onChange={(open) => setIsOpenTypeSelector(open)}>
               <TagSelector.Trigger className="w-full bg-neutral-1 h-46 border-b-0 py-10 px-12 text-neutral-30">
-                <div className="w-full flex justify-between">
+                <div className="w-full flex justify-between items-center">
                   <If condition={selectedType == null}>글의 종류를 선택해주세요</If>
                   <If condition={selectedType != null}>
                     <ul className="flex gap-8">
@@ -139,7 +148,15 @@ export function AddInfoCardDialog({ children }: PropsWithChildren) {
                       </TagSelector.RemovalbleTag>
                     </ul>
                   </If>
-                  {!isOpenTypeSelector && <Icon name="downChevron" color="#878A93" size={20} />}
+                  <motion.div
+                    variants={{
+                      closed: { rotate: '0deg' },
+                      opened: { rotate: '-180deg' },
+                    }}
+                    transition={{ duration: 0.1 }}
+                    animate={isOpenTypeSelector ? 'opened' : 'closed'}>
+                    <Icon name="downChevron" color="#878A93" />
+                  </motion.div>
                 </div>
               </TagSelector.Trigger>
               <TagSelector.Content className="w-full left-0 top-46 border-t-0 px-16 pt-16 pb-20">

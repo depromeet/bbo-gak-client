@@ -62,7 +62,7 @@ export function InfoCard({ id, title, updatedDate, tagList }: InfoCardProps) {
             </DropdownMenu>
           </div>
         </div>
-        <div className="flex gap-[8px]">
+        <div className="flex gap-[8px] overflow-hidden">
           {tagList.map(({ id, type, name }) => (
             <Tag key={id} color={TAG_TYPE_COLOR[type]}>
               {name}
