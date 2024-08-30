@@ -3,6 +3,7 @@ import { RemoveMemo } from '@/system/components/Icon/SVG/RemoveMemo';
 import { SubmitArrow } from '@/system/components/Icon/SVG/SubmitArrow';
 import type { IconBaseType } from '@/system/components/Icon/SVG/type';
 import { Add } from './SVG/Add';
+import { AnnouncementFolder } from './SVG/AnnouncementFolder';
 import { ArrowUp } from './SVG/ArrowUp';
 import { Bell } from './SVG/Bell';
 import { Calendar } from './SVG/Calendar';
@@ -99,6 +100,7 @@ const iconMap = {
   profileFill: ProfileFill,
   folder: Folder,
   warning: Warning,
+  announcementFolder: AnnouncementFolder,
 } as const;
 
 export interface IconProps extends IconBaseType {
