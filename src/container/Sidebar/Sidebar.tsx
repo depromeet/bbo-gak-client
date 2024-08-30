@@ -28,6 +28,9 @@ export function Sidebar() {
     deleteCookie('refreshToken');
     router.push('/login');
   };
+
+  const isRecruitPage = pathname.includes(MY_RECRUIT_PATH);
+
   return (
     <nav
       className={`z-[10000] relative flex flex-col px-[16px] py-[32px] h-screen bg-black ${SIDEBAR_CLASSNAME[expanded ? 'expanded' : 'shrinked']}`}>
@@ -78,12 +81,12 @@ export function Sidebar() {
         </Collapsible>
         <Collapsible collapsed={expanded ? myJDCollapsed : true} onCollapsedChange={setMyJDCollapsed}>
           <SidebarButton
-            iconName={pathname.includes(MY_RECRUIT_PATH) ? 'workFill' : 'folder'}
-            selected={pathname.includes(MY_RECRUIT_PATH)}
+            iconName={isRecruitPage ? 'workFill' : 'folder'}
+            selected={isRecruitPage}
             expanded={expanded}
             expandedText="내 공고"
             withHoverEffect={!expanded}
-            withTouchEffect={!pathname.includes(MY_RECRUIT_PATH)}
+            withTouchEffect={!isRecruitPage}
             right={
               <Collapsible.Trigger>
                 <Collapsible.ArrowButton />

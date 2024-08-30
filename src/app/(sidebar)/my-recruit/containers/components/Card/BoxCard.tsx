@@ -5,15 +5,14 @@ import { dday } from '@/utils/date';
 import { MoreButton } from '@/app/(sidebar)/my-recruit/containers/components/Card/common/MoreButton';
 import { StatusButton } from '@/app/(sidebar)/my-recruit/containers/components/Card/common/StatusButton';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
-import Link from 'next/link';
 import { DueDateDialog } from '../DueDateDialog/DueDateDialog';
 import { RecruitCard } from '@/app/(sidebar)/my-recruit/type';
 import { useRouter } from 'next/navigation';
+import { AsyncBoundaryWithQuery } from '@/lib';
 
 interface BoxCardProps extends RecruitCard {
   onRecruitDelete: (id: number) => void;
   onRecruitStatusChange: (id: number, status: string) => void;
-  onDuedateAppend: () => void;
 }
 
 export const MIN_CARD_WIDTH = 250;
@@ -24,7 +23,6 @@ export function BoxCard({
   recruitStatus,
   season,
   nearestSchedule,
-  onDuedateAppend,
   onRecruitStatusChange,
   onRecruitDelete,
 }: BoxCardProps) {
@@ -41,7 +39,9 @@ export function BoxCard({
               <Icon name="add" size={24} color={color.neutral50} />
             </Dialog.Trigger>
             <Dialog.Content className="w-400">
-              <DueDateDialog id={id} title={title} onDuedateAppend={() => onDuedateAppend()} />
+              <AsyncBoundaryWithQuery pendingFallback={<></>}>
+                <DueDateDialog id={id} title={title} />
+              </AsyncBoundaryWithQuery>
             </Dialog.Content>
           </Dialog>
         ) : (

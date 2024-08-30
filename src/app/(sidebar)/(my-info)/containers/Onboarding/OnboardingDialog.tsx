@@ -169,9 +169,9 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
             animate={step}
             className="absolute bg-white top-0 left-0 w-full h-full rounded-[24px]">
             <If condition={step === 'finish'}>
-              <div className="absolute right-0 top-[-32px]">
+              <button className="absolute right-0 top-[-32px]" onClick={() => setOpen(false)}>
                 <Icon size={24} name="close" color={color.neutral95} />
-              </div>
+              </button>
             </If>
             <motion.div
               initial={{ opacity: 0 }}
@@ -189,7 +189,7 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.7 }}
+                transition={{ delay: 1 }}
                 className="px-[20px] py-[13px] flex items-center gap-[6px] text-white bg-neutral-95 rounded-[6px] text-bold2 font-semibold whitespace-pre">
                 <LogoLeaf />
                 <span className="flex items-center">

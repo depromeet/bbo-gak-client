@@ -1,6 +1,7 @@
 import { http } from '@/apis/http';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { GET_RECRUIT_SCHEDULE } from '@/app/(sidebar)/my-recruit/api/useGetRecruitSchedule';
+import { GET_ALL_RECRUITS_KEY } from '@/app/(sidebar)/my-recruit/api/useGetAllRecruits';
+import { GET_PROGRESSING_RECRUITS_KEY } from '@/app/(sidebar)/my-recruit/api/useGetProgressingRecruits';
 
 interface Request {
   id: number;
@@ -18,7 +19,8 @@ export function usePostRecruitSchedule() {
   const mutate = useMutation({
     mutationFn: (data: Request) => postRecruitSchedule(data),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [GET_RECRUIT_SCHEDULE] });
+      queryClient.invalidateQueries({ queryKey: [GET_ALL_RECRUITS_KEY] });
+      queryClient.invalidateQueries({ queryKey: [GET_PROGRESSING_RECRUITS_KEY] });
     },
   });
 
