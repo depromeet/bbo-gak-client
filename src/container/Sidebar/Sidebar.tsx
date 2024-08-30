@@ -12,7 +12,6 @@ import { If } from '@/system/utils/If';
 import { Spacing } from '@/system/utils/Spacing';
 import { INFO_TYPES, InfoType } from '@/types';
 import { cn } from '@/utils';
-
 import { deleteCookie } from 'cookies-next';
 import { motion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
