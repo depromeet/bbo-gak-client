@@ -18,7 +18,6 @@ export function useGetCategoryTags({ recruitId, type }: { recruitId: string; typ
       const res = await getCategoryTags({ recruitId, type });
       return res.data;
     },
-    staleTime: 0,
   });
 
   return result;
