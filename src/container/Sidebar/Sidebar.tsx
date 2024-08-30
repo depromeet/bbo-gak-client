@@ -43,7 +43,7 @@ export function Sidebar() {
 
       <div className="flex flex-col items-center gap-[36px] w-full">
         <Dialog>
-          <Dialog.Trigger className="w-full">
+          <Dialog.Trigger asChild className="w-full">
             <SidebarButton iconName="search" selected={false} expanded={expanded} expandedText="태그 검색" />
           </Dialog.Trigger>
           <Dialog.Content className="w-448 rounded-45 pl-32 pr-20 pt-56 pb-60">
