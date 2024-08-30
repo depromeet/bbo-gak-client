@@ -12,6 +12,7 @@ import { LogoLeaf } from './LogoLeaf';
 import Image from 'next/image';
 import { Icon } from '@/system/components';
 import { SwitchCase } from '@/system/utils/SwitchCase';
+import { usePutOnboardStatus } from '../../apis/usePutOnboardStatus';
 
 const MAX_INDEX = 3;
 
@@ -23,6 +24,8 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
   const [step, setStep] = useState<'text' | 'card' | 'wiggle' | 'finish'>('text');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [open, setOpen] = useState(true);
+
+  const { mutate: putOnboardStatus } = usePutOnboardStatus();
 
   const onNextClick = () => {
     if (currentIndex < MAX_INDEX) {
@@ -55,9 +58,14 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
         if (step !== 'finish') {
           return;
         }
+        console.log('!!!');
         setOpen(false);
+        putOnboardStatus();
       }}>
-      <DialogContent className="p-0 w-auto max-w-[auto] bg-[transparent] border-none" style={{ boxShadow: 'none' }}>
+      <DialogContent
+        className="p-0 w-auto max-w-[auto] bg-[transparent] border-none"
+        style={{ boxShadow: 'none' }}
+        hasClose={false}>
         <motion.div
           variants={{
             text: {},
