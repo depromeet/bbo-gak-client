@@ -49,6 +49,7 @@ import { Up } from './SVG/Up';
 import Warning from './SVG/Warning';
 import { WorkFill } from './SVG/WorkFill';
 import { X } from './SVG/X';
+import { IllustAlarm } from './SVG/IllustAlarm';
 
 const iconMap = {
   bell: Bell,
@@ -100,6 +101,7 @@ const iconMap = {
   profileFill: ProfileFill,
   folder: Folder,
   announcementFolder: AnnouncementFolder,
+  IllustAlarm: IllustAlarm,
   warning: Warning,
 } as const;
 
