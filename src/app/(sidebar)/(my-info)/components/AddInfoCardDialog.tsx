@@ -1,4 +1,4 @@
-import { Button, Icon } from '@/system/components';
+import { Icon } from '@/system/components';
 import { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from '@/system/components/Dialog/Dialog';
 import { TagType, InfoType, INFO_TYPES } from '@/types/info';
 import { PropsWithChildren, useState } from 'react';

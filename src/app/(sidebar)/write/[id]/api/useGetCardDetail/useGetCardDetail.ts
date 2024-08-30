@@ -2,13 +2,13 @@ import { http } from '@/apis/http';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { JSONContent } from '@tiptap/react';
 import { TagType } from '@/types';
-import { CardGroup, InfoType } from '@/types/info';
+import { CardGroup, TypeTag } from '@/types/info';
 
 export interface GetCardDetailResponse {
   title: string;
   content: JSONContent;
   updatedDate: `${string} ${string}`;
-  cardTypeValueList: Array<InfoType>;
+  cardTypeValueList: Array<TypeTag>;
   tagList: Array<TagType>;
   cardTypeValueGroup: CardGroup;
 }

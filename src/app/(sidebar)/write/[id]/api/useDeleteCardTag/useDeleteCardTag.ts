@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { http } from '@/apis/http';
 
 const deleteCardTag = (cardId: number, tagId: number) =>
@@ -6,8 +6,15 @@ const deleteCardTag = (cardId: number, tagId: number) =>
     url: `/cards/${cardId}/title/tag/${tagId}`,
   });
 
-export const useDeleteCardTag = (cardId: number) =>
-  useMutation({
+export const useDeleteCardTag = (cardId: number) => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
     mutationKey: ['delete-card-tag', cardId],
     mutationFn: (tagId: number) => deleteCardTag(cardId, tagId),
+
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ['cards'] });
+    },
   });
+};

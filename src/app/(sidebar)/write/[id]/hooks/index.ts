@@ -5,8 +5,9 @@ import { useDeleteCardTag } from '../api/useDeleteCardTag/useDeleteCardTag';
 import { useCardDetailTagsContext } from '../fetcher/CardTagFetcher';
 import { GetCardDetailResponse } from '@/app/(sidebar)/write/[id]/api/useGetCardDetail/useGetCardDetail';
 import { useTagsContext } from '../fetcher/TagsFetcher';
-import { usePutCardType, PutCardTypeRequest } from '@/app/(sidebar)/write/[id]/api/usePutCardType/usePutCardType';
-import { InfoType } from '@/types';
+import { usePutCardType } from '@/app/(sidebar)/write/[id]/api/usePutCardType/usePutCardType';
+import { useQueryClient } from '@tanstack/react-query';
+import { TypeTag } from '@/types/info';
 
 export function useWrite(id: number) {
   const {
@@ -18,7 +19,9 @@ export function useWrite(id: number) {
     cardTypeValueGroup,
   } = useCardDetailTagsContext();
   const { tags } = useTagsContext();
-  const disabledCount = cardTypeValueGroup === '내_정보' ? 3 : 1;
+  const isMyInfo = cardTypeValueGroup === '내_정보';
+  const disabledCount = isMyInfo ? 3 : 1;
+  const queryClient = useQueryClient();
 
   const personalityTags = useMemo(() => tags.filter((tag) => tag.type === '인성'), [id]);
   const abilityTags = useMemo(() => tags.filter((tag) => tag.type === '역량'), [id]);
@@ -26,7 +29,7 @@ export function useWrite(id: number) {
 
   const [title, setTitle] = useState<string>(prevTitle || '');
   const [selectedTags, setSelectedTags] = useState<GetCardDetailResponse['tagList']>(tagList);
-  const [selectedCategories, setSelectedCategories] = useState<PutCardTypeRequest['cardTypeValueList']>(categoryTags);
+  const [selectedCategories, setSelectedCategories] = useState<Array<TypeTag>>(categoryTags);
 
   const { mutate: mutatePutCardTitle } = usePutCardTitle(id);
   const { mutate: mutatePostCardTag } = usePostCardTag(id);
@@ -39,8 +42,21 @@ export function useWrite(id: number) {
   }, []);
 
   const handlePutCardType = useCallback(
-    (tag: InfoType, method: 'put' | 'delete') => {
+    (tag: TypeTag, method: 'put' | 'delete') => {
       if (method === 'put') {
+        if (isMyInfo) {
+          mutatePutCardType(
+            { cardTypeValueList: [tag], cardTypeValueGroup },
+            {
+              onSuccess: async () => {
+                setSelectedCategories([tag]);
+                await queryClient.invalidateQueries({ queryKey: ['get-card-detail'] });
+              },
+            },
+          );
+          return;
+        }
+
         mutatePutCardType(
           { cardTypeValueList: [...selectedCategories, tag], cardTypeValueGroup },
           {
@@ -61,7 +77,7 @@ export function useWrite(id: number) {
         },
       );
     },
-    [selectedCategories],
+    [selectedCategories, isMyInfo],
   );
 
   const handlePostCardTag = useCallback((tag: GetCardDetailResponse['tagList'][number]) => {
@@ -90,7 +106,6 @@ export function useWrite(id: number) {
     selectedCategories,
     personalityTags,
     abilityTags,
-    categoryTags,
     updatedDate: updatedDate.split(' ')[0].replaceAll(/-/g, '.'),
     content,
     disabledCount,

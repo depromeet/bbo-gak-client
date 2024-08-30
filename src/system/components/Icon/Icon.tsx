@@ -10,10 +10,8 @@ import { CalendarFill } from './SVG/CalendarFill';
 import { Check } from './SVG/Check';
 import { Close } from './SVG/Close';
 import { Clover } from './SVG/Clover';
-import { CodingSignUp } from './SVG/CodingSignUp';
 import { Copy } from './SVG/Copy';
 import { Delete } from './SVG/Delete';
-import { DesignSignUp } from './SVG/DesignSignUp';
 import { Division } from './SVG/Division';
 import { Down } from './SVG/Down';
 import { DownChevron } from './SVG/DownChevron';
@@ -44,6 +42,9 @@ import { Trash } from './SVG/Trash';
 import { Unlink } from './SVG/Unlink';
 import { Up } from './SVG/Up';
 import { WorkFill } from './SVG/WorkFill';
+import { DesignSignUp } from './SVG/DesignSignUp';
+import { CodingSignUp } from './SVG/CodingSignUp';
+import { MemoColored } from './SVG/MemoColored';
 import { Downloads } from './SVG/Downloads';
 import { X } from './SVG/X';
 
@@ -90,6 +91,7 @@ const iconMap = {
   rocket: Rocket,
   logoOnly: LogoOnly,
   workFill: WorkFill,
+  memoColored: MemoColored,
   download: Downloads,
   arrowUp: ArrowUp,
   logout: Logout,
