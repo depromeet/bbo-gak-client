@@ -37,12 +37,24 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
     updatedDate,
     disabledCount,
     handlePutCardType,
+    deleteCard,
+    createdDate,
+    recruitTitle,
   } = useWrite(Number(id));
 
   return (
     <section className="h-full">
       <section className="flex">
-        <div className="pt-64 w-full">
+        <div className="pt-40 w-full">
+          <div className="h-16 pl-80">
+            <If condition={recruitTitle != null}>
+              <div className="flex gap-4 text-12 text-neutral-30 mt-8">
+                <Icon name="announcementFolder" size={16} color="#CCCDD1" />
+                <p>{recruitTitle}</p>
+              </div>
+            </If>
+          </div>
+
           <EditorProvider cardId={Number(id)} initialContent={content}>
             <div className="flex justify-between px-80">
               <Input
@@ -52,15 +64,23 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                 classNames={{ base: 'w-[552px]' }}
                 className="text-[24px] font-bold px-0 leading-32 tracking-[-0.0345rem] border-none"
               />
-              <div className="flex gap-8 items-center text-neutral-20">
-                <p>{updatedDate}</p>
+              <div className="flex gap-8 items-center text-neutral-20 whitespace-nowrap">
+                <div className="flex items-center gap-4">
+                  <If condition={updatedDate != null}>
+                    <p className="text-12 text-neutral-50">{updatedDate} 수정됨</p>
+                  </If>
+
+                  <p className="text-12">{updatedDate != null ? `(${createdDate || ''} 생성됨)` : createdDate}</p>
+                </div>
 
                 <DropdownMenu>
                   <DropdownMenuTrigger>
                     <Icon name="more" color="black" />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end">
-                    <DropdownMenuItem className="flex gap-4 w-176 h-52 pl-16 cursor-pointer">
+                    <DropdownMenuItem
+                      onClick={() => deleteCard(Number(id))}
+                      className="flex gap-4 w-176 h-52 pl-16 cursor-pointer">
                       <Icon name="trash" size={20} color="#FF5C5C" />
                       <p className="text-[#FF5C5C] text-15">삭제하기</p>
                     </DropdownMenuItem>

@@ -47,6 +47,7 @@ import { CodingSignUp } from './SVG/CodingSignUp';
 import { MemoColored } from './SVG/MemoColored';
 import { Downloads } from './SVG/Downloads';
 import { X } from './SVG/X';
+import { AnnouncementFolder } from './SVG/AnnouncementFolder';
 
 const iconMap = {
   bell: Bell,
@@ -97,6 +98,7 @@ const iconMap = {
   logout: Logout,
   profileFill: ProfileFill,
   folder: Folder,
+  announcementFolder: AnnouncementFolder,
 } as const;
 
 export interface IconProps extends IconBaseType {
