@@ -48,6 +48,7 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
               <DetailHeader recruitId={recruitId} />
             </Suspense>
 
+
             <div className={cn('flex items-center gap-[16px]')}>
               <Dropdown>
                 <Dropdown.Trigger asChild>

@@ -1,17 +1,18 @@
-import { Dialog, DialogContent } from '@/system/components/Dialog/Dialog';
-import { Logo } from './Logo';
-import { Spacing } from '@/system/utils/Spacing';
-import { AnimateSlide } from '@/system/utils/AnimateSlide/AnimateSlide';
 import { TouchButton } from '@/components/TouchButton';
-import { useEffect, useState } from 'react';
-import { If } from '@/system/utils/If';
-import { cn } from '@/utils';
-import { motion, useAnimationControls } from 'framer-motion';
-import { color } from '@/system/token/color';
-import { LogoLeaf } from './LogoLeaf';
-import Image from 'next/image';
 import { Icon } from '@/system/components';
+import { Dialog, DialogContent } from '@/system/components/Dialog/Dialog';
+import { color } from '@/system/token/color';
+import { AnimateSlide } from '@/system/utils/AnimateSlide/AnimateSlide';
+import { If } from '@/system/utils/If';
+import { Spacing } from '@/system/utils/Spacing';
 import { SwitchCase } from '@/system/utils/SwitchCase';
+import { cn } from '@/utils';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { usePutOnboardStatus } from '../../apis/usePutOnboardStatus';
+import { Logo } from './Logo';
+import { LogoLeaf } from './LogoLeaf';
 
 const MAX_INDEX = 3;
 
@@ -23,6 +24,8 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
   const [step, setStep] = useState<'text' | 'card' | 'wiggle' | 'finish'>('text');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [open, setOpen] = useState(true);
+
+  const { mutate: putOnboardStatus } = usePutOnboardStatus();
 
   const onNextClick = () => {
     if (currentIndex < MAX_INDEX) {
@@ -55,9 +58,14 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
         if (step !== 'finish') {
           return;
         }
+
         setOpen(false);
+        putOnboardStatus();
       }}>
-      <DialogContent className="p-0 w-auto max-w-[auto] bg-[transparent] border-none" style={{ boxShadow: 'none' }}>
+      <DialogContent
+        className="p-0 w-auto max-w-[auto] bg-[transparent] border-none"
+        style={{ boxShadow: 'none' }}
+        hasClose={false}>
         <motion.div
           variants={{
             text: {},
