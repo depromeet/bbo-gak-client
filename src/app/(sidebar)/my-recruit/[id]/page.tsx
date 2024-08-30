@@ -28,8 +28,8 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
     router.push('/my-recruit');
   };
 
-  const onDragEnd = ({ active }: DragEndEvent) => {
-    if (active == null || typeof active.id !== 'number') {
+  const onDragEnd = ({ active, over }: DragEndEvent) => {
+    if (over == null || active == null || typeof over.id !== 'number' || typeof active.id !== 'number') {
       return;
     }
 
@@ -44,8 +44,7 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
       <DndContextWithOverlay OverlayElement={InfoCard} onDragEnd={onDragEnd}>
         <div className="flex overflow-hidden max-h-[100vh] bg-white">
           <div className="flex-1 mx-auto max-w-[1700px]">
-            <div className="z-[-1] fixed left-0 top-0 w-full h-[100px] bg-white border-b-1 border-neutral-5 "></div>
-            <div className="flex justify-between w-full px-[80px] py-[24px]">
+            <div className="flex justify-between w-full px-[80px] py-[24px] bg-white border-b-1 border-neutral-5">
               <DetailHeader recruitId={recruitId} />
 
               <div className={cn('flex items-center gap-[16px]')}>
@@ -58,7 +57,7 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
                     </div>
                   </Dropdown.Trigger>
                   <Dropdown.Content align="end" className="gap-[8px]">
-                    <DueDateDialog onDuedateAppend={() => {}} />
+                    <DueDateDialog id={Number(recruitId)} onDuedateAppend={() => {}} />
                   </Dropdown.Content>
                 </Dropdown>
 
