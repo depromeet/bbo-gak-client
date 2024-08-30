@@ -3,7 +3,6 @@ import { TouchButton } from '@/components/TouchButton';
 import { Icon } from '@/system/components';
 import { cn } from '@/utils';
 import { useState } from 'react';
-import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { usePutUserJob } from '../api/usePutUserJob';
 
@@ -14,7 +13,6 @@ const jobMapper = {
 
 export default function Select() {
   const [position, setPosition] = useState<'designer' | 'developer' | ''>('');
-  const session = useSession();
   const { push } = useRouter();
   const { mutateAsync } = usePutUserJob();
 
@@ -42,7 +40,7 @@ export default function Select() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className="w-552 h-604 p-68 pt-116 flex flex-col justify-center gap-56 rounded-30 bg-[white]">
       <div className="flex flex-col items-center gap-16">
-        <h1 className="text-36 font-bold">환영해요 {session.data?.user?.name || '뽀각러'}님!</h1>
+        <h1 className="text-36 font-bold">환영해요 {'뽀각러'}님!</h1>
 
         <p className="text-center text-neutral-70 trackiing-[0.091px]">
           취업 준비 중인 직군을 선택해주시면 <br />
