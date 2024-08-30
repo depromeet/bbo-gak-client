@@ -1,6 +1,6 @@
 import { Button, Icon } from '@/system/components';
 import { Textarea } from '@/system/components/Textarea/Textarea';
-import { useCallback, useState } from 'react';
+import { KeyboardEvent, useCallback, useState } from 'react';
 import Memo from './Memo/Memo';
 import { cn } from '@/utils';
 import { useMemosContext } from '../../fetcher/MemosFetcher';
@@ -28,6 +28,13 @@ export default function MemoContainer() {
     }
   }, [memo]);
 
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handlePostMemo();
+    }
+  }, []);
+
   return (
     <section className="min-w-400 h-screen border-1 bg-neutral-1">
       <div className="flex items-end p-16 w-full h-109 gap-8">
@@ -51,6 +58,7 @@ export default function MemoContainer() {
             onFocus={() => setTextareaHeight(TEXT_FOCUS_HEIGHT)}
             onBlur={() => setTextareaHeight(TEXT_DEFAULT_HEIGHT)}
             rows={1}
+            onKeyDown={handleKeyDown}
             className={cn(
               'resize-none min-h-0 bg-white border-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0',
               textareaHeight === TEXT_DEFAULT_HEIGHT && 'overflow-hidden',
