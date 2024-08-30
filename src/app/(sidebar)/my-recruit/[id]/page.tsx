@@ -1,13 +1,14 @@
 'use client';
 
 import { InfoCard } from '@/components/InfoCard';
+import { TouchButton } from '@/components/TouchButton';
 import { AsyncBoundaryWithQuery } from '@/lib';
 import { DndContextWithOverlay } from '@/lib/dnd-kit/DndContextWithOverlay';
-import { Dropdown, Icon } from '@/system/components';
+import { Dropdown, Icon, Text } from '@/system/components';
 import { color } from '@/system/token/color';
 import { cn } from '@/utils';
 import { DragEndEvent } from '@dnd-kit/core';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useDeleteRecruit } from '../api/useDeleteRecruit';
@@ -50,23 +51,43 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
               <div className={cn('flex items-center gap-[16px]')}>
                 <Dropdown>
                   <Dropdown.Trigger asChild>
-                    <div
-                      className="p-[12px] rounded-[6px] hover:bg-neutral-3 border border-neutral-10"
-                      aria-label="calendarFill button">
+                    <TouchButton
+                      layout
+                      whileHover="hover"
+                      aria-label="calendarFill button"
+                      className="relative p-[12px] rounded-[6px] hover:bg-neutral-3 border border-neutral-10">
                       <Icon name="calendarFill" size={16} color={color.neutral95} />
-                    </div>
+                      <motion.div
+                        className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
+                        initial={{ opacity: 0 }}
+                        variants={{ hover: { opacity: 1 } }}>
+                        <Text typography="body1" color="white">
+                          공고 일정 등록
+                        </Text>
+                      </motion.div>
+                    </TouchButton>
                   </Dropdown.Trigger>
                   <Dropdown.Content align="end" className="gap-[8px]">
                     <DueDateDialog id={Number(recruitId)} onDuedateAppend={() => {}} />
                   </Dropdown.Content>
                 </Dropdown>
 
-                <button
+                <TouchButton
+                  layout
+                  whileHover="hover"
                   onClick={() => setSidebarOpened(!sidebarOpened)}
-                  className="p-[12px] rounded-[6px] hover:bg-neutral-3 border border-neutral-10 bg-white max-h-[42px]"
+                  className="relative p-[12px] rounded-[6px] hover:bg-neutral-3 border border-neutral-10 bg-white max-h-[42px]"
                   aria-label="copy button">
                   <Icon name="copy" size={16} color={color.neutral95} />
-                </button>
+                  <motion.div
+                    className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
+                    initial={{ opacity: 0 }}
+                    variants={{ hover: { opacity: 1 } }}>
+                    <Text typography="body1" color="white">
+                      내 정보 가져오기
+                    </Text>
+                  </motion.div>
+                </TouchButton>
 
                 <Dropdown>
                   <Dropdown.Trigger asChild>

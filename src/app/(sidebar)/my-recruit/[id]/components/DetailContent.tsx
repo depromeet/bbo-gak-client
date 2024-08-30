@@ -3,7 +3,7 @@
 import { InfoCard } from '@/components/InfoCard';
 import { TouchButton } from '@/components/TouchButton';
 import { Droppable } from '@/lib/dnd-kit/Droppable';
-import { Icon } from '@/system/components';
+import { Icon, Text } from '@/system/components';
 import { InfoCardType } from '@/types';
 import { RECRUIT_TYPES, RecruitType } from '@/types/recruit';
 import { cn } from '@/utils/tailwind-util';
@@ -123,6 +123,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
             {scrollPosition > 0 && (
               <TouchButton
                 layout
+                whileHover="hover"
                 onClick={scrollToTop}
                 className="fixed flex flex-col justify-center items-center a w-62 h-62 rounded-full right-[95px] bottom-[40px] bg-neutral-95 border-neutral-9">
                 <motion.div
@@ -132,6 +133,14 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
                   transition={{ duration: 0.5 }}>
                   <Icon name="arrowUp" size={24} />
                   <span className="text-neutral-1 text-caption1">TOP</span>
+                </motion.div>
+                <motion.div
+                  className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  variants={{ hover: { opacity: 1 } }}>
+                  <Text typography="body1" color="white">
+                    내 정보 가져오기
+                  </Text>
                 </motion.div>
               </TouchButton>
             )}
