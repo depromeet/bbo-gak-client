@@ -15,8 +15,12 @@ export function DeleteMemoDialog({
       <DialogTrigger asChild>{children}</DialogTrigger>
 
       <DialogContent className="border-1 w-460 h-232 p-32 pt-24 flex flex-col gap-36">
-        <div className="mt-36 text-20 font-bold text-center">
-          <p className="w-360 overflow-hidden text-ellipsis whitespace-pre-wrap">{memo}</p>
+        <div className="mt-36 text-20 font-bold text-center flex flex-col items-center justify-center">
+          <div className="flex">
+            <span>'</span>
+            <p className="w-370 overflow-hidden text-ellipsis whitespace-nowrap">{memo}</p>
+            <span>'</span>
+          </div>
           <p>메모를 정말 삭제하시겠습니까?</p>
         </div>
 
