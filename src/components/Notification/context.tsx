@@ -19,10 +19,7 @@ function NotificatinProvider({ children }: { children: React.ReactNode }) {
 
   const open = () => setIsOpen(true);
 
-  const close = () => {
-    console.log(isOpen);
-    setIsOpen(false);
-  };
+  const close = () => setIsOpen(false);
 
   const toggle = () => setIsOpen((prev) => !prev);
 

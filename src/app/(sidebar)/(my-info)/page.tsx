@@ -17,7 +17,6 @@ import { Onboarding } from './containers/Onboarding/Onboarding';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useGetOnboardStatus } from './apis/useGetOnboadStatus';
 
-
 const getType = (typeParam: string | null) => {
   if (typeParam && INFO_TYPES.includes(typeParam as InfoType)) {
     return typeParam as InfoType;
@@ -33,22 +32,16 @@ export default function MyInfo() {
   const [showHeader, setShowHeader] = useState(false);
   const headerRef = useRef<HTMLDivElement>(null);
 
-
-  const { isOnboardComplete } = useGetOnboardStatus().data;
-
-
   const typeParam = searchParams.get('type');
   const currentCardType = getType(typeParam);
 
+  const { isOnboardComplete } = useGetOnboardStatus().data;
   const { data: cardCount } = useGetCardTypeCount();
 
   const handleTypeChange = (type: InfoType) => {
     router.replace(`?type=${type}`);
   };
-
   useScroll(headerRef, (y) => setShowHeader(y > 192));
-
-  const params = useSearchParams();
 
   return (
     <div ref={headerRef} className="max-h-[100vh] w-full overflow-auto">
