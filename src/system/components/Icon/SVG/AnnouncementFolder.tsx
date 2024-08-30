@@ -1,8 +1,8 @@
 import { IconBaseType } from '@/system/components/Icon/SVG/type';
 
-export function FolderFill({ size, color }: IconBaseType) {
+export function AnnouncementFolder({ size, color }: IconBaseType) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 16 16" fill="none">
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         fillRule="evenodd"
         clipRule="evenodd"

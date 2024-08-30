@@ -9,7 +9,9 @@ import { cn } from '@/utils';
 import { motion, useAnimationControls } from 'framer-motion';
 import { color } from '@/system/token/color';
 import { LogoLeaf } from './LogoLeaf';
+import Image from 'next/image';
 import { Icon } from '@/system/components';
+import { SwitchCase } from '@/system/utils/SwitchCase';
 
 const MAX_INDEX = 3;
 
@@ -18,9 +20,9 @@ interface OnboardingDialogProps {
 }
 
 export function OnboardingDialog({}: OnboardingDialogProps) {
-  const [step, setStep] = useState<'text' | 'card' | 'finish'>('text');
+  const [step, setStep] = useState<'text' | 'card' | 'wiggle' | 'finish'>('text');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const controls = useAnimationControls();
+  const [open, setOpen] = useState(true);
 
   const onNextClick = () => {
     if (currentIndex < MAX_INDEX) {
@@ -32,28 +34,39 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
 
   useEffect(() => {
     if (step === 'card') {
-      const interval = setInterval(() => controls.start('wiggle'), 100);
-
       const timeout = setTimeout(() => {
-        clearInterval(interval);
+        setStep('wiggle');
+      }, 700);
+      return () => clearTimeout(timeout);
+    }
+
+    if (step === 'wiggle') {
+      const timeout = setTimeout(() => {
         setStep('finish');
-      }, 3000);
+      }, 2000);
       return () => clearTimeout(timeout);
     }
   }, [step]);
 
   return (
-    <Dialog open>
-      <DialogContent className="p-0 w-auto max-w-[auto]">
+    <Dialog
+      open={open}
+      onOpenChange={() => {
+        if (step !== 'finish') {
+          return;
+        }
+        setOpen(false);
+      }}>
+      <DialogContent className="p-0 w-auto max-w-[auto] bg-[transparent] border-none" style={{ boxShadow: 'none' }}>
         <motion.div
           variants={{
             text: {},
-            // wiggle: { x: [-2, 2, -2, 2] },
             card: { width: 260, height: 440, transition: { delay: 0.2 } },
-            finish: { width: 260, height: 440, transition: { delay: 0.2 } },
+            wiggle: { width: 260, height: 440, opacity: 0, transition: { delay: 0.2, opacity: { duration: 0 } } },
+            finish: { width: 260, height: 440, opacity: 0, transition: { delay: 0.2 } },
           }}
           animate={step}
-          className="relative flex flex-col items-center p-[24px]">
+          className="relative flex flex-col items-center p-[24px] bg-white rounded-16">
           <Spacing size={8} />
           <button
             className="outline-none p-[8px] text-label1 text-neutral-50 font-bold self-end"
@@ -92,7 +105,21 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
           </AnimateSlide>
 
           <Spacing size={39} />
-          <div style={{ width: 552, height: 360 }}></div>
+          <motion.div
+            initial={{ width: 552, height: 360 }}
+            animate={step !== 'text' ? { width: 260, height: 440, transition: { delay: 0.2 } } : {}}
+            style={{ width: 552, height: 360 }}
+            className="overflow-hidden">
+            <SwitchCase
+              value={`${currentIndex}`}
+              caseBy={{
+                0: <Image src="/onboarding/first.png" alt="" width={552} height={360} />,
+                1: <Image src="/onboarding/second.png" alt="" width={552} height={360} />,
+                2: <Image src="/onboarding/third.png" alt="" width={552} height={360} />,
+                3: <Image src="/onboarding/fourth.png" alt="" width={552} height={360} />,
+              }}
+            />
+          </motion.div>
           <Spacing size={18} />
           <div className="flex gap-[6px]">
             <div className={cn(currentIndex === 0 ? 'bg-mint-40' : 'bg-neutral-5', 'w-5 h-5')} />
@@ -115,11 +142,11 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
             <TouchButton layout className="font-semibold text-label1 text-white" onClick={onNextClick}>
               <motion.div
                 variants={{
-                  finish: { backgroundColor: color.mint40 },
+                  wiggle: { backgroundColor: color.mint40 },
                   next: { backgroundColor: color.neutral95 },
                 }}
                 transition={{ duration: 0.1 }}
-                animate={currentIndex === MAX_INDEX ? 'finish' : 'next'}
+                animate={currentIndex === MAX_INDEX ? 'wiggle' : 'next'}
                 className="px-[16px] py-[8px] rounded-[6px]">
                 {currentIndex === MAX_INDEX ? '뽀각 시작하기' : '다음'}
               </motion.div>
@@ -129,12 +156,35 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
         <If condition={step !== 'text'}>
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="absolute bg-white top-0 left-0 w-full h-full rounded-[24px]"
-          />
+            variants={{
+              text: { opacity: 0 },
+              card: { opacity: 1 },
+              wiggle: {
+                opacity: 1,
+                rotate: Array(15).fill(['3deg', '0deg', '-3deg', '0deg']).flat(),
+                transition: { duration: 2 },
+              },
+              finish: { opacity: 1, rotate: '0deg', scale: [1.2, 1], transition: { scale: { duration: 0.5 } } },
+            }}
+            animate={step}
+            className="absolute bg-white top-0 left-0 w-full h-full rounded-[24px]">
+            <If condition={step === 'finish'}>
+              <button className="absolute right-0 top-[-32px]" onClick={() => setOpen(false)}>
+                <Icon size={24} name="close" color={color.neutral95} />
+              </button>
+            </If>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={step === 'text' ? {} : { opacity: 1, transition: { duration: 2, delay: 1 } }}>
+              <Image src="/onboarding/bbogak_luckcharm.png" width={260} height={440} alt="" />
+            </motion.div>
+          </motion.div>
         </If>
         <If condition={step === 'finish'}>
-          <div className="absolute left-[50%] translate-x-[-50%] bottom-[-84px]">
+          <a
+            className="absolute left-[50%] translate-x-[-50%] bottom-[-84px]"
+            href="/onboarding/bbogak_luckcharm.png"
+            download>
             <TouchButton>
               <motion.div
                 initial={{ opacity: 0 }}
@@ -149,7 +199,7 @@ export function OnboardingDialog({}: OnboardingDialogProps) {
                 <LogoLeaf />
               </motion.div>
             </TouchButton>
-          </div>
+          </a>
         </If>
       </DialogContent>
     </Dialog>

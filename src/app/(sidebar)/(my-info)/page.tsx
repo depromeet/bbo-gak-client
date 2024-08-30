@@ -32,16 +32,17 @@ export default function MyInfo() {
   const headerRef = useRef<HTMLDivElement>(null);
 
   const typeParam = searchParams.get('type');
+  const currentCardType = getType(typeParam);
 
   const { data: cardCount } = useGetCardTypeCount();
-
-  const currentCardType = getType(typeParam);
 
   const handleTypeChange = (type: InfoType) => {
     router.replace(`?type=${type}`);
   };
 
   useScroll(headerRef, (y) => setShowHeader(y > 192));
+
+  const params = useSearchParams();
 
   return (
     <div ref={headerRef} className="max-h-[100vh] w-full overflow-auto">
@@ -131,7 +132,7 @@ export default function MyInfo() {
           pendingFallback={<InfoCardSkeleton count={4} />}>
           <InfoCardList cardType={currentCardType} />
         </AsyncBoundaryWithQuery>
-        <If condition={false}>
+        <If condition={params.get('onboarding') === 'true'}>
           <Onboarding />
         </If>
       </div>

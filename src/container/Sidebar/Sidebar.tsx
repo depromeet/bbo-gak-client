@@ -43,6 +43,7 @@ export function Sidebar() {
 
     router.push(targetPath);
   };
+  const isRecruitPage = pathname.includes(MY_RECRUIT_PATH);
 
   return (
     <motion.nav
@@ -101,12 +102,12 @@ export function Sidebar() {
         </Collapsible>
         <Collapsible collapsed={expanded ? myJDCollapsed : true} onCollapsedChange={setMyJDCollapsed}>
           <SidebarButton
-            iconName={pathname.includes(MY_RECRUIT_PATH) ? 'workFill' : 'folder'}
-            selected={pathname.includes(MY_RECRUIT_PATH)}
+            iconName={isRecruitPage ? 'workFill' : 'folder'}
+            selected={isRecruitPage}
             expanded={expanded}
             expandedText="내 공고"
             withHoverEffect={!expanded}
-            withTouchEffect={!pathname.includes(MY_RECRUIT_PATH)}
+            withTouchEffect={!isRecruitPage}
             right={
               <Collapsible.Trigger>
                 <Collapsible.ArrowButton />

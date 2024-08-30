@@ -1,42 +1,58 @@
-import { Button, Icon } from '@/system/components';
+import { Icon } from '@/system/components';
 import { color } from '@/system/token/color';
 import { Spacing } from '@/system/utils/Spacing';
 import { cn } from '@/utils';
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useGetRecruitSchedule } from '../../../api/useGetRecruitSchedule';
 import { Form } from '@/app/(sidebar)/my-recruit/containers/components/DueDateDialog/Form';
-import { If } from '@/system/utils/If';
-import { useQueryClient } from '@tanstack/react-query';
-import { GET_ALL_RECRUITS_KEY } from '../../../api/useGetAllRecruits';
-import { GET_PROGRESSING_RECRUITS_KEY } from '../../../api/useGetProgressingRecruits';
-import { useDeleteRecruitSchedule } from '../../../api/useDeleteRecruitSchedule';
+import { TouchButton } from '@/components/TouchButton';
+import { AddIcon } from '@/app/(sidebar)/my-recruit/containers/components/DueDateDialog/AddIcon';
+import { recruitScheduleStageList } from '@/app/(sidebar)/my-recruit/constant';
+import { usePostRecruitSchedule } from '../../../api/usePostRecruitSchedule';
+import { format } from 'date-fns/format';
+import { DialogClose } from '@/system/components/Dialog/Dialog';
+import { immer } from '@/utils/immer';
 
 interface DueDateDialogProps {
   id: number;
   title?: string;
-  onDuedateAppend: () => void;
 }
 
+const DEFAULT_FORM = {
+  recruitScheduleStage: recruitScheduleStageList[0],
+  deadLine: undefined,
+};
+
 export function DueDateDialog({ id, title }: DueDateDialogProps) {
-  const [additonalScheduleForm, setAdditionalScheduleForm] = useState(false);
-  const scheduleList = useGetRecruitSchedule({ id }).data;
+  const { mutate: postRecruitSchedule } = usePostRecruitSchedule();
+  const [scheduleList, setScheduleList] = useState<
+    Array<{
+      recruitScheduleStage: string;
+      deadLine?: Date;
+    }>
+  >([DEFAULT_FORM]);
 
-  const { mutate: deleteRecruitSchedule } = useDeleteRecruitSchedule();
+  console.log(scheduleList);
 
-  const activatedAddButton =
-    additonalScheduleForm === false &&
-    scheduleList.length !== 0 &&
-    scheduleList[0].deadLine != null &&
-    scheduleList[0].recruitScheduleStage != null;
+  const handleDelete = (index: number) => {
+    const newList = [...scheduleList];
+    newList.splice(index, 1);
+    setScheduleList(newList);
+  };
 
-  const queryClient = useQueryClient();
-  useEffect(() => {
-    return () => {
-      queryClient.invalidateQueries({ queryKey: [GET_PROGRESSING_RECRUITS_KEY] });
-      queryClient.invalidateQueries({ queryKey: [GET_ALL_RECRUITS_KEY] });
-    };
-  }, []);
+  const save = () => {
+    scheduleList.forEach((schedule) => {
+      if (schedule.deadLine == null) {
+        return;
+      }
+      postRecruitSchedule({
+        id,
+        recruitScheduleStage: schedule.recruitScheduleStage,
+        deadLine: format(schedule.deadLine, 'yyyy-MM-dd'),
+      });
+    });
+  };
 
   return (
     <div className="p-20" key={scheduleList.length}>
@@ -59,42 +75,42 @@ export function DueDateDialog({ id, title }: DueDateDialogProps) {
       <Spacing size={24} />
       {/* 마감일 입력 */}
       <div className="flex w-full flex-col gap-[8px]">
-        {scheduleList.length === 0 ? (
-          <Form recruitId={id} hasArrow={title != null} />
-        ) : (
-          scheduleList.map((schedule, index) => (
-            <Form
-              recruitId={id}
-              key={schedule.id}
-              {...schedule}
-              hasArrow={title != null}
-              hasDeleteButton={index !== 0}
-              onDeleteClick={() => deleteRecruitSchedule({ id, recruitScheduleId: schedule.id })}
-            />
-          ))
-        )}
-        <If condition={additonalScheduleForm}>
+        {scheduleList.map((schedule, index) => (
           <Form
-            recruitId={id}
+            key={index}
+            currentRecruitStage={schedule.recruitScheduleStage}
+            selectedDate={schedule.deadLine != null ? new Date(schedule.deadLine) : schedule.deadLine}
+            hasDeleteButton={index !== 0}
             hasArrow={title != null}
-            hasDeleteButton
-            onDeleteClick={() => setAdditionalScheduleForm(false)}
+            onStageClick={(stage) => {
+              const newSchedule = immer(scheduleList);
+              newSchedule[index].recruitScheduleStage = stage;
+              setScheduleList([...newSchedule]);
+            }}
+            onDeadLineClick={(date) => {
+              const newSchedule = immer(scheduleList);
+              newSchedule[index].deadLine = date;
+              setScheduleList([...newSchedule]);
+            }}
+            onDeleteClick={() => handleDelete(index)}
           />
-        </If>
+        ))}
       </div>
       <Spacing size={16} />
-      <Button
-        onClick={() => setAdditionalScheduleForm(true)}
-        disabled={activatedAddButton === false}
-        className={cn(
-          activatedAddButton ? 'bg-neutral-95' : 'border-dashed',
-          'w-full h-46 flex justify-center items-center gap-[4px] border-[1px] border-neutral-35 rounded-[6px]',
-        )}>
-        <Icon name="add" color={activatedAddButton ? 'white' : color.neutral70} />
-        <span className={clsx(activatedAddButton ? 'text-white' : 'text-neutral-70', 'text-caption1 font-medium')}>
-          일정 추가하기
-        </span>
-      </Button>
+      <TouchButton
+        onClick={() => setScheduleList([...scheduleList, DEFAULT_FORM])}
+        className="hover:bg-neutral-3 w-full h-46 gap-[4px] rounded-[6px] py-[13px] flex items-center justify-center">
+        <AddIcon />
+        <span className="text-neutral-40 text-label2 font-medium">일정 추가</span>
+      </TouchButton>
+      <Spacing size={8} />
+      <DialogClose className="w-full" asChild>
+        <TouchButton
+          onClick={save}
+          className="bg-neutral-95 w-full h-46 gap-[4px] rounded-[6px] text-white text-body2 font-semibold py-[13px]">
+          저장하기
+        </TouchButton>
+      </DialogClose>
     </div>
   );
 }

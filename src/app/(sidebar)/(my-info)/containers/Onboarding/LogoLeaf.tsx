@@ -7,8 +7,8 @@ export function LogoLeaf() {
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M12.5042 11.0016L10.3408 9.86802L10.6884 9.0166L12.9852 9.72614L12.5042 11.0016Z"
         fill="#007D4F"
       />
@@ -19,15 +19,15 @@ export function LogoLeaf() {
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M7.47524 8.91236L5.06404 8.3716L5.38759 7.28785L7.67825 8.09248L7.47524 8.91236Z"
         fill="#007D4F"
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M9.32851 10.2445L8.89211 12.4077L7.67188 12.2134L8.4429 9.99665L9.32851 10.2445Z"
         fill="#007D4F"
       />

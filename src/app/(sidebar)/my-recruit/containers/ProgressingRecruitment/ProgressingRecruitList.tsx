@@ -56,7 +56,6 @@ export function ProgressingRecruitList() {
                     <BoxCard
                       key={`${cardInfo.id}-${cardInfo.season}-${cardInfo.title}`}
                       {...cardInfo}
-                      onDuedateAppend={() => {}}
                       onRecruitDelete={deleteRecruit}
                       onRecruitStatusChange={(id, status) => {
                         patchRecruitStatus({ id, recruitStatus: status });

@@ -33,7 +33,7 @@ export function NewRecruitDialogContent({ onSubmit }: NewRecruitDialogContentPro
   const [title, setTitle] = useState('');
   const [siteUrl, setSiteUrl] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date>();
-  const [currentRecruitStage, setCurrentRecruitStage] = useState<string>(recruitStatusList[3].text);
+  const [currentRecruitStage, setCurrentRecruitStage] = useState<string>(recruitScheduleStageList[0]);
 
   const [selectedSeason, setSelectedSeason] = useState<string>();
   const seasonList = useGetSeasons()?.data ?? [];

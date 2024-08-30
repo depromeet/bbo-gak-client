@@ -10,8 +10,8 @@ export function LogoOnly({ size, color }: IconBaseType) {
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M26.8966 22.4263L23.8677 20.8393L24.3544 19.6473L27.5699 20.6407L26.8966 22.4263Z"
         fill="#007D4F"
       />
@@ -22,15 +22,15 @@ export function LogoOnly({ size, color }: IconBaseType) {
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M19.861 19.5017L16.4854 18.7446L16.9383 17.2274L20.1452 18.3539L19.861 19.5017Z"
         fill="#007D4F"
       />
       <path
         opacity="0.9"
-        fill-rule="evenodd"
-        clip-rule="evenodd"
+        fillRule="evenodd"
+        clipRule="evenodd"
         d="M22.4521 21.3669L21.8411 24.3953L20.1328 24.1233L21.2122 21.0199L22.4521 21.3669Z"
         fill="#007D4F"
       />
