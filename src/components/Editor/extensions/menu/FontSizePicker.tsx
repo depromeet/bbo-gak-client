@@ -4,6 +4,7 @@ import { EditorIcon } from '@/components/Editor/extensions/EditorIcon/EditorIcon
 import { Surface } from '@/components/Editor/extensions/Surface/Surface';
 import { Toolbar } from '@/components/Editor/extensions/Toolbar/Toolbar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/system/components/DropdownMenu/DropdownMenu';
+import { Dropdown } from '@/system/components';
 
 const FONT_SIZES = [
   { label: 'Smaller', value: '12px' },
@@ -25,15 +26,15 @@ export function FontSizePicker({ onChange, value }: FontSizePickerProps) {
   const selectSize = useCallback((size: string) => () => onChange(size), [onChange]);
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
+    <Dropdown>
+      <Dropdown.Trigger asChild>
         <Toolbar.Button className="w-82 h-35 border-none" active={!!currentValue?.value}>
           {currentSizeLabel}
           <EditorIcon name="ChevronDown" className="w-8 h-8" />
         </Toolbar.Button>
-      </DropdownMenuTrigger>
+      </Dropdown.Trigger>
 
-      <DropdownMenuContent asChild>
+      <Dropdown.Content asChild>
         <Surface className="flex flex-col gap-4 px-8 py-16">
           {FONT_SIZES.map((size) => (
             <DropdownButton
@@ -45,7 +46,7 @@ export function FontSizePicker({ onChange, value }: FontSizePickerProps) {
             </DropdownButton>
           ))}
         </Surface>
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </Dropdown.Content>
+    </Dropdown>
   );
 }

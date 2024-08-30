@@ -36,7 +36,7 @@ export function TextMenu({ editor }: TextMenuProps) {
       pluginKey="textMenu"
       shouldShow={states.shouldShow}
       updateDelay={100}>
-      <Toolbar.Wrapper>
+      <Toolbar.Wrapper className="relative">
         <Toolbar.Divider />
         <MemoContentTypePicker options={blockOptions} />
         <MemoFontFamilyPicker onChange={commands.onSetFont} value={states.currentFont || ''} />
