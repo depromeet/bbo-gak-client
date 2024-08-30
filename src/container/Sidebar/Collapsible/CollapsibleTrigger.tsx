@@ -9,7 +9,13 @@ export function CollapsibleTrigger({ children }: Props) {
   const { collapsed, onCollapsedChange } = useCollapsibleContext();
 
   return (
-    <button aria-expanded={!collapsed} onClick={() => onCollapsedChange(!collapsed)}>
+    <button
+      aria-expanded={!collapsed}
+      onClick={(e) => {
+        e.stopPropagation();
+        onCollapsedChange(!collapsed);
+      }}
+      className="overflow-hidden">
       {children}
     </button>
   );

@@ -1,27 +1,32 @@
 'use client';
 
+import { useGetCardTypeCount } from '@/app/(sidebar)/(my-info)/apis/useGetCardTypeCount';
+import { useGetRecruitTitles } from '@/app/(sidebar)/my-recruit/api/useGetRecruitTitles';
 import { Logo } from '@/components/Logo';
+import { TouchButton } from '@/components/TouchButton';
 import { SidebarButton } from '@/container/Sidebar/SidebarButton';
 import { MY_INFO_PATH, MY_RECRUIT_PATH } from '@/route';
 import { Icon } from '@/system/components';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import { If } from '@/system/utils/If';
+import { Spacing } from '@/system/utils/Spacing';
+import { INFO_TYPES, InfoType } from '@/types';
 import { cn } from '@/utils';
 import { deleteCookie } from 'cookies-next';
+import { motion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { PropsWithChildren, useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
-
-const SIDEBAR_CLASSNAME = {
-  expanded: 'w-[220px]',
-  shrinked: 'w-[72px]',
-} as const;
 
 export function Sidebar() {
   const router = useRouter();
   const pathname = usePathname();
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(true);
   const [myInfoCollapsed, setMyInfoCollapsed] = useState(true);
   const [myJDCollapsed, setMyJDCollapsed] = useState(true);
+
+  const { data: typeCounts } = useGetCardTypeCount();
+  const { data: recruiteTitles } = useGetRecruitTitles();
 
   const logout = () => {
     deleteCookie('accessToken');
@@ -29,16 +34,36 @@ export function Sidebar() {
     router.push('/login');
   };
 
+  const handleInfoTypeClick = (type: InfoType) => {
+    const targetPath = `${MY_INFO_PATH}?type=${type}`;
+
+    if (pathname === MY_INFO_PATH) {
+      router.replace(targetPath);
+      return;
+    }
+
+    router.push(targetPath);
+  };
   const isRecruitPage = pathname.includes(MY_RECRUIT_PATH);
 
   return (
-    <nav
-      className={`z-[10000] relative flex flex-col px-[16px] py-[32px] h-screen bg-black ${SIDEBAR_CLASSNAME[expanded ? 'expanded' : 'shrinked']}`}>
-      <div className="relative mb-[32px]">
-        <Logo />
+    <motion.nav
+      variants={{
+        expanded: { width: '220px' },
+        shrinked: { width: '72px' },
+      }}
+      animate={expanded ? 'expanded' : 'shrinked'}
+      className={`z-[10000] relative shrink-0 flex flex-col px-[16px] py-[32px] h-screen bg-black`}>
+      <div className="flex relative mb-[32px]">
+        <TouchButton onClick={() => router.push(MY_INFO_PATH)}>
+          <Logo />
+        </TouchButton>
         <button
           aria-label={expanded ? '사이드바 축소' : '사이드바 확장'}
-          className={cn('absolute top-[50%] translate-y-[-50%]', expanded ? 'right-0' : 'right-[-62px]')}
+          className={cn(
+            'absolute top-[50%] translate-y-[-50%] p-6 rounded-6',
+            expanded ? 'right-0 hover:bg-neutral-80' : 'right-[-68px] border hover:bg-neutral-3',
+          )}
           onClick={() => setExpanded(!expanded)}>
           <Icon name="division" color={expanded ? '#5A5C63' : '#AEB0B6'} />
         </button>
@@ -75,8 +100,15 @@ export function Sidebar() {
             onClick={() => router.push(MY_INFO_PATH)}
           />
           <Collapsible.Content>
-            {/* FIXME: */}
-            <div style={{ color: 'white' }}>준비중이에요!</div>
+            <Spacing size={14} />
+            <div className="flex flex-col">
+              {INFO_TYPES.map((type) => (
+                <CollapsibleItemButton key={type} onClick={() => handleInfoTypeClick(type)}>
+                  <div className="truncate">{type.replaceAll('_', ' ')}</div>
+                  <div className="px-4 truncate">{typeCounts?.[type] || 0}</div>
+                </CollapsibleItemButton>
+              ))}
+            </div>
           </Collapsible.Content>
         </Collapsible>
         <Collapsible collapsed={expanded ? myJDCollapsed : true} onCollapsedChange={setMyJDCollapsed}>
@@ -95,7 +127,30 @@ export function Sidebar() {
             onClick={() => router.push(MY_RECRUIT_PATH)}
           />
           <Collapsible.Content>
-            <div style={{ color: 'white' }}>준비중이에요!</div>
+            <If condition={recruiteTitles?.length === 0}>
+              <Spacing size={20} />
+              <div className="text-caption1 font-regular text-neutral-30 text-center">
+                현재 지원중인 공고가 없습니다.
+              </div>
+            </If>
+            <If condition={recruiteTitles?.length !== 0}>
+              <Spacing size={14} />
+              <div className="flex flex-col">
+                {recruiteTitles?.map((data) => (
+                  <CollapsibleItemButton key={data.id} onClick={() => router.push(`${MY_RECRUIT_PATH}/${data.id}`)}>
+                    <div className="px-6 truncate">{data.title}</div>
+                  </CollapsibleItemButton>
+                ))}
+              </div>
+              <Spacing size={32} />
+              <div className="flex justify-center">
+                <TouchButton
+                  className="bg-neutral-80 text-neutral-30 px-8 py-6 rounded-6 text-caption1 font-regular"
+                  onClick={() => router.push(MY_RECRUIT_PATH)}>
+                  모든 공고 보기
+                </TouchButton>
+              </div>
+            </If>
           </Collapsible.Content>
         </Collapsible>
       </div>
@@ -110,6 +165,16 @@ export function Sidebar() {
           onClick={logout}
         />
       </div>
-    </nav>
+    </motion.nav>
+  );
+}
+
+function CollapsibleItemButton({ onClick, children }: PropsWithChildren<{ onClick: () => void }>) {
+  return (
+    <TouchButton
+      onClick={onClick}
+      className="flex justify-between text-neutral-10 py-6 hover:bg-neutral-80 mx-[-16px] px-[22px] text-label2 font-regular">
+      {children}
+    </TouchButton>
   );
 }
