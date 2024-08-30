@@ -24,7 +24,7 @@ export function CardWindowContent({ cardId }: CardWindowContentProps) {
   );
 
   return (
-    <div className="px-20">
+    <div className="px-20 max-h-[700px] overflow-hidden">
       <div className="flex items-center">
         <h1 className="flex-1 text-heading1 font-bold text-neutral-95 truncate">
           {card.title || '제목을 입력해주세요'}
@@ -34,7 +34,7 @@ export function CardWindowContent({ cardId }: CardWindowContentProps) {
         </p>
       </div>
       <Spacing size={24} />
-      <div className="flex gap-8">
+      <div className="flex flex-wrap gap-8">
         {card.cardTypeValueList.map((type) => (
           <Tag key={type} color="yellow">
             {type.replaceAll('_', ' ')}
@@ -47,7 +47,7 @@ export function CardWindowContent({ cardId }: CardWindowContentProps) {
         ))}
       </div>
       <Spacing size={20} />
-      <div className="min-h-200 max-h-[600px] overflow-auto">
+      <div className="min-h-200 max-h-[600px] pb-30 overflow-auto">
         <EditorContent readOnly editor={editor} contentEditable={false} />
       </div>
     </div>

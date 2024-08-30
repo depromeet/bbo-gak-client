@@ -38,7 +38,7 @@ export function CardWindow({ cardId, onClose }: CardWindowProps) {
         duration: 0.2,
       }}
       layout
-      className="absolute bottom-16 w-368 max-h-[768px] rounded-20 bg-white shadow-[0px_3px_8px_0px_rgba(0,0,0,0.24)]">
+      className="absolute bottom-16 w-368 max-h-[768px] rounded-20 bg-white shadow-[0px_3px_8px_0px_rgba(0,0,0,0.24)] z-[200]">
       <div className="p-20 pb-24">
         <div className="flex justify-between">
           <div className="flex gap-12">
