@@ -114,7 +114,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                           }
                           handlePutCardType(category, 'delete');
                         }}>
-                        {category.replace('_', ' ')}
+                        {category.replace(/_/g, ' ')}
                       </TagSelector.RemovalbleTag>
                     ))}
                   </ul>
@@ -140,7 +140,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                             handlePutCardType(tag, 'put');
                           }
                         }}>
-                        {tag.replace('_', ' ')}
+                        {tag.replace(/_/g, ' ')}
                       </TagSelector.Tag>
                     ))}
                   </TagSelector.TagList>
