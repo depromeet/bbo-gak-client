@@ -77,7 +77,7 @@ export default function TagList({ selectedTags, setSelectedTags, tagsData }: Tag
                       className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
                       initial={{ opacity: 0 }}
                       variants={{ hover: { opacity: 1 } }}>
-                      <Text typography="body1" color="white">
+                      <Text typography="label1" color="white">
                         태그 필터 초기화
                       </Text>
                     </motion.div>
@@ -115,7 +115,7 @@ export default function TagList({ selectedTags, setSelectedTags, tagsData }: Tag
                 className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
                 initial={{ opacity: 0 }}
                 variants={{ hover: { opacity: 1 } }}>
-                <Text typography="body1" color="white">
+                <Text typography="label1" color="white">
                   태그 필터 초기화
                 </Text>
               </motion.div>
@@ -165,7 +165,7 @@ export default function TagList({ selectedTags, setSelectedTags, tagsData }: Tag
               className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
               initial={{ opacity: 0 }}
               variants={{ hover: { opacity: 1 } }}>
-              <Text typography="body1" color="white">
+              <Text typography="label1" color="white">
                 모든 태그 보기
               </Text>
             </motion.div>

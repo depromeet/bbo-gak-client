@@ -1,14 +1,14 @@
-import { Spacing } from '@/system/utils/Spacing';
-import { Icon } from '@/system/components';
-import { color } from '@/system/token/color';
-import { dday } from '@/utils/date';
 import { MoreButton } from '@/app/(sidebar)/my-recruit/containers/components/Card/common/MoreButton';
 import { StatusButton } from '@/app/(sidebar)/my-recruit/containers/components/Card/common/StatusButton';
-import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
-import { DueDateDialog } from '../DueDateDialog/DueDateDialog';
 import { RecruitCard } from '@/app/(sidebar)/my-recruit/type';
-import { useRouter } from 'next/navigation';
 import { AsyncBoundaryWithQuery } from '@/lib';
+import { Icon } from '@/system/components';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import { color } from '@/system/token/color';
+import { Spacing } from '@/system/utils/Spacing';
+import { dday } from '@/utils/date';
+import { useRouter } from 'next/navigation';
+import { DueDateDialog } from '../DueDateDialog/DueDateDialog';
 
 interface BoxCardProps extends RecruitCard {
   onRecruitDelete: (id: number) => void;
@@ -36,7 +36,7 @@ export function BoxCard({
           <Dialog>
             <Dialog.Trigger className="flex justify-between items-center w-full">
               <span className="text-label2 text-neutral-50">공고 일정을 등록해주세요</span>
-              <Icon name="add" size={24} color={color.neutral50} />
+              <Icon name="add" size={20} color={color.neutral50} />
             </Dialog.Trigger>
             <Dialog.Content className="w-400">
               <AsyncBoundaryWithQuery pendingFallback={<></>}>
