@@ -16,6 +16,8 @@ export const usePutCardTitle = (cardId: number) => {
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['cards'] });
+      await queryClient.invalidateQueries({ queryKey: ['info-card-list'] });
+      await queryClient.invalidateQueries({ queryKey: ['get-card-detail'] });
     },
   });
 };

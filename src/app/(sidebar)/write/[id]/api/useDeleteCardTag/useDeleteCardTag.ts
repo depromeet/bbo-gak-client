@@ -15,6 +15,7 @@ export const useDeleteCardTag = (cardId: number) => {
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ['cards'] });
+      await queryClient.invalidateQueries({ queryKey: ['get-card-detail'] });
     },
   });
 };
