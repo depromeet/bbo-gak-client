@@ -11,7 +11,10 @@
   }
 
   & > p {
-    margin: 1.5rem auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    margin-right: 60px;
+    margin-left: 80px;
     &:first-child {
       margin-top: 0;
     }
@@ -63,6 +66,7 @@
   h2,
   h3 {
     margin-top: 3rem;
+    margin-left: 80px;
   }
 
   h4,

@@ -17,6 +17,7 @@ import { Icon } from '@/system/components';
 import MemoContainer from './components/MemoContainer/MemoContainer';
 import { MemosFetcher } from '@/app/(sidebar)/write/[id]/fetcher/MemosFetcher';
 import { INFO_TYPES } from '@/types/info';
+import { Textarea } from '@/system/components/Textarea/Textarea';
 
 const EditorProvider = dynamic(
   () => import('@/components/Editor/EditorProvider/EditorProvider').then(({ EditorProvider }) => EditorProvider),
@@ -57,12 +58,11 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
 
           <EditorProvider cardId={Number(id)} initialContent={content}>
             <div className="flex justify-between px-80">
-              <Input
+              <Textarea
                 value={title}
-                onValueChange={handlePutCardTitle}
+                onChange={(e) => handlePutCardTitle(e.target.value)}
                 placeholder="제목을 입력해주세요."
-                classNames={{ base: 'w-[552px]' }}
-                className="text-[24px] font-bold px-0 leading-32 tracking-[-0.0345rem] border-none"
+                className="text-[24px] h-32 !min-h-32 font-bold resize-none bg-neutral-1 px-0 leading-32 tracking-[-0.0345rem] border-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-neutral-30"
               />
               <div className="flex gap-8 items-center text-neutral-20 whitespace-nowrap">
                 <div className="flex items-center gap-4">

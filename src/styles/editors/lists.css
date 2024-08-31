@@ -9,7 +9,7 @@
 
   ul,
   ol {
-    @apply py-0 px-8 my-6 first:mt-0 last:mb-0;
+    @apply py-0 px-8 my-6 first:mt-0 last:mb-0 ml-90;
 
     ul,
     ol,
@@ -28,7 +28,7 @@
   }
 
   ul[data-type='taskList'] {
-    @apply list-none p-0;
+    @apply list-none p-0 ml-80;
 
     p {
       @apply m-0;
@@ -38,7 +38,7 @@
       @apply flex;
 
       > label {
-        @apply grow-0 shrink-0 flex-auto mt-1 mr-2 select-none;
+        @apply grow-0 shrink-0 flex-auto select-none mt-3 mr-5;
       }
 
       > div {

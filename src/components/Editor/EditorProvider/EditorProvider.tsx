@@ -29,7 +29,7 @@ export function EditorProvider({
 
       <div
         style={{ scrollbarWidth: 'thin', scrollbarColor: '#DBDCDF' }}
-        className="px-80 h-[calc(100vh-264px)] overflow-x-hidden">
+        className="mx-auto h-[calc(100vh-264px)] overflow-x-hidden">
         <Editor editor={editor} />
       </div>
     </>
