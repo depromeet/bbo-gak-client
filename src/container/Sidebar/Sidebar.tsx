@@ -2,7 +2,6 @@
 
 import { useGetCardTypeCount } from '@/app/(sidebar)/(my-info)/apis/useGetCardTypeCount';
 import { useGetRecruitTitles } from '@/app/(sidebar)/my-recruit/api/useGetRecruitTitles';
-import { Logo } from '@/components/Logo';
 import { TouchButton } from '@/components/TouchButton';
 import { SidebarButton } from '@/container/Sidebar/SidebarButton';
 import { MY_INFO_PATH, MY_RECRUIT_PATH } from '@/route';
@@ -18,6 +17,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { PropsWithChildren, useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
 import { useNotificationContext } from '@/components/Notification/context';
+import { LogoOnlyLeaf } from '@/components/LogoOnlyLeaf';
 
 export function Sidebar() {
   const router = useRouter();
@@ -59,7 +59,7 @@ export function Sidebar() {
       className={`z-[10000] relative shrink-0 flex flex-col px-[16px] py-[32px] h-screen bg-black`}>
       <div className="flex relative mb-[32px]">
         <TouchButton onClick={() => router.push(MY_INFO_PATH)}>
-          <Logo />
+          <LogoOnlyLeaf />
         </TouchButton>
         <button
           aria-label={expanded ? '사이드바 축소' : '사이드바 확장'}

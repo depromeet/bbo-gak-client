@@ -53,7 +53,7 @@ export function RowCard({
             <div className="px-6 py-4 rounded-[4px] bg-neutral-95 flex gap-[2px]">
               <Icon name="clover" size={20} color={color.mint30} />
               <span className="text-white text-label2 ">
-                {nearestSchedule?.recruitScheduleStage} D-{dday(nearestSchedule?.deadLine!)}
+                {nearestSchedule?.recruitScheduleStage} D-{dday(nearestSchedule?.deadLine!) || 'DAY'}
               </span>
             </div>
           </If>
