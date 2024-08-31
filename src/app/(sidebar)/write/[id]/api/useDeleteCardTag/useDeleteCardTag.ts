@@ -3,7 +3,7 @@ import { http } from '@/apis/http';
 
 const deleteCardTag = (cardId: number, tagId: number) =>
   http.delete({
-    url: `/cards/${cardId}/title/tag/${tagId}`,
+    url: `/cards/${cardId}/tag/${tagId}`,
   });
 
 export const useDeleteCardTag = (cardId: number) => {

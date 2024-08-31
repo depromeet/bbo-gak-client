@@ -3,7 +3,7 @@ import { http } from '@/apis/http';
 
 const postCardTag = (cardId: number, tagId: number) =>
   http.post({
-    url: `/cards/${cardId}/title/tag/${tagId}`,
+    url: `/cards/${cardId}/tag/${tagId}`,
   });
 
 export const usePostCardTag = (cardId: number) => {
