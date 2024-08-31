@@ -39,7 +39,7 @@ export default function MemoContainer() {
   );
 
   return (
-    <section className="min-w-400 h-screen border-1 bg-neutral-1">
+    <section className="min-w-400 h-screen border-r-1 border-l-1 bg-neutral-1">
       <div className="flex items-end p-16 w-full h-109 gap-8">
         <Icon name="memoColored" size={24} />
         <p className="text-18 font-semibold">메모</p>
@@ -56,6 +56,7 @@ export default function MemoContainer() {
       <div className="max-w-400 relative px-16 pt-16 pb-24 h-185 flex flex-col justify-end">
         <form className="pt-13 px-16 pb-8 rounded-8 border-1 border-neutral-20 bg-white flex flex-col gap-4">
           <Textarea
+            spellCheck={false}
             value={memo}
             onChange={(e) => setMemo(e.target.value)}
             onFocus={() => setTextareaHeight(TEXT_FOCUS_HEIGHT)}
