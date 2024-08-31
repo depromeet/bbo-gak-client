@@ -2,6 +2,7 @@
 
 import { InfoCard } from '@/components/InfoCard';
 import { TouchButton } from '@/components/TouchButton';
+import { AsyncBoundaryWithQuery } from '@/lib';
 import { DndContextWithOverlay } from '@/lib/dnd-kit/DndContextWithOverlay';
 import { Dropdown, Icon, Text } from '@/system/components';
 import { color } from '@/system/token/color';
@@ -44,10 +45,9 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
       <div className="flex overflow-hidden max-h-[100vh] h-[100vh] bg-white">
         <div className="flex-1 mx-auto max-w-[1700px]">
           <div className="flex justify-between w-full px-[80px] py-[24px] bg-white border-b-1 border-neutral-5">
-            <Suspense>
+            <AsyncBoundaryWithQuery>
               <DetailHeader recruitId={recruitId} />
-            </Suspense>
-
+            </AsyncBoundaryWithQuery>
 
             <div className={cn('flex items-center gap-[16px]')}>
               <Dropdown>
@@ -69,7 +69,9 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
                   </TouchButton>
                 </Dropdown.Trigger>
                 <Dropdown.Content align="end" className="gap-[8px]">
-                  <DueDateDialog id={Number(recruitId)} />
+                  <AsyncBoundaryWithQuery pendingFallback={<></>}>
+                    <DueDateDialog id={Number(recruitId)} />
+                  </AsyncBoundaryWithQuery>
                 </Dropdown.Content>
               </Dropdown>
 
@@ -84,7 +86,7 @@ export default function CompanyDetail({ params: { id: recruitId } }: { params: {
                   className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
                   initial={{ opacity: 0 }}
                   variants={{ hover: { opacity: 1 } }}>
-                  <Text typography="body1" color="white">
+                  <Text typography="label1" color="white">
                     내 정보 가져오기
                   </Text>
                 </motion.div>
