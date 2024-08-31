@@ -66,7 +66,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
               />
               <div className="flex gap-8 items-center text-neutral-20 whitespace-nowrap">
                 <div className="flex items-center gap-4">
-                  <If condition={updatedDate != null}>
+                  <If condition={updatedDate != null && updatedDate !== createdDate}>
                     <p className="text-12 text-neutral-50">{updatedDate} 수정됨</p>
                   </If>
 
