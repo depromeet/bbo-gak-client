@@ -30,7 +30,7 @@ export function BoxCard({
   const minWidth = MIN_CARD_WIDTH;
 
   return (
-    <div className="flex-1 rounded-[10px] overflow-hidden cursor-pointer" style={{ minWidth }}>
+    <div className="flex-1 rounded-[10px] overflow-hidden cursor-pointer" style={{ minWidth, maxWidth: 350 }}>
       <div className="h-38 pr-12 pl-20 bg-neutral-95 flex justify-between items-center">
         {nearestSchedule == null ? (
           <Dialog>
