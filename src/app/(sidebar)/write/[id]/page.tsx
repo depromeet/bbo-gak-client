@@ -70,7 +70,9 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
                     <p className="text-12 text-neutral-50">{updatedDate} 수정됨</p>
                   </If>
 
-                  <p className="text-12">{updatedDate != null ? `(${createdDate || ''} 생성됨)` : createdDate}</p>
+                  <p className="text-12">
+                    {updatedDate != null && updatedDate !== createdDate ? `(${createdDate || ''} 생성됨)` : createdDate}
+                  </p>
                 </div>
 
                 <DropdownMenu>
