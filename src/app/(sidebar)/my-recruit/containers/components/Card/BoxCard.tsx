@@ -49,7 +49,7 @@ export function BoxCard({
             <div className="flex items-center gap-[4px]">
               <Icon name="clover" size={20} color={color.mint30} />
               <span className="text-white text-label2 ">
-                {nearestSchedule.recruitScheduleStage} D-{dday(nearestSchedule.deadLine)}
+                {nearestSchedule.recruitScheduleStage} D-{dday(nearestSchedule.deadLine) || 'DAY'}
               </span>
             </div>
             <MoreButton onDeleteClick={() => onRecruitDelete(id)} />
