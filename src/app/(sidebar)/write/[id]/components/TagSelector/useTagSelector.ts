@@ -33,7 +33,7 @@ export function useTagSelector({ ...props }: UseTagSelectorProps) {
   const getBaseProps = useCallback(
     (props = {}) => ({
       ref: baseDOMRef,
-      className: cn('w-[820px] flex items-center gap-8 relative', classNames?.base),
+      className: cn('flex items-center gap-8 relative', classNames?.base),
       ...props,
     }),
     [ref, classNames?.base],

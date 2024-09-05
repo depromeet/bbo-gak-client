@@ -2,7 +2,7 @@
   @apply z-0 caret-black dark:caret-white outline-0 lg:pl-8 lg:pr-8 font-regular text-[#212225];
 
   & > * {
-    @apply max-w-2xl mx-auto;
+    @apply max-w-[580px] mr-80 ml-80;
   }
 
   .selection {
@@ -23,10 +23,10 @@
   }
 
   .ProseMirror-gapcursor {
-    @apply relative w-full max-w-2xl mx-auto;
+    @apply relative w-full max-w-[580px] mx-auto;
 
     &:after {
-      @apply border-t-black/40 dark:border-t-white/40 w-full -top-[1.5em] max-w-2xl mx-auto left-0 right-0;
+      @apply border-t-black/40 dark:border-t-white/40 w-full -top-[1.5em] max-w-[580px] mx-auto left-0 right-0;
     }
   }
 }
