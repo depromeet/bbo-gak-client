@@ -16,9 +16,6 @@
   }
 
   /* Default Placeholder */
-  & > .is-editor-empty::before {
-    content: ' / 를 입력하여 옵션 선택';
-  }
 
   /* Blockquote Placeholder */
   blockquote .is-empty:not(.is-editor-empty):first-child:last-child::before {
