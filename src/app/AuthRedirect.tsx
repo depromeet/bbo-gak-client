@@ -13,5 +13,5 @@ export default async function AuthRedirect({ children }: StrictPropsWithChildren
     redirect('/login');
   }
 
-  return { children };
+  return <>{children}</>;
 }
