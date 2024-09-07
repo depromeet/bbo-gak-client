@@ -34,6 +34,7 @@ export function Sidebar() {
   const logout = () => {
     deleteCookie('accessToken');
     deleteCookie('refreshToken');
+    deleteCookie('jobSelection');
     router.push('/login');
   };
 
