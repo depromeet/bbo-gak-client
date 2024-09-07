@@ -15,7 +15,7 @@ export default function Page() {
   return (
     <Funnel mode="wait">
       <Funnel.Step name="login">
-        <Redirect condition={accessToken != null && isSelectJob} to="/login?auth=select">
+        <Redirect condition={accessToken != null && !isSelectJob} to="/login?auth=select">
           <Login />
         </Redirect>
       </Funnel.Step>
