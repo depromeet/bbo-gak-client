@@ -8,15 +8,15 @@ import { NotificatinProvider } from '@/components/Notification/context';
 export default function SidebarLayout({ children }: PropsWithChildren) {
   return (
     <div className="flex">
-      <NotificatinProvider>
-        <Sidebar />
-        <div className="flex-grow relative">
-          <AuthRedirect>
+      <AuthRedirect>
+        <NotificatinProvider>
+          <Sidebar />
+          <div className="flex-grow relative">
             <CardWindowLayout>{children}</CardWindowLayout>
             <NotificationWindow />
-          </AuthRedirect>
-        </div>
-      </NotificatinProvider>
+          </div>
+        </NotificatinProvider>
+      </AuthRedirect>
     </div>
   );
 }
