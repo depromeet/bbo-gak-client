@@ -21,6 +21,7 @@ export const useDeleteCard = () => {
       queryClient.invalidateQueries({ queryKey: [GET_CARD_TYPE_COUNT] });
       queryClient.invalidateQueries({ queryKey: [GET_RECRUIT_CARD_ID] });
       queryClient.invalidateQueries({ queryKey: [GET_RECRUIT_CARD_COUNT] });
+      queryClient.invalidateQueries({ queryKey: ['get-card-detail'] });
     },
   });
 };

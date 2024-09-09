@@ -1,9 +1,6 @@
 import { recruitScheduleStageList } from '@/app/(sidebar)/my-recruit/constant';
-import { AddIcon } from '@/app/(sidebar)/my-recruit/containers/components/DueDateDialog/AddIcon';
-import { Form } from '@/app/(sidebar)/my-recruit/containers/components/DueDateDialog/Form';
 import { TouchButton } from '@/components/TouchButton';
 import { Icon } from '@/system/components';
-import { DialogClose } from '@/system/components/Dialog/Dialog';
 import { color } from '@/system/token/color';
 import { Spacing } from '@/system/utils/Spacing';
 import { cn } from '@/utils';
@@ -11,11 +8,14 @@ import { immer } from '@/utils/immer';
 import clsx from 'clsx';
 import { format } from 'date-fns/format';
 import { useState } from 'react';
-import { usePostRecruitSchedule } from '../../../api/usePostRecruitSchedule';
+import { usePostRecruitSchedule } from '../../api/usePostRecruitSchedule';
+import { AddIcon } from '../../containers/components/DueDateDialog/AddIcon';
+import { Form } from '../../containers/components/DueDateDialog/Form';
 
-interface DueDateDialogProps {
+interface DueDateDropDownProps {
   id: number;
   title?: string;
+  close: () => void;
 }
 
 const DEFAULT_FORM = {
@@ -23,7 +23,7 @@ const DEFAULT_FORM = {
   deadLine: undefined,
 };
 
-export function DueDateDialog({ id, title }: DueDateDialogProps) {
+export function DueDateDropDown({ id, title, close }: DueDateDropDownProps) {
   const { mutate: postRecruitSchedule } = usePostRecruitSchedule();
   const [scheduleList, setScheduleList] = useState<
     Array<{
@@ -49,6 +49,7 @@ export function DueDateDialog({ id, title }: DueDateDialogProps) {
         deadLine: format(schedule.deadLine, 'yyyy-MM-dd'),
       });
     });
+    close();
   };
 
   return (
@@ -101,21 +102,11 @@ export function DueDateDialog({ id, title }: DueDateDialogProps) {
         <span className="text-neutral-40 text-label2 font-medium">일정 추가</span>
       </TouchButton>
       <Spacing size={8} />
-      {title ? (
-        <DialogClose className="w-full" asChild>
-          <TouchButton
-            onClick={save}
-            className="bg-neutral-95 w-full h-46 gap-[4px] rounded-[6px] text-white text-body2 font-semibold py-[13px]">
-            저장하기
-          </TouchButton>
-        </DialogClose>
-      ) : (
-        <TouchButton
-          onClick={save}
-          className="bg-neutral-95 w-full h-46 gap-[4px] rounded-[6px] text-white text-body2 font-semibold py-[13px]">
-          저장하기
-        </TouchButton>
-      )}
+      <TouchButton
+        onClick={save}
+        className="bg-neutral-95 w-full h-46 gap-[4px] rounded-[6px] text-white text-body2 font-semibold py-[13px]">
+        저장하기
+      </TouchButton>
     </div>
   );
 }

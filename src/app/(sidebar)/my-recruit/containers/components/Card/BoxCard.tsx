@@ -1,14 +1,14 @@
-import { Spacing } from '@/system/utils/Spacing';
-import { Icon } from '@/system/components';
-import { color } from '@/system/token/color';
-import { dday } from '@/utils/date';
 import { MoreButton } from '@/app/(sidebar)/my-recruit/containers/components/Card/common/MoreButton';
 import { StatusButton } from '@/app/(sidebar)/my-recruit/containers/components/Card/common/StatusButton';
-import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
-import { DueDateDialog } from '../DueDateDialog/DueDateDialog';
 import { RecruitCard } from '@/app/(sidebar)/my-recruit/type';
-import { useRouter } from 'next/navigation';
 import { AsyncBoundaryWithQuery } from '@/lib';
+import { Icon } from '@/system/components';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import { color } from '@/system/token/color';
+import { Spacing } from '@/system/utils/Spacing';
+import { dday } from '@/utils/date';
+import { useRouter } from 'next/navigation';
+import { DueDateDialog } from '../DueDateDialog/DueDateDialog';
 
 interface BoxCardProps extends RecruitCard {
   onRecruitDelete: (id: number) => void;
@@ -30,13 +30,13 @@ export function BoxCard({
   const minWidth = MIN_CARD_WIDTH;
 
   return (
-    <div className="flex-1 rounded-[10px] overflow-hidden cursor-pointer" style={{ minWidth }}>
+    <div className="flex-1 rounded-[10px] overflow-hidden cursor-pointer" style={{ minWidth, maxWidth: 350 }}>
       <div className="h-38 pr-12 pl-20 bg-neutral-95 flex justify-between items-center">
         {nearestSchedule == null ? (
           <Dialog>
             <Dialog.Trigger className="flex justify-between items-center w-full">
               <span className="text-label2 text-neutral-50">공고 일정을 등록해주세요</span>
-              <Icon name="add" size={24} color={color.neutral50} />
+              <Icon name="add" size={20} color={color.neutral50} />
             </Dialog.Trigger>
             <Dialog.Content className="w-400">
               <AsyncBoundaryWithQuery pendingFallback={<></>}>
@@ -49,7 +49,7 @@ export function BoxCard({
             <div className="flex items-center gap-[4px]">
               <Icon name="clover" size={20} color={color.mint30} />
               <span className="text-white text-label2 ">
-                {nearestSchedule.recruitScheduleStage} D-{dday(nearestSchedule.deadLine)}
+                {nearestSchedule.recruitScheduleStage} D-{dday(nearestSchedule.deadLine) || 'DAY'}
               </span>
             </div>
             <MoreButton onDeleteClick={() => onRecruitDelete(id)} />

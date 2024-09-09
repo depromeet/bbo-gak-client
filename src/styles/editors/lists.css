@@ -9,7 +9,7 @@
 
   ul,
   ol {
-    @apply py-0 px-8 my-6 first:mt-0 last:mb-0;
+    @apply py-0 px-8 my-6 first:mt-0 last:mb-0 ml-90;
 
     ul,
     ol,
@@ -28,25 +28,31 @@
   }
 
   ul[data-type='taskList'] {
-    @apply list-none p-0;
+    list-style: none;
+    padding: 0;
+    margin-left: 80px !important;
 
     p {
-      @apply m-0;
+      margin: 0 !important;
     }
 
     li {
-      @apply flex;
+      display: flex !important;
 
       > label {
-        @apply grow-0 shrink-0 flex-auto mt-1 mr-2 select-none;
+        flex-grow: 0 !important;
+        flex-shrink: 0 !important;
+        user-select: none !important;
+        margin-top: 3px !important;
+        margin-right: 5px !important;
       }
 
       > div {
-        @apply flex-auto;
+        display: flex !important;
       }
 
       &[data-checked='true'] {
-        @apply line-through;
+        text-decoration: line-through !important;
       }
     }
   }
