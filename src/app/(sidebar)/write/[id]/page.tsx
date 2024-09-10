@@ -54,8 +54,6 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
 
   const [isEditing, setIsEditing] = useState(false);
 
-  console.log(isEditing || isPending || !isSuccess);
-
   return (
     <section className="h-full">
       <section className="flex">
@@ -63,11 +61,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
           <div className="h-20 px-80 flex justify-end">
             <AnimatePresence mode="popLayout">
               {(isEditing || isPending || !isSuccess) && (
-                <motion.div
-                  initial={{ x: -30, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: 30, opacity: 0 }}
-                  className="flex gap-4">
+                <motion.div className="flex gap-4">
                   <Lottie animationData={SavingJson} loop />
                   <p className="text-12 font-medium text-neutral-40">자동 저장 중</p>
                 </motion.div>
@@ -76,11 +70,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
 
             <AnimatePresence mode="popLayout">
               {!isEditing && isSuccess && !isPending && (
-                <motion.div
-                  initial={{ x: -30, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  exit={{ x: 30, opacity: 0 }}
-                  className="flex">
+                <motion.div className="flex">
                   <Icon name="savingSuccess" size={20} />
                   <p className="text-12 font-medium text-neutral-40 whitespace-nowrap">자동 저장 완료</p>
                 </motion.div>
