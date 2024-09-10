@@ -50,6 +50,8 @@ import Warning from './SVG/Warning';
 import { WorkFill } from './SVG/WorkFill';
 import { X } from './SVG/X';
 import { IllustAlarm } from './SVG/IllustAlarm';
+import { PageOpen } from './SVG/PageOpen';
+import { BellWithRedDot } from './SVG/BellWithRedDot';
 
 const iconMap = {
   bell: Bell,
@@ -103,6 +105,8 @@ const iconMap = {
   announcementFolder: AnnouncementFolder,
   IllustAlarm: IllustAlarm,
   warning: Warning,
+  pageOpen: PageOpen,
+  bellWithRedDot: BellWithRedDot,
 } as const;
 
 export interface IconProps extends IconBaseType {
