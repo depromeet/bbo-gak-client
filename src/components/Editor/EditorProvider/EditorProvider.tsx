@@ -1,27 +1,39 @@
 'use client';
 
-import { useEffect } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { JSONContent } from '@tiptap/react';
-import { usePutCardContent } from '@/app/(sidebar)/write/[id]/api/usePutCardContent/usePutCardContent';
 import { useEditor } from '@/components/Editor/useEditor';
-import { StrictPropsWithChildren } from '@/types';
 import { Editor } from '../Editor';
+import type { StrictPropsWithChildren } from '@/types';
 
 export function EditorProvider({
-  cardId,
   children,
   readOnly = false,
   initialContent,
-}: StrictPropsWithChildren<{ cardId: number; readOnly?: boolean; initialContent?: JSONContent }>) {
-  const { editor, content } = useEditor({ readOnly, initialContent });
-  const { mutate: mutatePutCardContent } = usePutCardContent(cardId);
+  contentSetter,
+  setIsEditing,
+  delay = 1000,
+}: StrictPropsWithChildren<{
+  readOnly?: boolean;
+  initialContent?: JSONContent;
+  contentSetter: (content: JSONContent) => void;
+  delay?: number;
+  setIsEditing: Dispatch<SetStateAction<boolean>>;
+}>) {
+  const { editor, content } = useEditor({ readOnly, initialContent, setIsEditing });
 
-  // TODO: debounce
   useEffect(() => {
-    if (editor && content && !readOnly) {
-      mutatePutCardContent(content);
-    }
-  }, [content]);
+    const handle = setTimeout(() => {
+      if (editor && content && !readOnly) {
+        contentSetter(content);
+        setIsEditing(false);
+      }
+    }, delay);
+
+    return () => {
+      clearTimeout(handle);
+    };
+  }, [content, contentSetter, delay]);
 
   return (
     <>

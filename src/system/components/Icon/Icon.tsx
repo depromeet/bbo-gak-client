@@ -52,6 +52,8 @@ import { X } from './SVG/X';
 import { IllustAlarm } from './SVG/IllustAlarm';
 import { PageOpen } from './SVG/PageOpen';
 import { BellWithRedDot } from './SVG/BellWithRedDot';
+import { Backspace } from './SVG/Backspace';
+import { SavingSuccess } from './SVG/SavingSuccess';
 
 const iconMap = {
   bell: Bell,
@@ -107,6 +109,8 @@ const iconMap = {
   warning: Warning,
   pageOpen: PageOpen,
   bellWithRedDot: BellWithRedDot,
+  backspace: Backspace,
+  savingSuccess: SavingSuccess,
 } as const;
 
 export interface IconProps extends IconBaseType {
