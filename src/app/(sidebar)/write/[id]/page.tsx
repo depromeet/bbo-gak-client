@@ -1,7 +1,6 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { Input } from '@/system/components/Input/Input';
 import { TagSelector } from './components/TagSelector/TagSelector';
 import { If } from '@/system/utils/If';
 import { Spacing } from '@/system/utils/Spacing';
@@ -18,6 +17,12 @@ import MemoContainer from './components/MemoContainer/MemoContainer';
 import { MemosFetcher } from '@/app/(sidebar)/write/[id]/fetcher/MemosFetcher';
 import { INFO_TYPES } from '@/types/info';
 import { Textarea } from '@/system/components/Textarea/Textarea';
+import { TouchButton } from '@/components/TouchButton';
+import SavingJson from '../../../../../public/saving_dot.json';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+
+const Lottie = dynamic(() => import('lottie-react'));
 
 const EditorProvider = dynamic(
   () => import('@/components/Editor/EditorProvider/EditorProvider').then(({ EditorProvider }) => EditorProvider),
@@ -41,28 +46,56 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
     deleteCard,
     createdDate,
     recruitTitle,
+    back,
+    mutatePutCardContent,
+    isSuccess,
+    isPending,
   } = useWrite(Number(id));
+
+  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <section className="h-full">
       <section className="flex">
-        <div className="pt-40 w-full">
-          <div className="h-16 pl-80">
-            <If condition={recruitTitle != null}>
-              <div className="flex gap-4 text-12 text-neutral-30 mt-8">
-                <Icon name="announcementFolder" size={16} color="#CCCDD1" />
-                <p>{recruitTitle}</p>
-              </div>
-            </If>
+        <div className="pt-40 w-full ">
+          <div className="h-20 px-80 flex justify-end">
+            <AnimatePresence mode="popLayout">
+              {(isEditing || isPending || !isSuccess) && (
+                <motion.div className="flex gap-4">
+                  <Lottie animationData={SavingJson} loop />
+                  <p className="text-12 font-medium text-neutral-40">자동 저장 중</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <AnimatePresence mode="popLayout">
+              {!isEditing && isSuccess && !isPending && (
+                <motion.div className="flex">
+                  <Icon name="savingSuccess" size={20} />
+                  <p className="text-12 font-medium text-neutral-40 whitespace-nowrap">자동 저장 완료</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
-          <EditorProvider cardId={Number(id)} initialContent={content}>
-            <div className="flex justify-between px-80">
+          <If condition={recruitTitle != null}>
+            <div className="flex gap-4 text-12 text-neutral-30 mt-8">
+              <Icon name="announcementFolder" size={16} color="#CCCDD1" />
+              <p>{recruitTitle}</p>
+            </div>
+          </If>
+
+          <EditorProvider initialContent={content} contentSetter={mutatePutCardContent} setIsEditing={setIsEditing}>
+            <div className="flex justify-between items-center pr-80 relative">
+              <TouchButton onClick={back} className="absolute left-40 mt-3">
+                <Icon name="backspace" size={24} color="#1B1C1E" />
+              </TouchButton>
+
               <Textarea
                 value={title}
                 onChange={(e) => handlePutCardTitle(e.target.value)}
                 placeholder="제목을 입력해주세요."
-                className="text-[24px] h-32 !min-h-32 font-bold resize-none bg-neutral-1 px-0 leading-32 tracking-[-0.0345rem] border-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-neutral-30"
+                className="text-[24px] h-32 !min-h-32 font-bold resize-none bg-neutral-1 px-0 leading-32 tracking-[-0.0345rem] border-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-neutral-30 pl-80 "
               />
               <div className="flex gap-8 items-center text-neutral-20 whitespace-nowrap">
                 <div className="flex items-center gap-4">

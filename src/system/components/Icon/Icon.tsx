@@ -50,6 +50,8 @@ import Warning from './SVG/Warning';
 import { WorkFill } from './SVG/WorkFill';
 import { X } from './SVG/X';
 import { IllustAlarm } from './SVG/IllustAlarm';
+import { Backspace } from './SVG/Backspace';
+import { SavingSuccess } from './SVG/SavingSuccess';
 
 const iconMap = {
   bell: Bell,
@@ -103,6 +105,8 @@ const iconMap = {
   announcementFolder: AnnouncementFolder,
   IllustAlarm: IllustAlarm,
   warning: Warning,
+  backspace: Backspace,
+  savingSuccess: SavingSuccess,
 } as const;
 
 export interface IconProps extends IconBaseType {
