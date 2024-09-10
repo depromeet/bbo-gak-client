@@ -1,7 +1,6 @@
 .ProseMirror {
   p > code {
     @apply !caret-[gray] !text-[gray] !rounded-sm !shadow-sm !font-mono !bg-orange-100 !p-4;
-    padding: 10px;
   }
 
   pre {
