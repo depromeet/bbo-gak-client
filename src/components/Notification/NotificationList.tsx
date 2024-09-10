@@ -4,8 +4,14 @@ import { Icon } from '@/system/components';
 import { Spacing } from '@/system/utils/Spacing';
 import { dday, formatToYYMMDD } from '@/utils/date';
 import { cn } from '@/utils/tailwind-util';
+import { useRouter } from 'next/navigation';
+import { NotificationType } from '@/types/notification';
+import { useNotificationContext } from './context';
 
 export function NotificationList() {
+  const router = useRouter();
+  const { close } = useNotificationContext();
+
   const { data: notificationList } = useGetNotificationList();
 
   const getDateText = (date: string) => {
@@ -14,6 +20,11 @@ export function NotificationList() {
     }
 
     return formatToYYMMDD(date, { separator: '.' });
+  };
+
+  const handleNotificationClick = (notification: NotificationType) => {
+    router.push(`/my-recruit/${notification.referenceId}`);
+    close();
   };
 
   return (
@@ -40,7 +51,9 @@ export function NotificationList() {
                   <div className="flex-shrink-0 w-6 h-6 mt-6 rounded-full bg-red-40" />
                 </If>
                 <div className="text-white text-label1">
-                  <span className="font-semibold underline cursor-pointer">
+                  <span
+                    className="font-semibold underline cursor-pointer"
+                    onClick={() => handleNotificationClick(notification)}>
                     {notification.title}
                     <span className="relative">
                       <span className="absolute top-1 left-2">
