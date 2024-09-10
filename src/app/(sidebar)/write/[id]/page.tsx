@@ -18,6 +18,7 @@ import MemoContainer from './components/MemoContainer/MemoContainer';
 import { MemosFetcher } from '@/app/(sidebar)/write/[id]/fetcher/MemosFetcher';
 import { INFO_TYPES } from '@/types/info';
 import { Textarea } from '@/system/components/Textarea/Textarea';
+import { TouchButton } from '@/components/TouchButton';
 
 const EditorProvider = dynamic(
   () => import('@/components/Editor/EditorProvider/EditorProvider').then(({ EditorProvider }) => EditorProvider),
@@ -41,6 +42,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
     deleteCard,
     createdDate,
     recruitTitle,
+    back,
   } = useWrite(Number(id));
 
   return (
@@ -57,12 +59,16 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
           </div>
 
           <EditorProvider cardId={Number(id)} initialContent={content}>
-            <div className="flex justify-between px-80">
+            <div className="flex justify-between items-center pr-80 relative">
+              <TouchButton onClick={back} className="absolute left-40 mt-3">
+                <Icon name="backspace" size={24} color="#1B1C1E" />
+              </TouchButton>
+
               <Textarea
                 value={title}
                 onChange={(e) => handlePutCardTitle(e.target.value)}
                 placeholder="제목을 입력해주세요."
-                className="text-[24px] h-32 !min-h-32 font-bold resize-none bg-neutral-1 px-0 leading-32 tracking-[-0.0345rem] border-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-neutral-30"
+                className="text-[24px] h-32 !min-h-32 font-bold resize-none bg-neutral-1 px-0 leading-32 tracking-[-0.0345rem] border-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-neutral-30 pl-80 "
               />
               <div className="flex gap-8 items-center text-neutral-20 whitespace-nowrap">
                 <div className="flex items-center gap-4">

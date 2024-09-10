@@ -9,6 +9,7 @@ import { usePutCardType } from '@/app/(sidebar)/write/[id]/api/usePutCardType/us
 import { useQueryClient } from '@tanstack/react-query';
 import { TypeTag } from '@/types/info';
 import { useDeleteCard } from '@/app/(sidebar)/(my-info)/apis/useDeleteCard';
+import { useRouter } from 'next/navigation';
 
 export function useWrite(id: number) {
   const {
@@ -39,6 +40,7 @@ export function useWrite(id: number) {
   const { mutate: mutateDeleteCardTag } = useDeleteCardTag(id);
   const { mutate: mutatePutCardType } = usePutCardType(id);
   const { mutate: deleteCard } = useDeleteCard();
+  const { back } = useRouter();
 
   const handlePutCardTitle = useCallback((value: string) => {
     setTitle(value);
@@ -116,5 +118,6 @@ export function useWrite(id: number) {
     disabledCount,
     createdDate: createdDate.split(' ')[0].replaceAll(/-/g, '.'),
     recruitTitle,
+    back,
   };
 }
