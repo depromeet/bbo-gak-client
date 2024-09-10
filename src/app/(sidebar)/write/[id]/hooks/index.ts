@@ -10,6 +10,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { TypeTag } from '@/types/info';
 import { useDeleteCard } from '@/app/(sidebar)/(my-info)/apis/useDeleteCard';
 import { useRouter } from 'next/navigation';
+import { usePutCardContent } from '@/app/(sidebar)/write/[id]/api/usePutCardContent/usePutCardContent';
 
 export function useWrite(id: number) {
   const {
@@ -40,6 +41,7 @@ export function useWrite(id: number) {
   const { mutate: mutateDeleteCardTag } = useDeleteCardTag(id);
   const { mutate: mutatePutCardType } = usePutCardType(id);
   const { mutate: deleteCard } = useDeleteCard();
+  const { mutate: mutatePutCardContent, isPending, isSuccess } = usePutCardContent(id);
   const { back } = useRouter();
 
   const handlePutCardTitle = useCallback((value: string) => {
@@ -119,5 +121,8 @@ export function useWrite(id: number) {
     createdDate: createdDate.split(' ')[0].replaceAll(/-/g, '.'),
     recruitTitle,
     back,
+    mutatePutCardContent,
+    isPending,
+    isSuccess,
   };
 }
