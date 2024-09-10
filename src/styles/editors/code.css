@@ -1,22 +1,23 @@
 .ProseMirror {
   p > code {
-    @apply caret-[gray] text-[gray] rounded-sm shadow-sm font-mono bg-orange-100 p-4;
+    @apply !caret-[gray] !text-[gray] !rounded-sm !shadow-sm !font-mono !bg-orange-100 !p-4;
+    padding: 10px;
   }
 
   pre {
-    @apply caret-white bg-black text-white rounded my-12 p-4 border border-black;
+    @apply !caret-white !bg-black !text-white !rounded !my-12 !border !border-black !p-20;
 
     *::selection {
-      @apply bg-white/20;
+      @apply !bg-white/20;
     }
 
     code {
-      @apply p-0 shadow-none;
+      @apply !p-0 !shadow-none;
     }
 
     .hljs-comment,
     .hljs-quote {
-      @apply text-white;
+      @apply !text-white;
     }
 
     .hljs-variable,
@@ -29,7 +30,7 @@
     .hljs-name,
     .hljs-selector-id,
     .hljs-selector-class {
-      @apply text-[red];
+      @apply !text-[red];
     }
 
     .hljs-number,
@@ -39,35 +40,35 @@
     .hljs-literal,
     .hljs-type,
     .hljs-params {
-      @apply text-[orange];
+      @apply !text-[orange];
     }
 
     .hljs-string,
     .hljs-symbol,
     .hljs-bullet {
-      @apply text-[lime];
+      @apply !text-[lime];
     }
 
     .hljs-title,
     .hljs-section {
-      @apply text-[yellow];
+      @apply !text-[yellow];
     }
 
     .hljs-attr {
-      @apply text-[teal];
+      @apply !text-[teal];
     }
 
     .hljs-keyword,
     .hljs-selector-tag {
-      @apply text-[teal];
+      @apply !text-[teal];
     }
 
     .hljs-emphasis {
-      font-style: italic;
+      font-style: italic !important;
     }
 
     .hljs-strong {
-      font-weight: 700;
+      font-weight: 700 !important;
     }
   }
 }
