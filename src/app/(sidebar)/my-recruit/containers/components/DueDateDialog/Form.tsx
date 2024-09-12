@@ -29,7 +29,12 @@ export function Form({
   onDeadLineClick,
   onDeleteClick,
 }: Props) {
+  const [isOpen, setIsOpen] = useState(false);
   const isDateSelected = selectedDate != null;
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [selectedDate]);
 
   return (
     <div className="w-full flex justify-between items-center p-8 bg-neutral-1 rounded-[8px]">
@@ -53,7 +58,7 @@ export function Form({
         </Dropdown.Content>
       </Dropdown>
       <div className="flex items-center">
-        <Popover>
+        <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger>
             <motion.div
               initial="initial"

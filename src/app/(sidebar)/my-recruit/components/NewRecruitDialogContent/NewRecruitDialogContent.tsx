@@ -34,10 +34,15 @@ export function NewRecruitDialogContent({ onSubmit }: NewRecruitDialogContentPro
   const [siteUrl, setSiteUrl] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date>();
   const [currentRecruitStage, setCurrentRecruitStage] = useState<string>(recruitScheduleStageList[0]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const [selectedSeason, setSelectedSeason] = useState<string>();
   const seasonList = useGetSeasons()?.data ?? [];
   const isDateSelected = selectedDate != null;
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [selectedDate]);
 
   useEffect(() => {
     if (selectedSeason == null) {
@@ -110,7 +115,7 @@ export function NewRecruitDialogContent({ onSubmit }: NewRecruitDialogContentPro
             ))}
           </Dropdown.Content>
         </Dropdown>
-        <Popover>
+        <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger>
             <motion.div
               initial="initial"
