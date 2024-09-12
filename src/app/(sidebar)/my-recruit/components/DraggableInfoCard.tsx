@@ -6,7 +6,8 @@ import { ComponentProps } from 'react';
 export function DraggableInfoCard(props: ComponentProps<typeof InfoCard>) {
   const { over } = useDndContext();
 
-  const overTitle = over?.data.current?.title;
+  const title = over?.data.current?.title;
+  const overTitle = title?.length > 12 ? `${title.slice(0, 12)}...` : title;
 
   return (
     <div className="relative">
