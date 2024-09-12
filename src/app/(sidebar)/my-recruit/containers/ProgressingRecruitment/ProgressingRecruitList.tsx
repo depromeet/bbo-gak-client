@@ -1,17 +1,18 @@
-import { BoxCard, MIN_CARD_WIDTH } from '@/app/(sidebar)/my-recruit/containers/components/Card/BoxCard';
 import { useGetProgressingRecruits } from '@/app/(sidebar)/my-recruit/api/useGetProgressingRecruits';
-import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
-import { motion } from 'framer-motion';
-import { color } from '@/system/token/color';
-import { Spacing } from '@/system/utils/Spacing';
+import { BoxCard, MIN_CARD_WIDTH } from '@/app/(sidebar)/my-recruit/containers/components/Card/BoxCard';
 import { TouchButton } from '@/components/TouchButton';
-import { useState } from 'react';
-import { If } from '@/system/utils/If';
-import { SwitchCase } from '@/system/utils/SwitchCase';
-import { usePatchRecruitStatus } from '../../api/usePatchRecruitStatus';
-import { useDeleteRecruit } from '../../api/useDeleteRecruit';
 import { useResizeObserver } from '@/hooks/useResizeObserver';
+import { Droppable } from '@/lib/dnd-kit/Droppable';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import { color } from '@/system/token/color';
 import { AnimateHeight } from '@/system/utils/AnimateHeight';
+import { If } from '@/system/utils/If';
+import { Spacing } from '@/system/utils/Spacing';
+import { SwitchCase } from '@/system/utils/SwitchCase';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { useDeleteRecruit } from '../../api/useDeleteRecruit';
+import { usePatchRecruitStatus } from '../../api/usePatchRecruitStatus';
 
 const 최초_노출_카드_갯수 = 1;
 const CARD_GAP = 16;
