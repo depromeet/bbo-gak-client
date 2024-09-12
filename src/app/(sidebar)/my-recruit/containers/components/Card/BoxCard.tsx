@@ -34,7 +34,11 @@ export function BoxCard({
 
   return (
     <div className="flex-1 rounded-[10px] overflow-hidden cursor-pointer" style={{ minWidth, maxWidth: 350 }}>
-      <div className="h-38 pr-12 pl-20 bg-neutral-95 flex justify-between items-center">
+      <div
+        className={cn(
+          'h-38 pr-12 pl-20 flex justify-between items-center',
+          highlighted ? 'bg-mint-40' : 'bg-neutral-95',
+        )}>
         {nearestSchedule == null ? (
           <Dialog>
             <Dialog.Trigger className="flex justify-between items-center w-full">
@@ -50,12 +54,12 @@ export function BoxCard({
         ) : (
           <>
             <div className="flex items-center gap-[4px]">
-              <Icon name="clover" size={20} color={color.mint30} />
+              <Icon name="clover" size={20} color={highlighted ? color.mint10 : color.mint30} />
               <span className="text-white text-label2 ">
                 {nearestSchedule.recruitScheduleStage} D-{dday(nearestSchedule.deadLine) || 'DAY'}
               </span>
             </div>
-            <MoreButton onDeleteClick={() => onRecruitDelete(id)} />
+            <MoreButton highlighted={highlighted} onDeleteClick={() => onRecruitDelete(id)} />
           </>
         )}
       </div>
