@@ -1,13 +1,13 @@
+import { recruitScheduleStageList } from '@/app/(sidebar)/my-recruit/constant';
 import { Dropdown, Icon } from '@/system/components';
 import { Calendar } from '@/system/components/Calendar/Calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
 import { color } from '@/system/token/color';
+import { If } from '@/system/utils/If';
 import clsx from 'clsx';
 import { format } from 'date-fns/format';
 import { motion } from 'framer-motion';
-import { recruitScheduleStageList } from '@/app/(sidebar)/my-recruit/constant';
-import { useState } from 'react';
-import { If } from '@/system/utils/If';
+import { useEffect, useState } from 'react';
 
 interface Props {
   selectedDate?: Date;

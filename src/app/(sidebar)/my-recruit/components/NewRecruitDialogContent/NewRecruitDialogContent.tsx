@@ -1,19 +1,17 @@
-import { Spacing } from '@/system/utils/Spacing';
-import { TouchButton } from '@/components/TouchButton';
-import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
-import { color } from '@/system/token/color';
-import { InputField } from './InputField';
-import { useEffect, useState } from 'react';
-import { Icon } from '@/system/components';
-import { Dropdown } from '@/system/components';
-import clsx from 'clsx';
-import { motion } from 'framer-motion';
-import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
-import { Calendar } from '@/system/components/Calendar/Calendar';
-import { format } from 'date-fns/format';
-import { useGetSeasons } from '../../api/useGetSeasons';
-import { recruitStatusList } from '../../constant';
 import { recruitScheduleStageList } from '@/app/(sidebar)/my-recruit/constant';
+import { TouchButton } from '@/components/TouchButton';
+import { Dropdown, Icon } from '@/system/components';
+import { Calendar } from '@/system/components/Calendar/Calendar';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
+import { color } from '@/system/token/color';
+import { Spacing } from '@/system/utils/Spacing';
+import clsx from 'clsx';
+import { format } from 'date-fns/format';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { useGetSeasons } from '../../api/useGetSeasons';
+import { InputField } from './InputField';
 
 export interface CardData {
   season: string;
