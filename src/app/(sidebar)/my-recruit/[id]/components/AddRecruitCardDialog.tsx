@@ -14,9 +14,10 @@ import { usePostCardInRecruit } from '../api/usePostCardInRecurit';
 
 interface AddRecruitCardDialogProps {
   recruitId: string;
+  category: RecruitType;
 }
 
-export function AddRecruitCardDialog({ children, recruitId }: PropsWithChildren<AddRecruitCardDialogProps>) {
+export function AddRecruitCardDialog({ children, recruitId, category }: PropsWithChildren<AddRecruitCardDialogProps>) {
   const router = useRouter();
 
   const [selectedTagList, setSelectedTagList] = useState<TagType[]>([]);
@@ -46,9 +47,9 @@ export function AddRecruitCardDialog({ children, recruitId }: PropsWithChildren<
   return (
     <Dialog
       onOpenChange={(open) => {
+        setSelectedType(open && category !== '내_정보_복사' ? category : null);
         if (!open) {
           setSelectedTagList([]);
-          setSelectedType(null);
         }
       }}>
       <DialogTrigger asChild>{children}</DialogTrigger>

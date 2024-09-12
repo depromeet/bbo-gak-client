@@ -52,6 +52,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
       }
     };
   }, []);
+
   const scrollToTop = () => {
     if (contentRef.current) {
       contentRef.current.scrollTop = 0;
@@ -96,7 +97,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
           })}
         </div>
 
-        <AddRecruitCardDialog recruitId={recruitId}>
+        <AddRecruitCardDialog recruitId={recruitId} category={currentOption}>
           <TouchButton layout>
             <motion.div
               initial={{ padding: '8px 16px' }}
