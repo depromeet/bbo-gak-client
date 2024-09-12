@@ -6,11 +6,13 @@ import { Icon } from '@/system/components';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { color } from '@/system/token/color';
 import { Spacing } from '@/system/utils/Spacing';
+import { cn } from '@/utils';
 import { dday } from '@/utils/date';
 import { useRouter } from 'next/navigation';
 import { DueDateDialog } from '../DueDateDialog/DueDateDialog';
 
 interface BoxCardProps extends RecruitCard {
+  highlighted?: boolean;
   onRecruitDelete: (id: number) => void;
   onRecruitStatusChange: (id: number, status: string) => void;
 }
@@ -23,6 +25,7 @@ export function BoxCard({
   recruitStatus,
   season,
   nearestSchedule,
+  highlighted = false,
   onRecruitStatusChange,
   onRecruitDelete,
 }: BoxCardProps) {
@@ -57,7 +60,10 @@ export function BoxCard({
         )}
       </div>
       <div
-        className="p-20 pt-16 bg-white border-neutral-5 border-1 rounded-b-[10px] hover:border-neutral-95"
+        className={cn(
+          'p-20 pt-16 bg-white border-neutral-5 border-1 rounded-b-[10px] hover:border-neutral-95',
+          highlighted ? 'border-mint-10 bg-[rgba(221,243,235,0.50)]' : 'border-neutral-5 bg-[white]',
+        )}
         onClick={() => router.push(`/my-recruit/${id}`)}>
         <div className="flex justify-between items-center">
           <div className="bg-mint-1 text-mint-50 text-label1 px-8 py-4 rounded-4">{season}</div>

@@ -53,14 +53,19 @@ export function ProgressingRecruitList() {
               <AnimateHeight>
                 <div ref={resizeRef} className="grid flex-wrap" style={{ gridTemplateColumns, gap: CARD_GAP }}>
                   {recruitCardForShow.map((cardInfo) => (
-                    <BoxCard
+                    <Droppable
                       key={`${cardInfo.id}-${cardInfo.season}-${cardInfo.title}`}
-                      {...cardInfo}
-                      onRecruitDelete={deleteRecruit}
-                      onRecruitStatusChange={(id, status) => {
-                        patchRecruitStatus({ id, recruitStatus: status });
-                      }}
-                    />
+                      id={`box-${cardInfo.id}`}
+                      dataForOverlay={{ title: cardInfo.title }}>
+                      <BoxCard
+                        highlighted={`box-${cardInfo.id}` === over?.id}
+                        {...cardInfo}
+                        onRecruitDelete={deleteRecruit}
+                        onRecruitStatusChange={(id, status) => {
+                          patchRecruitStatus({ id, recruitStatus: status });
+                        }}
+                      />
+                    </Droppable>
                   ))}
                 </div>
               </AnimateHeight>
