@@ -3,6 +3,7 @@ import { BoxCard, MIN_CARD_WIDTH } from '@/app/(sidebar)/my-recruit/containers/c
 import { TouchButton } from '@/components/TouchButton';
 import { useResizeObserver } from '@/hooks/useResizeObserver';
 import { Droppable } from '@/lib/dnd-kit/Droppable';
+import { useDndContext } from '@/lib/dnd-kit/dnd-kit';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { color } from '@/system/token/color';
 import { AnimateHeight } from '@/system/utils/AnimateHeight';
@@ -21,6 +22,7 @@ export function ProgressingRecruitList() {
   const recruitCards = useGetProgressingRecruits().data;
   const [shouldShowMore, setShouldShowMore] = useState(false);
 
+  const { over } = useDndContext();
   const { mutate: patchRecruitStatus } = usePatchRecruitStatus();
   const { mutate: deleteRecruit } = useDeleteRecruit();
 
