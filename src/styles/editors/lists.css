@@ -9,7 +9,7 @@
 
   ul,
   ol {
-    @apply py-0 px-8 my-6 first:mt-0 last:mb-0 ml-90;
+    @apply py-0 px-8 my-6 first:mt-0 last:mb-0 ml-10;
 
     ul,
     ol,
@@ -30,7 +30,7 @@
   ul[data-type='taskList'] {
     list-style: none;
     padding: 0;
-    margin-left: 80px !important;
+    margin-left: 0px !important;
 
     p {
       margin: 0 !important;

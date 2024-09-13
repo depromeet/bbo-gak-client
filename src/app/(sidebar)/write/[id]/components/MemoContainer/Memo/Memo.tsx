@@ -50,7 +50,7 @@ export default function Memo({ id: memoId, content, updatedDate }: GetMemosRespo
             spellCheck={false}
             ref={textareaRef}
             rows={1}
-            className="w-full  whitespace-pre-wrap min-h-0 border-none p-0 memo-14 resize-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0 rounded-0"
+            className="w-full whitespace-pre-wrap min-h-0 border-none p-0 memo-14 resize-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0 rounded-0"
             value={memo}
             onChange={(e) => setMemo(e.target.value)}
             autoFocus

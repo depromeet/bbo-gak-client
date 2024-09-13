@@ -2,7 +2,7 @@
   @apply z-0 caret-black dark:caret-white outline-0 lg:pl-8 lg:pr-8 font-regular text-[#212225];
 
   & > * {
-    @apply max-w-[580px] mr-80 ml-80;
+    @apply max-w-[580px] mr-80;
   }
 
   .selection {

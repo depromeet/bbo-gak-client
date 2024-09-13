@@ -20,6 +20,7 @@ import { useNotificationContext } from '@/components/Notification/context';
 import { LogoOnlyLeaf } from '@/components/LogoOnlyLeaf';
 import { SearchDialog } from '../SearchDialog/SearchDialog';
 import { AsyncBoundaryWithQuery } from '@/lib';
+import { useGetNotificationCount } from '@/components/Notification/apis/useGetNotificationCount';
 
 export function Sidebar() {
   const router = useRouter();
@@ -31,6 +32,7 @@ export function Sidebar() {
 
   const { isOpen: isNotificationOpen, toggle: toggleNotification } = useNotificationContext();
 
+  const { data: notificationCount } = useGetNotificationCount();
   const { data: typeCounts } = useGetCardTypeCount();
   const { data: recruiteTitles } = useGetRecruitTitles();
 
@@ -86,10 +88,15 @@ export function Sidebar() {
         />
 
         <SidebarButton
-          iconName="bell"
+          iconName={!!notificationCount?.number ? 'bellWithRedDot' : 'bell'}
           selected={isNotificationOpen}
           expanded={expanded}
           expandedText="알림"
+          right={
+            <div className="px-4 rounded-3 bg-neutral-80 text-neutral-35 text-caption1 font-medium">
+              {notificationCount?.number || '0'}
+            </div>
+          }
           onClick={toggleNotification}
         />
         {/* <SidebarButton iconName="memo" selected={false} expanded={expanded} expandedText="메모 모아보기" /> */}

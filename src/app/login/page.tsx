@@ -5,12 +5,13 @@ import { useFunnel } from '@/system/components/Funnel/useFunnel';
 import { getCookie } from 'cookies-next';
 import { Login } from './components/Login';
 import Select from './components/Select';
-import { ACCESS_TOKEN, JOB_SELECTION, SELECT } from './constants/token';
+import { JOB_SELECTION, SELECT } from './constants/token';
+import { ACCESS_TOKEN } from '@/app/login/constants/token';
 
 export default function Page() {
   const Funnel = useFunnel(['login', 'select'] as const, { initialStep: 'login', stepQueryKey: 'auth' });
   const isSelectJob = getCookie(JOB_SELECTION) === SELECT;
-  const accessToken = getCookie(ACCESS_TOKEN);
+  const accessToken = getCookie(ACCESS_TOKEN) as string;
 
   return (
     <Funnel mode="wait">

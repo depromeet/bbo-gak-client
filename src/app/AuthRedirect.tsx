@@ -1,18 +1,23 @@
-import { cookies } from 'next/headers';
-import { ACCESS_TOKEN, JOB_SELECTION, REFRESH_TOKEN } from './login/constants/token';
+'use client';
+
 import { redirect } from 'next/navigation';
+import { useEffect } from 'react';
+import { deleteCookie, getCookie } from 'cookies-next';
+import { ACCESS_TOKEN, JOB_SELECTION, REFRESH_TOKEN } from './login/constants/token';
 import type { StrictPropsWithChildren } from '@/types';
 
-export default async function AuthRedirect({ children }: StrictPropsWithChildren) {
-  const accessToken = cookies().get(ACCESS_TOKEN)?.value;
-  const isJobSelection = cookies().get(JOB_SELECTION)?.value;
+export default function AuthRedirect({ children }: StrictPropsWithChildren) {
+  const accessToken = getCookie(ACCESS_TOKEN) as string;
+  const isJobSelection = getCookie(JOB_SELECTION) as string;
 
-  if (!accessToken || !isJobSelection) {
-    cookies().delete(ACCESS_TOKEN);
-    cookies().delete(REFRESH_TOKEN);
-    cookies().delete(JOB_SELECTION);
-    redirect('/login');
-  }
+  useEffect(() => {
+    if (!accessToken || !isJobSelection) {
+      deleteCookie(ACCESS_TOKEN);
+      deleteCookie(REFRESH_TOKEN);
+      deleteCookie(JOB_SELECTION);
+      redirect('/login');
+    }
+  }, [accessToken, isJobSelection]);
 
   return <>{children}</>;
 }
