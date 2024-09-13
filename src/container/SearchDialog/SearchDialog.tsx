@@ -10,6 +10,7 @@ import { EasterEgg } from './EasterEgg';
 import { useState } from 'react';
 import { AsyncBoundaryWithQuery } from '@/lib';
 import { If } from '@/system/utils/If';
+import { useRouter } from 'next/navigation';
 
 interface SearchDialogProps {
   open: boolean;
@@ -19,6 +20,7 @@ interface SearchDialogProps {
 function Content({ onClose }: SearchDialogProps) {
   const { data, mutate } = useGetSearchCards();
   const [showEaster, setShowEaster] = useState(false);
+  const router = useRouter();
 
   return (
     <div className="z-[10000] fixed w-[calc(100vw-160px)] h-[calc(100vh-160px)] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-[20px] bg-white p-[40px] pb-0">
@@ -36,10 +38,13 @@ function Content({ onClose }: SearchDialogProps) {
       />
       <If condition={!showEaster}>
         <div className="overflow-scroll grid flex-wrap" style={{ gap: 20, gridTemplateColumns: '1fr 1fr 1fr' }}>
-          {data?.data.map((info) => <SearchedCard key={info.id} {...info} />)}
+          {data?.data.map((info) => (
+            <SearchedCard key={info.id} {...info} onCardClick={() => router.push(`/write/${info.id}`)} />
+          ))}
         </div>
       </If>
       {showEaster && <EasterEgg />}
+      <div className="font-[NanumDaheng] text-transparent">ho</div>
     </div>
   );
 }
