@@ -16,10 +16,9 @@ import { Icon } from '@/system/components';
 import MemoContainer from './components/MemoContainer/MemoContainer';
 import { MemosFetcher } from '@/app/(sidebar)/write/[id]/fetcher/MemosFetcher';
 import { INFO_TYPES } from '@/types/info';
-import { Textarea } from '@/system/components/Textarea/Textarea';
 import { TouchButton } from '@/components/TouchButton';
 import SavingJson from '../../../../../public/saving_dot.json';
-import { useState } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const Lottie = dynamic(() => import('lottie-react'));
@@ -53,6 +52,17 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
   } = useWrite(Number(id));
 
   const [isEditing, setIsEditing] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const adjustTextareaHeight = useCallback(() => {
+    const textarea = textareaRef.current;
+
+    if (textarea) {
+      textarea.style.height = '32px';
+      const newHeight = textarea.scrollHeight > 32 ? 64 : 32;
+      textarea.style.height = `${newHeight}px`;
+    }
+  }, []);
 
   return (
     <section className="h-full">
@@ -86,16 +96,22 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
           </If>
 
           <EditorProvider initialContent={content} contentSetter={mutatePutCardContent} setIsEditing={setIsEditing}>
-            <div className="flex justify-between items-center pr-80 relative">
+            <div className="flex justify-between items-center pr-80 relative max-h-64 h-min">
               <TouchButton onClick={back} className="absolute left-40 mt-3">
                 <Icon name="backspace" size={24} color="#1B1C1E" />
               </TouchButton>
 
-              <Textarea
+              <textarea
+                ref={textareaRef}
                 value={title}
-                onChange={(e) => handlePutCardTitle(e.target.value)}
+                onChange={(e) => {
+                  handlePutCardTitle(e.target.value);
+                  adjustTextareaHeight();
+                }}
                 placeholder="제목을 입력해주세요."
-                className="text-[24px] h-32 !min-h-32 font-bold resize-none bg-neutral-1 px-0 leading-32 tracking-[-0.0345rem] border-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-neutral-30 pl-80 "
+                className="w-full text-[24px] font-bold resize-none bg-neutral-1 px-0 leading-32 tracking-[-0.0345rem] border-none focus:outline-0 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-neutral-30 pl-80"
+                style={{ height: isEditing ? 'auto' : '32px', overflow: 'hidden' }}
+                maxLength={40}
               />
               <div className="flex gap-8 items-center text-neutral-20 whitespace-nowrap">
                 <div className="flex items-center gap-4">
