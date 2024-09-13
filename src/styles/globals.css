@@ -36,6 +36,12 @@ body {
     sans-serif;
 }
 
+@font-face {
+  font-family: 'NanumDaheng';
+  font-weight: 200;
+  src: url('/fonts/nanum.ttf') format('truetype');
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

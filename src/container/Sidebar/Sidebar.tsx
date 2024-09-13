@@ -18,11 +18,14 @@ import { PropsWithChildren, useState } from 'react';
 import { Collapsible } from './Collapsible/Collapsible';
 import { useNotificationContext } from '@/components/Notification/context';
 import { LogoOnlyLeaf } from '@/components/LogoOnlyLeaf';
+import { SearchDialog } from '../SearchDialog/SearchDialog';
+import { AsyncBoundaryWithQuery } from '@/lib';
 
 export function Sidebar() {
   const router = useRouter();
   const pathname = usePathname();
   const [expanded, setExpanded] = useState(true);
+  const [searchDialogOpened, setSearchDialogOpened] = useState(false);
   const [myInfoCollapsed, setMyInfoCollapsed] = useState(true);
   const [myJDCollapsed, setMyJDCollapsed] = useState(true);
 
@@ -74,17 +77,14 @@ export function Sidebar() {
       </div>
 
       <div className="flex flex-col items-center gap-[36px] w-full">
-        <Dialog>
-          <Dialog.Trigger className="w-full" asChild>
-            <SidebarButton iconName="search" selected={false} expanded={expanded} expandedText="태그 검색" />
-          </Dialog.Trigger>
-          <Dialog.Content className="w-448 rounded-45 pl-32 pr-20 pt-56 pb-60">
-            <div className="flex flex-col justify-center items-center gap-12">
-              <Icon name="warning" size={36} color="#AEB0B6" />
-              <p className="text-heading-1 font-bold">아직 준비 중이에요!</p>
-            </div>
-          </Dialog.Content>
-        </Dialog>
+        <SidebarButton
+          iconName="search"
+          selected={false}
+          expanded={expanded}
+          expandedText="태그 검색"
+          onClick={() => setSearchDialogOpened(true)}
+        />
+
         <SidebarButton
           iconName="bell"
           selected={isNotificationOpen}
@@ -175,6 +175,10 @@ export function Sidebar() {
           onClick={logout}
         />
       </div>
+
+      <AsyncBoundaryWithQuery>
+        <SearchDialog open={searchDialogOpened} onClose={() => setSearchDialogOpened(false)} />
+      </AsyncBoundaryWithQuery>
     </motion.nav>
   );
 }

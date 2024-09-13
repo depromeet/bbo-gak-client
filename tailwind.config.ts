@@ -110,21 +110,16 @@ const config: Config = {
             '40': '#0DD78C',
             '50': '#1BA673',
           },
-          blue: {
-            bg: {
-              '1': '#E8F1FF',
-            },
-            text: {
-              '1': '#418CC3',
-            },
+          text: {
+            '1': '#418CC3',
           },
-          purple: {
-            bg: {
-              '1': '#F1E8FF',
-            },
-            text: {
-              '1': '#9C6BB3',
-            },
+        },
+        purple: {
+          bg: {
+            '1': '#F1E8FF',
+          },
+          text: {
+            '1': '#9C6BB3',
           },
         },
         yellow: {
