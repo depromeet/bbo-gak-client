@@ -1,7 +1,7 @@
 import { Icon } from '@/system/components';
 import { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from '@/system/components/Dialog/Dialog';
 import { TagType, InfoType, INFO_TYPES } from '@/types/info';
-import { PropsWithChildren, useState } from 'react';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { TagSelector } from '../../write/[id]/components/TagSelector/TagSelector';
 import { If } from '@/system/utils/If';
 import { cn } from '@/utils/tailwind-util';
@@ -12,11 +12,16 @@ import { TouchButton } from '@/components/TouchButton';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 
-export function AddInfoCardDialog({ children }: PropsWithChildren) {
+export function AddInfoCardDialog({
+  children,
+  currentCardType = '경험_정리',
+}: PropsWithChildren<{ currentCardType?: InfoType }>) {
   const router = useRouter();
 
+  console.log('currentCardType', currentCardType);
+
   const [selectedTagList, setSelectedTagList] = useState<TagType[]>([]);
-  const [selectedType, setSelectedType] = useState<InfoType | null>(null);
+  const [selectedType, setSelectedType] = useState<InfoType | null>(currentCardType || null);
 
   const [isOpenTagSelector, setIsOpenTagSelector] = useState(false);
   const [isOpenTypeSelector, setIsOpenTypeSelector] = useState(false);
@@ -37,6 +42,10 @@ export function AddInfoCardDialog({ children }: PropsWithChildren) {
 
     router.push(`/write/${res.cardId}`);
   };
+
+  useEffect(() => {
+    setSelectedType(currentCardType);
+  }, [currentCardType]);
 
   return (
     <Dialog
@@ -102,7 +111,7 @@ export function AddInfoCardDialog({ children }: PropsWithChildren) {
                   {abilityTagList.map((tag) => (
                     <TagSelector.Tag
                       key={tag.id}
-                      className="text-blue-blue-text-1 bg-blue-blue-bg-1"
+                      className="text-blue-text-1 bg-blue-bg-1"
                       onClick={() => {
                         if (selectedTagList.length < 3 && !selectedTagList.find(({ id }) => id === tag.id)) {
                           setSelectedTagList((prev) => [...prev, tag]);
@@ -119,7 +128,7 @@ export function AddInfoCardDialog({ children }: PropsWithChildren) {
                   {personalityTagList.map((tag) => (
                     <TagSelector.Tag
                       key={tag.id}
-                      className="text-blue-purple-text-1 bg-blue-purple-bg-1"
+                      className="text-purple-text-1 bg-purple-bg-1"
                       onClick={() => {
                         if (selectedTagList.length < 3 && !selectedTagList.find(({ id }) => id === tag.id)) {
                           setSelectedTagList((prev) => [...prev, tag]);

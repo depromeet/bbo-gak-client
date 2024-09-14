@@ -109,7 +109,7 @@ export default function MyInfo() {
                 ))}
               </div>
             </If>
-            <AddInfoCardDialog>
+            <AddInfoCardDialog currentCardType={currentCardType}>
               <TouchButton layout>
                 <motion.div
                   initial={{ padding: '8px 16px' }}
