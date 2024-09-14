@@ -18,8 +18,6 @@ export function AddInfoCardDialog({
 }: PropsWithChildren<{ currentCardType?: InfoType }>) {
   const router = useRouter();
 
-  console.log('currentCardType', currentCardType);
-
   const [selectedTagList, setSelectedTagList] = useState<TagType[]>([]);
   const [selectedType, setSelectedType] = useState<InfoType | null>(currentCardType || null);
 
