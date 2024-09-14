@@ -1,17 +1,19 @@
-import { BoxCard, MIN_CARD_WIDTH } from '@/app/(sidebar)/my-recruit/containers/components/Card/BoxCard';
 import { useGetProgressingRecruits } from '@/app/(sidebar)/my-recruit/api/useGetProgressingRecruits';
-import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
-import { motion } from 'framer-motion';
-import { color } from '@/system/token/color';
-import { Spacing } from '@/system/utils/Spacing';
+import { BoxCard, MIN_CARD_WIDTH } from '@/app/(sidebar)/my-recruit/containers/components/Card/BoxCard';
 import { TouchButton } from '@/components/TouchButton';
-import { useState } from 'react';
-import { If } from '@/system/utils/If';
-import { SwitchCase } from '@/system/utils/SwitchCase';
-import { usePatchRecruitStatus } from '../../api/usePatchRecruitStatus';
-import { useDeleteRecruit } from '../../api/useDeleteRecruit';
 import { useResizeObserver } from '@/hooks/useResizeObserver';
+import { Droppable } from '@/lib/dnd-kit/Droppable';
+import { useDndContext } from '@/lib/dnd-kit/dnd-kit';
+import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
+import { color } from '@/system/token/color';
 import { AnimateHeight } from '@/system/utils/AnimateHeight';
+import { If } from '@/system/utils/If';
+import { Spacing } from '@/system/utils/Spacing';
+import { SwitchCase } from '@/system/utils/SwitchCase';
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { useDeleteRecruit } from '../../api/useDeleteRecruit';
+import { usePatchRecruitStatus } from '../../api/usePatchRecruitStatus';
 
 const 최초_노출_카드_갯수 = 1;
 const CARD_GAP = 16;
@@ -20,6 +22,7 @@ export function ProgressingRecruitList() {
   const recruitCards = useGetProgressingRecruits().data;
   const [shouldShowMore, setShouldShowMore] = useState(false);
 
+  const { over } = useDndContext();
   const { mutate: patchRecruitStatus } = usePatchRecruitStatus();
   const { mutate: deleteRecruit } = useDeleteRecruit();
 
@@ -53,14 +56,19 @@ export function ProgressingRecruitList() {
               <AnimateHeight>
                 <div ref={resizeRef} className="grid flex-wrap" style={{ gridTemplateColumns, gap: CARD_GAP }}>
                   {recruitCardForShow.map((cardInfo) => (
-                    <BoxCard
+                    <Droppable
                       key={`${cardInfo.id}-${cardInfo.season}-${cardInfo.title}`}
-                      {...cardInfo}
-                      onRecruitDelete={deleteRecruit}
-                      onRecruitStatusChange={(id, status) => {
-                        patchRecruitStatus({ id, recruitStatus: status });
-                      }}
-                    />
+                      id={`box-${cardInfo.id}`}
+                      dataForOverlay={{ title: cardInfo.title }}>
+                      <BoxCard
+                        highlighted={`box-${cardInfo.id}` === over?.id}
+                        {...cardInfo}
+                        onRecruitDelete={deleteRecruit}
+                        onRecruitStatusChange={(id, status) => {
+                          patchRecruitStatus({ id, recruitStatus: status });
+                        }}
+                      />
+                    </Droppable>
                   ))}
                 </div>
               </AnimateHeight>

@@ -1,13 +1,13 @@
+import { recruitScheduleStageList } from '@/app/(sidebar)/my-recruit/constant';
 import { Dropdown, Icon } from '@/system/components';
 import { Calendar } from '@/system/components/Calendar/Calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/system/components/Popover/Popover';
 import { color } from '@/system/token/color';
+import { If } from '@/system/utils/If';
 import clsx from 'clsx';
 import { format } from 'date-fns/format';
 import { motion } from 'framer-motion';
-import { recruitScheduleStageList } from '@/app/(sidebar)/my-recruit/constant';
-import { useState } from 'react';
-import { If } from '@/system/utils/If';
+import { useEffect, useState } from 'react';
 
 interface Props {
   selectedDate?: Date;
@@ -29,7 +29,12 @@ export function Form({
   onDeadLineClick,
   onDeleteClick,
 }: Props) {
+  const [isOpen, setIsOpen] = useState(false);
   const isDateSelected = selectedDate != null;
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [selectedDate]);
 
   return (
     <div className="w-full flex justify-between items-center p-8 bg-neutral-1 rounded-[8px]">
@@ -53,7 +58,7 @@ export function Form({
         </Dropdown.Content>
       </Dropdown>
       <div className="flex items-center">
-        <Popover>
+        <Popover open={isOpen} onOpenChange={setIsOpen}>
           <PopoverTrigger>
             <motion.div
               initial="initial"

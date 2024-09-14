@@ -40,10 +40,10 @@ export function AllRecruitList({ selectedSeason }: Props) {
               {allRecruits.map((cardInfo) => (
                 <Droppable
                   key={`${cardInfo.id}-${cardInfo.season}-${cardInfo.title}`}
-                  id={cardInfo.id}
+                  id={`row-${cardInfo.id}`}
                   dataForOverlay={{ title: cardInfo.title }}>
                   <RowCard
-                    highlighted={cardInfo.id === over?.id}
+                    highlighted={`row-${cardInfo.id}` === over?.id}
                     {...cardInfo}
                     onRecruitDelete={deleteRecruit}
                     onRecruitStatusChange={(id, status) => {

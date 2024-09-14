@@ -6,11 +6,13 @@ import { Icon } from '@/system/components';
 import { Dialog } from '@/system/components/Dialog/ShadcnDialog';
 import { color } from '@/system/token/color';
 import { Spacing } from '@/system/utils/Spacing';
+import { cn } from '@/utils';
 import { dday } from '@/utils/date';
 import { useRouter } from 'next/navigation';
 import { DueDateDialog } from '../DueDateDialog/DueDateDialog';
 
 interface BoxCardProps extends RecruitCard {
+  highlighted?: boolean;
   onRecruitDelete: (id: number) => void;
   onRecruitStatusChange: (id: number, status: string) => void;
 }
@@ -23,6 +25,7 @@ export function BoxCard({
   recruitStatus,
   season,
   nearestSchedule,
+  highlighted = false,
   onRecruitStatusChange,
   onRecruitDelete,
 }: BoxCardProps) {
@@ -31,7 +34,11 @@ export function BoxCard({
 
   return (
     <div className="flex-1 rounded-[10px] overflow-hidden cursor-pointer" style={{ minWidth, maxWidth: 350 }}>
-      <div className="h-38 pr-12 pl-20 bg-neutral-95 flex justify-between items-center">
+      <div
+        className={cn(
+          'h-38 pr-12 pl-20 flex justify-between items-center',
+          highlighted ? 'bg-mint-40' : 'bg-neutral-95',
+        )}>
         {nearestSchedule == null ? (
           <Dialog>
             <Dialog.Trigger className="flex justify-between items-center w-full">
@@ -47,17 +54,20 @@ export function BoxCard({
         ) : (
           <>
             <div className="flex items-center gap-[4px]">
-              <Icon name="clover" size={20} color={color.mint30} />
+              <Icon name="clover" size={20} color={highlighted ? color.mint10 : color.mint30} />
               <span className="text-white text-label2 ">
                 {nearestSchedule.recruitScheduleStage} D-{dday(nearestSchedule.deadLine) || 'DAY'}
               </span>
             </div>
-            <MoreButton onDeleteClick={() => onRecruitDelete(id)} />
+            <MoreButton highlighted={highlighted} onDeleteClick={() => onRecruitDelete(id)} />
           </>
         )}
       </div>
       <div
-        className="p-20 pt-16 bg-white border-neutral-5 border-1 rounded-b-[10px] hover:border-neutral-95"
+        className={cn(
+          'p-20 pt-16 bg-white border-neutral-5 border-1 rounded-b-[10px] hover:border-neutral-95',
+          highlighted ? 'border-mint-10 bg-[rgba(221,243,235,0.50)]' : 'border-neutral-5 bg-[white]',
+        )}
         onClick={() => router.push(`/my-recruit/${id}`)}>
         <div className="flex justify-between items-center">
           <div className="bg-mint-1 text-mint-50 text-label1 px-8 py-4 rounded-4">{season}</div>

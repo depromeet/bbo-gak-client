@@ -3,7 +3,7 @@
 import { InfoCard } from '@/components/InfoCard';
 import { TouchButton } from '@/components/TouchButton';
 import { Droppable } from '@/lib/dnd-kit/Droppable';
-import { Icon, Text } from '@/system/components';
+import { Icon } from '@/system/components';
 import { If } from '@/system/utils/If';
 import { InfoCardType } from '@/types';
 import { RECRUIT_TYPES, RecruitType } from '@/types/recruit';
@@ -52,6 +52,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
       }
     };
   }, []);
+
   const scrollToTop = () => {
     if (contentRef.current) {
       contentRef.current.scrollTop = 0;
@@ -96,7 +97,7 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
           })}
         </div>
 
-        <AddRecruitCardDialog recruitId={recruitId}>
+        <AddRecruitCardDialog recruitId={recruitId} category={currentOption}>
           <TouchButton layout>
             <motion.div
               initial={{ padding: '8px 16px' }}
@@ -138,14 +139,6 @@ export function DetailContent({ recruitId }: { recruitId: string }) {
                     transition={{ duration: 0.5 }}>
                     <Icon name="arrowUp" size={24} />
                     <span className="text-neutral-1 text-caption1">TOP</span>
-                  </motion.div>
-                  <motion.div
-                    className="absolute top-full left-1/2 translate-x-[-50%] mt-[4px] w-max px-[10px] py-[4px] rounded-[6px] bg-[#70737C] pointer-events-none"
-                    initial={{ opacity: 0 }}
-                    variants={{ hover: { opacity: 1 } }}>
-                    <Text typography="label1" color="white">
-                      내 정보 가져오기
-                    </Text>
                   </motion.div>
                 </TouchButton>
               )}

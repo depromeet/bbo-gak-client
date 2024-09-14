@@ -1,16 +1,16 @@
-import { Icon } from '@/system/components';
-import { Dropdown } from '@/system/components';
+import { Dropdown, Icon } from '@/system/components';
 import { color } from '@/system/token/color';
 
 interface MoreButtonProps {
   onDeleteClick: () => void;
+  highlighted?: boolean;
 }
 
-export function MoreButton({ onDeleteClick }: MoreButtonProps) {
+export function MoreButton({ onDeleteClick, highlighted }: MoreButtonProps) {
   return (
     <Dropdown>
       <Dropdown.Trigger className="outline-none">
-        <Icon name="more" size={24} color={color.neutral40} />
+        <Icon name="more" size={24} color={highlighted ? color.white : color.neutral40} />
       </Dropdown.Trigger>
       <Dropdown.Content className="mr-[100px]">
         <Dropdown.CheckedItem className="gap-[8px]" onClick={onDeleteClick}>
