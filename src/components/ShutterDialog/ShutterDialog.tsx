@@ -2,18 +2,21 @@
 
 import { Button } from '@/system/components';
 import { Dialog, DialogClose, DialogContent } from '@/system/components/Dialog/Dialog';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const LOCAL_STORAGE_KEY = 'never-show-shutter';
 
 export function ShutterDialog() {
-  const isNeverShowShutter = localStorage.getItem(LOCAL_STORAGE_KEY) === 'true';
-  const [isOpen, setIsOpen] = useState(!isNeverShowShutter);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleNeverShowAgain = () => {
     localStorage.setItem(LOCAL_STORAGE_KEY, 'true');
     setIsOpen(false);
   };
+
+  useEffect(() => {
+    setIsOpen(localStorage.getItem(LOCAL_STORAGE_KEY) !== 'true');
+  }, []);
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>

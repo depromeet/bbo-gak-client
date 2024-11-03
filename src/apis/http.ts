@@ -50,7 +50,7 @@ axiosInstance.interceptors.response.use(
       const status = error.response?.status;
       const refreshToken = getCookie(REFRESH_TOKEN);
 
-      if (status === 401) {
+      if (status === 401 && typeof window !== 'undefined') {
         if (refreshToken) {
           deleteCookie(ACCESS_TOKEN);
           deleteCookie(REFRESH_TOKEN);
