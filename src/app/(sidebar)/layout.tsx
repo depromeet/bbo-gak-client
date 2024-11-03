@@ -4,6 +4,7 @@ import { CardWindowLayout } from '@/components/CardWindow/context';
 import AuthRedirect from '../AuthRedirect';
 import { NotificationWindow } from '@/components/Notification/NotificationWindow';
 import { NotificatinProvider } from '@/components/Notification/context';
+import { ShutterDialog } from '@/components/ShutterDialog/ShutterDialog';
 
 export default function SidebarLayout({ children }: PropsWithChildren) {
   return (
@@ -17,6 +18,7 @@ export default function SidebarLayout({ children }: PropsWithChildren) {
           </div>
         </NotificatinProvider>
       </AuthRedirect>
+      <ShutterDialog />
     </div>
   );
 }
